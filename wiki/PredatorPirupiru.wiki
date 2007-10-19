@@ -1,4 +1,4 @@
-#summary Predator's Pirupiru crackme by Ange, 10/2007
+#summary Predator's Pirupiru crackme solution by Ange, 10/2007
 #labels challenge,gnireenigne,solution
 [http://crackmes.de/users/predator/pirupiru/ link]
 =unpack=
