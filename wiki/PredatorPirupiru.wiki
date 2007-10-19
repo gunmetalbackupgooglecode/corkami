@@ -1,5 +1,5 @@
 #labels challenge,gnireenigne,solution
-Predator's [http://crackmes.de/users/predator/pirupiru/ Pirupiru] crackme by Ange, 10/2007
+#Predator's [http://crackmes.de/users/predator/pirupiru/ Pirupiru] crackme by Ange, 10/2007
 =unpack=
 Ok, this file has a lot of appended data...
 it's fishy, I remove the appended data, run it, it doesn't work.
