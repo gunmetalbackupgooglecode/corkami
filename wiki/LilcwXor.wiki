@@ -1,3 +1,4 @@
+#labels challenge,gnireenigne,solution
 lilcw xor crackme
 = introduction =
 this crackme just requires a correct password...
