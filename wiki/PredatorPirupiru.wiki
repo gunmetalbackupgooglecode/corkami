@@ -1,4 +1,4 @@
-Predator's Piru Piru crackme by Ange, 10/2007
+Predator's [http://crackmes.de/users/predator/pirupiru/ Pirupiru] crackme by Ange, 10/2007
 =unpack=
 Ok, this file has a lot of appended data...
 it's fishy, I remove the appended data, run it, it doesn't work.
@@ -10,9 +10,9 @@ then I see that my process is terminated in OllyDbg yet the crackme is running.
 I'm suspecting the case of a binder:
 
 the file
-  # creates a suspended process of itself (CreateProcessA)
-  # unpacks the original file (likely the appended data compressed with RC4) in memory (WriteProcessMemory)
-  # then resume the suspended thread (ResumeThread) and close itself.
+ # creates a suspended process of itself (CreateProcessA)
+ # unpacks the original file (likely the appended data compressed with RC4) in memory (WriteProcessMemory)
+ # then resume the suspended thread (ResumeThread) and close itself.
 
 the best shortcut is to set a breakpoint on WriteProcessMemory.
 the buffer to write is in [esp+c].
@@ -25,18 +25,20 @@ now, the unpacked EXE. it contains the nag screens text in clear form.
 It looks like this string is the one to get :
 {{{
 402188: C7459C541D4000 mov         d,[ebp][-064],000401D54 ;'Good Work'
-2}}}
+}}}
 
 the start of the procedure containing that line is in
 {{{
-402030: 55             push        ebp}}}
+402030: 55             push        ebp
+}}}
 if you set a bp on it, it triggers when you click Verify.
 
 if you trace a bit, you see this call is the one that triggers the nag.
-{{{402144: FF97B0020000   call        d,[edi][0000002B0]}}}
+{{{
+402144: FF97B0020000   call        d,[edi][0000002B0]
+}}}
 
 a while before, it does a StrLen then compare the results with 3
-
 {{{
 4020AD: FF1508104000   call        __vbaLenBstr
 4020B3: 33D2           xor         edx,edx
