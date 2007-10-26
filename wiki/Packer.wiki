@@ -20,7 +20,7 @@ most packers follow this 5-parts schema.
  # the system part: this part has to reproduce some system mechanisms (imports loading, relocation...) to make the original binary run correctly.
 = Compression =
 
-the most common (60% ?) ones are [http://www.ibsensoftware.com/products_aPLib.html Aplib] and [http://www.7-zip.org/sdk.html Lzma] (20%?)
+the most common ones are [http://www.ibsensoftware.com/products_aPLib.html Aplib] (60%) and [http://www.7-zip.org/sdk.html Lzma] (20%)
 
 = Encryption =
 
