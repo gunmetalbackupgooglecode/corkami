@@ -8,13 +8,12 @@ Their common point is that they all create a binary from a source binary, and th
 
 they might compress the original data (compressor), encrypt it (encryptor), add some counter-measure (anti-* (debuggers/tools/VM...), obfuscate code with polymorphism or junk
 
+= Usual behavior =
+most packers follow this 4-parts schema
+# the start: commercial packers want to be identified, so even the most advanced always start in some recognizable way. Some even include the packer name as a string.
+# the trapped entrance: the part with the most obfuscation, high polymorphism, counter-measures... usually decrypts next part
+# the data manipulation part: this part restore the original data: uncompress, decrypt... usually with low or no protection at all.
+# the system part: this part has to reproduce some system mechanisms (imports loading, relocation...) to make the original binary run correctly.
 = Compression =
 
 the most common one is [http://www.ibsensoftware.com/products_aPLib.html Aplib], then [http://www.7-zip.org/sdk.html Lzma] & [http://www.bitsum.com/jcalg1.htm JCalg1].
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
