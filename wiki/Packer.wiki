@@ -1,0 +1,20 @@
+#summary a general presentation about binary packers
+
+= Introduction =
+
+A packer is a generic word for a lot of different kind of tools, including: _compressor, encryptor, protector, obfuscater, patcher...
+
+Their common point is that they all create a binary from a source binary, and the result should execute like the source binary.
+
+they might compress the original data (compressor), encrypt it (encryptor), add some counter-measure (anti-* (debuggers/tools/VM...), obfuscate code with polymorphism or junk
+
+= Compression =
+
+the most common one is [http://www.ibsensoftware.com/products_aPLib.html Aplib], then [http://www.7-zip.org/sdk.html Lzma] & [http://www.bitsum.com/jcalg1.htm JCalg1].
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
