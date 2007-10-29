@@ -1,6 +1,6 @@
-#summary a general presentation about binary packers
+#summary a general introduction to binary packers
 
-Note that nothing in this page will match every packer out there. I just want to present various concepts that applies for most cases, to help in documenting unpackmes.
+Note that nothing in this page will match every packer out there. I just want to present various concepts that applies for most cases, mostly to help in documenting unpackmes.
 
 = Introduction =
 
@@ -18,14 +18,60 @@ most packers follow this 5-parts schema.
  # the data manipulation part: this part restore the original data: uncompress, decrypt... usually with low or no protection at all.
  # the cleaning: remove as much data as possible to prevent easy unpacking. Like a hitman would clean his tracks.
  # the system part: this part has to reproduce some system mechanisms (imports loading, relocation...) to make the original binary run correctly.
-= Compression =
+
+= In details =
+
+== Compression ==
 
 the most common ones are [http://www.ibsensoftware.com/products_aPLib.html Aplib] (60%), [http://www.7-zip.org/sdk.html Lzma] (20%), and the rest...
 
-= Encryption =
+== Encryption ==
 
 a byte or dword XOR is undoubtedly the most commonly used.
 
 they are often used with ADD/ROL too.
 
 As for 'real' algorithms, comes RC4, Tea, Blowfish, RSA...
+
+= Example = 
+ # start:
+{{{
+Jmp here:
+    db 'My Packer 1.0',0
+here:
+}}}
+ # trapped entrance
+{{{
+<junk>
+check with IsDebuggerPresent
+<junk>
+check with 2 GetTickCount
+<junk>
+xor32 the rest of the stub
+}}}
+ # data manipulation part: unpack each section content with Aplib
+ # cleaning : overwrites the start of the packer & the section table with garbage
+ # system : load imports with a `LoadLibraryA/GetProcAddress` loop, then jump to the original entry point
+
+= Tactics =
+
+== Manual Dump ==
+During the execution of most packer stubs, the original file is at some point fully restored in memory, and not executed yet. If we stop execution at this point, save it to disk, and revert the system part, we can get an unpacked image of the original file. So we try to _find the Original Entry Point_, get a _manual dump_. 
+
+in short, it just consists in finding a shortcut: a bit like serial-fishing, you don't have to understand anything as long as you found the _clean restore point_.
+
+Let's take a small example:
+{{{
+start:
+    call <big complex algorithm with highly obfuscated code>
+    jmp <OEP> // at this point the code is decrypted
+}}}
+to get a manual dump, just set a breakpoint at the `jmp`, and there you go.
+
+However it's easy to prevent such a point to appear. And this tactic is not very interesting.
+
+== Full Unpacking ==
+
+This is the interesting part. Analyze and understand the whole packer stub, sort out what is junk and what is important, find out the _minimum_ information that you need to restore the original image in a _generic_ way.
+
+And there is no trick here. it's pure fun !
