@@ -1,5 +1,5 @@
 #summary a general introduction to binary packers
-#labels Featured,Packer,Docs
+#labels Featured
 
 Note that nothing in this page will match every packer out there. I just want to present various concepts that applies for most cases, mostly to help in documenting unpackmes.
 
