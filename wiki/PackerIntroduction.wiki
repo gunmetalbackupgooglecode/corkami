@@ -1,4 +1,5 @@
 #summary a general introduction to binary packers
+#labels Featured,Packer,Docs
 
 Note that nothing in this page will match every packer out there. I just want to present various concepts that applies for most cases, mostly to help in documenting unpackmes.
 
@@ -47,25 +48,25 @@ here:                             ; entrance
     xor32 <part3>
 
 part3:                            ; data restore
-    call Aplib, section content
+    call Aplib, <section content>
+    loop part3
 
 part4:                            ; cleaning
-    call overwrite <original section table>
-    call overwrite <packer start>
+    call Overwrite, <original section table>
+    call Overwrite, <packer start>
 
 part 5:                           ;system
 Dll:
-    call LoadLibraryA
+    call LoadLibraryA, <DllName>
 API:
-    call GetProcAddress
+    call GetProcAddress, <ApiName>
     loop API
     loop DLL
 
     jmp <OEP>
 }}}
- # data manipulation part: unpack each section content with Aplib
- # cleaning : overwrites the start of the packer & the section table with garbage
- # system : load imports with a `LoadLibraryA/GetProcAddress` loop, then jump to the original entry point
+
+remember this is just an example and their is an exception for everything here.
 
 = Tactics =
 
