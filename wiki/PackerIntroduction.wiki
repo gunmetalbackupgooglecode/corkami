@@ -4,18 +4,18 @@ Note that nothing in this page will match every packer out there. I just want to
 
 = Introduction =
 
-A packer is a generic word for a lot of different kind of tools, including: _compressor, encryptor, protector, obfuscater, patcher...
+A packer is a generic word for a lot of different kind of tools, including: _compressor, encryptor, protector, obfuscater, patcher_...
 
-Their common point is that they all create a binary from a source binary, and the result should execute like the source binary.
+Their common point is that they all create a new & different binary from a source binary, and the result should execute like the source binary.
 
-they might compress the original data (compressor), encrypt it (encryptor), add some counter-measure (anti-(debuggers/user/tools/VM...), obfuscate code with polymorphism or junk
+they might compress the original data (_compressor_), encrypt it (_encryptor_), add some counter-measure (_protectors_, with anti-(debuggers/user/tools/VM...), obfuscate code with polymorphism or junk) (_scrambler_).
 
 = Typical skeleton =
 most packers follow this 5-parts schema.
 
  # the start: commercial packers want to be identified, so even the most advanced ones may start in some recognizable way. Some even include the packer's name in text form.
  # the trapped entrance: the part with the highest obfuscation, junk, polymorphism, counter-measures... usually decrypts next part
- # the data manipulation part: this part restore the original data: uncompress, decrypt... usually with low or no protection at all.
+ # the data restoring part: this part restore the original data: decompression, decryption... usually with low or no protection at all.
  # the cleaning: remove as much data as possible to prevent easy unpacking. Like a hitman would clean his tracks.
  # the system part: this part has to reproduce some system mechanisms (imports loading, relocation...) to make the original binary run correctly.
 
@@ -36,18 +36,24 @@ As for 'real' algorithms, comes RC4, Tea, Blowfish, RSA...
 = Example = 
  # start:
 {{{
-Jmp here:
+Jmp here:                         ; start
     db 'My Packer 1.0',0
-here:
+here:                             ; entrance
 }}}
  # trapped entrance
 {{{
-<junk>
-check with IsDebuggerPresent
-<junk>
-check with 2 GetTickCount
-<junk>
-xor32 the rest of the stub
+    <junk>                       
+    check with IsDebuggerPresent
+    <junk>
+    check with 2 GetTickCount
+    <junk>
+    xor32 <part3>
+part3:                            ; data restore
+    call Aplib, section content
+part4:                            ; cleaning
+    call overwrite <original section table>
+    call overwrite <packer start>
+
 }}}
  # data manipulation part: unpack each section content with Aplib
  # cleaning : overwrites the start of the packer & the section table with garbage
@@ -75,3 +81,12 @@ However it's easy to prevent such a point to appear. And this tactic is not very
 This is the interesting part. Analyze and understand the whole packer stub, sort out what is junk and what is important, find out the _minimum_ information that you need to restore the original image in a _generic_ way.
 
 And there is no trick here. it's pure fun !
+
+no fast-forward trick, most tools won't even help you.
+
+at least, here are some hints:
+ # the first problem is the junk : identify it clearly, by writing some tools or just getting used to it
+ # next problem is understanding how the polymorphism of the real instruction works.
+ # at this point you should get an idea of what the packer does in its monomorphism-ed form. If you meet a big algorithm, it's probably something already documented out there, so train yourself to identify Aplib/Lzma first. If you don't know the algorithm you're facing, do some quick search on the web. If not successfull, then just port it. IDA & HexRay might help !
+
+Excepting _rip-offs_, each packer is somehow different. Some junk engines are publicly available, many anti-debugs are common, but
