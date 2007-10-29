@@ -1,0 +1,31 @@
+#summary a general presentation about binary packers
+
+Note that nothing in this page will match every packer out there. I just want to present various concepts that applies for most cases, to help in documenting unpackmes.
+
+= Introduction =
+
+A packer is a generic word for a lot of different kind of tools, including: _compressor, encryptor, protector, obfuscater, patcher...
+
+Their common point is that they all create a binary from a source binary, and the result should execute like the source binary.
+
+they might compress the original data (compressor), encrypt it (encryptor), add some counter-measure (anti-(debuggers/user/tools/VM...), obfuscate code with polymorphism or junk
+
+= Typical skeleton =
+most packers follow this 5-parts schema.
+
+ # the start: commercial packers want to be identified, so even the most advanced ones may start in some recognizable way. Some even include the packer's name in text form.
+ # the trapped entrance: the part with the highest obfuscation, junk, polymorphism, counter-measures... usually decrypts next part
+ # the data manipulation part: this part restore the original data: uncompress, decrypt... usually with low or no protection at all.
+ # the cleaning: remove as much data as possible to prevent easy unpacking. Like a hitman would clean his tracks.
+ # the system part: this part has to reproduce some system mechanisms (imports loading, relocation...) to make the original binary run correctly.
+= Compression =
+
+the most common ones are [http://www.ibsensoftware.com/products_aPLib.html Aplib] (60%), [http://www.7-zip.org/sdk.html Lzma] (20%), and the rest...
+
+= Encryption =
+
+a byte or dword XOR is undoubtedly the most commonly used.
+
+they are often used with ADD/ROL too.
+
+As for 'real' algorithms, comes RC4, Tea, Blowfish, RSA...
