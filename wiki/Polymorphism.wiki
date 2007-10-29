@@ -1,0 +1,38 @@
+#summary Listing Polymorphism and junk patterns
+
+= Hints =
+
+* ESP is rarely changed
+* many opcodes use random immediate values as junk, and image-base like values as real opcodes. 
+{{{
+mov eax, 0x046e8f82 might  be junk
+mov eax, 0x04000000 might be real
+
+= Junk =
+
+== do nothing ==
+
+NOP 0x90
+Hint NOP 0x0f
+JMP +2
+Jxx +2
+== do almost nothing ==
+
+PUSH/POP
+PUSHA/POPA
+PUSHF/POPF
+== cancels each other ==
+
+== twins == 
+
+== do something but in PUSH/POP block ==
+
+= Patterns blocks = 
+= Polymophism =
+
+== jmp ==
+
+Jxx/JNxx
+X = 0x70-0x7F , Y, X ^ 0x8, Y - 2
+Ex:
+0x70 0x38 0x78 0x36
