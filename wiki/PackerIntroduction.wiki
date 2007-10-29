@@ -34,26 +34,34 @@ they are often used with ADD/ROL too.
 As for 'real' algorithms, comes RC4, Tea, Blowfish, RSA...
 
 = Example = 
- # start:
 {{{
-Jmp here:                         ; start
-    db 'My Packer 1.0',0
+    jmp <here>                    ; start
+ db 'My Packer 1.0',0
+
 here:                             ; entrance
-}}}
- # trapped entrance
-{{{
     <junk>                       
     check with IsDebuggerPresent
     <junk>
     check with 2 GetTickCount
     <junk>
     xor32 <part3>
+
 part3:                            ; data restore
     call Aplib, section content
+
 part4:                            ; cleaning
     call overwrite <original section table>
     call overwrite <packer start>
 
+part 5:                           ;system
+Dll:
+    call LoadLibraryA
+API:
+    call GetProcAddress
+    loop API
+    loop DLL
+
+    jmp <OEP>
 }}}
  # data manipulation part: unpack each section content with Aplib
  # cleaning : overwrites the start of the packer & the section table with garbage
@@ -85,8 +93,8 @@ And there is no trick here. it's pure fun !
 no fast-forward trick, most tools won't even help you.
 
 at least, here are some hints:
- # the first problem is the junk : identify it clearly, by writing some tools or just getting used to it
+ # the first problem is the junk : identify it clearly, by writing some tools (as a start) or just getting used to it (better)
  # next problem is understanding how the polymorphism of the real instruction works.
- # at this point you should get an idea of what the packer does in its monomorphism-ed form. If you meet a big algorithm, it's probably something already documented out there, so train yourself to identify Aplib/Lzma first. If you don't know the algorithm you're facing, do some quick search on the web. If not successfull, then just port it. IDA & HexRay might help !
+ # at this point you should get an idea of what the packer does in its monomorphism-ed form. If you meet a big algorithm, it's probably something already documented out there, so train yourself to identify Aplib/Lzma first. If you don't know the algorithm you're facing, do some quick search on the web. If not successful, then just port it by hand. IDA & HexRay might help !
 
-Excepting _rip-offs_, each packer is somehow different. Some junk engines are publicly available, many anti-debugs are common, but
+Excepting _rip-offs_, each packer is somehow different. Some junk engines are publicly available, many anti-debugs are common, but it's never really the same, so you can make a kind of fingerprint of packers thru the junk they use, their polymorphisms, their real code, their countermeasures, and what they actually do to the original data.
