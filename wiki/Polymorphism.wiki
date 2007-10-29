@@ -7,26 +7,53 @@
 {{{
 mov eax, 0x046e8f82 might  be junk
 mov eax, 0x04000000 might be real
-
+}}}
 = Junk =
 
-== do nothing ==
+== do (almost) nothing ==
 
-NOP 0x90
-Hint NOP 0x0f
-JMP +2
-Jxx +2
-== do almost nothing ==
+rep, repz, lock
 
-PUSH/POP
-PUSHA/POPA
-PUSHF/POPF
+nop 0x90
+
+(hint) nop 0x0f
+
+{{{
+jmp +2
+0xeb00
+}}}
+
+{{{
+jxx +2
+0x7? 00
+}}}
 == cancels each other ==
+add <=> sub
+ror <=> rol
+
+
+{{{
+push
+pop
+}}}
+
+{{{
+pusha
+popa
+}}}
+
+{{{
+pushf
+popf
+}}}
 
 == twins == 
+neg
+not
+xor <reg32>,<val32>
 
 == do something but in PUSH/POP block ==
-
+Add, sub, xor, ror, rol, or, and, neg, not
 = Patterns blocks = 
 = Polymophism =
 
@@ -36,3 +63,19 @@ Jxx/JNxx
 X = 0x70-0x7F , Y, X ^ 0x8, Y - 2
 Ex:
 0x70 0x38 0x78 0x36
+
+{{{
+call +5
+pop reg32
+}}}
+
+{{{
+push <VA>
+ret
+}}}
+
+{{{
+Push <VA>
+Push 0x??c35858
+Call ESP
+}}}
