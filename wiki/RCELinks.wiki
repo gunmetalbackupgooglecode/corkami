@@ -5,11 +5,21 @@
 
 any website, tool or blog of interest for any RCE fan.
 
+=Web=
+==Blogs==
 
-= Blogs =
-
- * [http://www.hexblog.com/ HexBlog] Ilfak Guilfanov (IDA author)
- * [http://nzight.blogspot.com/] Ero Carrera - Pefile author, Sabre 
+ * [http://www.hexblog.com/ HexBlog] Ilfak Guilfanov (IDA & HexRay author)
+ * [http://nzight.blogspot.com/ Ero Carrera] - Pefile author, Sabre 
  * [http://beatrix2004.free.fr/ Beatrix] Tools, tutorials, OllyDbg (FullDisasm)
  * [http://pedram.redhive.com/blog/ Pedram Amini] PaiMei author, OpenRCE founder
  * [http://deroko.phearless.org/ cr4zyserb] Deroko author of DoeR, many advanced tutorials
+
+
+==Website==
+==Docs==
+
+=Libraries=
+
+=Framework=
+
+=Tools=
