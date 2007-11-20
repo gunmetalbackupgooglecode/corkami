@@ -8,12 +8,23 @@ any website, tool or blog of interest for any RCE fan.
 =Web=
 ==Blogs==
 
- * [http://www.hexblog.com/ HexBlog] Ilfak Guilfanov (IDA & HexRay author)
+ * [http://www.hexblog.com/ HexBlog] Ilfak Guilfanov (IDA & !HexRay author)
  * [http://nzight.blogspot.com/ Ero Carrera] - Pefile author, Sabre 
- * [http://beatrix2004.free.fr/ Beatrix] Tools, tutorials, OllyDbg (FullDisasm)
+ * [http://beatrix2004.free.fr/ Beatrix] Tools, tutorials, !OllyDbg (!FullDisasm)
  * [http://pedram.redhive.com/blog/ Pedram Amini] PaiMei author, OpenRCE founder
  * [http://deroko.phearless.org/ cr4zyserb] Deroko author of DoeR, many advanced tutorials
+ * [http://mrhaandi.thecoderblogs.com/ MR. HAANDI’s Crypto Corner] Advanced tutorials and crackmes
+ * [http://www.cryptocracking.cjb.net/ [ cRYPTO cRACKING ] Advanced crypto tutorials and tools.
 
+ Welcome to bLaCk-eye's home page. This site is mostly dedicated to cryptography
+ and how to crack it in various protection schemes that you can find in our usuall targets.
+ Most of the tutorials are directed towards cracking crypto crackmes as they provide the best
+ and secure way to learn cryptography.
+ You'll also find here tools to help you in your quest like factoring tools, libraries,
+ and source codes related to, of course cryptography.
+ As this is my site you'll also find my crackmes for you to test your skillz...
+ This is what i have to tell you atm about this site...
+ Enjoy your stay and be welcomed to come back :)
 
 ==Website==
 ==Docs==
