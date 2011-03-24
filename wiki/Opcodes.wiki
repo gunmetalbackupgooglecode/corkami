@@ -4,6 +4,14 @@
 
 = Introduction =
 
+all exceptions triggers and all calls can be used to get current IP.
+{{{
+structured_exception_handler:
+    mov eax, [esp + 0ch]
+    mov eax, dword [eax + 0b8h] 
+=> eax = eip of the trigger
+}}}
+
 =General=
 
 ==standard==
@@ -129,6 +137,14 @@ sub eax, 3
 
 ===fstenv===
 *GET EIP*
+the FPU knows the address of the last executed fpu instruction. so, to get the current IP, use any FPU opcode - even FNOP - then store the FPU environment in memory via F(N)STENV:
+{{{
+@last_fpu:
+    fnop
+    fnstenv [fpuenv]
+    mov edx,[fpuenv.DataPointer]
+=> edx = @last_fpu
+}}}
 
 ===sbb===
 sub, with borrow
@@ -420,7 +436,7 @@ pop eax
 
 ===popf===
 pop EFLAGS from stack
-
+  * can be used to set TF, the trap flag. It will then trigger an exception after the next instruction.
 ===popa===
 pop edi/esi/ebp/.../ebx/edx/ecx/eax
 
@@ -430,7 +446,7 @@ eax=cr0 (non privileged)
 officially on ax only, 'undocumented' on eax
 ====anti-debug====
 ===lahf===
-ah=flag  (CPAZS)
+ah=flag  (only the flags CF PF AF ZF SF)
 
 ===sahf===
 flag=ah
@@ -577,26 +593,58 @@ cmpxchg bl,cl
 => al = bl
 }}}
 
+===cmpxchg8b====
+{{{
+start: eax:edx, ecx:ebx, [_cmpxchg8b] = 0a0a0a0a:d0d0d0d0, 99aabbcc:ddeeff00, 0d0d0d0d0:00a0a0a0a
+cmpxchg8b [_cmpxchg8b]
+=> [_cmpxchg8b] = ecx:ebx
+}}}
+
 ===rdtsc===
-edx:eax = timestamp counter. 
+=> edx:eax = timestamp counter. 
 
 ====anti-debug====
+{{{
+rdtsc
+mov ebx, eax
+mov ecx, edx
+rdtsc
+cmp eax, ebx
+jle bad
+cmp edx, ecx
+jnz bad
+}}}
+
+===popcnt===
+`<`target`>` =  number of bits set in `<`source`>`
+{{{
+start: ebx = 0100101010010b
+popcnt eax, ebx
+=> eax = 5
+}}}
+  * not supported by all cpus
 
 ===sidt===
 store idt
-
 {{{
 sidt [eax]
-=> [eax] = 7fff
+=> [eax] = 7fff (XP) / 0fffh (W7)
 }}}
 
-====anti-vmware====
-
+===crc32===
+updates a crc32c on the operand
+{{{
+start: eax , [ebx] = 0, 12345678h
+crc32 eax, [ebx]
+=> eax, 0fa745634h
+}}}
+  * not the standard crc32
+  * not supported by all cpus
 ===sgdt===
 store gdt
 {{{
 sgdt [eax]
-=> [eax] = 3fff
+=> [eax] = 3fff (XP) / (7fh)
 }}}
 
 ====detector====
@@ -693,8 +741,8 @@ stops cpu. usually used to trigger PRIVILEGED_INSTRUCTION
 ===!IceBp===
 triggers SINGLE_STEP exception
 
-ud1-ud2===
+===ud1-ud2===
 invalid opcodes. used as exceptions triggers for ILLEGAL_INSTRUCTION
 
-lock===
+===lock===
 preserve memory content. picky prefix, mostly used to trigger exceptions
