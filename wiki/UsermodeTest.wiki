@@ -80,3 +80,9 @@ testing 64 bits opcodes...
 
 ...completed!
 }}}
+
+= Building = 
+compile directly with yasm, no linker needed:
+{{{
+Yasm -o usermode_test.exe usermode_test.asm
+}}}
