@@ -1,0 +1,82 @@
+#summary a user-mode opcodes tester
+#labels Featured
+
+= Introduction =
+
+this program tests each usermode opcode (at least, one of almost all families), from obsolete to very recent opcodes, including undocumented opcodes, undefined use or encodings.
+it uses several tricks to be able to test further:
+  * using segment 33h trick to test 64b opcodes
+  * using !ZwAllocateVirtualMemory trick to allocate `[`0000-ffff`]`, so word jumps and returns are working
+
+General FPU/SSE+ opcodes are not included.
+
+= Details =
+
+jumps opcodes:
+  * call to word
+  * jump short, near, to word, to reg32, to reg16, far
+  * return near, near word, far, interrupt
+
+classic opcodes:
+  * mov movzx movsx lea xchg add sub sbb adc inc dec or and xor
+  * not neg rol ror rcl rcr shl shr shld shrd div mul imul enter leave
+  * setXX cmovXX bsf bsr bt btr btc bswap cbw cwde cwd
+
+rare opcodes:
+  * xadd aaa daa aas das aad aam lds bound arpl inc jcxz xlatb (on ebx and bx) lar
+  * verr cmpxchg cmpxchg8b sldt lsl
+
+undocumented opcodes:
+  * aam xx, salc, aad xx, bswap reg16, smsw reg32
+
+cpu specific opcodes:
+  * popcnt movbe crc32
+
+undocumented encodings:
+  * test, 'sal'
+
+os-dependant results:
+  * smsw, sidt, sgdt, str, sysenter
+
+nops-equivalent:
+  * nop, pause, sfence, mfence, lfence, prefetch`*`, 'hint nop', into, fpu, lock + operators
+
+anti-debuggers:
+  * gs, smsw, rdtsc, pushf, pop ss
+
+Get EIP:
+  * call, call far, fstenv
+
+Exception triggers:
+  * generic int 00-FF , int 2d, illegal instruction,
+  * into, int4, int3, int 3, IceBP, TF, bound, lock, in, hlt
+
+documented but frequent disassembly mistakes:
+  * bswap, smsw, str, branch hints, word calls/rets/loops, FS:movsd, xlatb, ud*
+
+64 bits opcodes:
+  * cwde, cmpxchg16, lea RIP, movsxd
+
+= Use = 
+It has currently no options. Just run it from command line, all tests will run after each other:
+{{{
+User-mode opcodes tester v0.1, 2011/04/01
+Ange Albertini, BSD Licence, 2009-2011 - http://corkami.com
+
+Info: Windows 7 found
+testing jumps opcodes...
+testing classic opcodes...
+testing rare opcodes...
+testing undocumented opcodes...
+testing cpu-specific opcodes...
+Info: MOVBE not supported
+testing undocumented encodings...
+testing os-dependant opcodes...
+testing 'nop' opcodes...
+testing opcode-based anti-debuggers...
+testing opcode-based GetIPs...
+testing opcode-based exception triggers...
+testing 64 bits opcodes...
+
+...completed!
+}}}
