@@ -3,12 +3,15 @@
 
 = Introduction =
 
-this program tests each usermode opcode (at least, one of almost all families), from obsolete to very recent opcodes, including undocumented opcodes, undefined use or encodings.
-it uses several tricks to be able to test further:
+this program tests most usermode opcodes, from obsolete to very recent, including undocumented ones, undefined use or encodings. As well, opcodes used as anti-debugs, exception triggers, Get IPs...
+
+it uses several tricks to be able to test further than normally expected:
   * using segment 33h trick to test 64b opcodes
   * using !ZwAllocateVirtualMemory trick to allocate `[`0000-ffff`]`, so word jumps and returns are working
 
-General FPU/SSE+ opcodes are not included.
+General FPU/SSE+ opcodes are not included: It's not intended to be complete, but just stress your emulator/knowledge a bit, and insist on specific points that are interesting.
+
+The whole binary, including the PE structure, is hand-made in assembly, so your favorite security program might trigger a false positive warning.
 
 = Details =
 
@@ -81,8 +84,11 @@ testing 64 bits opcodes...
 ...completed!
 }}}
 
+Intermediate messages are displayed then removed, so if it crashes in the middle of the execution, you'll see instantly where.
+
+
 = Building = 
-compile directly with yasm, no linker needed:
+assemble directly with yasm, no linker needed:
 {{{
 Yasm -o usermode_test.exe usermode_test.asm
 }}}
