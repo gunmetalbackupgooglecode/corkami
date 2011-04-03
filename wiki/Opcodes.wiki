@@ -1,10 +1,14 @@
 #summary x86 Opcodes
-#labels asm
-#sidebar TableOfContents
 
 = Introduction =
 
-all exceptions triggers and all calls can be used to get current IP.
+  * this page gathers one line description of opcodes, and a few specific details.
+
+  * UsermodeTest is the practice counterpart of this page. It uses each opcode, and check the result.
+
+
+  * all exceptions triggers and all calls can be used to get current IP.
+    for exception triggers:
 {{{
 structured_exception_handler:
     mov eax, [esp + 0ch]
@@ -12,6 +16,9 @@ structured_exception_handler:
 => eax = eip of the trigger
 }}}
 
+  * Conditional jumps can have a 2e/3e BRANCH TAKEN/NOT TAKEN prefix. there is no official way to assemble nor disassemble them.
+
+  * Calls, `[`conditional`]` jumps, loops, returns, can operate on EIP or IP, with a 66 prefix. there is no standard way to assemble nor disassemble them.
 =General=
 
 ==standard==
@@ -70,6 +77,11 @@ lea eax, [eax * 4 + 203A]
 => eax = 2046
 }}}
 
+*64 bits only* can be used to get IP directly
+{{{
+48 8d 05 00000000: lea rax, [rip]
+}}}
+
 ===movzx===
 mov and extend with zeroes
 {{{
@@ -86,6 +98,14 @@ movsx ecx, al
 => ecx = -3
 }}}
 
+====movsxd=====
+movsx's *64 bit only* counterpart
+{{{
+start: eax = -3
+movsxd rcx, eax
+=> rcx = -3
+}}}
+
 ===xchg===
 swap contents
 {{{
@@ -93,6 +113,8 @@ start: al, bl = 1, 2
 xchg al, bl
 => al, bl = 2, 1
 }}}
+
+atomic operation. lock prefix not needed
 
 ===movs===
 mov ds:`[`edi`]`, es:`[`esi`]`, and inc (or dec) esi and edi
@@ -437,14 +459,16 @@ pop eax
 ===popf===
 pop EFLAGS from stack
   * can be used to set TF, the trap flag. It will then trigger an exception after the next instruction.
+
 ===popa===
 pop edi/esi/ebp/.../ebx/edx/ecx/eax
 
 ===smsw===
 eax=cr0 (non privileged)
 
-officially on ax only, 'undocumented' on eax
+officially on ax only, 'undocumented' on eax, but in reality, reliable on eax.
 ====anti-debug====
+
 ===lahf===
 ah=flag  (only the flags CF PF AF ZF SF)
 
@@ -466,21 +490,27 @@ in es:`[`edi`]`, dx, inc (or dec) edi
 write port - privileged
 
 ===outsd===
-out dx, [esi]; inc (or dec) esi
+out dx, `[`esi`]`; inc (or dec) esi
 
-===call===
+===calls===
+====call====
 push eip of next instruction/eip = `<`operand`>`
 
-===callf===
+works in 16b
+
+====callf====
 push cs, eip of next instruction/cs:eip = `<`operands`>`
 
-===ret===
+===returns===
+work in 16b
+
+===ret====
 pop eip / esp += `<`operand`>`
 
-===retf===
+====retf====
 pop eip / pop cs
 
-===iret===
+====iret====
 pop eip / pop cs + pop eflags
 
 ===cbw===
@@ -507,6 +537,16 @@ cwde
 => eax = 3
 }}}
 
+===cdqe====
+extend signed value from eax to rax
+
+64 bits only
+{{{
+start: eax = 012345678h
+cdqe
+=> rax =  012345678h
+}}}
+
 ===bsf===
 scan for the first bit set:
 {{{
@@ -515,7 +555,7 @@ bsf ebx, eax
 => ebx = 2
 }}}
 
-===bsr===
+====bsr====
 same but from highest bit to lowest bit
 
 ===bt===
@@ -526,16 +566,16 @@ bt ax,bx
 => CF = 1
 }}}
 
-===bts/btr/btc===
+====bts/btr/btc====
 same as bt + set/reset/complement that bit
 
 ===stc/d/i===
 set CF/DF (rep prefix)/IF (privileged)
 
-===clc/d/i===
+====clc/d/i====
 clear those flags
 
-===cmc===
+====cmc====
 complement CF: CF = !CF
 
 ===int===
@@ -552,6 +592,11 @@ xlatb
 => al = 75
 }}}
 
+segment overridable, but the segment might not be displayed in short form.
+
+====xlatb====
+xlat's rarer 16b counterpart al = `[`bx + al`]`. it might not be shown in short form.
+
 ===bound===
 int5 if op1 < `[`op2`]` & op1 > `[`op2 + size`]`
 {{{
@@ -559,6 +604,8 @@ start: eax, [ebx] = 136, [135, 143]
 bound eax, ebx
 => nothing
 }}}
+
+a nop or an exception trigger => easy loop with a SEH.
 
 ===opsize===
 turns dword operand into word
@@ -583,7 +630,12 @@ bswap eax
 => eax = 78563412
 }}}
 
-undocumented on 16b
+*undocumented* on 16b: clears the register.
+{{{
+66 0FC8 bswap ax
+=> ax = 0
+}}}
+
 
 ===cmpxchg===
 if (op1 == `*`ax) op1 = op2 else `*`ax = op1
@@ -594,10 +646,22 @@ cmpxchg bl,cl
 }}}
 
 ===cmpxchg8b====
+compare and exchange - memory based
+
 {{{
 start: eax:edx, ecx:ebx, [_cmpxchg8b] = 0a0a0a0a:d0d0d0d0, 99aabbcc:ddeeff00, 0d0d0d0d0:00a0a0a0a
 cmpxchg8b [_cmpxchg8b]
 => [_cmpxchg8b] = ecx:ebx
+}}}
+
+source of the famous pentium bug
+
+===cmpxchg16b====
+cmpxchg8b's 64b counterpart
+{{{
+start: rax:rdx, rcx:rbx, [_cmpxchg16b] = 0a0a0a0a0a0a0a0a:d0d0d0d0d0d0d0d0, 99aabbcc99aabbcc:ddeeff00ddeeff00, 0d0d0d0d00d0d0d0d0:00a0a0a0a00a0a0a0a
+cmpxchg16b [_cmpxchg16b]
+=> [_cmpxchg16b] = rcx:rbx
 }}}
 
 ===rdtsc===
@@ -657,7 +721,7 @@ sldt eax
 => eax = 0
 }}}
 
-always 0?
+always 0 under standard OS, not under virtual machines.
 
 ===cpuid===
 get cpu info (brand, features, ...)
