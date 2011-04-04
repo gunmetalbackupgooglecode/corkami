@@ -61,7 +61,9 @@ documented but frequent disassembly mistakes:
   * cwde, cmpxchg16, lea RIP, movsxd
 
 = Use = 
-It has currently no options. Just run it from command line, all tests will run after each other:
+It has currently no options. Just run it from command line, all tests will run after each other.
+
+this is the output you could get under Windows 7, 64bit
 {{{
 User-mode opcodes tester v0.1, 2011/04/01
 Ange Albertini, BSD Licence, 2009-2011 - http://corkami.com
@@ -83,6 +85,34 @@ testing 64 bits opcodes...
 
 ...completed!
 }}}
+and under XP SP1, running in !VmWare:
+{{{
+User-mode opcodes tester v0.1, 2011/04/01
+Ange Albertini, BSD Licence, 2009-2011 - http://corkami.com
+
+Info: Windows XP found
+testing jumps opcodes...
+testing classic opcodes...
+testing rare opcodes...
+ERROR: SLDT non null (vm present ?)
+ERROR: LSL (vm present?)
+testing undocumented opcodes...
+testing cpu-specific opcodes...
+Info: MOVBE not supported
+testing undocumented encodings...
+testing os-dependant opcodes...
+ERROR: SGDT (vm present?) [XP]
+ERROR: STR reg16 (vm present?) [XP]
+ERROR: STR reg32 (vm present?) [XP]
+testing 'nop' opcodes...
+testing opcode-based anti-debuggers...
+testing opcode-based GetIPs...
+testing opcode-based exception triggers...
+ERROR: privileged instruction (vmware present?) - no exception
+testing 64 bits opcodes...
+Info: 64 bits not supported
+}}}
+
 
 Intermediate messages are displayed then removed, so if it crashes in the middle of the execution, you'll see instantly where.
 
@@ -92,3 +122,14 @@ assemble directly with yasm, no linker needed:
 {{{
 Yasm -o usermode_test.exe usermode_test.asm
 }}}
+
+----
+Greetings
+  * BeatriX
+  * Eugeny Suslikov
+  * Gil Dabah
+  * Igor Skochinsky
+  * Moritz Kroll
+  * Oleh Yuschuk
+  * Peter Ferrie
+  * Sebastian Biallas
