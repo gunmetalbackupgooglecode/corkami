@@ -1,0 +1,53 @@
+﻿#summary Expliquer les virus informatiques à mamie...
+
+*Mon petit, c’est quoi un virus informatique ?*
+
+Un programme informatique méchant.
+
+*Pourquoi quelqu’un ferait ça ?*
+
+Il peut y avoir plusieurs raisons, mais la plus évidente: pour l’argent ! Comme les gens se connectent à leur compte en banque via leur ordinateur, un virus peut voler de l’argent, en le transférant autre part. Comme un type qui regarde ton code de carte bleue au distributeur.
+
+*Mais s’il y a un virus sur son ordinateur, ça ce voit quand même, non ?*
+
+Si le virus est bien fait, non.
+
+*Et il y en a qui sont bien fait ?*
+
+Ça rapporte de l’argent - beaucoup d’argent ! - à leur créateurs, donc certains sont très bien fait.
+
+*Comment on peut recevoir un virus sur son ordinateur ?*
+
+Quelqu’un met un faux message quelque part sur internet, qui te dit de lancer un programme... et Boom! ton ordinateur est infecté !
+
+*Mais rien ne peut te dire que le programme est méchant ?*
+
+Il y a des programmes pour ça. Ça s’appelle un anti-virus.
+
+*Donc avec un anti-virus, on est en sécurité ?*
+
+Heureusement oui. Mais parfois, il y a des virus qui passent aux travers des mailles du filet. Ou que l’anti-virus est trop vieux...
+
+*Donc au final, il suffit de faire attention sur internet ? c’est comme dans la vie, quoi ?*
+
+Hélas, non... Parfois, il y a des erreurs dans les programmes de ton ordinateurs. Des grosses erreurs, qui permettent à quelqu’un de mal intentionné de mettre à distance un virus sur ton ordinateur.
+
+*Mais là, on ne peut rien faire ?*
+
+Normalement, ces erreurs sont corrigées rapidement. Mais il faut mettre à jour son ordinateur régulièrement, sinon on reste en danger.
+
+*Mettre à jour quoi ?*
+
+Les programmes de l’ordinateur qu’on utilise régulièrement... Windows, Acrobat, Flash, Java...
+
+*Mais si on a des doutes, il suffit simplement d’utiliser un antivirus, non ?*
+
+S’il y a déjà un virus, et qu'il est bien fait, non, c'est trop tard.
+
+*Donc on doit remettre à jour son ordinateur ?*
+
+S’il est TRÈS bien fait, ça ne suffit même pas.
+
+*Donc, pour être à l’abri, il faut être prudent, avoir un anti-virus, et tenir son ordinateur à jour, c’est bien ça ?*
+
+Oui, et si on ne fait pas l’un des trois, on prend des risques.
