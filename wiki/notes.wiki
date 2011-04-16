@@ -1,4 +1,6 @@
-#summary CVEs, file types and short description
+#summary reverse-engineering related notes
+
+=CVEs=
 
 || 2007-5659 || PDF || collectEmailInfo ||
 || 2008-2992 || PDF || util.printf ||
