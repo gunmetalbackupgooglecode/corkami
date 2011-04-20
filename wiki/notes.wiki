@@ -1,20 +1,44 @@
-#summary reverse-engineering related notes
+#summary misc notes
+
+=Formats=
+
+=Threats=
 
 =CVEs=
-
-|| 2007-5659 || PDF || collectEmailInfo ||
-|| 2008-2992 || PDF || util.printf ||
-|| 2009-0432 || PDF || media.newPlayer ||
-|| 2009-0658 || PDF || JBIG2 ||
-|| 2009-0927 || PDF || Collab.getIcon ||
-|| 2009-1492 || PDF || getAnnots ||
-|| 2009-1493 || PDF || customDictionaryOpen || linux ||
-|| 2009-3459 || PDF || FlateDecode ||
-|| 2009-3867 || Java || Soundbank ||
-|| 2009-3953 || PDF || U3D ||
-|| 2010-0188 || TIFF || DotRange || in PDF ||
-|| 2010-1297 || Flash || newfunction ||
-|| 2010-2065 || TIFF || LibTIFF Integer Overflow StripByteCount ||
-|| 2010-2883 || PDF || Cooltype ||
-|| 2010-3654 || Flash || RadioButtonGroup ||
-|| 2011-0609 || Flash || ||
+==2007-5659==
+ * PDF, collectEmailInfo
+==2008-2992==
+ * PDF, util.printf
+==2009-0432==
+ * PDF, media.newPlayer
+==2009-0658==
+ * PDF, JBIG2
+==2009-0927==
+ * PDF, Collab.getIcon
+==2009-1492==
+ * PDF, getAnnots
+==2009-1493==
+ * PDF, customDictionaryOpen linux
+==2009-3459==
+ * PDF, !FlateDecode
+==2009-3867==
+ * Java, Soundbank
+==2009-3953==
+ * PDF, U3D
+==2010-0188==
+ * TIFF, !DotRange in PDF
+==2010-1297==
+ * Flash, newfunction
+==2010-2065==
+ * TIFF, LibTIFF Integer Overflow !StripByteCount
+==2010-2883==
+ * PDF, Cooltype
+==2010-3654==
+ * Flash, !RadioButtonGroup
+ * [http://www.abysssec.com/blog/2011/04/exploiting-adobe-flash-player-on-windows-7/ Abyssec]
+==2011-0609==
+ * Flash
+ * [http://blog.fortinet.com/advanced-exploitation-of-the-recent-flash-zero-day-vulnerability-cve-2011-0609/ Haifei Li @ Cansecwest]
+=fonts=
+ * [http://damieng.com/creative/typography/palmos-font PalmOS] simple small bitmap font
+ * [http://damieng.com/blog/tag/envy-code-r Envy Code R] very nice scalable programming font
