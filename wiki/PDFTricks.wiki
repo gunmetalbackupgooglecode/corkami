@@ -1,4 +1,4 @@
-#summary PDF tricks
+#summary PDF tricks - encodings, structures, javascript
 first draft, in progress
 
 Here are various PDF tricks, either based on data encodings, javascript, or PDF structures.
@@ -44,6 +44,7 @@ When data is hex-encoded, the characters, even the nibbles of each hex character
 ==ascii newlines==
 Ascii can be stored as ascii (hopefully), but newlines can be inserted too...
 
+ Example of _Hello World!_ string, stored as ASCII, with extra new lines characters. ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-newline.pdf download]):
 {{{
 [...]
 }\
@@ -69,13 +70,24 @@ o\
 
 =structure=
 ==truncated signature==
-theorically `%PDF-1.[4-6]`, the signature can be truncated to
+theorically `%PDF-1.[4-6]`, the signature can be truncated to ignore the last digit.
+
+ Example of truncated header signature ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-shorter.pdf download]):
 {{{
 %PDF-1.
 }}}
 
-[http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-shorter.pdf example]
+==null signature==
+but it can be actually even shorter, provided you insert a null character. ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-null.pdf download])
+
+ Example of null-based header trick:
+ {{{
+%PDF-\0
+}}}
+
 ==Names tree==
+javascript split in various part
+
 no obvious trigger
 
 ==no object number==
@@ -91,6 +103,7 @@ obj
 trailer
 [...]
 }}}
+
 ==no object==
 on Acrobat X, a valid PDF doesn't need an object.
 
@@ -98,6 +111,14 @@ on Acrobat X, a valid PDF doesn't need an object.
 {{{
 %PDF-\0trailer<</Root<</Pages<<>>>>>>
 }}}
+
+this trick doesn't work on previous version of Acrobat. For them, an object - even empty, and with no index - has to be present.
+
+ Example of a valid, 48 bytes PDF, for Acrobat <=9:
+{{{
+%PDF-\0obj<<>>trailer<</Root<</Pages<<>>>>>>
+}}}
+
 ==wrong tags==
 unexpected tags are just ignored. this goes the same for tags with incorrect case.
 
@@ -105,14 +126,6 @@ unexpected tags are just ignored. this goes the same for tags with incorrect cas
 PDF is a format that supports incremental updates, so information can be written beyond the %EOF.
 
 ==linearized==
-
-==null signature==
-but it can be actually even shorter, provided you insert a null character.
-
-{{{
-%PDF-\0
-}}}
-[http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-null.pdf example]
 
 
 =javascript-based encodings=
@@ -141,7 +154,118 @@ like CAFEBABE can be read as a word or as a hex number, any uppercase word can b
 (6873049).toString(25) + " " + (38842069).toString(33) + "!"
 }}}
 
+==concatenation==
+{{{
+[...]
+      B="Hell";
+      on="o ";
+      jour="World!";
+      app.alert(B + on + jour);
+[...]
+}}}
+
 =javascript based tricks=
+==eval==
+Extremely classic, code can be built in a string, then executed via evaluation.
+
+{{{
+[...]
+     eval('app.alert("Hello World!");');
+[...]
+}}}
+
+==substring==
+A function such as _alert_ can be called, not only directly, but also as a substring of its parent object, _app_ in our example.
+
+{{{
+[...]
+     app["alert"]("Hello World!");
+[...]
+}}}
+
+==array==
+the previous example can be extended with a fake array with fake entries, which makes the actual executed function harder to spot.
+
+{{{
+[...]
+     e = ("fake1")[("fake2", "eval")]
+     e('app.alert("Hello World!");');
+[...]
+}}}
+
+==info==
+{{{
+[...]
+      /Info <</Author(Hello) /Title( World) /Producer( !)>>
+[...]
+      app.alert(info.author + info.title + info.producer);
+[...]
+}}}
+
+==annots==
+
+{{{
+[...]
+    /Annots
+[...]
+         /Subj (Hello World!)
+[...]
+      d = app.doc;
+      d.syncAnnotScan();
+      a = d.getAnnots({ nPage: 0 });
+      app.alert(a[0].subject);
+[...]
+}}}
+
+==getfield==
+[js-getfield.pdf download]
+{{{
+[...]
+  /AcroForm
+[...]
+        /Subtype/Widget
+        /T(mydata)        % this is the name
+        /V(Hello World!)  % this is the value
+[...]
+      app.alert(this.getField('mydata').value);
+[...]
+}}}
+
+==callee==
+
+{{{
+[...]
+      function decrypt(cipher) 
+[...]
+            key = arguments.callee.toString();
+[...]
+            return plaintext;
+}
+[...]
+      app.alert(decrypt(unescape(".%10%02%0F%1BI8%01R%08%01B")));
+[...]
+}}}
+
+==initial values==
+some Adobe specific global variables are initialized with default values, checking them might stop an emulator
+
+{{{
+[...]
+      if ((app)
+        && (event.target.zoomType.toString() == 'FitPage'))
+[...]
+}}}
+
+==global variables==
+global variables show a different behavior as opposed to normal ones:
+{{{
+[...]
+      hidden=0;  // global
+      hidden_=0; // not global
+      if ((hidden_ === 0) && (hidden !== 0)) 
+          app.alert("nothing unusual detected.");
+[...]
+}}}
 
 <wiki:comment>
 == ==
