@@ -1,0 +1,157 @@
+#summary PDF tricks
+first draft, in progress
+
+Here are various PDF tricks, either based on data encodings, javascript, or PDF structures.
+
+=encodings=
+any string can be encoded in various ways.
+==hex==
+naturally, a string can be stored as hex
+
+ Example of _Hello World!_ string, with each character encoded by its value in hexadecimal ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-hex.pdf download]):
+{{{
+48656c6c6f20576f726c6421
+}}}
+
+==octal==
+another classic one, each character is encoded in octal.
+
+ Example of _Hello World!_ string, with each characters encoded by its value in octal ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-octal.pdf download]):
+{{{
+\110\145\154\154\157\40\127\157\162\154\144\41\
+}}}
+
+==whitespaces between nibbles==
+so far so good, nothing too weird. However, it woudln't be Adobe if something wasn't unexpected.
+
+When data is hex-encoded, the characters, even the nibbles of each hex characters, can be separated via any whitespace (tabs, space, new line, etc...).
+
+ Example of _Hello World!_ string, encoded as hexadecimal, with extra whitespace between the nibbles ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-hex-with-space.pdf download]):
+{{{
+4
+8
+6
+
+
+     5
+6	c 6c 6f 		20
+
+
+
+576f726c6421
+}}}
+
+==ascii newlines==
+Ascii can be stored as ascii (hopefully), but newlines can be inserted too...
+
+{{{
+[...]
+}\
+\
+\
+\
+\
+\
+\
+H\
+e\
+l\
+\
+\
+\
+\
+\
+l\
+o\
+ \
+[...]
+}}}
+
+=structure=
+==truncated signature==
+theorically `%PDF-1.[4-6]`, the signature can be truncated to
+{{{
+%PDF-1.
+}}}
+
+[http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-shorter.pdf example]
+==Names tree==
+no obvious trigger
+
+==no object number==
+
+==no endobj==
+no `endobj` tag
+
+not valid on Acrobat X anymore
+
+==no object content==
+{{{
+obj
+trailer
+[...]
+}}}
+==no object==
+on Acrobat X, a valid PDF doesn't need an object.
+
+ Example of a valid trailer-only, 36 bytes PDF, under Acrobat X:
+{{{
+%PDF-\0trailer<</Root<</Pages<<>>>>>>
+}}}
+==wrong tags==
+unexpected tags are just ignored. this goes the same for tags with incorrect case.
+
+==EOF==
+PDF is a format that supports incremental updates, so information can be written beyond the %EOF.
+
+==linearized==
+
+==null signature==
+but it can be actually even shorter, provided you insert a null character.
+
+{{{
+%PDF-\0
+}}}
+[http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-null.pdf example]
+
+
+=javascript-based encodings=
+Here are a few other encoding tricks, that use javascript (not necessarily specific to Acrobat's)
+==replace==
+simple obfuscation, add some extra character/switch then replace/restore them before use.
+
+ Example of _Hello World!_ string, obfuscated with extra characters ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-replace.pdf download]):
+{{{
+"zHzzezzlzlzozzzzz zWozrzldz!").replace(/z/g,"")
+}}}
+
+==escaping==
+another standard javascript obfuscation, replace characters with escaped ones.
+
+ Example of _Hello World!_ string, encoded with javascript escaping ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-unescape.pdf download]):
+{{{
+unescape("%48%65%6C%6C%6F%20%57%6F%72%6C%64%21")
+}}}
+
+==base encoding==
+like CAFEBABE can be read as a word or as a hex number, any uppercase word can be written as a base32 (32 or less, depending on the last (in the alphabet) used character) numbers. 
+
+ Example of _HELLO WORLD!_ string, encoded as numbers with a different base ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-number.pdf download]):
+{{{
+(6873049).toString(25) + " " + (38842069).toString(33) + "!"
+}}}
+
+=javascript based tricks=
+
+<wiki:comment>
+== ==
+
+ Example of _Hello World!_ string, encoded with ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/ download]):
+{{{
+}}}
+</wiki:comment>
+
+=References=
+ * [http://blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/ Didier Stevens]
+ * [http://www.symantec.com/connect/blogs/portable-document-format-malware Kazumasa Itabashi]
+ * [http://blog.zynamics.com/2010/07/13/recon-slides-how-to-really-obfuscate-your-pdf-malware/ Sebastian Porst]
