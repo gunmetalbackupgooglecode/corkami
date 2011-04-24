@@ -4,6 +4,11 @@
 =Tools=
  * [https://github.com/sporst/SWFREtools/ SWFRETools]
 
+ * [http://msdn.microsoft.com/en-us/windows/hardware/gg463016 WinDbg] [http://msdn.microsoft.com/en-us/windows/hardware/gg463028 Symbols] [http://virtualkd.sysprogs.org/ VirtualKD]
+ * [http://www.ollydbg.de/ OllyDbg]
+  * [http://debugger.immunityinc.com/ ImDbg] [http://redmine.corelan.be:8800/projects/pvefindaddr pvefindAddr]
+
+ * [http://hiew.ru/ Hiew] [http://code.google.com/p/pyhiew/ PyHiew]
 =Threats=
 
 =CVEs=
