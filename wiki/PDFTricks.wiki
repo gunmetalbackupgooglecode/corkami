@@ -122,6 +122,15 @@ this trick doesn't work on previous version of Acrobat. For them, an object - ev
 ==wrong tags==
 unexpected tags are just ignored. this goes the same for tags with incorrect case.
 
+ Example of a trailer with incorrectly cased tags ([download]:
+{{{
+trailer
+<<
+/Root
+    <</tYpE/caTaLOG/Pages 1 0 R>>
+>>
+}}}
+
 ==EOF==
 PDF is a format that supports incremental updates, so information can be written beyond the %EOF.
 
@@ -164,10 +173,11 @@ like CAFEBABE can be read as a word or as a hex number, any uppercase word can b
 [...]
 }}}
 
-=javascript based tricks=
+=!JavaScript-based tricks=
 ==eval==
-Extremely classic, code can be built in a string, then executed via evaluation.
+A classic: some code can be built in a string, then executed via evaluation.
 
+ Example of a string of code being evaluated ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-eval.pdf download]):
 {{{
 [...]
      eval('app.alert("Hello World!");');
@@ -193,7 +203,12 @@ the previous example can be extended with a fake array with fake entries, which 
 [...]
 }}}
 
+=!JavaScript + PDF=
+
+these tricks are hiding some information in one of the various component of the PDF, and retrieving that information via !Javascript.
+
 ==info==
+
 {{{
 [...]
       /Info <</Author(Hello) /Title( World) /Producer( !)>>
@@ -218,7 +233,10 @@ the previous example can be extended with a fake array with fake entries, which 
 }}}
 
 ==getfield==
-[js-getfield.pdf download]
+An !AcroForm Widget can contain some data and value, which can be retrieved via the getField function.
+
+
+ Example of a string stored in an !AcroForm Widget ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-getfield.pdf download]):
 {{{
 [...]
   /AcroForm
@@ -232,7 +250,9 @@ the previous example can be extended with a fake array with fake entries, which 
 }}}
 
 ==callee==
+A !JavaScript function can access its own code, and use it for anything. Thus any modification might prevent the function to work correctly: typically, such functions use their code as a key for some decryption.
 
+ Example of a decryption function, using its own code as decryption key ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-callee.pdf download]):
 {{{
 [...]
       function decrypt(cipher) 
