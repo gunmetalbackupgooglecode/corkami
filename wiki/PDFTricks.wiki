@@ -1,4 +1,5 @@
-#summary PDF tricks - encodings, structures, javascript
+#summary a summary of PDF tricks - encodings, structures, javascript...
+
 first draft, in progress
 
 Here are various PDF tricks, either based on data encodings, javascript, or PDF structures.
@@ -86,9 +87,24 @@ but it can be actually even shorter, provided you insert a null character. ([htt
 }}}
 
 ==Names tree==
-javascript split in various part
+A PDF can contain a Names tree, in which each element is sequentially evaluated. This way, a script can be split in various part, without any obvious trigger such as !OpenAction.
 
-no obvious trigger
+ Example of a !JavaScript script, split into 2 parts in the Names tree ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/structure-names.pdf download]):
+{{{
+[...]
+  /Names
+[...]
+       /Names[
+            (1) <<
+[...]
+                  msg = "Hello";
+[...]
+            (2) <<
+[...]
+                  msg = msg + " World!";
+                  app.alert(msg);
+[...]
+}}}
 
 ==no object number==
 
@@ -107,22 +123,22 @@ trailer
 ==no object==
 on Acrobat X, a valid PDF doesn't need an object.
 
- Example of a valid trailer-only, 36 bytes PDF, under Acrobat X:
+ Example of a valid trailer-only, 36 bytes PDF, under Acrobat X ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/emptyX.pdf download]):
 {{{
 %PDF-\0trailer<</Root<</Pages<<>>>>>>
 }}}
 
 this trick doesn't work on previous version of Acrobat. For them, an object - even empty, and with no index - has to be present.
 
- Example of a valid, 48 bytes PDF, for Acrobat <=9:
+ Example of a valid, 48 bytes PDF, for Acrobat <=9 ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/empty.pdf download]):
 {{{
 %PDF-\0obj<<>>trailer<</Root<</Pages<<>>>>>>
 }}}
 
 ==wrong tags==
-unexpected tags are just ignored. this goes the same for tags with incorrect case.
+Unexpected tags are just ignored. this goes the same for tags with incorrect case.
 
- Example of a trailer with incorrectly cased tags ([download]:
+ Example of a trailer with incorrectly cased tags ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/structure-wrongcase.pdf download]):
 {{{
 trailer
 <<
@@ -187,6 +203,7 @@ A classic: some code can be built in a string, then executed via evaluation.
 ==substring==
 A function such as _alert_ can be called, not only directly, but also as a substring of its parent object, _app_ in our example.
 
+ Example of a !JavaScript function called by a string reference from its parent ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-substring.pdf download]):
 {{{
 [...]
      app["alert"]("Hello World!");
@@ -196,6 +213,7 @@ A function such as _alert_ can be called, not only directly, but also as a subst
 ==array==
 the previous example can be extended with a fake array with fake entries, which makes the actual executed function harder to spot.
 
+ Example of a code string evalated via a fake array reference ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-array.pdf download]):
 {{{
 [...]
      e = ("fake1")[("fake2", "eval")]
@@ -208,7 +226,9 @@ the previous example can be extended with a fake array with fake entries, which 
 these tricks are hiding some information in one of the various component of the PDF, and retrieving that information via !Javascript.
 
 ==info==
+a PDF's trailer can contain an Info dictionary, whose elements' contents can be retrieved via !Javascript via the info object's properties.
 
+ Example of a string being stored as element of a trailer's Info dictionary ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-info.pdf download]):
 {{{
 [...]
       /Info <</Author(Hello) /Title( World) /Producer( !)>>
