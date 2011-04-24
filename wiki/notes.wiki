@@ -1,14 +1,19 @@
 #summary misc notes
 
+[http://dev.metasploit.com/users/opcode/syscalls.html Metasploit Syscalls] [http://code.google.com/p/native-nt-toolkit/ Native NT Toolkit] [http://undocumented.ntinternals.net/ undocumented] ([http://undocumented.ntinternals.net/UserMode/Undocumented%20Functions/NT%20Objects/Process/PEB.html PEB]) [http://msdn.moonsols.com/ Msdn(suiche)]
 =Formats=
 =Tools=
- * [https://github.com/sporst/SWFREtools/ SWFRETools]
+ * [http://kb2.adobe.com/cps/142/tn_14266.html Old Flash]
+ * [https://github.com/sporst/SWFREtools/ SWFRETools] ([https://github.com/grugq/Buggery +Buggery])
 
+IDA [http://code.google.com/p/idapython/ IDAPython]
  * [http://msdn.microsoft.com/en-us/windows/hardware/gg463016 WinDbg] [http://msdn.microsoft.com/en-us/windows/hardware/gg463028 Symbols] [http://virtualkd.sysprogs.org/ VirtualKD]
  * [http://www.ollydbg.de/ OllyDbg]
   * [http://debugger.immunityinc.com/ ImDbg] [http://redmine.corelan.be:8800/projects/pvefindaddr pvefindAddr]
 
- * [http://hiew.ru/ Hiew] [http://code.google.com/p/pyhiew/ PyHiew]
+ * [http://hiew.ru/ Hiew] [http://code.google.com/p/pyhiew/ PyHiew], [http://hte.sourceforge.net/ HT Editor]
+ * [http://software.intel.com/en-us/articles/intel-software-development-emulator/ XED] [http://ragestorm.net/distorm/ diStorm] (3=GPL/2=BSD) [http://www.beaengine.org/ BeaEngine]
+ * [http://www.hexblog.com/?p=103 MBR debugging]
 =Threats=
 
 =CVEs=
@@ -49,3 +54,6 @@
 =fonts=
  * [http://damieng.com/creative/typography/palmos-font PalmOS] simple small bitmap font
  * [http://damieng.com/blog/tag/envy-code-r Envy Code R] very nice scalable programming font
+
+=information=
+[https://twitter.com/#!/Ivanlef0u @Ivanlef0u] [http://www.reddit.com/r/ReverseEngineering/ reddit]
