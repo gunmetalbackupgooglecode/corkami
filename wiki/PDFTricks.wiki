@@ -1,15 +1,20 @@
 #summary a summary of PDF tricks - encodings, structures, javascript...
 
-first draft, in progress
+*_THIS PAGE IS STILL IN PROGRESS_*
 
-Here are various PDF tricks, either based on data encodings, javascript, or PDF structures.
+This is a summary of PDF tricks, either based on data encodings, javascript, or PDF structure.
+
+DISCLAIMER: The files are clean, and hand written by me, for better understanding and perfect clarity. However, because they use various tricks also present in malwares, they might be detected by your antivirus, or crash your usual program. They all work under Adobe Acrobat though, which is the point here.
+
+ In short: they're odd, but they work, and they're clean.
 
 =encodings=
-any string can be encoded in various ways.
-==hex==
-naturally, a string can be stored as hex
+any data (or string) can be encoded in various ways.
 
- Example of _Hello World!_ string, with each character encoded by its value in hexadecimal ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-hex.pdf download]):
+==hex==
+a string can be stored as hex
+
+ Example of `Hello World!` string, with each character encoded by its value in hexadecimal ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-hex.pdf download]):
 {{{
 48656c6c6f20576f726c6421
 }}}
@@ -17,17 +22,17 @@ naturally, a string can be stored as hex
 ==octal==
 another classic one, each character is encoded in octal.
 
- Example of _Hello World!_ string, with each characters encoded by its value in octal ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-octal.pdf download]):
+ Example of `Hello World!` string, with each characters encoded by its value in octal ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-octal.pdf download]):
 {{{
 \110\145\154\154\157\40\127\157\162\154\144\41\
 }}}
 
 ==whitespaces between nibbles==
-so far so good, nothing too weird. However, it woudln't be Adobe if something wasn't unexpected.
+so far so good, nothing too weird. However, it wouldn't be Adobe if something wasn't unexpected.
 
-When data is hex-encoded, the characters, even the nibbles of each hex characters, can be separated via any whitespace (tabs, space, new line, etc...).
+While it's common to separate hex numbers with space (`00 01 02...`), in a PDF, any kind of whitespace can be used (newline, tab, ...), and even between the 2 digits of the same number.
 
- Example of _Hello World!_ string, encoded as hexadecimal, with extra whitespace between the nibbles ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-hex-with-space.pdf download]):
+ Example of `Hello World!` string, encoded as hexadecimal, with extra whitespace between the nibbles ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-hex-with-space.pdf download]):
 {{{
 4
 8
@@ -45,7 +50,7 @@ When data is hex-encoded, the characters, even the nibbles of each hex character
 ==ascii newlines==
 Ascii can be stored as ascii (hopefully), but newlines can be inserted too...
 
- Example of _Hello World!_ string, stored as ASCII, with extra new lines characters. ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-newline.pdf download]):
+ Example of `Hello World!` string, stored as ASCII, with extra new lines characters. ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-newline.pdf download]):
 {{{
 [...]
 }\
@@ -153,12 +158,12 @@ PDF is a format that supports incremental updates, so information can be written
 ==linearized==
 
 
-=javascript-based encodings=
+=!JavaScript-based encodings=
 Here are a few other encoding tricks, that use javascript (not necessarily specific to Acrobat's)
 ==replace==
 simple obfuscation, add some extra character/switch then replace/restore them before use.
 
- Example of _Hello World!_ string, obfuscated with extra characters ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-replace.pdf download]):
+ Example of `Hello World!` string, obfuscated with extra characters ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-replace.pdf download]):
 {{{
 "zHzzezzlzlzozzzzz zWozrzldz!").replace(/z/g,"")
 }}}
@@ -174,7 +179,7 @@ unescape("%48%65%6C%6C%6F%20%57%6F%72%6C%64%21")
 ==base encoding==
 like CAFEBABE can be read as a word or as a hex number, any uppercase word can be written as a base32 (32 or less, depending on the last (in the alphabet) used character) numbers. 
 
- Example of _HELLO WORLD!_ string, encoded as numbers with a different base ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-number.pdf download]):
+ Example of a `HELLO WORLD!` string, with each word encoded as a number, in differents bases ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-number.pdf download]):
 {{{
 (6873049).toString(25) + " " + (38842069).toString(33) + "!"
 }}}
