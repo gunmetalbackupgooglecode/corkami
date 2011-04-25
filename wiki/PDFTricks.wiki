@@ -226,6 +226,23 @@ the previous example can be extended with a fake array with fake entries, which 
 [...]
 }}}
 
+==callee==
+A !JavaScript function can access its own code, and use it for anything. Thus, any modification might prevent the function to work correctly: typically, such functions use their code as a key for some decryption.
+
+ Example of a decryption function, using its own code as decryption key ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-callee.pdf download]):
+{{{
+[...]
+      function decrypt(cipher) 
+[...]
+            key = arguments.callee.toString();
+[...]
+            return plaintext;
+}
+[...]
+      app.alert(decrypt(unescape(".%10%02%0F%1BI8%01R%08%01B")));
+[...]
+}}}
+
 =!JavaScript + PDF=
 
 these tricks are hiding some information in one of the various component of the PDF, and retrieving that information via !Javascript.
@@ -274,24 +291,9 @@ An !AcroForm Widget can contain some data and value, which can be retrieved via 
 [...]
 }}}
 
-==callee==
-A !JavaScript function can access its own code, and use it for anything. Thus any modification might prevent the function to work correctly: typically, such functions use their code as a key for some decryption.
+==anti-emulators==
 
- Example of a decryption function, using its own code as decryption key ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-callee.pdf download]):
-{{{
-[...]
-      function decrypt(cipher) 
-[...]
-            key = arguments.callee.toString();
-[...]
-            return plaintext;
-}
-[...]
-      app.alert(decrypt(unescape(".%10%02%0F%1BI8%01R%08%01B")));
-[...]
-}}}
-
-==initial values==
+===initial values===
 some Adobe specific global variables are initialized with default values, checking them might stop an emulator
 
 {{{
@@ -301,7 +303,7 @@ some Adobe specific global variables are initialized with default values, checki
 [...]
 }}}
 
-==global variables==
+===global variables===
 global variables show a different behavior as opposed to normal ones:
 {{{
 [...]
@@ -319,6 +321,11 @@ global variables show a different behavior as opposed to normal ones:
 {{{
 }}}
 </wiki:comment>
+
+=Minimalists PDF=
+==Empty==
+==Page + Text==
+==!JavaScript==
 
 =References=
  * [http://blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/ Didier Stevens]
