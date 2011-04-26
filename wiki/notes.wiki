@@ -5,8 +5,9 @@
 =Tools=
  * [http://kb2.adobe.com/cps/142/tn_14266.html Old Flash]
  * [https://github.com/sporst/SWFREtools/ SWFRETools] ([https://github.com/grugq/Buggery +Buggery])
+ * [http://www.reversinglabs.com/forum/index.php?topic=11.0 rl!depacker] [http://qunpack.ahteam.org/ QUnpack] [http://deroko.phearless.org/rce.html deroko generic unpacker] [http://code.google.com/p/fuu/ Fast Universal Unpacker] ([http://www.reversinglabs.com/products/TitanEngine.php TitanEngine])
 
-IDA [http://code.google.com/p/idapython/ IDAPython]
+ * IDA [http://code.google.com/p/idapython/ IDAPython]
  * [http://msdn.microsoft.com/en-us/windows/hardware/gg463016 WinDbg] [http://msdn.microsoft.com/en-us/windows/hardware/gg463028 Symbols] [http://virtualkd.sysprogs.org/ VirtualKD]
  * [http://www.ollydbg.de/ OllyDbg]
   * [http://debugger.immunityinc.com/ ImDbg] [http://redmine.corelan.be:8800/projects/pvefindaddr pvefindAddr]
@@ -14,6 +15,7 @@ IDA [http://code.google.com/p/idapython/ IDAPython]
  * [http://hiew.ru/ Hiew] [http://code.google.com/p/pyhiew/ PyHiew], [http://hte.sourceforge.net/ HT Editor]
  * [http://software.intel.com/en-us/articles/intel-software-development-emulator/ XED] [http://ragestorm.net/distorm/ diStorm] (3=GPL/2=BSD) [http://www.beaengine.org/ BeaEngine]
  * [http://www.hexblog.com/?p=103 MBR debugging]
+ * [http://sandsprite.com/blogs/index.php?uid=7&pid=57 PDF Stream dumper] [malzilla]
 =Threats=
 
 =CVEs=
