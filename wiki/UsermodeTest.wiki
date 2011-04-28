@@ -3,7 +3,7 @@
 
 = Introduction =
 
-this program tests most usermode opcodes, from obsolete to very recent, including undocumented ones, undefined use or encodings. As well, opcodes used as anti-debugs, exception triggers, Get IPs... (it helped me to find bugs in !OllyDbg, !WinDbg, IDA, XED, !BeaEngine, libdasm, HT, Hiew, !diStorm, and other private projects...)
+this program tests most usermode opcodes, from obsolete to very recent, including undocumented ones, undefined use or encodings. As well, opcodes used as anti-debugs, exception triggers, Get IPs... (it helped me to find bugs in !OllyDbg, !WinDbg, IDA, XED, !BeaEngine, libdasm, HT, Hiew, diStorm, and other private projects...)
 
 it uses several tricks to be able to test further than normally expected:
   * using segment 33h trick to test 64b opcodes
