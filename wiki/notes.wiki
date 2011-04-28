@@ -4,12 +4,12 @@
 =Formats=
 =Tools=
  * [http://kb2.adobe.com/cps/142/tn_14266.html Old Flash Archives]
- * *flash* [https://github.com/sporst/SWFREtools/ SWFRETools] ([https://github.com/grugq/Buggery +Buggery])
+ * *flash* [https://github.com/sporst/SWFREtools/ SWFRETools] ([https://github.com/grugq/Buggery +Buggery]) [http://jpauclair.net/2010/02/10/mmcfg-treasure/ mm.cfg]
  * *unpackers* [http://www.reversinglabs.com/forum/index.php?topic=11.0 rl!depacker] [http://qunpack.ahteam.org/ QUnpack] [http://deroko.phearless.org/rce.html deroko generic unpacker] [http://code.google.com/p/fuu/ Fast Universal Unpacker] ([http://www.reversinglabs.com/products/TitanEngine.php TitanEngine])
 
  * IDA [http://code.google.com/p/idapython/ IDAPython]
   * *plugins* [http://www.binarypool.com/idapluginwriting/ binarypool]
-   * *cpu* (SDK\module\script\ebc.py +[http://sourceforge.net/projects/efidevkit/files/ ...\ebc\fat.efi]) [https://www.openrce.org/articles/full_view/28 hyperunpackme] [http://code.google.com/p/ida-spu/ ps3spu]
+   * *cpu* SDK\module\script\ebc.py (+[http://sourceforge.net/projects/efidevkit/files/ ...\ebc\fat.efi]) [https://www.openrce.org/articles/full_view/28 hyperunpackme] [http://code.google.com/p/ida-spu/ ps3spu]
   * [http://www.hexblog.com/?p=103 MBR debugging]
  * [http://msdn.microsoft.com/en-us/windows/hardware/gg463016 WinDbg] [http://msdn.microsoft.com/en-us/windows/hardware/gg463028 Symbols] [http://virtualkd.sysprogs.org/ VirtualKD]
  * [http://www.ollydbg.de/ OllyDbg]
