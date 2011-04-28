@@ -9,7 +9,7 @@
 
  * IDA [http://code.google.com/p/idapython/ IDAPython]
   * *plugins* [http://www.binarypool.com/idapluginwriting/ binarypool]
-   * *cpu* SDK\module\script\ebc.py (+[http://sourceforge.net/projects/efidevkit/files/ ...\ebc\fat.efi]) [https://www.openrce.org/articles/full_view/28 hyperunpackme] [http://code.google.com/p/ida-spu/ ps3spu]
+   * *cpu* SDK\module\script\ebc.py (+[http://sourceforge.net/projects/efidevkit/files/ ...\ebc\fat.efi]) [https://www.openrce.org/articles/full_view/28 hyperunpackme] [http://code.google.com/p/ida-spu/ ps3spu] [http://www.idabook.com/examples/chapter_19/simple_python.tgz python]
   * [http://www.hexblog.com/?p=103 MBR debugging]
  * [http://msdn.microsoft.com/en-us/windows/hardware/gg463016 WinDbg] [http://msdn.microsoft.com/en-us/windows/hardware/gg463028 Symbols] [http://virtualkd.sysprogs.org/ VirtualKD]
  * [http://www.ollydbg.de/ OllyDbg]
