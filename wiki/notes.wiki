@@ -1,19 +1,21 @@
 #summary misc notes
- * *syscalls* [http://dev.metasploit.com/users/opcode/syscalls.html Metasploit] [http://code.google.com/p/native-nt-toolkit/ Native NT Toolkit] [http://undocumented.ntinternals.net/ undocumented] ([http://undocumented.ntinternals.net/UserMode/Undocumented%20Functions/NT%20Objects/Process/PEB.html PEB]) [http://msdn.moonsols.com/ Msdn(suiche)]
 =Formats=
 =Tools=
  * [http://kb2.adobe.com/cps/142/tn_14266.html Old Flash Archives]
  * *flash* [https://github.com/sporst/SWFREtools/ SWFRETools] ([https://github.com/grugq/Buggery +Buggery]) [http://jpauclair.net/2010/02/10/mmcfg-treasure/ mm.cfg]
  * *unpackers* [http://www.reversinglabs.com/forum/index.php?topic=11.0 rl!depacker] [http://qunpack.ahteam.org/ QUnpack] [http://deroko.phearless.org/rce.html deroko generic unpacker] [http://code.google.com/p/fuu/ Fast Universal Unpacker] ([http://www.reversinglabs.com/products/TitanEngine.php TitanEngine])
 
- * IDA [http://code.google.com/p/idapython/ IDAPython]
-  * *plugins* [http://www.binarypool.com/idapluginwriting/ binarypool]
+ * *[http://www.hex-rays.com/idapro/ IDA]* [http://code.google.com/p/idapython/ IDAPython]
+  * *plugins* [http://newgre.net/idastealth IDAStealth] [http://code.google.com/p/optimice/ optimice] [http://www.macromonkey.com/bb/viewforum.php?f=65 Class Informer]
+  * *doc* [http://www.binarypool.com/idapluginwriting/ binarypool]
    * *cpu* SDK\module\script\ebc.py (+[http://sourceforge.net/projects/efidevkit/files/ ...\ebc\fat.efi]) [https://www.openrce.org/articles/full_view/28 hyperunpackme] [http://code.google.com/p/ida-spu/ ps3spu] [http://www.idabook.com/examples/chapter_19/simple_python.tgz python]
   * [http://www.hexblog.com/?p=103 MBR debugging]
- * [http://msdn.microsoft.com/en-us/windows/hardware/gg463016 WinDbg] [http://msdn.microsoft.com/en-us/windows/hardware/gg463028 Symbols] [http://virtualkd.sysprogs.org/ VirtualKD]
- * [http://www.ollydbg.de/ OllyDbg]
-  * [http://debugger.immunityinc.com/ ImDbg] [http://redmine.corelan.be:8800/projects/pvefindaddr pvefindAddr]
- * [http://hiew.ru/ Hiew] ([http://code.google.com/p/pyhiew/ PyHiew]), [http://hte.sourceforge.net/ HT Editor]
+ * *[http://msdn.microsoft.com/en-us/windows/hardware/gg463016 WinDbg]* [http://msdn.microsoft.com/en-us/windows/hardware/gg463028 Symbols] [http://virtualkd.sysprogs.org/ VirtualKD]
+ * *[http://www.ollydbg.de/ OllyDbg]*
+  * *plugins* !OllyAdvanced !OllyDump !CodeDoctor !FullDisasm
+  * *[http://debugger.immunityinc.com/ ImDbg]* [http://redmine.corelan.be:8800/projects/pvefindaddr pvefindAddr]
+ * *[http://hiew.ru/ Hiew]* ([http://code.google.com/p/pyhiew/ PyHiew])
+ * [http://hte.sourceforge.net/ HT Editor]
  * *disasm* [http://software.intel.com/en-us/articles/intel-software-development-emulator/ XED] [http://ragestorm.net/distorm/ diStorm] (3=GPL/2=BSD) [http://www.beaengine.org/ BeaEngine]
 
  * [http://sandsprite.com/blogs/index.php?uid=7&pid=57 PDF Stream dumper] [http://malzilla.sourceforge.net/ malzilla]
@@ -59,12 +61,14 @@
  * [http://damieng.com/blog/tag/envy-code-r Envy Code R] very nice scalable programming font
 
 =information=
-[https://twitter.com/#!/Ivanlef0u @Ivanlef0u] [http://www.reddit.com/r/ReverseEngineering/ reddit]
+ * *news* [https://twitter.com/#!/Ivanlef0u @Ivanlef0u] [http://www.reddit.com/r/ReverseEngineering/ reddit]
+ * *syscalls & structs* [http://dev.metasploit.com/users/opcode/syscalls.html Metasploit] [http://code.google.com/p/native-nt-toolkit/ Native NT Toolkit] [http://undocumented.ntinternals.net/ undocumented] ([http://undocumented.ntinternals.net/UserMode/Undocumented%20Functions/NT%20Objects/Process/PEB.html PEB]) [http://msdn.moonsols.com/ Msdn(suiche)]
 
 =misc=
-[http://collabedit.com/ collabedit] [http://prezi.com/ prezi] [http://greenshot.org/ Greenshot]
  * *text editors* [http://notepad-plus-plus.org/ notepad++] [http://www.contexteditor.org/ conTEXT] [http://www.esperanto.mv.ru/UniRed/ENG/index.html UniRed]
  * *audio/video* [http://www.foobar2000.org/ foobar2000] [http://www.nirsoft.net/utils/video_cache_view.html Videocacheview] mp4box dvddecrypter flvextract dvdshrinker vobrator ifoedit vobedit virtualdub audacity eac lame wavegain
 
  * *orthographe* [http://www.druide.com/antidote.html antidote] [http://bonpatron.com/ BonPatron] [http://www.leconjugueur.com/ Conjugueur]
  * *source*  [http://mercurial.selenic.com/ Mercurial] ([http://hginit.com/ +tutorial])
+
+ * [http://collabedit.com/ collabedit] [http://prezi.com/ prezi] [http://greenshot.org/ Greenshot]
