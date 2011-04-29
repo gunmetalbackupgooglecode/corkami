@@ -72,3 +72,5 @@
  * *source*  [http://mercurial.selenic.com/ Mercurial] ([http://hginit.com/ +tutorial])
 
  * [http://collabedit.com/ collabedit] [http://prezi.com/ prezi] [http://greenshot.org/ Greenshot]
+
+* [http://blog.zynamics.com/2010/07/16/recon-slides-packer-genetics-the-selfish-code-bochspython/ Packer Genetics: The Selfish Code] Ero Carrera and Jose Duart (Recon July 10, 2010) ([http://www.archive.org/details/PackerGeneticsTheSelfishCode-EroCarreraAndJoseDuart video])
