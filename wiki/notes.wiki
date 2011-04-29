@@ -1,5 +1,4 @@
 #summary misc notes
-=Misc= 
  * *syscalls* [http://dev.metasploit.com/users/opcode/syscalls.html Metasploit] [http://code.google.com/p/native-nt-toolkit/ Native NT Toolkit] [http://undocumented.ntinternals.net/ undocumented] ([http://undocumented.ntinternals.net/UserMode/Undocumented%20Functions/NT%20Objects/Process/PEB.html PEB]) [http://msdn.moonsols.com/ Msdn(suiche)]
 =Formats=
 =Tools=
@@ -61,3 +60,9 @@
 
 =information=
 [https://twitter.com/#!/Ivanlef0u @Ivanlef0u] [http://www.reddit.com/r/ReverseEngineering/ reddit]
+
+=misc=
+[http://collabedit.com/ collabedit] [http://prezi.com/ prezi]
+ * *text editors* [http://notepad-plus-plus.org/ notepad++] [http://www.contexteditor.org/ conTEXT] [http://www.esperanto.mv.ru/UniRed/ENG/index.html UniRed]
+ * *audio/video* [http://www.foobar2000.org/ foobar2000] [http://www.nirsoft.net/utils/video_cache_view.html Videocacheview]
+ * *orthographe* [http://www.druide.com/antidote.html antidote] [http://bonpatron.com/ BonPatron] [htttp://www.leconjugueur.com/ Conjugueur]
