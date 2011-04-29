@@ -66,5 +66,5 @@
  * *text editors* [http://notepad-plus-plus.org/ notepad++] [http://www.contexteditor.org/ conTEXT] [http://www.esperanto.mv.ru/UniRed/ENG/index.html UniRed]
  * *audio/video* [http://www.foobar2000.org/ foobar2000] [http://www.nirsoft.net/utils/video_cache_view.html Videocacheview] mp4box dvddecrypter flvextract dvdshrinker vobrator ifoedit vobedit virtualdub audacity eac lame wavegain
 
- * *orthographe* [http://www.druide.com/antidote.html antidote] [http://bonpatron.com/ BonPatron] [htttp://www.leconjugueur.com/ Conjugueur]
+ * *orthographe* [http://www.druide.com/antidote.html antidote] [http://bonpatron.com/ BonPatron] [http://www.leconjugueur.com/ Conjugueur]
  * *source*  [http://mercurial.selenic.com/ Mercurial] ([http://hginit.com/ +tutorial])
