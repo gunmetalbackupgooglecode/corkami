@@ -8,6 +8,7 @@ DISCLAIMER: The files are clean, and hand written by me, for better understandin
 
  In short: they're odd, but they work, and they're clean.
 
+for many more Javascript tricks, check the [http://bonsaiden.github.com/JavaScript-Garden/ JavaScript Garden]
 =encodings=
 any data (or string) can be encoded in various ways.
 
