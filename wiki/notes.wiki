@@ -64,7 +64,7 @@
 =information=
  * *news* [https://twitter.com/#!/Ivanlef0u @Ivanlef0u] [http://www.reddit.com/r/ReverseEngineering/ reddit]
  * *syscalls & structs* [http://dev.metasploit.com/users/opcode/syscalls.html Metasploit] [http://code.google.com/p/native-nt-toolkit/ Native NT Toolkit] [http://undocumented.ntinternals.net/ undocumented] ([http://undocumented.ntinternals.net/UserMode/Undocumented%20Functions/NT%20Objects/Process/PEB.html PEB]) [http://msdn.moonsols.com/ Msdn(suiche)]
-
+ * *!JavaScript* [http://bonsaiden.github.com/JavaScript-Garden/ Garden]
 =misc=
  * *text editors* [http://notepad-plus-plus.org/ notepad++] [http://www.contexteditor.org/ conTEXT] [http://www.esperanto.mv.ru/UniRed/ENG/index.html UniRed]
  * *audio/video* [http://www.foobar2000.org/ foobar2000] [http://www.nirsoft.net/utils/video_cache_view.html Videocacheview] mp4box dvddecrypter flvextract dvdshrinker vobrator ifoedit vobedit virtualdub audacity eac lame wavegain
