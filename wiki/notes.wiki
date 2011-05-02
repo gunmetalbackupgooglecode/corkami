@@ -1,6 +1,7 @@
 #summary misc notes
 =Formats=
 =Tools=
+ * !OffVis
  * [http://kb2.adobe.com/cps/142/tn_14266.html Old Flash Archives]
  * *flash* [https://github.com/sporst/SWFREtools/ SWFRETools] ([https://github.com/grugq/Buggery +Buggery]) [http://jpauclair.net/2010/02/10/mmcfg-treasure/ mm.cfg]
  * *unpackers* [http://www.reversinglabs.com/forum/index.php?topic=11.0 rl!depacker] [http://qunpack.ahteam.org/ QUnpack] [http://deroko.phearless.org/rce.html deroko generic unpacker] [http://code.google.com/p/fuu/ Fast Universal Unpacker] ([http://www.reversinglabs.com/products/TitanEngine.php TitanEngine])
@@ -74,4 +75,5 @@
  * [http://collabedit.com/ collabedit] [http://prezi.com/ prezi] [http://greenshot.org/ Greenshot]
 
  * [http://blog.zynamics.com/2010/07/16/recon-slides-packer-genetics-the-selfish-code-bochspython/ Packer Genetics: The Selfish Code] Ero Carrera and Jose Duart (Recon July 10, 2010) ([http://www.archive.org/details/PackerGeneticsTheSelfishCode-EroCarreraAndJoseDuart video])
- * *screencasts* [http://www.instant-demo.com/ InstantDemo] [http://www.debugmode.com/wink/ wink]
+ * *screencasts* [http://www.instant-demo.com/ InstantDemo] [http://www.debugmode.com/wink/ Wink]
+  * [http://www.brianapps.net/sizer/ Sizer] [http://technet.microsoft.com/en-us/sysinternals/bb897434 ZoomIt] [http://www.donationcoder.com/Software/Skrommel/index.html#ShowOff ShowOff]
