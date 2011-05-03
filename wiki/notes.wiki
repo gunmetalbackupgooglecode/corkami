@@ -10,7 +10,6 @@
   * *plugins* [http://newgre.net/idastealth IDAStealth] [http://code.google.com/p/optimice/ optimice] [http://www.macromonkey.com/bb/viewforum.php?f=65 Class Informer]
   * *doc* [http://www.binarypool.com/idapluginwriting/ binarypool]
    * *cpu* SDK\module\script\ebc.py (+[http://sourceforge.net/projects/efidevkit/files/ ...\ebc\fat.efi]) [https://www.openrce.org/articles/full_view/28 hyperunpackme] [http://code.google.com/p/ida-spu/ ps3spu] [http://www.idabook.com/examples/chapter_19/simple_python.tgz python]
-  * [http://www.hexblog.com/?p=103 MBR debugging]
  * *[http://msdn.microsoft.com/en-us/windows/hardware/gg463016 WinDbg]* [http://msdn.microsoft.com/en-us/windows/hardware/gg463028 Symbols] [http://virtualkd.sysprogs.org/ VirtualKD]
  * *[http://www.ollydbg.de/ OllyDbg]*
   * *plugins* !OllyAdvanced !OllyDump !CodeDoctor !FullDisasm
@@ -65,6 +64,10 @@
  * *news* [https://twitter.com/#!/Ivanlef0u @Ivanlef0u] [http://www.reddit.com/r/ReverseEngineering/ reddit]
  * *syscalls & structs* [http://dev.metasploit.com/users/opcode/syscalls.html Metasploit] [http://code.google.com/p/native-nt-toolkit/ Native NT Toolkit] [http://undocumented.ntinternals.net/ undocumented] ([http://undocumented.ntinternals.net/UserMode/Undocumented%20Functions/NT%20Objects/Process/PEB.html PEB]) [http://msdn.moonsols.com/ Msdn(suiche)]
  * *!JavaScript* [http://bonsaiden.github.com/JavaScript-Garden/ Garden]
+ * *Master Boot Record* [http://www.hexblog.com/?p=103 IDA debugging] [http://thestarman.narod.ru/asm/mbr/index.html starman] [http://www.rayknights.org/pc_boot/pc_boot.htm RayKnights]
+ * *Presentations*
+  * [http://blog.zynamics.com/2010/07/16/recon-slides-packer-genetics-the-selfish-code-bochspython/ Packer Genetics: The Selfish Code] Ero Carrera and Jose Duart (Recon July 10, 2010) ([http://www.archive.org/details/PackerGeneticsTheSelfishCode-EroCarreraAndJoseDuart video])
+  like DNA sequences in genoms, small hex sequences might be found only in unpacked files, and not in packed files (such as compiler specific sequences). looking for such genes can help to determine if a file has been successfully unpacked.
 =misc=
  * *text editors* [http://notepad-plus-plus.org/ notepad++] [http://www.contexteditor.org/ conTEXT] [http://www.esperanto.mv.ru/UniRed/ENG/index.html UniRed]
  * *audio/video* [http://www.foobar2000.org/ foobar2000] [http://www.nirsoft.net/utils/video_cache_view.html Videocacheview] mp4box dvddecrypter flvextract dvdshrinker vobrator ifoedit vobedit virtualdub audacity eac lame wavegain
@@ -74,6 +77,5 @@
 
  * [http://collabedit.com/ collabedit] [http://prezi.com/ prezi] [http://greenshot.org/ Greenshot]
 
- * [http://blog.zynamics.com/2010/07/16/recon-slides-packer-genetics-the-selfish-code-bochspython/ Packer Genetics: The Selfish Code] Ero Carrera and Jose Duart (Recon July 10, 2010) ([http://www.archive.org/details/PackerGeneticsTheSelfishCode-EroCarreraAndJoseDuart video])
  * *screencasts* [http://www.instant-demo.com/ InstantDemo] [http://www.debugmode.com/wink/ Wink] (+[http://codex.gallery2.org/Codex:How_to_Create_a_Wink_Tutorial good tutorial])
   * [http://www.brianapps.net/sizer/ Sizer] [http://technet.microsoft.com/en-us/sysinternals/bb897434 ZoomIt] [http://www.donationcoder.com/Software/Skrommel/index.html#ShowOff ShowOff]
