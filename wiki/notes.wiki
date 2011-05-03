@@ -31,16 +31,13 @@
  * *CVE-2009-3459* PDF, !FlateDecode
  * *CVE-2009-3867* Java, Soundbank
  * *CVE-2009-3953* PDF, U3D
- * *CVE-2010-0188* TIFF, !DotRange in PDF
+ * *CVE-2010-0188* TIFF, !DotRange in PDF [http://bugix-security.blogspot.com/2010/03/adobe-pdf-libtiff-working-exploitcve.html PoC @ bugix] [http://blog.fortinet.com/cve-2010-0188-exploit-in-the-wild/ fortinet]
  * *CVE-2010-1297* Flash, newfunction
  * *CVE-2010-2065* TIFF, LibTIFF Integer Overflow !StripByteCount
- * *CVE-2010-2883* PDF, Cooltype
+ * *CVE-2010-2883* PDF, Cooltype [http://bugix-security.blogspot.com/2010/09/cve-2010-2883-made-in-korea.html bugix]
  * *CVE-2010-3654* Flash, !RadioButtonGroup [http://www.abysssec.com/blog/2011/04/exploiting-adobe-flash-player-on-windows-7/ Abyssec]
  * *CVE-2011-0609* Flash, [http://blog.fortinet.com/advanced-exploitation-of-the-recent-flash-zero-day-vulnerability-cve-2011-0609/ Haifei Li @ Cansecwest]
- * *CVE-2011-0611* Flash [http://secunia.com/blog/210/ secunia]
-=fonts=
- * [http://damieng.com/creative/typography/palmos-font PalmOS] simple small bitmap font
- * [http://damieng.com/blog/tag/envy-code-r Envy Code R] very nice scalable programming font
+ * *CVE-2011-0611* Flash [http://secunia.com/blog/210/ secunia] [http://blogs.technet.com/b/mmpc/archive/2011/04/12/analysis-of-the-cve-2011-0611-adobe-flash-player-vulnerability-exploitation.aspx microsoft]
 
 =information=
  * *news* [https://twitter.com/#!/Ivanlef0u @Ivanlef0u] [http://www.reddit.com/r/ReverseEngineering/ reddit]
@@ -61,3 +58,7 @@
 
  * *screencasts* [http://www.instant-demo.com/ InstantDemo] [http://www.debugmode.com/wink/ Wink] (+[http://codex.gallery2.org/Codex:How_to_Create_a_Wink_Tutorial good tutorial])
   * [http://www.brianapps.net/sizer/ Sizer] [http://technet.microsoft.com/en-us/sysinternals/bb897434 ZoomIt] [http://www.donationcoder.com/Software/Skrommel/index.html#ShowOff ShowOff]
+
+ * *fonts*
+  * bitmap [http://damieng.com/creative/typography/palmos-font PalmOS] simple small bitmap font
+  * vector [http://damieng.com/blog/tag/envy-code-r Envy Code R] very nice scalable programming font
