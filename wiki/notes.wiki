@@ -18,8 +18,8 @@
  * [http://hte.sourceforge.net/ HT Editor]
  * *disasm* [http://software.intel.com/en-us/articles/intel-software-development-emulator/ XED] [http://ragestorm.net/distorm/ diStorm] (3=GPL/2=BSD) [http://www.beaengine.org/ BeaEngine]
 
- * [http://sandsprite.com/blogs/index.php?uid=7&pid=57 PDF Stream dumper] [http://malzilla.sourceforge.net/ malzilla]
-
+ * *pdf* [http://sandsprite.com/blogs/index.php?uid=7&pid=57 PDF Stream dumper] [http://malzilla.sourceforge.net/ malzilla]
+ * [http://www.sysinternals.com sysinternals] (`net use \\live.sysinternals.com`) [http://www.nirsoft.net nirsoft]
 =Exploits=
  * *CVE-2007-5659* PDF, collectEmailInfo
  * *CVE-2008-2992* PDF, util.printf
