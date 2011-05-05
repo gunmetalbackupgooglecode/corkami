@@ -36,6 +36,7 @@
  * *CVE-2010-1297* Flash, newfunction
  * *CVE-2010-2065* TIFF, LibTIFF Integer Overflow !StripByteCount
  * *CVE-2010-2883* PDF, Cooltype [http://bugix-security.blogspot.com/2010/09/cve-2010-2883-made-in-korea.html bugix]
+ * *CVE-2010-3333* RTF in Word [http://blogs.technet.com/b/mmpc/archive/2010/12/29/targeted-attacks-against-recently-addressed-microsoft-office-vulnerability-cve-2010-3333-ms10-087.aspx Microsoft]
  * *CVE-2010-3654* Flash, !RadioButtonGroup [http://www.abysssec.com/blog/2011/04/exploiting-adobe-flash-player-on-windows-7/ Abyssec]
  * *CVE-2011-0609* Flash, [http://blog.fortinet.com/advanced-exploitation-of-the-recent-flash-zero-day-vulnerability-cve-2011-0609/ Haifei Li @ Cansecwest]
  * *CVE-2011-0611* Flash [http://secunia.com/blog/210/ secunia] [http://blogs.technet.com/b/mmpc/archive/2011/04/12/analysis-of-the-cve-2011-0611-adobe-flash-player-vulnerability-exploitation.aspx microsoft]
