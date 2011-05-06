@@ -8,7 +8,7 @@
 
  * *[http://www.hex-rays.com/idapro/ IDA]* [http://code.google.com/p/idapython/ IDAPython]
   * *plugins* [http://newgre.net/idastealth IDAStealth] [http://code.google.com/p/optimice/ optimice] [http://www.macromonkey.com/bb/viewforum.php?f=65 Class Informer]
-  * *bochs* [http://bochs.sourceforge.net/diskimages.html images]
+  * *bochs* [http://bochs.sourceforge.net/diskimages.html images] [http://www.frontiernet.net/~fys/mtools.htm mtool]
   * *doc* [http://www.binarypool.com/idapluginwriting/ binarypool]
    * *cpu* SDK\module\script\ebc.py (+[http://sourceforge.net/projects/efidevkit/files/ ...\ebc\fat.efi]) [https://www.openrce.org/articles/full_view/28 hyperunpackme] [http://code.google.com/p/ida-spu/ ps3spu] [http://www.idabook.com/examples/chapter_19/simple_python.tgz python]
  * *[http://msdn.microsoft.com/en-us/windows/hardware/gg463016 WinDbg]* [http://msdn.microsoft.com/en-us/windows/hardware/gg463028 Symbols] [http://virtualkd.sysprogs.org/ VirtualKD]
