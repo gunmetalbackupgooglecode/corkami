@@ -64,3 +64,5 @@
  * *fonts*
   * bitmap [http://damieng.com/creative/typography/palmos-font PalmOS] simple small bitmap font
   * vector [http://damieng.com/blog/tag/envy-code-r Envy Code R] very nice scalable programming font
+ * *compression* 
+  * *javascript* [http://code.google.com/p/jssfx/ jssfx] [http://utf-8.jp/ aaencode/jjencode/jsf*ck] [http://dean.edwards.name/packer/ p,a,c,k,e,d]
