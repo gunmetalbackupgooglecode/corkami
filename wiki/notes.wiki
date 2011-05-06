@@ -5,7 +5,7 @@
  * [http://kb2.adobe.com/cps/142/tn_14266.html Old Flash Archives]
  * *flash* [https://github.com/sporst/SWFREtools/ SWFRETools] ([https://github.com/grugq/Buggery +Buggery]) [http://jpauclair.net/2010/02/10/mmcfg-treasure/ mm.cfg]
  * *unpackers* [http://www.reversinglabs.com/forum/index.php?topic=11.0 rl!depacker] [http://qunpack.ahteam.org/ QUnpack] [http://deroko.phearless.org/rce.html deroko generic unpacker] [http://code.google.com/p/fuu/ Fast Universal Unpacker] ([http://www.reversinglabs.com/products/TitanEngine.php TitanEngine])
-
+ * *[http://www.dosbox.com/ dosbox]* [http://vogons.zetafleet.com/viewtopic.php?t=3944 heavy_debug]
  * *[http://www.hex-rays.com/idapro/ IDA]* [http://code.google.com/p/idapython/ IDAPython]
   * *plugins* [http://newgre.net/idastealth IDAStealth] [http://code.google.com/p/optimice/ optimice] [http://www.macromonkey.com/bb/viewforum.php?f=65 Class Informer]
   * *bochs* [http://bochs.sourceforge.net/diskimages.html images] [http://www.frontiernet.net/~fys/mtools.htm mtool]
