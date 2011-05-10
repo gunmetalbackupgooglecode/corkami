@@ -50,6 +50,10 @@
   * [http://blog.zynamics.com/2010/07/16/recon-slides-packer-genetics-the-selfish-code-bochspython/ Packer Genetics: The Selfish Code] Ero Carrera and Jose Duart (Recon July 10, 2010) ([http://www.archive.org/details/PackerGeneticsTheSelfishCode-EroCarreraAndJoseDuart video])
   like DNA sequences in genoms, small hex sequences might be found only in unpacked files, and not in packed files (such as compiler specific sequences). looking for such genes can help to determine if a file has been successfully unpacked.
   * [http://www.inreverse.net/?p=1687 Java Malware] Donato Ferrante, Caro 2011
+  * Inside code virtualizer, scherzo
+  * dealing with virtualization packer by Boris Lau 2008. 2nd CARO Workshop
+  * how to recover virtualized x86 instructions by themida, jim wang, microsoft, vb sept 2009
+  * Mark Vincent Yason, [https://www.blackhat.com/presentations/bh-usa-07/Yason/Whitepaper/bh-usa-07-yason-WP.pdf The art of unpacking], IBM ISS & X-Force, Black Hat 2007
 =misc=
  * *text editors* [http://notepad-plus-plus.org/ notepad++] [http://www.contexteditor.org/ conTEXT] [http://www.esperanto.mv.ru/UniRed/ENG/index.html UniRed]
  * *audio/video* [http://www.foobar2000.org/ foobar2000] [http://www.nirsoft.net/utils/video_cache_view.html Videocacheview] mp4box dvddecrypter flvextract dvdshrinker vobrator ifoedit vobedit virtualdub audacity eac lame wavegain
@@ -58,10 +62,8 @@
  * *source*  [http://mercurial.selenic.com/ Mercurial] ([http://hginit.com/ +tutorial])
 
  * [http://collabedit.com/ collabedit] [http://prezi.com/ prezi] [http://greenshot.org/ Greenshot]
-
  * *screencasts* [http://www.instant-demo.com/ InstantDemo] [http://www.debugmode.com/wink/ Wink] (+[http://codex.gallery2.org/Codex:How_to_Create_a_Wink_Tutorial good tutorial])
   * [http://www.brianapps.net/sizer/ Sizer] [http://technet.microsoft.com/en-us/sysinternals/bb897434 ZoomIt] [http://www.donationcoder.com/Software/Skrommel/index.html#ShowOff ShowOff]
-
  * *fonts*
   * bitmap [http://damieng.com/creative/typography/palmos-font PalmOS] simple small bitmap font
   * vector [http://damieng.com/blog/tag/envy-code-r Envy Code R] very nice scalable programming font
