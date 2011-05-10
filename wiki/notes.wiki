@@ -54,6 +54,9 @@
   * dealing with virtualization packer by Boris Lau 2008. 2nd CARO Workshop
   * how to recover virtualized x86 instructions by themida, jim wang, microsoft, vb sept 2009
   * Mark Vincent Yason, [https://www.blackhat.com/presentations/bh-usa-07/Yason/Whitepaper/bh-usa-07-yason-WP.pdf The art of unpacking], IBM ISS & X-Force, Black Hat 2007
+  * Nicolas Falliere 2007-09-12, Windows Anti-Debug Reference, security focus
+  * Peter Ferrie, Anti-Unpacking Tricks
+  * Hunting rootkits with Windbg - Frank Boldewin
 =misc=
  * *text editors* [http://notepad-plus-plus.org/ notepad++] [http://www.contexteditor.org/ conTEXT] [http://www.esperanto.mv.ru/UniRed/ENG/index.html UniRed]
  * *audio/video* [http://www.foobar2000.org/ foobar2000] [http://www.nirsoft.net/utils/video_cache_view.html Videocacheview] mp4box dvddecrypter flvextract dvdshrinker vobrator ifoedit vobedit virtualdub audacity eac lame wavegain
