@@ -78,3 +78,4 @@
  * *videos*
   * [http://youtu.be/u6XAPnuFjJc RSA Animate - Drive: The surprising truth about what motivates us]
  * *typing* [http://www.exideas.com/ME/index.php MessagEase]
+ * *checksum* [http://fsumfe.sourceforge.net/ FsumFE]
