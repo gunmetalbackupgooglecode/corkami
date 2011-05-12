@@ -123,6 +123,16 @@ assemble directly with yasm, no linker needed:
 Yasm -o usermode_test.exe usermode_test.asm
 }}}
 
+=History=
+ * 2011/04/01 - version 0.1
+  * everything (first official release)
+ * (in development) 
+  * more prefetchnta/multi-byte nop encoding
+  * 64bit: CQO, lock add (15 bytes)
+  * specifics: RDTSCP
+  * encodings: SLDT, FS:XLATB
+  * for reference: PCMPISTRM, 16b LOCK ADD
+
 ----
 Greetings
   * BeatriX
