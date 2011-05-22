@@ -83,4 +83,5 @@
  * *typing* [http://www.exideas.com/ME/index.php MessagEase]
  * *checksum* [http://fsumfe.sourceforge.net/ FsumFE]
  * *shop* [http://www.inventables.com inventables] 
- * *floppy* [http://dmweb.free.fr/?q=node/1429 dungeon master] [http://www.hackzapple.com/ORG1/MZ/PIRATESOFTS.HTM apple II] [http://www.softpres.org/ softpres] [http://www.kryoflux.com/ kryoflux] 
+ * *format extractor* [http://aluigi.org/papers.htm#quickbms QuickBMS]
+ * *floppy* [http://dmweb.free.fr/?q=node/1429 dungeon master] [http://www.hackzapple.com/ORG1/MZ/PIRATESOFTS.HTM apple II] [http://www.softpres.org/ softpres] [http://www.kryoflux.com/ kryoflux] [http://www.lotharek.pl/product.php?pid=12 HxC floppy emulator]
