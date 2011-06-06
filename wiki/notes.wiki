@@ -3,7 +3,7 @@
 =Tools=
  * *Office* !OffVis
  * *[http://www.pintool.org/ pin]*
-  * [http://blog.zynamics.com/2010/07/28/dumping-shellcode-with-pin/ shellcode] SHAN
+  * [http://blog.zynamics.com/2010/07/28/dumping-shellcode-with-pin/ shellcode] ([https://github.com/agustingianni agustin gianni]) [http://code.google.com/p/tartetatintools/ TarteTatin] SHAN
  * *[http://dynamorio.org/ dynamorio]*
  * *PiNG* [http://entropymine.com/jason/tweakpng/ tweakpng] [http://advancemame.sourceforge.net/comp-readme.html advpng]
  * *SWiF* [https://github.com/sporst/SWFREtools/ SWFRETools] ([https://github.com/grugq/Buggery +Buggery]) [http://blitzableiter.recurity.com/ blitzableiter] [http://jpauclair.net/2010/02/10/mmcfg-treasure/ mm.cfg] [http://kb2.adobe.com/cps/142/tn_14266.html Archives]
