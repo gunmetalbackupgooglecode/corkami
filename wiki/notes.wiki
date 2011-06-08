@@ -1,6 +1,7 @@
 #summary misc notes
 =Formats=
 =Tools=
+ * *Java* [http://dirty-joe.com/ dirty JOE]
  * *Office* !OffVis
  * *[http://www.pintool.org/ pin]*
   * [http://blog.zynamics.com/2010/07/28/dumping-shellcode-with-pin/ shellcode] ([https://github.com/agustingianni agustin gianni]) [http://code.google.com/p/tartetatintools/ TarteTatin] SHAN
