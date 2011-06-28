@@ -1,6 +1,7 @@
 #summary misc notes
 =Formats=
 =Tools=
+ * *ASM* [http://ref.x86asm.net/index.html x86ref] [http://siyobik.info/main/reference Siyobik] [http://sandpile.org/ Sandpile]
  * *Java* [http://dirty-joe.com/ dirty JOE]
  * *Office* !OffVis
  * *[http://www.pintool.org/ pin]*
