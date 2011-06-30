@@ -2,18 +2,26 @@
 =Formats=
 =Tools=
  * *ASM* [http://ref.x86asm.net/index.html x86ref] [http://siyobik.info/main/reference Siyobik] [http://sandpile.org/ Sandpile]
+ * *disasm* [http://software.intel.com/en-us/articles/intel-software-development-emulator/ XED] [http://ragestorm.net/distorm/ diStorm] (3=GPL/2=BSD) [http://www.beaengine.org/ BeaEngine]
+
  * *Java* [http://dirty-joe.com/ dirty JOE]
+ * *Android* [http://www.matasano.com/research/kivlad/ kivlad] [http://code.google.com/p/smali/ smali] [http://dedexer.sourceforge.net/ dedexer]
+
  * *Office* !OffVis
- * *[http://www.pintool.org/ pin]*
-  * [http://blog.zynamics.com/2010/07/28/dumping-shellcode-with-pin/ shellcode] ([https://github.com/agustingianni agustin gianni]) [http://code.google.com/p/tartetatintools/ TarteTatin] SHAN
- * *[http://dynamorio.org/ dynamorio]*
  * *PiNG* [http://entropymine.com/jason/tweakpng/ tweakpng] [http://advancemame.sourceforge.net/comp-readme.html advpng]
  * *SWiF* [https://github.com/sporst/SWFREtools/ SWFRETools] ([https://github.com/grugq/Buggery +Buggery]) [http://blitzableiter.recurity.com/ blitzableiter] [http://jpauclair.net/2010/02/10/mmcfg-treasure/ mm.cfg] [http://kb2.adobe.com/cps/142/tn_14266.html Archives]
+ * *pdf* [http://sandsprite.com/blogs/index.php?uid=7&pid=57 PDF Stream dumper] [http://malzilla.sourceforge.net/ malzilla]
+
+ * *DBI*
+  * *[http://www.pintool.org/ pin]*  [http://blog.zynamics.com/2010/07/28/dumping-shellcode-with-pin/ shellcode] ([https://github.com/agustingianni agustin gianni]) [http://code.google.com/p/tartetatintools/ TarteTatin] SHAN
+  * *[http://dynamorio.org/ dynamorio]* [http://www.inreverse.net/?p=1668 dyntrace]
+
  * *unpackers* [http://www.reversinglabs.com/forum/index.php?topic=11.0 rl!depacker] [http://qunpack.ahteam.org/ QUnpack] [http://deroko.phearless.org/rce.html deroko generic unpacker] [http://code.google.com/p/fuu/ Fast Universal Unpacker] ([http://www.reversinglabs.com/products/TitanEngine.php TitanEngine])
+
+ * *bochs* [http://bochs.sourceforge.net/diskimages.html images] [http://www.frontiernet.net/~fys/mtools.htm mtool] [http://hp.vector.co.jp/authors/VA013937/editdisk/index_e.html disk explorer]
  * *[http://www.dosbox.com/ dosbox]* [http://vogons.zetafleet.com/viewtopic.php?t=3944 heavy_debug]
  * *[http://www.hex-rays.com/idapro/ IDA]* [http://code.google.com/p/idapython/ IDAPython]
   * *plugins* [http://newgre.net/idastealth IDAStealth] [http://code.google.com/p/optimice/ optimice] [http://www.macromonkey.com/bb/viewforum.php?f=65 Class Informer]
-  * *bochs* [http://bochs.sourceforge.net/diskimages.html images] [http://www.frontiernet.net/~fys/mtools.htm mtool] [http://hp.vector.co.jp/authors/VA013937/editdisk/index_e.html disk explorer]
   * *doc* [http://www.binarypool.com/idapluginwriting/ binarypool]
    * *cpu* SDK\module\script\ebc.py (+[http://sourceforge.net/projects/efidevkit/files/ ...\ebc\fat.efi]) [https://www.openrce.org/articles/full_view/28 hyperunpackme] [http://code.google.com/p/ida-spu/ ps3spu] [http://www.idabook.com/examples/chapter_19/simple_python.tgz python]
  * *[http://msdn.microsoft.com/en-us/windows/hardware/gg463016 WinDbg]* [http://msdn.microsoft.com/en-us/windows/hardware/gg463028 Symbols] [http://virtualkd.sysprogs.org/ VirtualKD] [http://windbg.info/doc/2-windbg-a-z.html from A to Z]
@@ -21,10 +29,8 @@
   * *plugins* !OllyAdvanced !OllyDump !CodeDoctor !FullDisasm
   * *[http://debugger.immunityinc.com/ ImDbg]* [http://redmine.corelan.be:8800/projects/pvefindaddr pvefindAddr]
  * *[http://hiew.ru/ Hiew]* ([http://code.google.com/p/pyhiew/ PyHiew])
- * [http://hte.sourceforge.net/ HT Editor]
- * *disasm* [http://software.intel.com/en-us/articles/intel-software-development-emulator/ XED] [http://ragestorm.net/distorm/ diStorm] (3=GPL/2=BSD) [http://www.beaengine.org/ BeaEngine]
+ * *[http://hte.sourceforge.net/ HT Editor]*
 
- * *pdf* [http://sandsprite.com/blogs/index.php?uid=7&pid=57 PDF Stream dumper] [http://malzilla.sourceforge.net/ malzilla]
  * [http://www.sysinternals.com sysinternals] (`net use \\live.sysinternals.com`) [http://www.nirsoft.net nirsoft]
 =Exploits=
  * *CVE-2007-5659* PDF, collectEmailInfo
