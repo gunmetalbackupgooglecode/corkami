@@ -1,6 +1,8 @@
 #summary misc notes
 =Formats=
 =Tools=
+ * *hash* [http://hashcat.net/hashcat/ hashcat] [http://fsumfe.sourceforge.net/ FsumFE]
+
  * *ASM* [http://ref.x86asm.net/index.html x86ref] [http://siyobik.info/main/reference Siyobik] [http://sandpile.org/ Sandpile]
  * *disasm* [http://software.intel.com/en-us/articles/intel-software-development-emulator/ XED] [http://ragestorm.net/distorm/ diStorm] (3=GPL/2=BSD) [http://www.beaengine.org/ BeaEngine]
 
