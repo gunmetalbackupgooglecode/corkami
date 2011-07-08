@@ -6,7 +6,7 @@
  * *ASM* [http://ref.x86asm.net/index.html x86ref] [http://siyobik.info/main/reference Siyobik] [http://sandpile.org/ Sandpile]
  * *disasm* [http://software.intel.com/en-us/articles/intel-software-development-emulator/ XED] [http://ragestorm.net/distorm/ diStorm] (3=GPL/2=BSD) [http://www.beaengine.org/ BeaEngine]
 
- * *Java* [http://dirty-joe.com/ dirty JOE]
+ * *Java* [http://dirty-joe.com/ dirty JOE] [http://rejava.sourceforge.net/ reJ]
  * *Android* [http://www.matasano.com/research/kivlad/ kivlad] [http://code.google.com/p/smali/ smali] [http://dedexer.sourceforge.net/ dedexer]
 
  * *Office* !OffVis
