@@ -1,7 +1,5 @@
 #summary a summary of PDF tricks - encodings, structures, javascript...
 
-*_THIS PAGE IS STILL IN PROGRESS_*
-
 This is a summary of PDF tricks, either based on data encodings, javascript, or PDF structure.
 
 DISCLAIMER: The files are clean, and hand written by me, for better understanding and perfect clarity. However, because they use various tricks also present in malwares, they might be detected by your antivirus, or crash your usual program. They all work under Adobe Acrobat though, which is the point here.
@@ -112,20 +110,6 @@ A PDF can contain a Names tree, in which each element is sequentially evaluated.
 [...]
 }}}
 
-==no object number==
-
-==no endobj==
-no `endobj` tag
-
-not valid on Acrobat X anymore
-
-==no object content==
-{{{
-obj
-trailer
-[...]
-}}}
-
 ==no object==
 on Acrobat X, a valid PDF doesn't need an object.
 
@@ -156,8 +140,76 @@ trailer
 ==EOF==
 PDF is a format that supports incremental updates, so information can be written beyond the %EOF.
 
-==linearized==
+ Example of a PDF where objects and trailer are beyond the EOF ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-ignoredeof.pdf download]):
+{{{
+[...]
+%%EOF
+             
+% dummy object to make this PDF valid
+[...]
+15 0 obj
+[...]
+% the trailer is not allowed to be before all other objects
+trailer
+<<
+/Root<</Pages 1 0 R>>
+>>
 
+1 0 obj
+<</Kids[<</Parent 1 0 R/Contents[2 0 R]>>]
+[...]
+
+2 0 obj
+<<>>
+stream
+BT/default 20 Tf 1 0 0 1 1 715 Tm(this text and the PDF objects are stored beyond the %%EOF tag)Tj ET
+[...]
+}}}
+==linearized==
+PDF are parsed bottom-up by default, except if the first object (even a dummy non-referenced object) contains the /Linearized tag (with a dummy value)
+
+ Example of a PDF parsed either bottom-up or top-down (if linearized) ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-parsingdirection.pdf download]):
+{{{
+[...]
+% inserting/removing a dummy first object will change the parsing direction
+12 0 obj <<<>>
+[...]
+31415 0 obj 
+<< /Linearized -42 >>
+endobj
+[...]
+2 0 obj
+<<>>
+stream
+BT/default 35 Tf 1 0 0 1 1 715 Tm(this PDF has been parsed top-down)Tj ET
+endstream
+endobj
+[...]
+20 0 obj
+<<>>
+stream
+BT/default 35 Tf 1 0 0 1 1 715 Tm(this PDF has been parsed bottom-up)Tj ET
+endstream
+endobj
+[...]
+% if this trailer is taken in account, it will display 'Top-down'
+trailer
+<<
+/Root
+  <<
+  /Pages 1 0 R
+  >>
+>>
+[...]
+% if this trailer is taken in account, it will display 'Bottom-up'
+trailer
+<<
+/Root
+  <<
+  /Pages 10 0 R
+  >>
+>> 
+}}}
 
 =!JavaScript-based encodings=
 Here are a few other encoding tricks, that use javascript (not necessarily specific to Acrobat's)
@@ -330,7 +382,7 @@ global variables show a different behavior as opposed to normal ones.
 ==Page==
 to actually contain a page, an object, defining its kid as its parent, should be referenced in trailer/Root/Pages.
 
- Example of a minimalist PDF with a page:
+ Example of a minimalist PDF with a page ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/blankpage.pdf download]):
 {{{
 %PDF-\01 0 obj<</Kids[<</Parent 1 0 R>>]>>trailer<</Root<</Pages 1 0 R>>>>
 }}}
