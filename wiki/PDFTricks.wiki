@@ -7,6 +7,9 @@ DISCLAIMER: The files are clean, and hand written by me, for better understandin
  In short: they're odd, but they work, and they're clean.
 
 for many more Javascript tricks, check the [http://bonsaiden.github.com/JavaScript-Garden/ JavaScript Garden]
+
+for direct downloads, see [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/ the SVN directory]
+
 =encodings=
 any data (or string) can be encoded in various ways.
 
@@ -238,6 +241,9 @@ like CAFEBABE can be read as a word or as a hex number, any uppercase word can b
 }}}
 
 ==concatenation==
+the simplest tricks of all for strings in Javascript, split into parts, then concatenate back.
+
+ Example of a `Hello World!` string concatenated before display ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-concat.pdf download]):
 {{{
 [...]
       B="Hell";
@@ -422,6 +428,11 @@ to be able to use javascript, a PDF just needs to be empty (see above), with an 
 %PDF-\0trailer<</Root<</Pages<<>>/OpenAction<</S/JavaScript/JS(app.alert('Hello World!');)>>>>>>
 }}}
 
+
+=Corrupted streams=
+if a !FlatEncoded stream is truncated or corrupted, it will be taken as is until the error - and still interpreted.
+
+An easy way to get the original corrupted stream to decompress like Reader would, is to prune it into a template PDF with attachment. This way, Adobe Reader will be the one decompressing the stream: ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/attachstream.py prune script] + [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-attached.pdf attachment template])
 
 =References=
  * [http://blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/ Didier Stevens]
