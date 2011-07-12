@@ -77,7 +77,7 @@ o\
 
 =structure=
 ==truncated signature==
-theorically `%PDF-1.[4-6]`, the signature can be truncated to ignore the last digit.
+theoretically `%PDF-1.[4-6]`, the signature can be truncated to ignore the last digit.
 
  Example of truncated header signature ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-shorter.pdf download]):
 {{{
@@ -180,7 +180,7 @@ unescape("%48%65%6C%6C%6F%20%57%6F%72%6C%64%21")
 ==base encoding==
 like CAFEBABE can be read as a word or as a hex number, any uppercase word can be written as a base32 (32 or less, depending on the last (in the alphabet) used character) numbers. 
 
- Example of a `HELLO WORLD!` string, with each word encoded as a number, in differents bases ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-number.pdf download]):
+ Example of a `HELLO WORLD!` string, with each word encoded as a number, in different bases ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-number.pdf download]):
 {{{
 (6873049).toString(25) + " " + (38842069).toString(33) + "!"
 }}}
@@ -219,7 +219,7 @@ A function such as _alert_ can be called, not only directly, but also as a subst
 ==array==
 the previous example can be extended with a fake array with fake entries, which makes the actual executed function harder to spot.
 
- Example of a code string evalated via a fake array reference ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-array.pdf download]):
+ Example of a code string evaluated via a fake array reference ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-array.pdf download]):
 {{{
 [...]
      e = ("fake1")[("fake2", "eval")]
@@ -295,8 +295,9 @@ An !AcroForm Widget can contain some data and value, which can be retrieved via 
 ==anti-emulators==
 
 ===initial values===
-some Adobe specific global variables are initialized with default values, checking them might stop an emulator
+some Adobe specific global variables are initialized with default values, so checking them might stop an emulator.
 
+ Example of Acrobat Javascript code that checks initial values as an anti-emulator ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-trick-initvalues.pdf download]):
 {{{
 [...]
       if ((app)
@@ -305,7 +306,9 @@ some Adobe specific global variables are initialized with default values, checki
 }}}
 
 ===global variables===
-global variables show a different behavior as opposed to normal ones:
+global variables show a different behavior as opposed to normal ones.
+
+ Example of Acrobat Javascript code that sets global variables, and checks the result ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-trick-globals.pdf download]):
 {{{
 [...]
       hidden=0;  // global
@@ -324,9 +327,49 @@ global variables show a different behavior as opposed to normal ones:
 </wiki:comment>
 
 =Minimalists PDF=
-==Empty==
+==Page==
+to actually contain a page, an object, defining its kid as its parent, should be referenced in trailer/Root/Pages.
+
+ Example of a minimalist PDF with a page:
+{{{
+%PDF-\01 0 obj<</Kids[<</Parent 1 0 R>>]>>trailer<</Root<</Pages 1 0 R>>>>
+}}}
+
 ==Page + Text==
+To define a text, the page should have empty resources, and a content, made of the text itself.
+
+ Example of a minimalist PDF with page + text, under Acrobat <=9 ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld.pdf download]):
+{{{
+%PDF-\01 0 obj<</Kids[<</Parent 1 0 R/Contents[2 0 R]>>]/Resources<<>>>>2 0 obj<<>>stream
+BT/default 99 Tf 1 0 0 1 1 715 Tm(Hello World!)Tj ET
+endstream
+trailer<</Root<</Pages 1 0 R>>>>
+}}}
+
+Note this object doesn't have an endobj tag. However, it's required under Acrobat X.
+
+ Example of a minimalist PDF with page + text, under Acrobat X ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld-X.pdf download]):
+{{{
+%PDF-\01 0 obj<</Kids[<</Parent 1 0 R/Contents[2 0 R]>>]/Resources<<>>>>2 0 obj<<>>stream
+BT/default 99 Tf 1 0 0 1 1 715 Tm(Hello World!)Tj ET
+endstream
+endobj
+trailer<</Root<</Pages 1 0 R>>>>
+}}}
+
 ==!JavaScript==
+to be able to use javascript, a PDF just needs to be empty (see above), with an !OpenAction in the trailer/root.
+
+ Example of a minimalist PDF using Javascript, under Acrobat <=9 ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js.pdf download]):
+{{{
+%PDF-\0obj<<>>trailer<</Root<</Pages<<>>/OpenAction<</S/JavaScript/JS(app.alert('Hello World!');)>>>>>>
+}}}
+
+ Example of a minimalist PDF using Javascript, under Acrobat X ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js_X.pdf download]):
+{{{
+%PDF-\0trailer<</Root<</Pages<<>>/OpenAction<</S/JavaScript/JS(app.alert('Hello World!');)>>>>>>
+}}}
+
 
 =References=
  * [http://blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/ Didier Stevens]
