@@ -307,7 +307,7 @@ A !JavaScript function can access its own code, and use it for anything. Thus, a
 these tricks are hiding some information in one of the various component of the PDF, and retrieving that information via !!JavaScript.
 
 ==info==
-a PDF's trailer can contain an Info dictionary, whose elements' contents can be retrieved via !!JavaScript via the info object's properties.
+a PDF's trailer can contain an Info dictionary, whose elements' contents can be retrieved via !JavaScript via the info object's properties.
 
  Example of a string being stored as element of a trailer's Info dictionary ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-info.pdf download]):
 {{{
@@ -319,7 +319,9 @@ a PDF's trailer can contain an Info dictionary, whose elements' contents can be 
 }}}
 
 ==annots==
+Similarly, a PDF page can contain an annotation, which content can be retrieved by `getAnnots` on the specific page.
 
+ Example of a string being stored as a page's annotation's subject ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-annots.pdf download]):
 {{{
 [...]
     /Annots
