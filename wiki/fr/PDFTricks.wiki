@@ -1,41 +1,41 @@
-#summary un résumé des astuces PDF tricks - encodages, structures, javascript...
+ï»¿#summary un rÃ©sumÃ© des astuces PDF tricks - encodages, structures, javascript...
 
-Ceci est un résumé des astuces du format PDF, qu'elles soient basées sur l'encodage, le javascript, ou la structure PDF.
+Ceci est un rÃ©sumÃ© des astuces du format PDF, qu'elles soient basÃ©es sur l'encodage, le javascript, ou la structure PDF.
 
 DISCLAIMER: The files are clean, and hand written by me, for better understanding and perfect clarity. However, because they use various tricks also present in malwares, they might be detected by your antivirus, or crash your usual program. They all work under Adobe Acrobat though, which is the point here.
-AVERTISSEMENT: les fichiers sont sains, écris à la main, pour une meilleur compréhension et une clarté totale. Cependant, comme ils utilisent des astuces diverses présentes dans les virus, ils pourraient être détectés par votre antivirus, ou faire planter vos programmes habituels. Cela dit, ils marchent tous sous Adobe Acrobat, ce qui est le but ici.
+AVERTISSEMENT: les fichiers sont sains, Ã©cris Ã  la main, pour une meilleur comprÃ©hension et une clartÃ© totale. Cependant, comme ils utilisent des astuces diverses prÃ©sentes dans les virus, ils pourraient Ãªtre dÃ©tectÃ©s par votre antivirus, ou faire planter vos programmes habituels. Cela dit, ils marchent tous sous Adobe Acrobat, ce qui est le but ici.
 
  En clair: ils sont bizarres, mais ils marchent, et ils sont propres.
  
 pour encore plus d'astuces Javascript, allez voir le site [http://bonsaiden.github.com/JavaScript-Garden/ JavaScript Garden]
 
-pour télécharger directement, allez voir [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/ le répertoire SVN]
+pour tÃ©lÃ©charger directement, allez voir [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/ le rÃ©pertoire SVN]
 
 =encodages=
-toutes les données (ou chaînes) peuvent être encodées de diverses façons.
+toutes les donnÃ©es (ou chaÃ®nes) peuvent Ãªtre encodÃ©es de diverses faÃ§ons.
 
 ==hex==
-une chaîne peut être stockée en hexadécimal.
+une chaÃ®ne peut Ãªtre stockÃ©e en hexadÃ©cimal.
 
- Example de chaîne `Hello World!`, avec chaque caractère encodé par sa valeur en hexadécimal ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-hex.pdf télécharger]):
+ Example de chaÃ®ne `Hello World!`, avec chaque caractÃ¨re encodÃ© par sa valeur en hexadÃ©cimal ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-hex.pdf tÃ©lÃ©charger]):
 {{{
 48656c6c6f20576f726c6421
 }}}
 
 ==octal==
-un autre classique, où chaque caractêre est stocké en octal.
+un autre classique, oÃ¹ chaque caractÃªre est stockÃ© en octal.
 
- Example de chaîne `Hello World!`, avec chaque caractère encodé par sa valeur en octal ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-octal.pdf télécharger]):
+ Example de chaÃ®ne `Hello World!`, avec chaque caractÃ¨re encodÃ© par sa valeur en octal ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-octal.pdf tÃ©lÃ©charger]):
 {{{
 \110\145\154\154\157\40\127\157\162\154\144\41\
 }}}
 
 ==espaces entre les chiffres==
-jusque là, rien d'inattendu. Mais ça ne serait pas Adobe si nous en restions là ;)
+jusque lÃ , rien d'inattendu. Mais Ã§a ne serait pas Adobe si nous en restions lÃ  ;)
 
-Alors qu'il est habituel de séparer les nombres hexadécimaux par une espace (`00 01 02...`), dans un PDF, n'importe quel caractère vide peut être utilisé (tab, retour à la ligne), et même entre les 2 chiffres d'un seul nombre.
+Alors qu'il est habituel de sÃ©parer les nombres hexadÃ©cimaux par une espace (`00 01 02...`), dans un PDF, n'importe quel caractÃ¨re vide peut Ãªtre utilisÃ© (tab, retour Ã  la ligne), et mÃªme entre les 2 chiffres d'un seul nombre.
 
- Example de chaîne `Hello World!`, avec des caractères vides entre les chiffres ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-hex-with-space.pdf télécharger]):
+ Example de chaÃ®ne `Hello World!`, avec des caractÃ¨res vides entre les chiffres ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-hex-with-space.pdf tÃ©lÃ©charger]):
 {{{
 4
 8
@@ -50,10 +50,10 @@ Alors qu'il est habituel de séparer les nombres hexadécimaux par une espace (`00
 576f726c6421
 }}}
 
-==retours à la ligne en Ascii==
-les chaînes Ascii peuvent être stockées telles quelles (miracle !), mais des retours à la lignes - qui seront ignorés - peuvent être insérés également...
+==retours Ã  la ligne en Ascii==
+les chaÃ®nes Ascii peuvent Ãªtre stockÃ©es telles quelles (miracle !), mais des retours Ã  la lignes - qui seront ignorÃ©s - peuvent Ãªtre insÃ©rÃ©s Ã©galement...
 
- Example de chaîne `Hello World!`, stockée en Ascii, avec des retours à la ligne superflus  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-newline.pdf télécharger]):
+ Example de chaÃ®ne `Hello World!`, stockÃ©e en Ascii, avec des retours Ã  la ligne superflus  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-newline.pdf tÃ©lÃ©charger]):
 {{{
 [...]
 }\
@@ -78,26 +78,26 @@ o\
 }}}
 
 =structure=
-==signature d'en-tête tronquée==
-Théoriquement égale à `%PDF-1.[4-6]`, la signature peut être tronquée pour ignorer le dernier chiffre.
+==signature d'en-tÃªte tronquÃ©e==
+ThÃ©oriquement Ã©gale Ã  `%PDF-1.[4-6]`, la signature peut Ãªtre tronquÃ©e pour ignorer le dernier chiffre.
 
- Exemple de signature d'en-tête tronquée  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-shorter.pdf télécharger]):
+ Exemple de signature d'en-tÃªte tronquÃ©e  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-shorter.pdf tÃ©lÃ©charger]):
 {{{
 %PDF-1.
 }}}
 
 ==signature nulle==
-mais elle peut être encore plus courte, à condition d'insérer un caractêre nul.
+mais elle peut Ãªtre encore plus courte, Ã  condition d'insÃ©rer un caractÃªre nul.
 
- Exemple de signature d'en-tête tronquée, avec caractère nul  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-null.pdf télécharger])
+ Exemple de signature d'en-tÃªte tronquÃ©e, avec caractÃ¨re nul  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-null.pdf tÃ©lÃ©charger])
 {{{
 %PDF-\0
 }}}
 
 ==arbre de noms==
-Un PDF peut contenir un arbre de noms (`Names`), dont chaque élément sera évalué séquentiellement. Ainsi, un script peut être coupé en plusieurs morceaux, et sans déclenchement évident tel que !OpenAction.
+Un PDF peut contenir un arbre de noms (`Names`), dont chaque Ã©lÃ©ment sera Ã©valuÃ© sÃ©quentiellement. Ainsi, un script peut Ãªtre coupÃ© en plusieurs morceaux, et sans dÃ©clenchement Ã©vident tel que !OpenAction.
 
- Exemple de script !JavaScript, coupé en 2 dans un arbre de noms  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/structure-names.pdf télécharger]):
+ Exemple de script !JavaScript, coupÃ© en 2 dans un arbre de noms  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/structure-names.pdf tÃ©lÃ©charger]):
 {{{
 [...]
   /Names
@@ -117,22 +117,22 @@ Un PDF peut contenir un arbre de noms (`Names`), dont chaque élément sera évalué
 ==sans object==
 Avec Acrobat X, un PDF valide n'a pas besoin d'objet.
 
- Exemple de PDF valide (sous Acrobat X) de 36 octets, fait d'un `trailer` uniquement ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/emptyX.pdf télécharger]):
+ Exemple de PDF valide (sous Acrobat X) de 36 octets, fait d'un `trailer` uniquement ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/emptyX.pdf tÃ©lÃ©charger]):
 {{{
 %PDF-\0trailer<</Root<</Pages<<>>>>>>
 }}}
 
-Cette astuce ne marche pas sous les versions précédentes d'Acrobat. Pour elles, un objet - même vide, et sans index - doit être présent.
+Cette astuce ne marche pas sous les versions prÃ©cÃ©dentes d'Acrobat. Pour elles, un objet - mÃªme vide, et sans index - doit Ãªtre prÃ©sent.
 
- Exemple de PDF valide (Sous Acrobat <= 9) de 48 octets ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/empty.pdf télécharger]):
+ Exemple de PDF valide (Sous Acrobat <= 9) de 48 octets ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/empty.pdf tÃ©lÃ©charger]):
 {{{
 %PDF-\0obj<<>>trailer<</Root<</Pages<<>>>>>>
 }}}
 
 ==tags incorrects==
-Les tags inattendus sont simplement ignorés, ainsi que ceux avec des majuscules/minuscules incorrects.
+Les tags inattendus sont simplement ignorÃ©s, ainsi que ceux avec des majuscules/minuscules incorrects.
 
- Exemple de `trailer` avec des tags incorrects ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/structure-wrongcase.pdf télécharger]):
+ Exemple de `trailer` avec des tags incorrects ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/structure-wrongcase.pdf tÃ©lÃ©charger]):
 {{{
 trailer
 <<
@@ -142,9 +142,9 @@ trailer
 }}}
 
 ==EOF==
-Le PDF est un format qui gère les mises-à-jours incrémentales, donc l'information peut être écrite au dela du %%EOF.
+Le PDF est un format qui gÃ¨re les mises-Ã -jours incrÃ©mentales, donc l'information peut Ãªtre Ã©crite au dela du %%EOF.
 
- Exemple de PDF ou les objets et le `trailer` sont écris après le %%EOF ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-ignoredeof.pdf télécharger]):
+ Exemple de PDF ou les objets et le `trailer` sont Ã©cris aprÃ¨s le %%EOF ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-ignoredeof.pdf tÃ©lÃ©charger]):
 {{{
 [...]
 %%EOF
@@ -153,7 +153,7 @@ Le PDF est un format qui gère les mises-à-jours incrémentales, donc l'informatio
 [...]
 15 0 obj
 [...]
-% le trailer ne doit pas être avant les autres objets
+% le trailer ne doit pas Ãªtre avant les autres objets
 trailer
 <<
 /Root<</Pages 1 0 R>>
@@ -170,12 +170,12 @@ BT/default 20 Tf 1 0 0 1 1 715 Tm(this text and the PDF objects are stored beyon
 [...]
 }}}
 ==linearized==
-les PDF sont parcourus par défaut de bas en haut, sauf si le premier objet (même un objet bidon sans référence) contient le tag /Linearized tag (avec une valeur quelconque)
+les PDF sont parcourus par dÃ©faut de bas en haut, sauf si le premier objet (mÃªme un objet bidon sans rÃ©fÃ©rence) contient le tag /Linearized tag (avec une valeur quelconque)
 
- Exemple de PDF parcouru au choix de bas en haut ou de haut en bas (si `linearized`)  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-parsingdirection.pdf télécharger]):
+ Exemple de PDF parcouru au choix de bas en haut ou de haut en bas (si `linearized`)  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-parsingdirection.pdf tÃ©lÃ©charger]):
 {{{
 [...]
-% insérer/supprimer un objet vide changera la direction d'analyse
+% insÃ©rer/supprimer un objet vide changera la direction d'analyse
 12 0 obj <<<>>
 [...]
 31415 0 obj 
@@ -196,7 +196,7 @@ BT/default 35 Tf 1 0 0 1 1 715 Tm(this PDF has been parsed bottom-up)Tj ET
 endstream
 endobj
 [...]
-% si ce trailer est pris en compte, 'Top-down' sera affiché
+% si ce trailer est pris en compte, 'Top-down' sera affichÃ©
 trailer
 <<
 /Root
@@ -205,7 +205,7 @@ trailer
   >>
 >>
 [...]
-% si ce trailer est pris en compte, 'Bottom-up' sera affiché
+% si ce trailer est pris en compte, 'Bottom-up' sera affichÃ©
 trailer
 <<
 /Root
@@ -216,11 +216,11 @@ trailer
 }}}
 
 =encodage en !JavaScript=
-Voici quelques autres astuces d'encodages, qui utilisent !JavaScript (pas forcément spécifique à Acrobat)
-==concaténation==
-l'astuce la plus simple de toute est de couper la chaîne en morceaux, et de les reconcaténer ensuite.
+Voici quelques autres astuces d'encodages, qui utilisent !JavaScript (pas forcÃ©ment spÃ©cifique Ã  Acrobat)
+==concatÃ©nation==
+l'astuce la plus simple de toute est de couper la chaÃ®ne en morceaux, et de les reconcatÃ©ner ensuite.
 
- Exemple de chaîne `Hello World!`, où elle est reconstruite avant affichage ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-concat.pdf télécharger]):
+ Exemple de chaÃ®ne `Hello World!`, oÃ¹ elle est reconstruite avant affichage ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-concat.pdf tÃ©lÃ©charger]):
 {{{
 [...]
       B="Hell";
@@ -231,44 +231,44 @@ l'astuce la plus simple de toute est de couper la chaîne en morceaux, et de les 
 }}}
 
 ==cherche et remplace==
-une simple technique de dissimulation: ajouter des caractères superflus, et les supprimer/remplacer avant utilisation.
+une simple technique de dissimulation: ajouter des caractÃ¨res superflus, et les supprimer/remplacer avant utilisation.
 
- Exemple de chaîne `Hello World!`, dissimulées avec des caractères superflus  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-replace.pdf télécharger]):
+ Exemple de chaÃ®ne `Hello World!`, dissimulÃ©es avec des caractÃ¨res superflus  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-replace.pdf tÃ©lÃ©charger]):
 {{{
 "zHzzezzlzlzozzzzz zWozrzldz!").replace(/z/g,"")
 }}}
 
-==échappement==
-une autre technique standard en !JavaScript: remplacer les caractères par leur équivalent encodé.
+==Ã©chappement==
+une autre technique standard en !JavaScript: remplacer les caractÃ¨res par leur Ã©quivalent encodÃ©.
 
- Exemple de chaîne `Hello World!`, encodée par échappement  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-unescape.pdf télécharger]):
+ Exemple de chaÃ®ne `Hello World!`, encodÃ©e par Ã©chappement  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-unescape.pdf tÃ©lÃ©charger]):
 {{{
 unescape("%48%65%6C%6C%6F%20%57%6F%72%6C%64%21")
 }}}
 
-==encodage en base numérique==
-De même que CAFEBEBE peut être, lu soit comme un mot, soit comme un chiffre en hexa, n'importe quel mot en majuscule peut être écrit en base 32 (32 ou moins, en fonction du dernier caractère de l'alphabet dont on a besoin).
+==encodage en base numÃ©rique==
+De mÃªme que CAFEBEBE peut Ãªtre, lu soit comme un mot, soit comme un chiffre en hexa, n'importe quel mot en majuscule peut Ãªtre Ã©crit en base 32 (32 ou moins, en fonction du dernier caractÃ¨re de l'alphabet dont on a besoin).
 
- Exemple de chaîne `HELLO WORLD!`, où chaque mot est encodé comme un nombre, dans une base différente à chaque fois  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-number.pdf télécharger]):
+ Exemple de chaÃ®ne `HELLO WORLD!`, oÃ¹ chaque mot est encodÃ© comme un nombre, dans une base diffÃ©rente Ã  chaque fois  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-number.pdf tÃ©lÃ©charger]):
 {{{
 (6873049).toString(25) + " " + (38842069).toString(33) + "!"
 }}}
 
 =astuces !JavaScript=
 ==eval==
-Une classique: du code peut être construit dans une chaîne, qui est executée par évaluation.
+Une classique: du code peut Ãªtre construit dans une chaÃ®ne, qui est executÃ©e par Ã©valuation.
 
- Exemple de chaîne de code executée ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-eval.pdf télécharger]):
+ Exemple de chaÃ®ne de code executÃ©e ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-eval.pdf tÃ©lÃ©charger]):
 {{{
 [...]
      eval('app.alert("Hello World!");');
 [...]
 }}}
 
-==sous-chaîne==
-Une fonction telle qu'_alert_ peut être appelée, pas seulement directement, mais aussi en tant que sous-chaîne de son objet parent, _app_ dans notre cas.
+==sous-chaÃ®ne==
+Une fonction telle qu'_alert_ peut Ãªtre appelÃ©e, pas seulement directement, mais aussi en tant que sous-chaÃ®ne de son objet parent, _app_ dans notre cas.
 
- Exemple de fonction !JavaScript, appelée par référence depuis son parent  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-substring.pdf télécharger]):
+ Exemple de fonction !JavaScript, appelÃ©e par rÃ©fÃ©rence depuis son parent  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-substring.pdf tÃ©lÃ©charger]):
 {{{
 [...]
      app["alert"]("Hello World!");
@@ -276,9 +276,9 @@ Une fonction telle qu'_alert_ peut être appelée, pas seulement directement, mais
 }}}
 
 ==tableau==
-L'example précédent peut être amélioré avec un faux tableau et de fausses entrées, ce qui rendra la fonction exécutée plus difficile à distinguer.
+L'example prÃ©cÃ©dent peut Ãªtre amÃ©liorÃ© avec un faux tableau et de fausses entrÃ©es, ce qui rendra la fonction exÃ©cutÃ©e plus difficile Ã  distinguer.
 
- Exemple de chaîne de code évaluée via une référence dans un faux tableau  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-array.pdf télécharger]):
+ Exemple de chaÃ®ne de code Ã©valuÃ©e via une rÃ©fÃ©rence dans un faux tableau  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-array.pdf tÃ©lÃ©charger]):
 {{{
 [...]
      e = ("fake1")[("fake2", "eval")]
@@ -286,10 +286,10 @@ L'example précédent peut être amélioré avec un faux tableau et de fausses entrée
 [...]
 }}}
 
-==appelé==
-Une fonction !JavaScript peut accéder à son propre code, et l'utiliser comme bon lui semble. Donc, n'importe quelle modification du code peut empêcher la fonction de marcher correctement: en général, une telle fonction utilise son code comme une clef de décryptage.
+==appelÃ©==
+Une fonction !JavaScript peut accÃ©der Ã  son propre code, et l'utiliser comme bon lui semble. Donc, n'importe quelle modification du code peut empÃªcher la fonction de marcher correctement: en gÃ©nÃ©ral, une telle fonction utilise son code comme une clef de dÃ©cryptage.
 
- Exemple de fonction de décryptage, qui utilise son propre code comme clef de décryptage ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-callee.pdf télécharger]):
+ Exemple de fonction de dÃ©cryptage, qui utilise son propre code comme clef de dÃ©cryptage ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-callee.pdf tÃ©lÃ©charger]):
 {{{
 [...]
       function decrypt(cipher) 
@@ -305,12 +305,12 @@ Une fonction !JavaScript peut accéder à son propre code, et l'utiliser comme bon
 
 =!JavaScript + PDF=
 
-ces astuces cachent de l'information dans l'un des composants du PDF, et récupèrent cette information via !JavaScript.
+ces astuces cachent de l'information dans l'un des composants du PDF, et rÃ©cupÃ¨rent cette information via !JavaScript.
 
 ==info==
-Un `trailer` du PDF peut contenir un dictionnaire `Info`, dont le contenu des éléments peut être obtenu en  !Javascript par les propriétés de l'objet `info`.
+Un `trailer` du PDF peut contenir un dictionnaire `Info`, dont le contenu des Ã©lÃ©ments peut Ãªtre obtenu en  !Javascript par les propriÃ©tÃ©s de l'objet `info`.
 
- Exemple de chaîne stockée comme éléments du dictionnaire `Info` du `trailer`  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-info.pdf télécharger]):
+ Exemple de chaÃ®ne stockÃ©e comme Ã©lÃ©ments du dictionnaire `Info` du `trailer`  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-info.pdf tÃ©lÃ©charger]):
 {{{
 [...]
       /Info <</Author(Hello) /Title( World) /Producer( !)>>
@@ -320,9 +320,9 @@ Un `trailer` du PDF peut contenir un dictionnaire `Info`, dont le contenu des él
 }}}
 
 ==annots==
-De manière similaire, une page peut contenir un commentaire, qui peut être récupéré par la fonction `getAnnots` sur la page en question.
+De maniÃ¨re similaire, une page peut contenir un commentaire, qui peut Ãªtre rÃ©cupÃ©rÃ© par la fonction `getAnnots` sur la page en question.
 
- Exemple de chaîne stockée comme sujet d'un commentaire sur une page spécifique ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-annots.pdf télécharger]):
+ Exemple de chaÃ®ne stockÃ©e comme sujet d'un commentaire sur une page spÃ©cifique ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-annots.pdf tÃ©lÃ©charger]):
 {{{
 [...]
     /Annots
@@ -337,10 +337,10 @@ De manière similaire, une page peut contenir un commentaire, qui peut être récup
 }}}
 
 ==getfield==
-un Widget !AcroForm peut contenir des données et des valeurs, qui peuvent être récupérées via la fonction `getField`.
+un Widget !AcroForm peut contenir des donnÃ©es et des valeurs, qui peuvent Ãªtre rÃ©cupÃ©rÃ©es via la fonction `getField`.
 
 
- Exemple de chaîne stockée dans un Widget !AcroForm  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-getfield.pdf télécharger]):
+ Exemple de chaÃ®ne stockÃ©e dans un Widget !AcroForm  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-getfield.pdf tÃ©lÃ©charger]):
 {{{
 [...]
   /AcroForm
@@ -353,12 +353,12 @@ un Widget !AcroForm peut contenir des données et des valeurs, qui peuvent être r
 [...]
 }}}
 
-==anti-émulateurs==
-En plus du !JavaScript standard, il est possible via des particularités spécifiques à Adobe Acrobat, de detecter si on est ou non dans l'application réelle ou dans un émulateur.
-===valeurs défaut===
-Des variables globales ont des valeurs par défaut sécifiques, donc comparer la valeur de ces variables dès l'initialisation peut permettre de détecter un émulateur.
+==anti-Ã©mulateurs==
+En plus du !JavaScript standard, il est possible via des particularitÃ©s spÃ©cifiques Ã  Adobe Acrobat, de detecter si on est ou non dans l'application rÃ©elle ou dans un Ã©mulateur.
+===valeurs dÃ©faut===
+Des variables globales ont des valeurs par dÃ©faut sÃ©cifiques, donc comparer la valeur de ces variables dÃ¨s l'initialisation peut permettre de dÃ©tecter un Ã©mulateur.
 
- Exemple de code Acrobat !JavaScript qui vérifie des valeurs initiales pour en faire un anti-émulateur  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-trick-initvalues.pdf télécharger]):
+ Exemple de code Acrobat !JavaScript qui vÃ©rifie des valeurs initiales pour en faire un anti-Ã©mulateur  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-trick-initvalues.pdf tÃ©lÃ©charger]):
 {{{
 [...]
       if ((app)
@@ -367,9 +367,9 @@ Des variables globales ont des valeurs par défaut sécifiques, donc comparer la v
 }}}
 
 ===variables globales===
-les variables globales se comportent différement des autres: même si on leur assigne une valeur, elles gardent leur type original (ce qui défie le bon sens).
+les variables globales se comportent diffÃ©rement des autres: mÃªme si on leur assigne une valeur, elles gardent leur type original (ce qui dÃ©fie le bon sens).
 
- Exemple de code Acrobat !Javascript, qui définit une variable globale, et compare ensuite le résultat  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-trick-globals.pdf télécharger]):
+ Exemple de code Acrobat !Javascript, qui dÃ©finit une variable globale, et compare ensuite le rÃ©sultat  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-trick-globals.pdf tÃ©lÃ©charger]):
 {{{
 [...]
       hidden=0;  // global
@@ -382,7 +382,7 @@ les variables globales se comportent différement des autres: même si on leur ass
 <wiki:comment>
 == ==
 
- Exemple de chaîne `Hello World!` string, encodée avec  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/ télécharger]):
+ Exemple de chaÃ®ne `Hello World!` string, encodÃ©e avec  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/ tÃ©lÃ©charger]):
 {{{
 }}}
 </wiki:comment>
@@ -390,17 +390,17 @@ les variables globales se comportent différement des autres: même si on leur ass
 =PDFs Minimaux=
 voir ci-dessus pour des PDFs valides le plus petit possible - mais ne contenant rien.
 ==avec une page==
-Pour que le PDF ait une page, il faut qu'un objet, définissant un enfant comme son propre parent, doit être référencé dans `trailer/Root/Pages`.
+Pour que le PDF ait une page, il faut qu'un objet, dÃ©finissant un enfant comme son propre parent, doit Ãªtre rÃ©fÃ©rencÃ© dans `trailer/Root/Pages`.
 
- Exemple (complet) de PDF minimal, avec une page ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/blankpage.pdf télécharger]):
+ Exemple (complet) de PDF minimal, avec une page ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/blankpage.pdf tÃ©lÃ©charger]):
 {{{
 %PDF-\01 0 obj<</Kids[<</Parent 1 0 R>>]>>trailer<</Root<</Pages 1 0 R>>>>
 }}}
 
 ==Page + Text==
-Pour définir un texte, cette page doit avoir des ressources (vides), et un contenu, qui défini le texte lui-même..
+Pour dÃ©finir un texte, cette page doit avoir des ressources (vides), et un contenu, qui dÃ©fini le texte lui-mÃªme..
 
- Exemple complet de PDF minimal, avec page et texte (pour Acrobat <=9)  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld.pdf télécharger]):
+ Exemple complet de PDF minimal, avec page et texte (pour Acrobat <=9)  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld.pdf tÃ©lÃ©charger]):
 {{{
 %PDF-\01 0 obj<</Kids[<</Parent 1 0 R/Contents[2 0 R]>>]/Resources<<>>>>2 0 obj<<>>stream
 BT/default 99 Tf 1 0 0 1 1 715 Tm(Hello World!)Tj ET
@@ -410,7 +410,7 @@ trailer<</Root<</Pages 1 0 R>>>>
 
 Notez que cet objet n'a pas de tag `endobj`. Ceci est requis sous Acrobat X.
 
- Exemple complet de PDF minimal, avec page et texte (pour Acrobat X)  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld-X.pdf télécharger]):
+ Exemple complet de PDF minimal, avec page et texte (pour Acrobat X)  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld-X.pdf tÃ©lÃ©charger]):
 {{{
 %PDF-\01 0 obj<</Kids[<</Parent 1 0 R/Contents[2 0 R]>>]/Resources<<>>>>2 0 obj<<>>stream
 BT/default 99 Tf 1 0 0 1 1 715 Tm(Hello World!)Tj ET
@@ -420,25 +420,25 @@ trailer<</Root<</Pages 1 0 R>>>>
 }}}
 
 ==!JavaScript==
-Pour utiliser le !JavaScript, un PDF a besoin d'être comme l'exemple de PDF vide, et d'un dictionnaire !OpenAction dans son `trailer/root`.
+Pour utiliser le !JavaScript, un PDF a besoin d'Ãªtre comme l'exemple de PDF vide, et d'un dictionnaire !OpenAction dans son `trailer/root`.
 
- Exemple complet de PDF minimal, utilisant !JavaScript, sous Acrobat <= 9:  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js.pdf télécharger]):
+ Exemple complet de PDF minimal, utilisant !JavaScript, sous Acrobat <= 9:  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js.pdf tÃ©lÃ©charger]):
 {{{
 %PDF-\0obj<<>>trailer<</Root<</Pages<<>>/OpenAction<</S/JavaScript/JS(app.alert('Hello World!');)>>>>>>
 }}}
 
- Exemple équivalent, sous Acrobat X  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js_X.pdf télécharger]):
+ Exemple Ã©quivalent, sous Acrobat X  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js_X.pdf tÃ©lÃ©charger]):
 {{{
 %PDF-\0trailer<</Root<</Pages<<>>/OpenAction<</S/JavaScript/JS(app.alert('Hello World!');)>>>>>>
 }}}
 
 
 =Flux corrompus=
-Si un flux compressé avec !FlatEncode est tronqué ou corrompu, il sera pris tel quel - jusqu'à l'erreur - et quand même interprété (en général, des données compressées incorrectes seraient tout simplement ignorées).
+Si un flux compressÃ© avec !FlatEncode est tronquÃ© ou corrompu, il sera pris tel quel - jusqu'Ã  l'erreur - et quand mÃªme interprÃ©tÃ© (en gÃ©nÃ©ral, des donnÃ©es compressÃ©es incorrectes seraient tout simplement ignorÃ©es).
 
-Une manière simple d'avoir le flux corrompu décompressé exactement comme Acrobat l'aurait fait est justement de le faire faire par Acrobat, en greffant le flux dans un modèle (_template_) où il sera interprété comme une pièce jointe. Ainsi, c'est Acrobat qui décompressera le flux, quand on demandera d'extraire la pièce jointe: ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/attachstream.py script de greffe] + [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-attached.pdf modèle avec pièce jointe])
+Une maniÃ¨re simple d'avoir le flux corrompu dÃ©compressÃ© exactement comme Acrobat l'aurait fait est justement de le faire faire par Acrobat, en greffant le flux dans un modÃ¨le (_template_) oÃ¹ il sera interprÃ©tÃ© comme une piÃ¨ce jointe. Ainsi, c'est Acrobat qui dÃ©compressera le flux, quand on demandera d'extraire la piÃ¨ce jointe: ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/attachstream.py script de greffe] + [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-attached.pdf modÃ¨le avec piÃ¨ce jointe])
 
-=Références=
+=RÃ©fÃ©rences=
  * [http://blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/ Didier Stevens]
  * [http://www.symantec.com/connect/blogs/portable-document-format-malware Kazumasa Itabashi]
  * [http://blog.zynamics.com/2010/07/13/recon-slides-how-to-really-obfuscate-your-pdf-malware/ Sebastian Porst]
