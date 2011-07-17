@@ -1,20 +1,20 @@
-#summary a summary of PDF tricks - encodings, structures, javascript...
+#summary a summary of PDF tricks - encodings, structures, JavaScript...
 
-This is a summary of PDF tricks, either based on data encodings, javascript, or PDF structure.
+This is a summary of PDF tricks, either based on data encodings, !JavaScript, or PDF structure.
 
 DISCLAIMER: The files are clean, and hand written by me, for better understanding and perfect clarity. However, because they use various tricks also present in malwares, they might be detected by your antivirus, or crash your usual program. They all work under Adobe Acrobat though, which is the point here.
 
  In short: they're odd, but they work, and they're clean.
 
-for many more Javascript tricks, check the [http://bonsaiden.github.com/JavaScript-Garden/ JavaScript Garden]
+for many more !JavaScript tricks, check the [http://bonsaiden.github.com/JavaScript-Garden/ JavaScript Garden].
 
-for direct downloads, see [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/ the SVN directory]
+for direct downloads, see [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/ the SVN directory].
 
 =encodings=
 any data (or string) can be encoded in various ways.
 
 ==hex==
-a string can be stored as hex
+A string can be stored as hex.
 
  Example of `Hello World!` string, with each character encoded by its value in hexadecimal ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-hex.pdf download]):
 {{{
@@ -32,7 +32,7 @@ another classic one, each character is encoded in octal.
 ==whitespaces between nibbles==
 so far so good, nothing too weird. However, it wouldn't be Adobe if something wasn't unexpected.
 
-While it's common to separate hex numbers with space (`00 01 02...`), in a PDF, any kind of whitespace can be used (newline, tab, ...), and even between the 2 digits of the same number.
+While it's common to separate hex numbers with space (`00 01 02...`), in a PDF, any kind of whitespace can be used (newline, tab, ...), and even between the 2 niblles of the same hex number.
 
  Example of `Hello World!` string, encoded as hexadecimal, with extra whitespace between the nibbles ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-hex-with-space.pdf download]):
 {{{
@@ -49,10 +49,10 @@ While it's common to separate hex numbers with space (`00 01 02...`), in a PDF, 
 576f726c6421
 }}}
 
-==ascii newlines==
-Ascii can be stored as ascii (hopefully), but newlines can be inserted too...
+==ASCII newlines==
+ASCII can be stored as ascii (hopefully), but newlines can be inserted too...
 
- Example of `Hello World!` string, stored as ASCII, with extra new lines characters. ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-newline.pdf download]):
+ Example of `Hello World!` string, stored as ASCII, with extra new lines characters ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-newline.pdf download]):
 {{{
 [...]
 }\
@@ -78,7 +78,7 @@ o\
 
 =structure=
 ==truncated signature==
-theoretically `%PDF-1.[4-6]`, the signature can be truncated to ignore the last digit.
+theoretically `%PDF-1.[4-6]`, the signature can be truncated to ignore the last digit...
 
  Example of truncated header signature ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-shorter.pdf download]):
 {{{
@@ -86,15 +86,15 @@ theoretically `%PDF-1.[4-6]`, the signature can be truncated to ignore the last 
 }}}
 
 ==null signature==
-but it can be actually even shorter, provided you insert a null character. ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-null.pdf download])
+...but it can be actually even shorter, provided you insert a null character. 
 
- Example of null-based header trick:
+ Example of null-based header trick ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-null.pdf download]):
  {{{
 %PDF-\0
 }}}
 
 ==Names tree==
-A PDF can contain a Names tree, in which each element is sequentially evaluated. This way, a script can be split in various part, without any obvious trigger such as !OpenAction.
+A PDF can contain a Names tree, in which each element is sequentially evaluated. This way, a script can be split in various parts, without any obvious trigger such as !OpenAction.
 
  Example of a !JavaScript script, split into 2 parts in the Names tree ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/structure-names.pdf download]):
 {{{
@@ -304,10 +304,10 @@ A !JavaScript function can access its own code, and use it for anything. Thus, a
 
 =!JavaScript + PDF=
 
-these tricks are hiding some information in one of the various component of the PDF, and retrieving that information via !Javascript.
+these tricks are hiding some information in one of the various component of the PDF, and retrieving that information via !!JavaScript.
 
 ==info==
-a PDF's trailer can contain an Info dictionary, whose elements' contents can be retrieved via !Javascript via the info object's properties.
+a PDF's trailer can contain an Info dictionary, whose elements' contents can be retrieved via !!JavaScript via the info object's properties.
 
  Example of a string being stored as element of a trailer's Info dictionary ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-info.pdf download]):
 {{{
@@ -355,7 +355,7 @@ An !AcroForm Widget can contain some data and value, which can be retrieved via 
 ===initial values===
 some Adobe specific global variables are initialized with default values, so checking them might stop an emulator.
 
- Example of Acrobat Javascript code that checks initial values as an anti-emulator ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-trick-initvalues.pdf download]):
+ Example of Acrobat !JavaScript code that checks initial values as an anti-emulator ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-trick-initvalues.pdf download]):
 {{{
 [...]
       if ((app)
@@ -366,7 +366,7 @@ some Adobe specific global variables are initialized with default values, so che
 ===global variables===
 global variables show a different behavior as opposed to normal ones.
 
- Example of Acrobat Javascript code that sets global variables, and checks the result ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-trick-globals.pdf download]):
+ Example of Acrobat !JavaScript code that sets global variables, and checks the result ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-trick-globals.pdf download]):
 {{{
 [...]
       hidden=0;  // global
@@ -416,14 +416,14 @@ trailer<</Root<</Pages 1 0 R>>>>
 }}}
 
 ==!JavaScript==
-to be able to use javascript, a PDF just needs to be empty (see above), with an !OpenAction in the trailer/root.
+to be able to use !JavaScript, a PDF just needs to be empty (see above), with an !OpenAction in the trailer/root.
 
- Example of a minimalist PDF using Javascript, under Acrobat <=9 ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js.pdf download]):
+ Example of a minimalist PDF using !JavaScript, under Acrobat <=9 ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js.pdf download]):
 {{{
 %PDF-\0obj<<>>trailer<</Root<</Pages<<>>/OpenAction<</S/JavaScript/JS(app.alert('Hello World!');)>>>>>>
 }}}
 
- Example of a minimalist PDF using Javascript, under Acrobat X ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js_X.pdf download]):
+ Example of a minimalist PDF using !JavaScript, under Acrobat X ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js_X.pdf download]):
 {{{
 %PDF-\0trailer<</Root<</Pages<<>>/OpenAction<</S/JavaScript/JS(app.alert('Hello World!');)>>>>>>
 }}}
