@@ -1,4 +1,4 @@
-﻿#summary un resume des astuces PDF tricks - encodages, structures, JavaScript...
+﻿#summary un resume des astuces PDF - encodages, structures, JavaScript...
 
 Ceci est un résumé des astuces du format PDF, qu'elles soient basées sur l'encodage, le !JavaScript, ou la structure PDF.
 
@@ -6,9 +6,9 @@ AVERTISSEMENT: les fichiers sont sains, écris à la main, pour une meilleur com
 
  En clair: ils sont bizarres, mais ils marchent, et ils sont innofensifs.
  
-pour encore plus d'astuces JavaScript, allez voir le site [http://bonsaiden.github.com/JavaScript-Garden/ JavaScript Garden]
+pour encore plus d'astuces !JavaScript, allez voir le site [http://bonsaiden.github.com/JavaScript-Garden/ JavaScript Garden].
 
-pour télécharger directement, allez voir [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/ le répertoire SVN]
+pour télécharger directement, allez voir [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/ le répertoire SVN].
 
 =encodages=
 toutes les données (ou chaînes) peuvent être encodées de diverses façons.
@@ -50,7 +50,7 @@ Alors qu'il est habituel de séparer les nombres hexadécimaux par une espace (`
 }}}
 
 ==retours à la ligne en Ascii==
-les chaînes Ascii peuvent être stockées telles quelles (miracle !), mais des retours à la lignes - qui seront ignorés - peuvent être insérés également...
+les chaînes Ascii peuvent être stockées telles quelles (miracle !), mais des retours à la lignes - qui seront ignorés - peuvent être insérés également.
 
  Exemple de chaîne `Hello World!`, stockée en Ascii, avec des retours à la ligne superflus  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-newline.pdf télécharger]):
 {{{
@@ -78,7 +78,7 @@ o\
 
 =structure=
 ==signature d'en-tête tronquée==
-Théoriquement égale à `%PDF-1.[4-6]`, la signature peut être tronquée pour ignorer le dernier chiffre.
+Théoriquement égale à `%PDF-1.[4-6]`, la signature peut être tronquée pour ignorer le dernier chiffre...
 
  Exemple de signature d'en-tête tronquée  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-shorter.pdf télécharger]):
 {{{
@@ -86,9 +86,9 @@ Théoriquement égale à `%PDF-1.[4-6]`, la signature peut être tronquée pour 
 }}}
 
 ==signature nulle==
-mais elle peut être encore plus courte, à condition d'insérer un caractère nul.
+...mais elle peut être encore plus courte, à condition d'insérer un caractère nul.
 
- Exemple de signature d'en-tête tronquée, avec caractère nul  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-null.pdf télécharger])
+ Exemple de signature d'en-tête tronquée, avec caractère nul  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-null.pdf télécharger]):
 {{{
 %PDF-\0
 }}}
@@ -169,7 +169,7 @@ BT/default 20 Tf 1 0 0 1 1 715 Tm(this text and the PDF objects are stored beyon
 [...]
 }}}
 ==linearized==
-les PDF sont parcourus par défaut de bas en haut, sauf si le premier objet (même un objet bidon sans référence) contient le tag /Linearized tag (avec une valeur quelconque)
+les PDF sont parcourus par défaut de bas en haut, sauf si le premier objet (même un objet bidon sans référence) contient le tag /Linearized tag (avec une valeur quelconque).
 
  Exemple de PDF parcouru au choix de bas en haut ou de haut en bas (si `linearized`)  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-parsingdirection.pdf télécharger]):
 {{{
@@ -215,9 +215,9 @@ trailer
 }}}
 
 =encodage en !JavaScript=
-Voici quelques autres astuces d'encodages, qui utilisent !JavaScript (pas forcément spécifique à Acrobat)
+Voici quelques autres astuces d'encodages, qui utilisent !JavaScript (pas forcément spécifique à Acrobat).
 ==concaténation==
-l'astuce la plus simple de toute est de couper la chaîne en morceaux, et de les reconcaténer ensuite.
+L'astuce la plus simple de toute est de couper la chaîne en morceaux, et de les reconcaténer ensuite.
 
  Exemple de chaîne `Hello World!`, où elle est reconstruite avant affichage ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-concat.pdf télécharger]):
 {{{
@@ -230,7 +230,7 @@ l'astuce la plus simple de toute est de couper la chaîne en morceaux, et de les
 }}}
 
 ==cherche et remplace==
-une simple technique de dissimulation: ajouter des caractères superflus, et les supprimer/remplacer avant utilisation.
+Une simple technique de dissimulation: ajouter des caractères superflus, et les supprimer/remplacer avant utilisation.
 
  Exemple de chaîne `Hello World!`, dissimulées avec des caractères superflus  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-replace.pdf télécharger]):
 {{{
