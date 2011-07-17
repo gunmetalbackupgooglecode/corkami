@@ -1,13 +1,12 @@
-﻿#summary un résumé des astuces PDF tricks - encodages, structures, javascript...
+﻿#summary un resume des astuces PDF tricks - encodages, structures, JavaScript...
 
-Ceci est un résumé des astuces du format PDF, qu'elles soient basées sur l'encodage, le javascript, ou la structure PDF.
+Ceci est un résumé des astuces du format PDF, qu'elles soient basées sur l'encodage, le !JavaScript, ou la structure PDF.
 
-DISCLAIMER: The files are clean, and hand written by me, for better understanding and perfect clarity. However, because they use various tricks also present in malwares, they might be detected by your antivirus, or crash your usual program. They all work under Adobe Acrobat though, which is the point here.
 AVERTISSEMENT: les fichiers sont sains, écris à la main, pour une meilleur compréhension et une clarté totale. Cependant, comme ils utilisent des astuces diverses présentes dans les virus, ils pourraient être détectés par votre antivirus, ou faire planter vos programmes habituels. Cela dit, ils marchent tous sous Adobe Acrobat, ce qui est le but ici.
 
- En clair: ils sont bizarres, mais ils marchent, et ils sont propres.
+ En clair: ils sont bizarres, mais ils marchent, et ils sont innofensifs.
  
-pour encore plus d'astuces Javascript, allez voir le site [http://bonsaiden.github.com/JavaScript-Garden/ JavaScript Garden]
+pour encore plus d'astuces JavaScript, allez voir le site [http://bonsaiden.github.com/JavaScript-Garden/ JavaScript Garden]
 
 pour télécharger directement, allez voir [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/ le répertoire SVN]
 
@@ -17,15 +16,15 @@ toutes les données (ou chaînes) peuvent être encodées de diverses façons.
 ==hex==
 une chaîne peut être stockée en hexadécimal.
 
- Example de chaîne `Hello World!`, avec chaque caractère encodé par sa valeur en hexadécimal ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-hex.pdf télécharger]):
+ Exemple de chaîne `Hello World!`, avec chaque caractère encodé par sa valeur en hexadécimal ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-hex.pdf télécharger]):
 {{{
 48656c6c6f20576f726c6421
 }}}
 
 ==octal==
-un autre classique, où chaque caractêre est stocké en octal.
+un autre classique, où chaque caractère est stocké en octal.
 
- Example de chaîne `Hello World!`, avec chaque caractère encodé par sa valeur en octal ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-octal.pdf télécharger]):
+ Exemple de chaîne `Hello World!`, avec chaque caractère encodé par sa valeur en octal ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-octal.pdf télécharger]):
 {{{
 \110\145\154\154\157\40\127\157\162\154\144\41\
 }}}
@@ -35,7 +34,7 @@ jusque là, rien d'inattendu. Mais ça ne serait pas Adobe si nous en restions l
 
 Alors qu'il est habituel de séparer les nombres hexadécimaux par une espace (`00 01 02...`), dans un PDF, n'importe quel caractère vide peut être utilisé (tab, retour à la ligne), et même entre les 2 chiffres d'un seul nombre.
 
- Example de chaîne `Hello World!`, avec des caractères vides entre les chiffres ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-hex-with-space.pdf télécharger]):
+ Exemple de chaîne `Hello World!`, avec des caractères vides entre les chiffres ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-hex-with-space.pdf télécharger]):
 {{{
 4
 8
@@ -53,7 +52,7 @@ Alors qu'il est habituel de séparer les nombres hexadécimaux par une espace (`
 ==retours à la ligne en Ascii==
 les chaînes Ascii peuvent être stockées telles quelles (miracle !), mais des retours à la lignes - qui seront ignorés - peuvent être insérés également...
 
- Example de chaîne `Hello World!`, stockée en Ascii, avec des retours à la ligne superflus  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-newline.pdf télécharger]):
+ Exemple de chaîne `Hello World!`, stockée en Ascii, avec des retours à la ligne superflus  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-newline.pdf télécharger]):
 {{{
 [...]
 }\
@@ -87,7 +86,7 @@ Théoriquement égale à `%PDF-1.[4-6]`, la signature peut être tronquée pour 
 }}}
 
 ==signature nulle==
-mais elle peut être encore plus courte, à condition d'insérer un caractêre nul.
+mais elle peut être encore plus courte, à condition d'insérer un caractère nul.
 
  Exemple de signature d'en-tête tronquée, avec caractère nul  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-null.pdf télécharger])
 {{{
@@ -256,9 +255,9 @@ De même que CAFEBEBE peut être, lu soit comme un mot, soit comme un chiffre en
 
 =astuces !JavaScript=
 ==eval==
-Une classique: du code peut être construit dans une chaîne, qui est executée par évaluation.
+Une classique: du code peut être construit dans une chaîne, qui est exécutée par évaluation.
 
- Exemple de chaîne de code executée ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-eval.pdf télécharger]):
+ Exemple de chaîne de code exécutée ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-eval.pdf télécharger]):
 {{{
 [...]
      eval('app.alert("Hello World!");');
@@ -276,7 +275,7 @@ Une fonction telle qu'_alert_ peut être appelée, pas seulement directement, ma
 }}}
 
 ==tableau==
-L'example précédent peut être amélioré avec un faux tableau et de fausses entrées, ce qui rendra la fonction exécutée plus difficile à distinguer.
+L'exemple précédent peut être amélioré avec un faux tableau et de fausses entrées, ce qui rendra la fonction exécutée plus difficile à distinguer.
 
  Exemple de chaîne de code évaluée via une référence dans un faux tableau  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-array.pdf télécharger]):
 {{{
@@ -308,7 +307,7 @@ Une fonction !JavaScript peut accéder à son propre code, et l'utiliser comme b
 ces astuces cachent de l'information dans l'un des composants du PDF, et récupèrent cette information via !JavaScript.
 
 ==info==
-Un `trailer` du PDF peut contenir un dictionnaire `Info`, dont le contenu des éléments peut être obtenu en  !Javascript par les propriétés de l'objet `info`.
+Un `trailer` du PDF peut contenir un dictionnaire `Info`, dont le contenu des éléments peut être obtenu en  !JavaScript par les propriétés de l'objet `info`.
 
  Exemple de chaîne stockée comme éléments du dictionnaire `Info` du `trailer`  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-info.pdf télécharger]):
 {{{
@@ -354,9 +353,9 @@ un Widget !AcroForm peut contenir des données et des valeurs, qui peuvent être
 }}}
 
 ==anti-émulateurs==
-En plus du !JavaScript standard, il est possible via des particularités spécifiques à Adobe Acrobat, de detecter si on est ou non dans l'application réelle ou dans un émulateur.
-===valeurs défaut===
-Des variables globales ont des valeurs par défaut sécifiques, donc comparer la valeur de ces variables dès l'initialisation peut permettre de détecter un émulateur.
+En plus du !JavaScript standard, il est possible via des particularités spécifiques à Adobe Acrobat, de détecter si on est ou non dans l'application réelle ou dans un émulateur.
+===valeurs par défaut===
+Des variables globales ont des valeurs par défaut spécifiques, donc comparer la valeur de ces variables dès l'initialisation peut permettre de détecter un émulateur.
 
  Exemple de code Acrobat !JavaScript qui vérifie des valeurs initiales pour en faire un anti-émulateur  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-trick-initvalues.pdf télécharger]):
 {{{
@@ -367,9 +366,9 @@ Des variables globales ont des valeurs par défaut sécifiques, donc comparer la
 }}}
 
 ===variables globales===
-les variables globales se comportent différement des autres: même si on leur assigne une valeur, elles gardent leur type original (ce qui défie le bon sens).
+les variables globales se comportent différemment des autres: même si on leur assigne une valeur, elles gardent leur type original (ce qui défie le bon sens).
 
- Exemple de code Acrobat !Javascript, qui définit une variable globale, et compare ensuite le résultat  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-trick-globals.pdf télécharger]):
+ Exemple de code Acrobat !JavaScript, qui définit une variable globale, et compare ensuite le résultat  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-trick-globals.pdf télécharger]):
 {{{
 [...]
       hidden=0;  // global
