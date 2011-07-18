@@ -1,4 +1,5 @@
 #summary a summary of PDF tricks - encodings, structures, JavaScript...
+#labels Featured
 
 This is a summary of PDF tricks, either based on data encodings, !JavaScript, or PDF structure.
 
