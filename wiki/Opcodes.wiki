@@ -1,5 +1,7 @@
 #summary x86 Opcodes
+#labels Deprecated
 
+=_*IN CONSTRUCTION*_=
 = Introduction =
 
   * this page gathers one line description of opcodes, and a few specific details.
