@@ -1,5 +1,5 @@
 #summary lilcw xor crackme solution
-#labels challenge,gnireenigne,solution
+#labels challenge,gnireenigne,solution,Deprecated
 [http://crackmes.de/users/lilcw/just_a_simple_xor_encryption/ link]
 = introduction =
 this crackme just requires a correct password...
