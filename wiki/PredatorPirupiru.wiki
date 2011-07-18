@@ -1,5 +1,5 @@
 #summary Predator's Pirupiru crackme solution
-#labels challenge,gnireenigne,solution
+#labels challenge,gnireenigne,solution,Deprecated
 [http://crackmes.de/users/predator/pirupiru/ link]
 =unpack=
 Ok, this file has a lot of appended data...
