@@ -51,9 +51,9 @@ JavaScriptのトリックについてさらに知りたい方はこちら： [ht
 576f726c6421
 }}}
 
-==Asciiにおけるエンタ==
-Asciiの文字列はどんなものでも格納されますが,エンタも同様に付け加えられます.
- 無用のエンタを使ってAsciiで格納された文字列 `Hello World!`　の例  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-newline.pdf ダウンロード]):
+==Asciiにおける改行==
+Asciiの文字列はどんなものでも格納されますが,改行も同様に付け加えられます.
+ 無用の改行を使ってAsciiで格納された文字列 `Hello World!`　の例  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/encode-newline.pdf ダウンロード]):
 {{{
 [...]
 }\
@@ -131,11 +131,9 @@ Cette astuce ne marche pas sous les versions précédentes d'Acrobat. Pour elles
 }}}
 
 ==間違ったタグ==
-Les tags inattendus sont simplement ignorés, ainsi que ceux avec des majuscules/minuscules incorrects.
 大文字/小文字の間違いのような予想外のタグは無視されます.
 
-間違ったタグを使用した`trailer` の例
- Exemple de `trailer` avec des tags incorrects ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/structure-wrongcase.pdf ダウンロード]):
+間違ったタグを使用した`trailer` の例 ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/structure-wrongcase.pdf ダウンロード]):
 {{{
 trailer
 <<
@@ -221,17 +219,14 @@ trailer
 >> 
 }}}
 
-JavaScriptにおけるエンコーディング
-=encodage en !JavaScript=
+
+=JavaScriptにおけるエンコーディング=
 ここではJavaScriptを使ったいくつかの別のエンコーディングのトリックを説明します.（Acrobatに限ったことではありません））
-Voici quelques autres astuces d'encodages, qui utilisent !JavaScript (pas forcément spécifique à Acrobat).
 
-==concaténation　連結==
+==連結==
 最も簡単なトリックは文字列をいくつかに区切って再び連結することです.
-L'astuce la plus simple de toute est de couper la chaîne en morceaux, et de les reconcaténer ensuite.
 
-表示される前に再構築された`Hello World!`の例
- Exemple de chaîne `Hello World!`, où elle est reconstruite avant affichage ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-concat.pdf ダウンロード]):
+表示される前に再構築された`Hello World!`の例 ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-concat.pdf ダウンロード]):
 {{{
 [...]
       B="Hell";
@@ -245,55 +240,54 @@ L'astuce la plus simple de toute est de couper la chaîne en morceaux, et de les
 ごまかす簡単なテクニックのひとつは,不必要な文字を追加し,使用前に削除/置換することです.　？？？
 Une simple technique de dissimulation: ajouter des caractères superflus, et les supprimer/remplacer avant utilisation.
 
-不必要な文字を使ってごまかした文字列`Hello World!`の例
- Exemple de chaîne `Hello World!`, dissimulées avec des caractères superflus  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-replace.pdf ダウンロード]):
+不必要な文字を使ってごまかした文字列`Hello World!`の例  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-replace.pdf ダウンロード]):
 {{{
 "zHzzezzlzlzozzzzz zWozrzldz!").replace(/z/g,"")
 }}}
 
-==échappementエスケープ==
+==エスケープ==
 JavaScriptにおける別の基本的なテクニックは,同等のエンコードによって文字を置き換えることです.
-une autre technique standard en !JavaScript: remplacer les caractères par leur équivalent encodé.
 
-エスケープによってエンコードされた文字列`Hello World!`の例
- Exemple de chaîne `Hello World!`, encodée par échappement  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-unescape.pdf ダウンロード]):
+エスケープによってエンコードされた文字列`Hello World!`の例  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-unescape.pdf ダウンロード]):
 {{{
 unescape("%48%65%6C%6C%6F%20%57%6F%72%6C%64%21")
 }}}
 
-==encodage en base numérique==
+==ｎ進法のエンコーディング==　
+CAFEBEBEのように,一見単語のようにも16進法の値のようにも取れる大文字の言葉は32進法で書き表せます.（32もしくはそれ以下で,使用される最後のアルファベットによります）
 De même que CAFEBEBE peut être, lu soit comme un mot, soit comme un chiffre en hexa, n'importe quel mot en majuscule peut être écrit en base 32 (32 ou moins, en fonction du dernier caractère de l'alphabet dont on a besoin).
 
+各語がそれぞれ異なる進法で数値のようにエンコードされた文字列`HELLO WORLD!`の例　？？？
  Exemple de chaîne `HELLO WORLD!`, où chaque mot est encodé comme un nombre, dans une base différente à chaque fois  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-number.pdf ダウンロード]):
 {{{
 (6873049).toString(25) + " " + (38842069).toString(33) + "!"
 }}}
 
-=astuces !JavaScript=
+=JavaScriptのトリック=
 ==eval==
-Une classique: du code peut être construit dans une chaîne, qui est exécutée par évaluation.
+よくある方法：コードはevalで実行される文字列内で構築されます.
 
- Exemple de chaîne de code exécutée ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-eval.pdf ダウンロード]):
+実行される文字列コードの例 ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-eval.pdf ダウンロード]):
 {{{
 [...]
      eval('app.alert("Hello World!");');
 [...]
 }}}
 
-==sous-chaîne==
-Une fonction telle qu'_alert_ peut être appelée, pas seulement directement, mais aussi en tant que sous-chaîne de son objet parent, _app_ dans notre cas.
+==substring==
+アラートのような関数は,直接にではなくても,例えばappのような親オブジェクトのsubstringとしても呼ぶことができます.
 
- Exemple de fonction !JavaScript, appelée par référence depuis son parent  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-substring.pdf ダウンロード]):
+親オブジェクトからstring referenceによって呼び出された関数JavaScriptの例  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-substring.pdf ダウンロード]):
 {{{
 [...]
      app["alert"]("Hello World!");
 [...]
 }}}
 
-==tableau==
-L'exemple précédent peut être amélioré avec un faux tableau et de fausses entrées, ce qui rendra la fonction exécutée plus difficile à distinguer.
+==配列==
+上の例はフェイクのアレイとフェイクのエントリによって改善でき,それによって実行される関数はより認識し難くなります.
 
- Exemple de chaîne de code évaluée via une référence dans un faux tableau  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-array.pdf ダウンロード]):
+フェイクのアレイ内のリファレンス経由でevalで実行されるコードの文字列の例 ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-array.pdf ダウンロード]):
 {{{
 [...]
      e = ("fake1")[("fake2", "eval")]
@@ -301,10 +295,11 @@ L'exemple précédent peut être amélioré avec un faux tableau et de fausses e
 [...]
 }}}
 
-==appelé==
-Une fonction !JavaScript peut accéder à son propre code, et l'utiliser comme bon lui semble. Donc, n'importe quelle modification du code peut empêcher la fonction de marcher correctement: en général, une telle fonction utilise son code comme une clef de décryptage.
+==caleeプロパティ==
+JavaScriptの関数は自身のコードにアクセスでき,それを何に対しても使用できます.つまり,どんなコードの訂正も関数を正確に動作させることを妨げます.一般的には,そのような関数は自身のコードを解読の鍵として使います.
 
- Exemple de fonction de décryptage, qui utilise son propre code comme clef de décryptage ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-callee.pdf ダウンロード]):
+
+自身のコードを解読の鍵として使う,Decrypt関数の例([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-callee.pdf ダウンロード]):
 {{{
 [...]
       function decrypt(cipher) 
@@ -320,11 +315,12 @@ Une fonction !JavaScript peut accéder à son propre code, et l'utiliser comme b
 
 =!JavaScript + PDF=
 
+このトリックはPDFのコンポーネント内の情報を隠し,JavaScript経由でその情報を回収します.
 ces astuces cachent de l'information dans l'un des composants du PDF, et récupèrent cette information via !JavaScript.
 
 ==info==
 Un `trailer` du PDF peut contenir un dictionnaire `Info`, dont le contenu des éléments peut être obtenu en  !JavaScript par les propriétés de l'objet `info`.
-
+PDFのtrailerはInfo辞書を含むことができ,エレメントの内容は
  Exemple de chaîne stockée comme éléments du dictionnaire `Info` du `trailer`  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-info.pdf ダウンロード]):
 {{{
 [...]
