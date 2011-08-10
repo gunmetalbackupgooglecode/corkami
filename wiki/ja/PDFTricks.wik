@@ -295,7 +295,7 @@ De même que CAFEBEBE peut être, lu soit comme un mot, soit comme un chiffre en
 [...]
 }}}
 
-==caleeプロパティ==
+==calleeプロパティ==
 JavaScriptの関数は自身のコードにアクセスでき,それを何に対しても使用できます.つまり,どんなコードの訂正も関数を正確に動作させることを妨げます.一般的には,そのような関数は自身のコードを解読の鍵として使います.
 
 
@@ -320,7 +320,9 @@ ces astuces cachent de l'information dans l'un des composants du PDF, et récup�
 
 ==info==
 Un `trailer` du PDF peut contenir un dictionnaire `Info`, dont le contenu des éléments peut être obtenu en  !JavaScript par les propriétés de l'objet `info`.
-PDFのtrailerはInfo辞書を含むことができ,エレメントの内容は
+PDFのtrailerはInfo辞書を含むことができ,エレメントの内容はInfoのオブジェクトのプロパティによってJavaScriptで取得できます.
+
+trailerのInfo辞書のエレメントとして保管された文字列の例
  Exemple de chaîne stockée comme éléments du dictionnaire `Info` du `trailer`  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-info.pdf ダウンロード]):
 {{{
 [...]
@@ -330,9 +332,11 @@ PDFのtrailerはInfo辞書を含むことができ,エレメントの内容は
 [...]
 }}}
 
-==annots==
+==Annots==
+同じような方法で,PDFファイルのページはコメントを入れることができ,それはそのページ上でgetAnnots関数によって回収できます.
 De manière similaire, une page peut contenir un commentaire, qui peut être récupéré par la fonction `getAnnots` sur la page en question.
 
+特有のページ上でコメントのサブジェクトのように保管された文字列の例　？？？
  Exemple de chaîne stockée comme sujet d'un commentaire sur une page spécifique ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-annots.pdf ダウンロード]):
 {{{
 [...]
@@ -347,10 +351,11 @@ De manière similaire, une page peut contenir un commentaire, qui peut être ré
 [...]
 }}}
 
-==getfield==
+==Getfield==
+AcroFormのWidgetはデータや値を入れることができ,それはGetFieldで回収できます.
 un Widget !AcroForm peut contenir des données et des valeurs, qui peuvent être récupérées via la fonction `getField`.
 
-
+AcroFormのWidget内に保管された文字列の例
  Exemple de chaîne stockée dans un Widget !AcroForm  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-getfield.pdf ダウンロード]):
 {{{
 [...]
@@ -364,11 +369,16 @@ un Widget !AcroForm peut contenir des données et des valeurs, qui peuvent être
 [...]
 }}}
 
-==anti-émulateurs==
+==アンチエミュレータ==
+
+基本のJavaScriptでは,Adove Acrobat特有の特徴から,実際のアプリケーションにいるのかエミュレータ内にいるのかを検出することができます
 En plus du !JavaScript standard, il est possible via des particularités spécifiques à Adobe Acrobat, de détecter si on est ou non dans l'application réelle ou dans un émulateur.
-===valeurs par défaut===
+
+===初期値===
+いくつかのAdobe特有のグローバル変数は初期値によって初期化されるので,それらをチェックすることでエミュレータをストップさせることがあります.
 Des variables globales ont des valeurs par défaut spécifiques, donc comparer la valeur de ces variables dès l'initialisation peut permettre de détecter un émulateur.
 
+アンチエミュレータとして初期値を確認するAcrobat配下のJavaScriptのコードの例
  Exemple de code Acrobat !JavaScript qui vérifie des valeurs initiales pour en faire un anti-émulateur  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-trick-initvalues.pdf ダウンロード]):
 {{{
 [...]
@@ -377,7 +387,7 @@ Des variables globales ont des valeurs par défaut spécifiques, donc comparer l
 [...]
 }}}
 
-===variables globales===
+===グローバル変数===
 les variables globales se comportent différemment des autres: même si on leur assigne une valeur, elles gardent leur type original (ce qui défie le bon sens).
 
  Exemple de code Acrobat !JavaScript, qui définit une variable globale, et compare ensuite le résultat  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-trick-globals.pdf ダウンロード]):
