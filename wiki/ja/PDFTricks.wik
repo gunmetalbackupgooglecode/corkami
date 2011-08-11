@@ -171,8 +171,8 @@ stream
 BT/default 20 Tf 1 0 0 1 1 715 Tm(this text and the PDF objects are stored beyond the %%EOF tag)Tj ET
 [...]
 }}}
-==linearized==　線形？？？
-PDFは,最初のオブジェクトがレファレンスのない見せかけのオブジェクトであっても,どんな値であれタグ/線形タグを含む場合を除いて,デフォルトで下から上へ解析します
+==リニアライズドPDF==
+PDFは,最初のオブジェクトがレファレンスのない見せかけのオブジェクトであっても,どんな値であれタグ/リニアライズドタグを含む場合を除いて,デフォルトで下から上へ解析します
 les PDF sont parcourus par défaut de bas en haut, sauf si le premier objet (même un objet bidon sans référence) contient le tag /Linearized tag (avec une valeur quelconque).
 
 下から上又は上から下のどちらかで解析されるPDFの例　？？？
@@ -388,8 +388,10 @@ Des variables globales ont des valeurs par défaut spécifiques, donc comparer l
 }}}
 
 ===グローバル変数===
+グローバル変数は他の変数に比べて違った動きを見せます.ある値を与えても,最初のタイプをキープします.
 les variables globales se comportent différemment des autres: même si on leur assigne une valeur, elles gardent leur type original (ce qui défie le bon sens).
 
+グローバル変数を定義し,結果を比べるAcrobat配下のJavaScriptのコードの例
  Exemple de code Acrobat !JavaScript, qui définit une variable globale, et compare ensuite le résultat  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-trick-globals.pdf ダウンロード]):
 {{{
 [...]
@@ -400,27 +402,24 @@ les variables globales se comportent différemment des autres: même si on leur 
 [...]
 }}}
 
-<wiki:comment>
-== ==
-
- Exemple de chaîne `Hello World!` string, encodée avec  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/ ダウンロード]):
-{{{
-}}}
-</wiki:comment>
-
-=PDFs Minimaux=
+=最小のPDF=
+以下は最も小さい有効なPDFです.でも内容は無いよう.
 voir ci-dessus pour des PDFs valides le plus petit possible - mais ne contenant rien.
-==avec une page==
+==ページ==
+PDFがページをつけるためにはオブジェクトが必要で,親オブジェクトが子オブジェクトを定義するように,`trailer/Root/Pages`内にリファレンスされます.
 Pour que le PDF ait une page, il faut qu'un objet, définissant un enfant comme son propre parent, doit être référencé dans `trailer/Root/Pages`.
 
+ページをつけた最小のPDFの例
  Exemple (complet) de PDF minimal, avec une page ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/blankpage.pdf ダウンロード]):
 {{{
 %PDF-\01 0 obj<</Kids[<</Parent 1 0 R>>]>>trailer<</Root<</Pages 1 0 R>>>>
 }}}
 
-==Page + Text==
+==ページ + テキスト==
+テキストを定義するためには,そのページは空のソースと,テキスト自身によって定義されたコンテンツが必要です.
 Pour définir un texte, cette page doit avoir des ressources (vides), et un contenu, qui défini le texte lui-même..
 
+ページとテキストがついた最小のPDFの例（Acrobat以下）
  Exemple complet de PDF minimal, avec page et texte (pour Acrobat <=9)  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld.pdf ダウンロード]):
 {{{
 %PDF-\01 0 obj<</Kids[<</Parent 1 0 R/Contents[2 0 R]>>]/Resources<<>>>>2 0 obj<<>>stream
@@ -429,8 +428,10 @@ endstream
 trailer<</Root<</Pages 1 0 R>>>>
 }}}
 
+このオブジェクトは`endobj`タグがないことに注目してください.が,Acrobat Xでは必要になります.
 Notez que cet objet n'a pas de tag `endobj`. Ceci est requis sous Acrobat X.
 
+ページとテキストがついた最小のPDFの例（Acrobat X）
  Exemple complet de PDF minimal, avec page et texte (pour Acrobat X)  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld-X.pdf ダウンロード]):
 {{{
 %PDF-\01 0 obj<</Kids[<</Parent 1 0 R/Contents[2 0 R]>>]/Resources<<>>>>2 0 obj<<>>stream
@@ -441,22 +442,27 @@ trailer<</Root<</Pages 1 0 R>>>>
 }}}
 
 ==!JavaScript==
+!JavaScriptを使うためには,PDFは空のPDF（「Acrobat X上における,`trailer`とだけ書かれた36バイトの有効なPDFの例」参照）であることと,`trailer/root`内の!OpenAction辞書が必要となります.
 Pour utiliser le !JavaScript, un PDF a besoin d'être comme l'exemple de PDF vide, et d'un dictionnaire !OpenAction dans son `trailer/root`.
 
+Acrobat9以下で!JavaScriptを使った最小のPDFの例
  Exemple complet de PDF minimal, utilisant !JavaScript, sous Acrobat <= 9:  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js.pdf ダウンロード]):
 {{{
 %PDF-\0obj<<>>trailer<</Root<</Pages<<>>/OpenAction<</S/JavaScript/JS(app.alert('Hello World!');)>>>>>>
 }}}
 
+Acrobat Xでの同等の例
  Exemple équivalent, sous Acrobat X  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js_X.pdf ダウンロード]):
 {{{
 %PDF-\0trailer<</Root<</Pages<<>>/OpenAction<</S/JavaScript/JS(app.alert('Hello World!');)>>>>>>
 }}}
 
 
-=Flux corrompus=
+=壊れたストリーム=
+!FlatEncodeで圧縮されたストリームが解凍中に切り取られたもしくは壊れた場合,エラーになった所まではストリームは保管されます.（通常,正常でない圧縮されたデータは無視されます.）
 Si un flux compressé avec !FlatEncode est tronqué ou corrompu, il sera pris tel quel - jusqu'à l'erreur - et quand même interprété (en général, des données compressées incorrectes seraient tout simplement ignorées).
 
+Acrobatがするような,解凍された壊れたストリームを取得する簡単な方法は,それを添付ファイルとともにPDFテンプレートに切り取ることです.このように添付ファイルを抽出するときにストリームを解凍するのはAcrobatのみです.
 Une manière simple d'avoir le flux corrompu décompressé exactement comme Acrobat l'aurait fait est justement de le faire faire par Acrobat, en greffant le flux dans un modèle (_template_) où il sera interprété comme une pièce jointe. Ainsi, c'est Acrobat qui décompressera le flux, quand on demandera d'extraire la pièce jointe: ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/attachstream.py script de greffe] + [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-attached.pdf modèle avec pièce jointe])
 
 =Références=
