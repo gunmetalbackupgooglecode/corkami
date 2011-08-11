@@ -435,7 +435,9 @@ Pour utiliser le !JavaScript, un PDF a besoin d'être comme l'exemple de PDF vid
 =Flux corrompus=
 Si un flux compressé avec !FlatEncode est tronqué ou corrompu, il sera pris tel quel - jusqu'à l'erreur - et quand même interprété (en général, des données compressées incorrectes seraient tout simplement ignorées).
 
-Une manière simple d'avoir le flux corrompu décompressé exactement comme Acrobat l'aurait fait est justement de le faire faire par Acrobat, en greffant le flux dans un modèle (_template_) où il sera interprété comme une pièce jointe. Ainsi, c'est Acrobat qui décompressera le flux, quand on demandera d'extraire la pièce jointe: ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/attachstream.py script de greffe] + [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-attached.pdf modèle avec pièce jointe])
+Une manière simple d'avoir le flux corrompu décompressé exactement comme Acrobat l'aurait fait est justement de le faire faire par Acrobat, en greffant le flux dans un modèle (_template_) où il sera interprété comme une pièce jointe. Ainsi, c'est Acrobat qui décompressera le flux, quand on demandera d'extraire la pièce jointe: ([http://corkami.googlecode.com/svn/!svn/bc/651/trunk/misc/pdf/attachstream.py script de greffe] + [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-attached.pdf modèle avec pièce jointe])
+
+AVERTISSEMENT: ça ne marchera pas si le PDF est crypté.
 
 =Références=
  * [http://blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/ Didier Stevens]
