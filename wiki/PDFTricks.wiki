@@ -437,7 +437,9 @@ to be able to use !JavaScript, a PDF just needs to be empty (see above), with an
 =Corrupted streams=
 if a !FlatEncoded stream is truncated or corrupted, it will be taken as is until the error - and still interpreted.
 
-An easy way to get the original corrupted stream to decompress like Reader would, is to prune it into a template PDF with attachment. This way, Adobe Reader will be the one decompressing the stream: ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/attachstream.py prune script] + [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-attached.pdf attachment template])
+An easy way to get the original corrupted stream to decompress like Reader would, is to prune it into a template PDF with attachment. This way, Adobe Reader will be the one decompressing the stream: ([http://corkami.googlecode.com/svn/!svn/bc/651/trunk/misc/pdf/attachstream.py prune script] + [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-attached.pdf attachment template])
+
+WARNING: it will not work if the PDF is encrypted.
 
 ----
 
