@@ -94,7 +94,7 @@ Théoriquement égale à `%PDF-1.[4-6]`, la signature peut être tronquée pour 
 }}}
 
 ==arbre de noms==
-Un PDF peut contenir un arbre de noms (`Names`), dont chaque élément sera évalué séquentiellement. Ainsi, un script peut être coupé en plusieurs morceaux, et sans déclenchement évident tel que !OpenAction.
+Un PDF peut contenir un arbre de noms (_Names_), dont chaque élément sera évalué séquentiellement. Ainsi, un script peut être coupé en plusieurs morceaux, et sans déclenchement évident tel que !OpenAction.
 
  Exemple de script !JavaScript, coupé en 2 dans un arbre de noms  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/structure-names.pdf télécharger]):
 {{{
@@ -116,7 +116,7 @@ Un PDF peut contenir un arbre de noms (`Names`), dont chaque élément sera éva
 ==sans object==
 Avec Acrobat X, un PDF valide n'a pas besoin d'objet.
 
- Exemple de PDF valide (sous Acrobat X) de 36 octets, fait d'un `trailer` uniquement ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/emptyX.pdf télécharger]):
+ Exemple de PDF valide (sous Acrobat X) de 36 octets, fait d'un _trailer_ uniquement ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/emptyX.pdf télécharger]):
 {{{
 %PDF-\0trailer<</Root<</Pages<<>>>>>>
 }}}
@@ -131,7 +131,7 @@ Cette astuce ne marche pas sous les versions précédentes d'Acrobat. Pour elles
 ==tags incorrects==
 Les tags inattendus sont simplement ignorés, ainsi que ceux avec des majuscules/minuscules incorrects.
 
- Exemple de `trailer` avec des tags incorrects ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/structure-wrongcase.pdf télécharger]):
+ Exemple de _trailer_ avec des tags incorrects ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/structure-wrongcase.pdf télécharger]):
 {{{
 trailer
 <<
@@ -143,7 +143,7 @@ trailer
 ==EOF==
 Le PDF est un format qui gère les mises-à-jours incrémentales, donc l'information peut être écrite au dela du %%EOF.
 
- Exemple de PDF ou les objets et le `trailer` sont écris après le %%EOF ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-ignoredeof.pdf télécharger]):
+ Exemple de PDF ou les objets et le _trailer_ sont écris après le _%%EOF_ ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-ignoredeof.pdf télécharger]):
 {{{
 [...]
 %%EOF
@@ -169,9 +169,9 @@ BT/default 20 Tf 1 0 0 1 1 715 Tm(this text and the PDF objects are stored beyon
 [...]
 }}}
 ==linearized==
-les PDF sont parcourus par défaut de bas en haut, sauf si le premier objet (même un objet bidon sans référence) contient le tag /Linearized tag (avec une valeur quelconque).
+les PDF sont parcourus par défaut de bas en haut, sauf si le premier objet (même un objet bidon sans référence) contient le tag _Linearized_ (avec une valeur quelconque).
 
- Exemple de PDF parcouru au choix de bas en haut ou de haut en bas (si `linearized`)  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-parsingdirection.pdf télécharger]):
+ Exemple de PDF parcouru au choix de bas en haut ou de haut en bas (si _linearized_)  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-parsingdirection.pdf télécharger]):
 {{{
 [...]
 % insérer/supprimer un objet vide changera la direction d'analyse
@@ -286,7 +286,7 @@ L'exemple précédent peut être amélioré avec un faux tableau et de fausses e
 }}}
 
 ==appelé==
-Une fonction !JavaScript peut accéder à son propre code, et l'utiliser comme bon lui semble. Donc, n'importe quelle modification du code peut empêcher la fonction de marcher correctement: en général, une telle fonction utilise son code comme une clef de décryptage.
+Une fonction !JavaScript peut accéder à son propre code (via la propriété _callee_), et l'utiliser comme bon lui semble. Donc, n'importe quelle modification du code peut empêcher la fonction de marcher correctement: en général, une telle fonction utilise son code comme une clef de décryptage.
 
  Exemple de fonction de décryptage, qui utilise son propre code comme clef de décryptage ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-callee.pdf télécharger]):
 {{{
@@ -307,9 +307,9 @@ Une fonction !JavaScript peut accéder à son propre code, et l'utiliser comme b
 ces astuces cachent de l'information dans l'un des composants du PDF, et récupèrent cette information via !JavaScript.
 
 ==info==
-Un `trailer` du PDF peut contenir un dictionnaire `Info`, dont le contenu des éléments peut être obtenu en  !JavaScript par les propriétés de l'objet `info`.
+Un _trailer_ du PDF peut contenir un dictionnaire _Info_, dont le contenu des éléments peut être obtenu en  !JavaScript par les propriétés de l'objet _info_.
 
- Exemple de chaîne stockée comme éléments du dictionnaire `Info` du `trailer`  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-info.pdf télécharger]):
+ Exemple de chaîne stockée comme éléments du dictionnaire _Info_ du _trailer_  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-info.pdf télécharger]):
 {{{
 [...]
       /Info <</Author(Hello) /Title( World) /Producer( !)>>
@@ -319,7 +319,7 @@ Un `trailer` du PDF peut contenir un dictionnaire `Info`, dont le contenu des é
 }}}
 
 ==annots==
-De manière similaire, une page peut contenir un commentaire, qui peut être récupéré par la fonction `getAnnots` sur la page en question.
+De manière similaire, une page peut contenir un commentaire, qui peut être récupéré par la fonction _getAnnots_ sur la page en question.
 
  Exemple de chaîne stockée comme sujet d'un commentaire sur une page spécifique ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-annots.pdf télécharger]):
 {{{
@@ -336,7 +336,7 @@ De manière similaire, une page peut contenir un commentaire, qui peut être ré
 }}}
 
 ==getfield==
-un Widget !AcroForm peut contenir des données et des valeurs, qui peuvent être récupérées via la fonction `getField`.
+un Widget !AcroForm peut contenir des données et des valeurs, qui peuvent être récupérées via la fonction _getField_.
 
 
  Exemple de chaîne stockée dans un Widget !AcroForm  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-getfield.pdf télécharger]):
@@ -378,18 +378,10 @@ les variables globales se comportent différemment des autres: même si on leur 
 [...]
 }}}
 
-<wiki:comment>
-== ==
-
- Exemple de chaîne `Hello World!` string, encodée avec  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/ télécharger]):
-{{{
-}}}
-</wiki:comment>
-
 =PDFs Minimaux=
 voir ci-dessus pour des PDFs valides le plus petit possible - mais ne contenant rien.
 ==avec une page==
-Pour que le PDF ait une page, il faut qu'un objet, définissant un enfant comme son propre parent, doit être référencé dans `trailer/Root/Pages`.
+Pour que le PDF ait une page, il faut qu'un objet, définissant un enfant comme son propre parent, doit être référencé dans _trailer/Root/Pages_.
 
  Exemple (complet) de PDF minimal, avec une page ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/blankpage.pdf télécharger]):
 {{{
@@ -407,7 +399,7 @@ endstream
 trailer<</Root<</Pages 1 0 R>>>>
 }}}
 
-Notez que cet objet n'a pas de tag `endobj`. Ceci est requis sous Acrobat X.
+Notez que cet objet n'a pas besoin de tag _endobj_ (sous Adobe <=9), contrairement aux spécifications. Au contraire, celui-ci est requis sous Acrobat X.
 
  Exemple complet de PDF minimal, avec page et texte (pour Acrobat X)  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld-X.pdf télécharger]):
 {{{
@@ -419,7 +411,7 @@ trailer<</Root<</Pages 1 0 R>>>>
 }}}
 
 ==!JavaScript==
-Pour utiliser le !JavaScript, un PDF a besoin d'être comme l'exemple de PDF vide, et d'un dictionnaire !OpenAction dans son `trailer/root`.
+Pour pouvoir utiliser le !JavaScript, un PDF a juste besoin d'être comme l'exemple de PDF vide, et d'un dictionnaire !OpenAction dans son _trailer/root_.
 
  Exemple complet de PDF minimal, utilisant !JavaScript, sous Acrobat <= 9:  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js.pdf télécharger]):
 {{{
@@ -432,12 +424,12 @@ Pour utiliser le !JavaScript, un PDF a besoin d'être comme l'exemple de PDF vid
 }}}
 
 
-=Flux corrompus=
+=Flux corrompu=
 Si un flux compressé avec !FlatEncode est tronqué ou corrompu, il sera pris tel quel - jusqu'à l'erreur - et quand même interprété (en général, des données compressées incorrectes seraient tout simplement ignorées).
 
-Une manière simple d'avoir le flux corrompu décompressé exactement comme Acrobat l'aurait fait est justement de le faire faire par Acrobat, en greffant le flux dans un modèle (_template_) où il sera interprété comme une pièce jointe. Ainsi, c'est Acrobat qui décompressera le flux, quand on demandera d'extraire la pièce jointe: ([http://corkami.googlecode.com/svn/!svn/bc/651/trunk/misc/pdf/attachstream.py script de greffe] + [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-attached.pdf modèle avec pièce jointe])
+Une manière simple d'avoir le flux corrompu décompressé exactement comme Acrobat l'aurait fait, est justement de le faire faire par Acrobat, en greffant le flux dans un modèle (_template_) où il sera traité (mais non interprété) comme une pièce jointe. Ainsi, c'est Acrobat qui décompressera le flux, quand on demandera d'extraire la pièce jointe: ([http://corkami.googlecode.com/svn/!svn/bc/651/trunk/misc/pdf/attachstream.py script de greffe] + [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-attached.pdf modèle avec pièce jointe])
 
-AVERTISSEMENT: ça ne marchera pas si le PDF est crypté.
+AVERTISSEMENT: ça ne marchera pas si le PDF est crypté - il faudra au préalable le décrypter.
 
 =Références=
  * [http://blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/ Didier Stevens]

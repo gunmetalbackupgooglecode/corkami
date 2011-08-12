@@ -171,8 +171,9 @@ stream
 BT/default 20 Tf 1 0 0 1 1 715 Tm(this text and the PDF objects are stored beyond the %%EOF tag)Tj ET
 [...]
 }}}
+
 ==linearized==
-PDF are parsed bottom-up by default, except if the first object (even a dummy non-referenced object) contains the /Linearized tag (with a dummy value)
+PDF are parsed bottom-up by default, except if the first object (even a dummy non-referenced object) contains the _/Linearized_ tag (with a dummy value)
 
  Example of a PDF parsed either bottom-up or top-down (if linearized) ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-parsingdirection.pdf download]):
 {{{
@@ -219,6 +220,7 @@ trailer
 
 =!JavaScript-based encodings=
 Here are a few other encoding tricks, that use javascript (not necessarily specific to Acrobat's)
+
 ==replace==
 simple obfuscation, add some extra character/switch then replace/restore them before use.
 
@@ -307,10 +309,10 @@ A !JavaScript function can access its own code, and use it for anything. Thus, a
 
 =!JavaScript + PDF=
 
-these tricks are hiding some information in one of the various component of the PDF, and retrieving that information via !!JavaScript.
+these tricks are hiding some information in one of the various component of the PDF, and retrieving that information via !JavaScript.
 
 ==info==
-a PDF's trailer can contain an Info dictionary, whose elements' contents can be retrieved via !JavaScript via the info object's properties.
+a PDF's trailer can contain an _Info_ dictionary, whose elements' contents can be retrieved via !JavaScript via the _info_ object's properties.
 
  Example of a string being stored as element of a trailer's Info dictionary ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-info.pdf download]):
 {{{
@@ -322,7 +324,7 @@ a PDF's trailer can contain an Info dictionary, whose elements' contents can be 
 }}}
 
 ==annots==
-Similarly, a PDF page can contain an annotation, which content can be retrieved by `getAnnots` on the specific page.
+Similarly, a PDF page can contain an annotation, which content can be retrieved by _getAnnots_ on the specific page.
 
  Example of a string being stored as a page's annotation's subject ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-annots.pdf download]):
 {{{
@@ -339,7 +341,7 @@ Similarly, a PDF page can contain an annotation, which content can be retrieved 
 }}}
 
 ==getfield==
-An !AcroForm Widget can contain some data and value, which can be retrieved via the getField function.
+An _AcroForm Widget_ can contain some data and value, which can be retrieved via the _getField_ function.
 
 
  Example of a string stored in an !AcroForm Widget ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-getfield.pdf download]):
@@ -369,7 +371,7 @@ some Adobe specific global variables are initialized with default values, so che
 }}}
 
 ===global variables===
-global variables show a different behavior as opposed to normal ones.
+global variables show a different behavior as opposed to normal ones: their type is no updated, even if you explicitely assign them new values.
 
  Example of Acrobat !JavaScript code that sets global variables, and checks the result ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-trick-globals.pdf download]):
 {{{
@@ -409,7 +411,7 @@ endstream
 trailer<</Root<</Pages 1 0 R>>>>
 }}}
 
-Note this object doesn't have an endobj tag. However, it's required under Acrobat X.
+Note this object doesn't have to have an _endobj_ tag. On the contrary, it's required under Acrobat X.
 
  Example of a minimalist PDF with page + text, under Acrobat X ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld-X.pdf download]):
 {{{
@@ -421,7 +423,7 @@ trailer<</Root<</Pages 1 0 R>>>>
 }}}
 
 ==!JavaScript==
-to be able to use !JavaScript, a PDF just needs to be empty (see above), with an !OpenAction in the trailer/root.
+to be able to use !JavaScript, a PDF just needs to be empty (see above), with an _!OpenAction_ in the _trailer/root_.
 
  Example of a minimalist PDF using !JavaScript, under Acrobat <=9 ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js.pdf download]):
 {{{
@@ -434,12 +436,12 @@ to be able to use !JavaScript, a PDF just needs to be empty (see above), with an
 }}}
 
 
-=Corrupted streams=
-if a !FlatEncoded stream is truncated or corrupted, it will be taken as is until the error - and still interpreted.
+=Corrupted stream=
+if a !FlatEncoded stream is truncated or corrupted, it will be taken as is until the error - and still interpreted (typically, such a stream would be totally discarded).
 
-An easy way to get the original corrupted stream to decompress like Reader would, is to prune it into a template PDF with attachment. This way, Adobe Reader will be the one decompressing the stream: ([http://corkami.googlecode.com/svn/!svn/bc/651/trunk/misc/pdf/attachstream.py prune script] + [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-attached.pdf attachment template])
+An easy way to get the original corrupted stream to decompress like Reader would, is to actually get Reader to decompress it - without executing it - by pruning it into a template PDF with attachment. This way, Adobe Reader will actually be the one decompressing the stream, but not execute it: ([http://corkami.googlecode.com/svn/!svn/bc/651/trunk/misc/pdf/attachstream.py prune script] + [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-attached.pdf attachment template])
 
-WARNING: it will not work if the PDF is encrypted.
+WARNING: it will not work if the PDF is encrypted - it should be decrypted first.
 
 ----
 
