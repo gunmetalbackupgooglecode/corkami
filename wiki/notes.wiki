@@ -14,7 +14,7 @@
  * *Office* !OffVis
  * *PiNG* [http://entropymine.com/jason/tweakpng/ tweakpng] [http://advancemame.sourceforge.net/comp-readme.html advpng]
  * *SWiF* [https://github.com/sporst/SWFREtools/ SWFRETools] ([https://github.com/grugq/Buggery +Buggery]) [http://blitzableiter.recurity.com/ blitzableiter] [http://jpauclair.net/2010/02/10/mmcfg-treasure/ mm.cfg] [http://kb2.adobe.com/cps/142/tn_14266.html Archives] [http://www.m2osw.com/swf_alexref.html Alexis' SWF ref]
- * *pdf* [http://sandsprite.com/blogs/index.php?uid=7&pid=57 PDF Stream dumper] [http://malzilla.sourceforge.net/ malzilla]
+ * *pdf* [http://sandsprite.com/blogs/index.php?uid=7&pid=57 PDF Stream dumper] [http://malzilla.sourceforge.net/ malzilla] [http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/ pdftk] [http://blog.didierstevens.com/programs/pdf-tools/ pdf-parser] [http://itextpdf.com/ iText] [http://esec-lab.sogeti.com/pages/Origami Origami]
 
  * *DBI*
   * *[http://www.pintool.org/ pin]*  [http://blog.zynamics.com/2010/07/28/dumping-shellcode-with-pin/ shellcode] ([https://github.com/agustingianni agustin gianni]) [http://code.google.com/p/tartetatintools/ TarteTatin] SHAN
