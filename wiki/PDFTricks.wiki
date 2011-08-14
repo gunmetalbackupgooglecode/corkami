@@ -1,7 +1,7 @@
 #summary a summary of PDF tricks - encodings, structures, JavaScript...
 #labels Featured
 
-This is a summary of PDF tricks, either based on data encodings, !JavaScript, or PDF structure. <g:plusone size="medium"></g:plusone>
+This is a summary of PDF tricks, either based on data encodings, !JavaScript, or PDF structure.
 
 DISCLAIMER: The files are clean, and hand written by me, for better understanding and perfect clarity. However, because they use various tricks also present in malwares, they might be detected by your antivirus, or crash your usual program. They all work under Adobe Acrobat though, which is the point here.
 
