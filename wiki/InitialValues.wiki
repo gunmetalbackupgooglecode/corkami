@@ -2,14 +2,14 @@
 =Common=
 
 ==Flags==
-always 246, on !EntryPoint or TLS.
+always 246 (except NT4 EP), on !EntryPoint or TLS.
 
 ==Selectors==
 Standard for 32b:
 || CS || DS || ES || FS || SS || GS ||
 || 001B || 0023 || 0023 || 003B || 0023 ||0000 ||
 
-Exception: FS is `38` under 2k/XPSP1, but `3B` on any XP sp>=2/Vista/7
+Exception: FS is `38` under NT4/2k/XPSP1, but `3B` on any XP sp>=2/Vista/7
 
 for 64b (CPU, not OS => even on 32b os on 64b cpu):
 || CS || DS || ES || FS || SS || GS ||
@@ -19,6 +19,15 @@ for 64b (CPU, not OS => even on 32b os on 64b cpu):
 ----
 
 =specific=
+==NT 4==
+{{{
+TLS: EDI:00401194 ESI:00400000 EBP:0012FAF8 ESP:0012FAB4 EBX:00140818 EDX:00001180 ECX:00000000 EAX:0040114F
+EntryPoint Flags:0216 EDI:00000000 ESI:00000018 EBP:0012FFF0 ESP:0012FFC0 EBX:7FFDF000 EDX:FFFFFFFF ECX:00000101 EAX:00000000
+
+CR0(before):80010031  CR0(after):80010031
+GDT:8003600003FF IDT:8003640007FF STR:00000028
+}}}
+
 ==2000==
 || ||EDI||ESI||EBP||ESP||EBX||EDX||ECX||EAX||
 ||TLS||00400000||0006F8AC||0006F8B8||0006F898||00000000||000010EC||00000000||004010C8||
