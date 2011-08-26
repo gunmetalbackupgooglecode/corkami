@@ -1,4 +1,4 @@
-﻿#summary un resume des astuces PDF - encodages, structures, JavaScript...
+﻿#summary PDFのトリックに関するレジュメ　-エンコーディング,構成,JavaScriptなど
 
 
 このページは,エンコード,JavaScript,PDFの構造を基本にしたPDFフォーマットのトリックについてのレジュメです.
@@ -113,16 +113,15 @@ PDFは名前ツリー（Name Trees）も含み,それぞれ構成するものは
 }}}
 
 ==オブジェクトなし==
-Avec Acrobat X, un PDF valide n'a pas besoin d'objet.
 Acrobat Xでは,有効なPDFはオブジェクトを必要としません.
-Acrobat X上における,`trailer`とだけ書かれた36バイトの有効なPDFの例　？？？？
+Acrobat X上における,トレイラーのみで作られた36バイトの有効なPDFの例
  Exemple de PDF valide (sous Acrobat X) de 36 octets, fait d'un `trailer` uniquement ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/emptyX.pdf ダウンロード]):
 {{{
 %PDF-\0trailer<</Root<</Pages<<>>>>>>
 }}}
 
-Cette astuce ne marche pas sous les versions précédentes d'Acrobat. Pour elles, un objet - même vide, et sans index - doit être présent.
-このトリックは以前のバージョンのAcrobatでは動きません.古いバージョンでは空のインデックスのないものでもオブジェクトが必要になります.？？？？
+
+このトリックは以前のバージョンのAcrobatでは動きません.古いバージョンでは,空であったりインデックスのないものでもオブジェクトが必要になります.
 
 
 48バイトの有効なPDFの例（Acrobat 9もしくはそれ以下） ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/empty.pdf ダウンロード]):
@@ -133,7 +132,7 @@ Cette astuce ne marche pas sous les versions précédentes d'Acrobat. Pour elles
 ==間違ったタグ==
 大文字/小文字の間違いのような予想外のタグは無視されます.
 
-間違ったタグを使用した`trailer` の例 ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/structure-wrongcase.pdf ダウンロード]):
+間違ったタグを使用したトレイラーの例 ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/structure-wrongcase.pdf ダウンロード]):
 {{{
 trailer
 <<
@@ -143,19 +142,18 @@ trailer
 }}}
 
 ==EOF==
-PDFは増加するアップデートを管理するフォーマットなので,その情報はEOFを超えて書かれる場合もあります.？？？？
-Le PDF est un format qui gère les mises-à-jours incrémentales, donc l'information peut être écrite au dela du %%EOF.
+PDFは増加するアップデートを管理するフォーマットなので,その情報はEOFを超えて書かれる場合もあります.
 
- Exemple de PDF ou les objets et le `trailer` sont écris après le %%EOF ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-ignoredeof.pdf ダウンロード]):
+EOFの後にオブジェクトとトレイラーが書かれたPDFの例([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-ignoredeof.pdf ダウンロード]):
 {{{
 [...]
 %%EOF
              
-% objet bidon pour rendre le PDF valide
+% PDFを有効にするためのダミーのオブジェクト
 [...]
 15 0 obj
 [...]
-% le trailer ne doit pas être avant les autres objets
+% トレイラーは他のオブジェクトの前には来てはいけない
 trailer
 <<
 /Root<</Pages 1 0 R>>
@@ -172,14 +170,14 @@ BT/default 20 Tf 1 0 0 1 1 715 Tm(this text and the PDF objects are stored beyon
 [...]
 }}}
 ==リニアライズドPDF==
-PDFは,最初のオブジェクトがレファレンスのない見せかけのオブジェクトであっても,どんな値であれタグ/リニアライズドタグを含む場合を除いて,デフォルトで下から上へ解析します
-les PDF sont parcourus par défaut de bas en haut, sauf si le premier objet (même un objet bidon sans référence) contient le tag /Linearized tag (avec une valeur quelconque).
+最初のオブジェクトがリニアライズドタグを含まない場合,PDFは下から上へ解析します.また,最初のオブジェクトがリニアライズドタグを含む場合,それがどんな値であれ,PDFは上から下へ解析します.
 
-下から上又は上から下のどちらかで解析されるPDFの例　？？？
- Exemple de PDF parcouru au choix de bas en haut ou de haut en bas (si `linearized`)  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-parsingdirection.pdf ダウンロード]):
+下から上,又上から下で解析されるPDFの例　
+ ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-parsingdirection.pdf ダウンロード]):
 {{{
 [...]
-% insérer/supprimer un objet vide changera la direction d'analyse
+% 空のオブジェクトを挿入又は削除することで解析の方向が変わります.
+
 12 0 obj <<<>>
 [...]
 31415 0 obj 
@@ -200,7 +198,7 @@ BT/default 35 Tf 1 0 0 1 1 715 Tm(this PDF has been parsed bottom-up)Tj ET
 endstream
 endobj
 [...]
-% si ce trailer est pris en compte, 'Top-down' sera affiché
+% このトレイラーが読み込まれると,'Top-down'が表示されます.
 trailer
 <<
 /Root
@@ -209,7 +207,7 @@ trailer
   >>
 >>
 [...]
-% si ce trailer est pris en compte, 'Bottom-up' sera affiché
+% このトレイラーが読み込まれると,'Bottom-up'が表示されます.
 trailer
 <<
 /Root
@@ -236,9 +234,8 @@ trailer
 [...]
 }}}
 
-==cherche et remplace　検索と置換==
-ごまかす簡単なテクニックのひとつは,不必要な文字を追加し,使用前に削除/置換することです.　？？？
-Une simple technique de dissimulation: ajouter des caractères superflus, et les supprimer/remplacer avant utilisation.
+==検索と置換==
+メッセージなどを隠す簡単なテクニックのひとつは,不必要な文字を追加し,使用前に削除/置換することです.　
 
 不必要な文字を使ってごまかした文字列`Hello World!`の例  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-replace.pdf ダウンロード]):
 {{{
@@ -255,10 +252,9 @@ unescape("%48%65%6C%6C%6F%20%57%6F%72%6C%64%21")
 
 ==ｎ進法のエンコーディング==　
 CAFEBEBEのように,一見単語のようにも16進法の値のようにも取れる大文字の言葉は32進法で書き表せます.（32もしくはそれ以下で,使用される最後のアルファベットによります）
-De même que CAFEBEBE peut être, lu soit comme un mot, soit comme un chiffre en hexa, n'importe quel mot en majuscule peut être écrit en base 32 (32 ou moins, en fonction du dernier caractère de l'alphabet dont on a besoin).
 
-各語がそれぞれ異なる進法で数値のようにエンコードされた文字列`HELLO WORLD!`の例　？？？
- Exemple de chaîne `HELLO WORLD!`, où chaque mot est encodé comme un nombre, dans une base différente à chaque fois  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-number.pdf ダウンロード]):
+
+それぞれの文字がそれぞれ異なる進法で数値のようにエンコードされた文字列`HELLO WORLD!`の例　([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-number.pdf ダウンロード]):
 {{{
 (6873049).toString(25) + " " + (38842069).toString(33) + "!"
 }}}
@@ -316,14 +312,13 @@ JavaScriptの関数は自身のコードにアクセスでき,それを何に対
 =!JavaScript + PDF=
 
 このトリックはPDFのコンポーネント内の情報を隠し,JavaScript経由でその情報を回収します.
-ces astuces cachent de l'information dans l'un des composants du PDF, et récupèrent cette information via !JavaScript.
+
 
 ==info==
-Un `trailer` du PDF peut contenir un dictionnaire `Info`, dont le contenu des éléments peut être obtenu en  !JavaScript par les propriétés de l'objet `info`.
-PDFのtrailerはInfo辞書を含むことができ,エレメントの内容はInfoのオブジェクトのプロパティによってJavaScriptで取得できます.
+PDFのトレイラーはInfo辞書を含むことができ,エレメントの内容はInfoのオブジェクトのプロパティによってJavaScriptで取得できます.
 
-trailerのInfo辞書のエレメントとして保管された文字列の例
- Exemple de chaîne stockée comme éléments du dictionnaire `Info` du `trailer`  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-info.pdf ダウンロード]):
+トレイラーのInfo辞書のエレメントとして保管された文字列の例
+ ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-info.pdf ダウンロード]):
 {{{
 [...]
       /Info <</Author(Hello) /Title( World) /Producer( !)>>
@@ -334,10 +329,9 @@ trailerのInfo辞書のエレメントとして保管された文字列の例
 
 ==Annots==
 同じような方法で,PDFファイルのページはコメントを入れることができ,それはそのページ上でgetAnnots関数によって回収できます.
-De manière similaire, une page peut contenir un commentaire, qui peut être récupéré par la fonction `getAnnots` sur la page en question.
 
-特有のページ上でコメントのサブジェクトのように保管された文字列の例　？？？
- Exemple de chaîne stockée comme sujet d'un commentaire sur une page spécifique ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-annots.pdf ダウンロード]):
+特有のページ上でコメントのサブジェクトのように保管された文字列の例　
+([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-annots.pdf ダウンロード]):
 {{{
 [...]
     /Annots
@@ -353,10 +347,10 @@ De manière similaire, une page peut contenir un commentaire, qui peut être ré
 
 ==Getfield==
 AcroFormのWidgetはデータや値を入れることができ,それはGetFieldで回収できます.
-un Widget !AcroForm peut contenir des données et des valeurs, qui peuvent être récupérées via la fonction `getField`.
+
 
 AcroFormのWidget内に保管された文字列の例
- Exemple de chaîne stockée dans un Widget !AcroForm  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-getfield.pdf ダウンロード]):
+  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-getfield.pdf ダウンロード]):
 {{{
 [...]
   /AcroForm
@@ -372,7 +366,7 @@ AcroFormのWidget内に保管された文字列の例
 ==アンチエミュレータ==
 
 基本のJavaScriptでは,Adove Acrobat特有の特徴から,実際のアプリケーションにいるのかエミュレータ内にいるのかを検出することができます
-En plus du !JavaScript standard, il est possible via des particularités spécifiques à Adobe Acrobat, de détecter si on est ou non dans l'application réelle ou dans un émulateur.
+
 
 ===初期値===
 いくつかのAdobe特有のグローバル変数は初期値によって初期化されるので,それらをチェックすることでエミュレータをストップさせることがあります.
@@ -442,17 +436,14 @@ trailer<</Root<</Pages 1 0 R>>>>
 }}}
 
 ==!JavaScript==
-!JavaScriptを使うためには,PDFは空のPDF（「Acrobat X上における,`trailer`とだけ書かれた36バイトの有効なPDFの例」参照）であることと,`trailer/root`内の!OpenAction辞書が必要となります.
-Pour utiliser le !JavaScript, un PDF a besoin d'être comme l'exemple de PDF vide, et d'un dictionnaire !OpenAction dans son `trailer/root`.
+!JavaScriptを使うためには,PDFは空のPDF（「Acrobat X上における,トレイラーのみで書かれた36バイトの有効なPDFの例」参照）であることと,`trailer/root`内の!OpenAction辞書が必要となります.
 
-Acrobat9以下で!JavaScriptを使った最小のPDFの例
- Exemple complet de PDF minimal, utilisant !JavaScript, sous Acrobat <= 9:  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js.pdf ダウンロード]):
+　Acrobat9以下で!JavaScriptを使った最小のPDFの例　([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js.pdf ダウンロード]):
 {{{
 %PDF-\0obj<<>>trailer<</Root<</Pages<<>>/OpenAction<</S/JavaScript/JS(app.alert('Hello World!');)>>>>>>
 }}}
 
-Acrobat Xでの同等の例
- Exemple équivalent, sous Acrobat X  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js_X.pdf ダウンロード]):
+　Acrobat Xでの同等の例　([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js_X.pdf ダウンロード]):
 {{{
 %PDF-\0trailer<</Root<</Pages<<>>/OpenAction<</S/JavaScript/JS(app.alert('Hello World!');)>>>>>>
 }}}
@@ -460,12 +451,11 @@ Acrobat Xでの同等の例
 
 =壊れたストリーム=
 !FlatEncodeで圧縮されたストリームが解凍中に切り取られたもしくは壊れた場合,エラーになった所まではストリームは保管されます.（通常,正常でない圧縮されたデータは無視されます.）
-Si un flux compressé avec !FlatEncode est tronqué ou corrompu, il sera pris tel quel - jusqu'à l'erreur - et quand même interprété (en général, des données compressées incorrectes seraient tout simplement ignorées).
 
 Acrobatがするような,解凍された壊れたストリームを取得する簡単な方法は,それを添付ファイルとともにPDFテンプレートに切り取ることです.このように添付ファイルを抽出するときにストリームを解凍するのはAcrobatのみです.
 Une manière simple d'avoir le flux corrompu décompressé exactement comme Acrobat l'aurait fait est justement de le faire faire par Acrobat, en greffant le flux dans un modèle (_template_) où il sera interprété comme une pièce jointe. Ainsi, c'est Acrobat qui décompressera le flux, quand on demandera d'extraire la pièce jointe: ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/attachstream.py script de greffe] + [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-attached.pdf modèle avec pièce jointe])
 
-=Références=
+=レファレンス=
  * [http://blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/ Didier Stevens]
- * [http://www.symantec.com/connect/blogs/portable-document-format-malware Kazumasa Itabashi]
+ * [http://www.symantec.com/connect/blogs/portable-document-format-malware 板橋一正]
  * [http://blog.zynamics.com/2010/07/13/recon-slides-how-to-really-obfuscate-your-pdf-malware/ Sebastian Porst]
