@@ -141,9 +141,9 @@ trailer
 }}}
 
 ==EOF==
-Le PDF est un format qui gère les mises-à-jours incrémentales, donc l'information peut être écrite au dela du %%EOF.
+Le PDF est un format qui gère les mises-à-jours incrémentales, donc l'information peut être écrite au-delà du %%EOF.
 
- Exemple de PDF ou les objets et le _trailer_ sont écris après le _%%EOF_ ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-ignoredeof.pdf télécharger]):
+ Exemple de PDF où les objets et le _trailer_ sont écrits après le _%%EOF_ ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-ignoredeof.pdf télécharger]):
 {{{
 [...]
 %%EOF
@@ -238,7 +238,7 @@ Une simple technique de dissimulation: ajouter des caractères superflus, et les
 }}}
 
 ==échappement==
-une autre technique standard en !JavaScript: remplacer les caractères par leur équivalent encodé.
+Une autre technique standard en !JavaScript: remplacer les caractères par leur équivalent encodé.
 
  Exemple de chaîne `Hello World!`, encodée par échappement  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-unescape.pdf télécharger]):
 {{{
@@ -337,7 +337,6 @@ De manière similaire, une page peut contenir un commentaire, qui peut être ré
 
 ==getfield==
 un Widget !AcroForm peut contenir des données et des valeurs, qui peuvent être récupérées via la fonction _getField_.
-
 
  Exemple de chaîne stockée dans un Widget !AcroForm  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-getfield.pdf télécharger]):
 {{{
