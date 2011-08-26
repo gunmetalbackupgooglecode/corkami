@@ -1,12 +1,12 @@
 ﻿#summary PDFのトリックに関するレジュメ　-エンコーディング,構成,JavaScriptなど
 
 
-このページは,エンコード,JavaScript,PDFの構造を基本にしたPDFフォーマットのトリックについてのレジュメです.
+このページは,エンコード,!JavaScript,PDFの構造を基本にしたPDFフォーマットのトリックについてのレジュメです.
 
 注意：リンクのファイルはクリーンで,わかりやすいように私自身によって作成されたものです.しかしながら,各種のウィルスに見受けられる様々なトリックを使っているため,お使いのアンチウィルスに検出されたり,通常使用しているプログラムをクラッシュさせる可能性があります.が,Adobe Acrobat以下では機能し,それがここでの目的であります.
 
  早い話が,これらのファイルは一風変わってますが,機能はするもので,無害です.
-JavaScriptのトリックについてさらに知りたい方はこちら： [http://bonsaiden.github.com/JavaScript-Garden/ JavaScript Garden].
+!JavaScriptのトリックについてさらに知りたい方はこちら： [http://bonsaiden.github.com/JavaScript-Garden/ JavaScript Garden].
 
 直接ダウンロードするにはこちら： [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/ フォルダ SVN].
 
@@ -80,6 +80,7 @@ o\
 =構造=
 ==切り取ったヘッダのタイトル==
 原則としてヘッダは`%PDF-1.[4-6]`ですが,後半の数字を無視して切り取ることができます.
+
  ヘッダを切り取った例  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-shorter.pdf ダウンロード]):
 {{{
 %PDF-1.
@@ -87,6 +88,7 @@ o\
 
 ==値のないヘッダ==
 値のない文字を使ったヘッダはもっと短くなります.
+
  値のない文字を使って切り取ったヘッダの例  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-null.pdf ダウンロード]):
 {{{
 %PDF-\0
@@ -95,7 +97,7 @@ o\
 ==名前ツリー（Name Trees）==
 PDFは名前ツリー（Name Trees）も含み,それぞれ構成するものは連続して実行されます.　したがって,!OpenActionのように明確なトリガなしで1つのスクリプトは複数に分割されます.　　
 
- 名前ツリー内で2つに分割されたスクリプト!JavaScript　の例  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/structure-names.pdf ダウンロード]):
+ 名前ツリー内で2つに分割されたスクリプト!JavaScriptの例  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/structure-names.pdf ダウンロード]):
 {{{
 [...]
   /Names
@@ -114,17 +116,15 @@ PDFは名前ツリー（Name Trees）も含み,それぞれ構成するものは
 
 ==オブジェクトなし==
 Acrobat Xでは,有効なPDFはオブジェクトを必要としません.
-Acrobat X上における,トレイラーのみで作られた36バイトの有効なPDFの例
- Exemple de PDF valide (sous Acrobat X) de 36 octets, fait d'un `trailer` uniquement ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/emptyX.pdf ダウンロード]):
+
+　Acrobat X上における,トレイラーのみで作られた36バイトの有効なPDFの例　([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/emptyX.pdf ダウンロード]):
 {{{
 %PDF-\0trailer<</Root<</Pages<<>>>>>>
 }}}
 
-
 このトリックは以前のバージョンのAcrobatでは動きません.古いバージョンでは,空であったりインデックスのないものでもオブジェクトが必要になります.
 
-
-48バイトの有効なPDFの例（Acrobat 9もしくはそれ以下） ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/empty.pdf ダウンロード]):
+　48バイトの有効なPDFの例（Acrobat 9もしくはそれ以下） ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/empty.pdf ダウンロード]):
 {{{
 %PDF-\0obj<<>>trailer<</Root<</Pages<<>>>>>>
 }}}
@@ -132,7 +132,7 @@ Acrobat X上における,トレイラーのみで作られた36バイトの有�
 ==間違ったタグ==
 大文字/小文字の間違いのような予想外のタグは無視されます.
 
-間違ったタグを使用したトレイラーの例 ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/structure-wrongcase.pdf ダウンロード]):
+　間違ったタグを使用したトレイラーの例 ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/structure-wrongcase.pdf ダウンロード]):
 {{{
 trailer
 <<
@@ -144,7 +144,7 @@ trailer
 ==EOF==
 PDFは増加するアップデートを管理するフォーマットなので,その情報はEOFを超えて書かれる場合もあります.
 
-EOFの後にオブジェクトとトレイラーが書かれたPDFの例([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-ignoredeof.pdf ダウンロード]):
+　EOFの後にオブジェクトとトレイラーが書かれたPDFの例([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-ignoredeof.pdf ダウンロード]):
 {{{
 [...]
 %%EOF
@@ -172,8 +172,7 @@ BT/default 20 Tf 1 0 0 1 1 715 Tm(this text and the PDF objects are stored beyon
 ==リニアライズドPDF==
 最初のオブジェクトがリニアライズドタグを含まない場合,PDFは下から上へ解析します.また,最初のオブジェクトがリニアライズドタグを含む場合,それがどんな値であれ,PDFは上から下へ解析します.
 
-下から上,又上から下で解析されるPDFの例　
- ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-parsingdirection.pdf ダウンロード]):
+　下から上,又上から下で解析されるPDFの例　([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-parsingdirection.pdf ダウンロード]):
 {{{
 [...]
 % 空のオブジェクトを挿入又は削除することで解析の方向が変わります.
@@ -218,13 +217,13 @@ trailer
 }}}
 
 
-=JavaScriptにおけるエンコーディング=
-ここではJavaScriptを使ったいくつかの別のエンコーディングのトリックを説明します.（Acrobatに限ったことではありません））
+=!JavaScriptにおけるエンコーディング=
+ここでは!JavaScriptを使ったいくつかの別のエンコーディングのトリックを説明します.（Acrobatに限ったことではありません））
 
 ==連結==
 最も簡単なトリックは文字列をいくつかに区切って再び連結することです.
 
-表示される前に再構築された`Hello World!`の例 ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-concat.pdf ダウンロード]):
+　表示される前に再構築された`Hello World!`の例 ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-concat.pdf ダウンロード]):
 {{{
 [...]
       B="Hell";
@@ -237,33 +236,33 @@ trailer
 ==検索と置換==
 メッセージなどを隠す簡単なテクニックのひとつは,不必要な文字を追加し,使用前に削除/置換することです.　
 
-不必要な文字を使ってごまかした文字列`Hello World!`の例  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-replace.pdf ダウンロード]):
+　不必要な文字を使ってごまかした文字列`Hello World!`の例  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-replace.pdf ダウンロード]):
 {{{
 "zHzzezzlzlzozzzzz zWozrzldz!").replace(/z/g,"")
 }}}
 
 ==エスケープ==
-JavaScriptにおける別の基本的なテクニックは,同等のエンコードによって文字を置き換えることです.
+!JavaScriptにおける別の基本的なテクニックは,同等のエンコードによって文字を置き換えることです.
 
-エスケープによってエンコードされた文字列`Hello World!`の例  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-unescape.pdf ダウンロード]):
+　エスケープによってエンコードされた文字列`Hello World!`の例  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-unescape.pdf ダウンロード]):
 {{{
 unescape("%48%65%6C%6C%6F%20%57%6F%72%6C%64%21")
 }}}
 
-==ｎ進法のエンコーディング==　
+==ｎ進法のエンコーディング==
 CAFEBEBEのように,一見単語のようにも16進法の値のようにも取れる大文字の言葉は32進法で書き表せます.（32もしくはそれ以下で,使用される最後のアルファベットによります）
 
 
-それぞれの文字がそれぞれ異なる進法で数値のようにエンコードされた文字列`HELLO WORLD!`の例　([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-number.pdf ダウンロード]):
+　それぞれの文字がそれぞれ異なる進法で数値のようにエンコードされた文字列`HELLO WORLD!`の例　([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-number.pdf ダウンロード]):
 {{{
 (6873049).toString(25) + " " + (38842069).toString(33) + "!"
 }}}
 
-=JavaScriptのトリック=
+=!JavaScriptのトリック=
 ==eval==
 よくある方法：コードはevalで実行される文字列内で構築されます.
 
-実行される文字列コードの例 ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-eval.pdf ダウンロード]):
+　実行される文字列コードの例 ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-eval.pdf ダウンロード]):
 {{{
 [...]
      eval('app.alert("Hello World!");');
@@ -273,7 +272,7 @@ CAFEBEBEのように,一見単語のようにも16進法の値のようにも取
 ==substring==
 アラートのような関数は,直接にではなくても,例えばappのような親オブジェクトのsubstringとしても呼ぶことができます.
 
-親オブジェクトからstring referenceによって呼び出された関数JavaScriptの例  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-substring.pdf ダウンロード]):
+　親オブジェクトからstring referenceによって呼び出された関数!JavaScriptの例  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-substring.pdf ダウンロード]):
 {{{
 [...]
      app["alert"]("Hello World!");
@@ -283,7 +282,7 @@ CAFEBEBEのように,一見単語のようにも16進法の値のようにも取
 ==配列==
 上の例はフェイクのアレイとフェイクのエントリによって改善でき,それによって実行される関数はより認識し難くなります.
 
-フェイクのアレイ内のリファレンス経由でevalで実行されるコードの文字列の例 ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-array.pdf ダウンロード]):
+　フェイクのアレイ内のリファレンス経由でevalで実行されるコードの文字列の例 ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-array.pdf ダウンロード]):
 {{{
 [...]
      e = ("fake1")[("fake2", "eval")]
@@ -292,10 +291,10 @@ CAFEBEBEのように,一見単語のようにも16進法の値のようにも取
 }}}
 
 ==calleeプロパティ==
-JavaScriptの関数は自身のコードにアクセスでき,それを何に対しても使用できます.つまり,どんなコードの訂正も関数を正確に動作させることを妨げます.一般的には,そのような関数は自身のコードを解読の鍵として使います.
+!JavaScriptの関数は自身のコードにアクセスでき,それを何に対しても使用できます.つまり,どんなコードの訂正も関数を正確に動作させることを妨げます.一般的には,そのような関数は自身のコードを解読の鍵として使います.
 
 
-自身のコードを解読の鍵として使う,Decrypt関数の例([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-callee.pdf ダウンロード]):
+　自身のコードを解読の鍵として使う,Decrypt関数の例([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-callee.pdf ダウンロード]):
 {{{
 [...]
       function decrypt(cipher) 
@@ -311,14 +310,13 @@ JavaScriptの関数は自身のコードにアクセスでき,それを何に対
 
 =!JavaScript + PDF=
 
-このトリックはPDFのコンポーネント内の情報を隠し,JavaScript経由でその情報を回収します.
+このトリックはPDFのコンポーネント内の情報を隠し,!JavaScript経由でその情報を回収します.
 
 
 ==info==
-PDFのトレイラーはInfo辞書を含むことができ,エレメントの内容はInfoのオブジェクトのプロパティによってJavaScriptで取得できます.
+PDFのトレイラーはInfo辞書を含むことができ,エレメントの内容はInfoのオブジェクトのプロパティによって!JavaScriptで取得できます.
 
-トレイラーのInfo辞書のエレメントとして保管された文字列の例
- ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-info.pdf ダウンロード]):
+　トレイラーのInfo辞書のエレメントとして保管された文字列の例　([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-info.pdf ダウンロード]):
 {{{
 [...]
       /Info <</Author(Hello) /Title( World) /Producer( !)>>
@@ -330,8 +328,7 @@ PDFのトレイラーはInfo辞書を含むことができ,エレメントの内
 ==Annots==
 同じような方法で,PDFファイルのページはコメントを入れることができ,それはそのページ上でgetAnnots関数によって回収できます.
 
-特有のページ上でコメントのサブジェクトのように保管された文字列の例　
-([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-annots.pdf ダウンロード]):
+　特有のページ上でコメントのサブジェクトのように保管された文字列の例　([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-annots.pdf ダウンロード]):
 {{{
 [...]
     /Annots
@@ -346,11 +343,10 @@ PDFのトレイラーはInfo辞書を含むことができ,エレメントの内
 }}}
 
 ==Getfield==
-AcroFormのWidgetはデータや値を入れることができ,それはGetFieldで回収できます.
+!AcroFormのWidgetはデータや値を入れることができ,それは!GetFieldで回収できます.
 
 
-AcroFormのWidget内に保管された文字列の例
-  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-getfield.pdf ダウンロード]):
+　!AcroFormのWidget内に保管された文字列の例　([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-getfield.pdf ダウンロード]):
 {{{
 [...]
   /AcroForm
@@ -365,15 +361,13 @@ AcroFormのWidget内に保管された文字列の例
 
 ==アンチエミュレータ==
 
-基本のJavaScriptでは,Adove Acrobat特有の特徴から,実際のアプリケーションにいるのかエミュレータ内にいるのかを検出することができます
+基本の!JavaScriptでは,Adobe Acrobat特有の特徴から,実際のアプリケーションにいるのかエミュレータ内にいるのかを検出することができます
 
 
 ===初期値===
 いくつかのAdobe特有のグローバル変数は初期値によって初期化されるので,それらをチェックすることでエミュレータをストップさせることがあります.
-Des variables globales ont des valeurs par défaut spécifiques, donc comparer la valeur de ces variables dès l'initialisation peut permettre de détecter un émulateur.
 
-アンチエミュレータとして初期値を確認するAcrobat配下のJavaScriptのコードの例
- Exemple de code Acrobat !JavaScript qui vérifie des valeurs initiales pour en faire un anti-émulateur  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-trick-initvalues.pdf ダウンロード]):
+　アンチエミュレータとして初期値を確認するAcrobat配下の!JavaScriptのコードの例　([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-trick-initvalues.pdf ダウンロード]):
 {{{
 [...]
       if ((app)
@@ -383,10 +377,8 @@ Des variables globales ont des valeurs par défaut spécifiques, donc comparer l
 
 ===グローバル変数===
 グローバル変数は他の変数に比べて違った動きを見せます.ある値を与えても,最初のタイプをキープします.
-les variables globales se comportent différemment des autres: même si on leur assigne une valeur, elles gardent leur type original (ce qui défie le bon sens).
 
-グローバル変数を定義し,結果を比べるAcrobat配下のJavaScriptのコードの例
- Exemple de code Acrobat !JavaScript, qui définit une variable globale, et compare ensuite le résultat  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-trick-globals.pdf ダウンロード]):
+　グローバル変数を定義し,結果を比べるAcrobat配下の!JavaScriptのコードの例　([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-trick-globals.pdf ダウンロード]):
 {{{
 [...]
       hidden=0;  // global
@@ -398,23 +390,19 @@ les variables globales se comportent différemment des autres: même si on leur 
 
 =最小のPDF=
 以下は最も小さい有効なPDFです.でも内容は無いよう.
-voir ci-dessus pour des PDFs valides le plus petit possible - mais ne contenant rien.
+
 ==ページ==
 PDFがページをつけるためにはオブジェクトが必要で,親オブジェクトが子オブジェクトを定義するように,`trailer/Root/Pages`内にリファレンスされます.
-Pour que le PDF ait une page, il faut qu'un objet, définissant un enfant comme son propre parent, doit être référencé dans `trailer/Root/Pages`.
 
-ページをつけた最小のPDFの例
- Exemple (complet) de PDF minimal, avec une page ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/blankpage.pdf ダウンロード]):
+　ページをつけた最小のPDFの例　([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/blankpage.pdf ダウンロード]):
 {{{
 %PDF-\01 0 obj<</Kids[<</Parent 1 0 R>>]>>trailer<</Root<</Pages 1 0 R>>>>
 }}}
 
 ==ページ + テキスト==
 テキストを定義するためには,そのページは空のソースと,テキスト自身によって定義されたコンテンツが必要です.
-Pour définir un texte, cette page doit avoir des ressources (vides), et un contenu, qui défini le texte lui-même..
 
-ページとテキストがついた最小のPDFの例（Acrobat以下）
- Exemple complet de PDF minimal, avec page et texte (pour Acrobat <=9)  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld.pdf ダウンロード]):
+　ページとテキストがついた最小のPDFの例（Acrobat以下）　([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld.pdf ダウンロード]):
 {{{
 %PDF-\01 0 obj<</Kids[<</Parent 1 0 R/Contents[2 0 R]>>]/Resources<<>>>>2 0 obj<<>>stream
 BT/default 99 Tf 1 0 0 1 1 715 Tm(Hello World!)Tj ET
@@ -423,10 +411,8 @@ trailer<</Root<</Pages 1 0 R>>>>
 }}}
 
 このオブジェクトは`endobj`タグがないことに注目してください.が,Acrobat Xでは必要になります.
-Notez que cet objet n'a pas de tag `endobj`. Ceci est requis sous Acrobat X.
 
-ページとテキストがついた最小のPDFの例（Acrobat X）
- Exemple complet de PDF minimal, avec page et texte (pour Acrobat X)  ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld-X.pdf ダウンロード]):
+　ページとテキストがついた最小のPDFの例（Acrobat X）　([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld-X.pdf ダウンロード]):
 {{{
 %PDF-\01 0 obj<</Kids[<</Parent 1 0 R/Contents[2 0 R]>>]/Resources<<>>>>2 0 obj<<>>stream
 BT/default 99 Tf 1 0 0 1 1 715 Tm(Hello World!)Tj ET
@@ -452,8 +438,7 @@ trailer<</Root<</Pages 1 0 R>>>>
 =壊れたストリーム=
 !FlatEncodeで圧縮されたストリームが解凍中に切り取られたもしくは壊れた場合,エラーになった所まではストリームは保管されます.（通常,正常でない圧縮されたデータは無視されます.）
 
-Acrobatがするような,解凍された壊れたストリームを取得する簡単な方法は,それを添付ファイルとともにPDFテンプレートに切り取ることです.このように添付ファイルを抽出するときにストリームを解凍するのはAcrobatのみです.
-Une manière simple d'avoir le flux corrompu décompressé exactement comme Acrobat l'aurait fait est justement de le faire faire par Acrobat, en greffant le flux dans un modèle (_template_) où il sera interprété comme une pièce jointe. Ainsi, c'est Acrobat qui décompressera le flux, quand on demandera d'extraire la pièce jointe: ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/attachstream.py script de greffe] + [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-attached.pdf modèle avec pièce jointe])
+Acrobatがするような,解凍された壊れたストリームを取得する簡単な方法は,それを添付ファイルとともにPDFテンプレートに切り取ることです.このように添付ファイルを抽出するときにストリームを解凍するのはAcrobatのみです: ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/attachstream.py 移籍のスクリプト] + [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-attached.pdf 添付ファイル付きのテンプレート])
 
 =レファレンス=
  * [http://blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/ Didier Stevens]
