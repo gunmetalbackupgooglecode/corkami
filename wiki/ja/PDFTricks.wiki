@@ -1,4 +1,4 @@
-﻿#summary PDFのトリックに関するレジュメ　-エンコーディング,構成,JavaScriptなど
+﻿#summary PDFのトリックに関するレジュメ　-　エンコーディング,構成,JavaScriptなど
 
 
 このページは,エンコード,!JavaScript,PDFの構造を基本にしたPDFフォーマットのトリックについてのレジュメです.
