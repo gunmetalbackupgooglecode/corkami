@@ -280,9 +280,9 @@ CAFEBEBEのように,一見単語のようにも16進法の値のようにも取
 }}}
 
 ==配列==
-上の例はフェイクのアレイとフェイクのエントリによって改善でき,それによって実行される関数はより認識し難くなります.
+上記の例を偽装された配列とその要素に拡張することができ、実際に実行される関数を更に難読化させることができます。
 
-　フェイクのアレイ内のリファレンス経由でevalで実行されるコードの文字列の例 ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-array.pdf ダウンロード]):
+　偽装された配列の参照による文字列の評価例 ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-array.pdf ダウンロード]):
 {{{
 [...]
      e = ("fake1")[("fake2", "eval")]
@@ -291,10 +291,12 @@ CAFEBEBEのように,一見単語のようにも16進法の値のようにも取
 }}}
 
 ==calleeプロパティ==
-!JavaScriptの関数は自身のコードにアクセスでき,それを何に対しても使用できます.つまり,どんなコードの訂正も関数を正確に動作させることを妨げます.一般的には,そのような関数は自身のコードを解読の鍵として使います.
+ JavaScriptの関数は自身のコードにアクセスでき、様々なことに利用できます。
+ 従って、何らかのコードの修正に対して、正常に動作することを妨げることも可能です。
+ 一般的にそのような関数は自身のコードを暗号を解くための鍵として利用します。
 
 
-　自身のコードを解読の鍵として使う,Decrypt関数の例([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-callee.pdf ダウンロード]):
+　自身のコードを暗号を解くための鍵として使う,Decrypt関数の例([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-callee.pdf ダウンロード]):
 {{{
 [...]
       function decrypt(cipher) 
@@ -310,7 +312,7 @@ CAFEBEBEのように,一見単語のようにも16進法の値のようにも取
 
 =!JavaScript + PDF=
 
-このトリックはPDFのコンポーネント内の情報を隠し,!JavaScript経由でその情報を回収します.
+このトリックはPDFのコンポーネント内の情報を隠し,!JavaScript経由でその情報を取得します.
 
 
 ==info==
@@ -326,7 +328,7 @@ PDFのトレイラーはInfo辞書を含むことができ,エレメントの内
 }}}
 
 ==Annots==
-同じような方法で,PDFファイルのページはコメントを入れることができ,それはそのページ上でgetAnnots関数によって回収できます.
+同じような方法で,PDFファイルのページはコメントを入れることができ,それはそのページ上でgetAnnots関数によって取得できます.
 
 　特有のページ上でコメントのサブジェクトのように保管された文字列の例　([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-annots.pdf ダウンロード]):
 {{{
@@ -343,7 +345,7 @@ PDFのトレイラーはInfo辞書を含むことができ,エレメントの内
 }}}
 
 ==Getfield==
-!AcroFormのWidgetはデータや値を入れることができ,それは!GetFieldで回収できます.
+!AcroFormのWidgetはデータや値を入れることができ,それは!GetFieldで取得できます.
 
 
 　!AcroFormのWidget内に保管された文字列の例　([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-getfield.pdf ダウンロード]):
@@ -438,7 +440,7 @@ trailer<</Root<</Pages 1 0 R>>>>
 =壊れたストリーム=
 !FlatEncodeで圧縮されたストリームが解凍中に切り取られたもしくは壊れた場合,エラーになった所まではストリームは保管されます.（通常,正常でない圧縮されたデータは無視されます.）
 
-Acrobatがするような,解凍された壊れたストリームを取得する簡単な方法は,それを添付ファイルとともにPDFテンプレートに切り取ることです.このように添付ファイルを抽出するときにストリームを解凍するのはAcrobatのみです: ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/attachstream.py 移籍のスクリプト] + [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-attached.pdf 添付ファイル付きのテンプレート])
+Acrobatがするような,解凍された壊れたストリームを取得する簡単な方法は,それを添付ファイルとともにPDFテンプレートに切り取ることです.このように添付ファイルを抽出するときにストリームを展開するのはAcrobatのみです: ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/attachstream.py 移籍のスクリプト] + [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-attached.pdf 添付ファイル付きのテンプレート])
 
 =レファレンス=
  * [http://blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/ Didier Stevens]
