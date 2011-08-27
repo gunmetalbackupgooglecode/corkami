@@ -2,15 +2,30 @@
 
 =registers=
 MMX and FPU registers are mapped on each other, but in opposite directions.
- ex: modifying ST0 modifies MM7
+ ex:
+{{{
+dbe3 finit
+d9eb fldpi
+ => mm7 = 0xc90fdaa22168c235
+}}}
 
 ----
+=aad=
+
+=aam=
 
 =bswap=
  * `bswap <reg16>` is officially undefined. it just clears the registers.
  ex: `66:0FC8 bswap ax => ax = 0`
 
+=cmpxchg8b=
+ * TBC writes the target address even though the content is unchanged
+ * `lock cmpxchg8b` (TBC) doesn't crash CPUs anymore, but some tools might still show obsolete warnings about it.
+
+=crc32=
+
 =mov=
+ * mov to/from control and debug registers ignores the ModRM.
  * `mov <reg32>, <selector>` is officially MOV, (not MOVZX) yet it modifies the full DWORD. the upper word is undefined on <Pentium, and null on later CPUs.
  ex: `8CC8 mov eax, cs` => eax = 0x1b (xp)
 
@@ -18,15 +33,15 @@ MMX and FPU registers are mapped on each other, but in opposite directions.
  * `push <selector>` TODO
  * `push <reg16>` TODO
 
-=cmpxchg8b=
- * TBC writes the target address even though the content is unchanged
- * `lock cmpxchg8b` (TBC) doesn't crash CPUs anymore, but some tools might still show obsolete warnings about it.
-
 =movbe=
  * `movbe` is 'equivalent' to mov + bswap is an Atom opcode. It's supported by netbooks, but not by powerful desktop/laptop with I7 cpus
 
 =lzcnt=
  * TBC `lzcnt` is overlapped with popcnt
+
+=sal=
+
+=salc=
 
 =sldt=
  * TBC word only on register, word or dword on memory
@@ -40,11 +55,13 @@ and on the following opcodes:
  * adc, add, and, or, sbb, sub, xor, dec, inc, neg, not
  * cmpxchg, cmpxchg8b
  * btr, bts, btc
-  * `F0:0fa300 lock:bt [eax], eax` *does* trigger an exception
+  * `f0:0fa300 lock:bt [eax], eax` *does* trigger an exception
  * xadd, xchg (even if they are already atomic, so the lock is superfluous
 
 =smsw=
  * gives CR0 value (word or dword)
- * unprivileged, unlike `mov eax, cr0`
+ * unprivileged, unlike `mov eax, cr0` (old 286 instructions, mov cr0 is only present in 386)
  * upper bits are officially undefined. but still CR0 contents.
-  ex: `0f01e0 smsw eax` => `eax = 8001003B`
+  ex: `0f01e0 smsw eax` => `eax = 8001003B` (XP)
+
+=test=
