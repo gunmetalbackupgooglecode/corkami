@@ -1,59 +1,100 @@
-#summary descriptions of each x86/x64 mnemonics
+#summary x86/x64 mnemonics, grouped and classified
 
+=standard=
 || *mnemonic* || *description* ||
-|| AAA || ASCII Adjust After Addition ||
-|| AAD || ASCII Adjust AX Before Division ||
-|| AAM || ASCII Adjust AX After Multiply ||
-|| AAS || ASCII Adjust AL After Subtraction ||
+|| || ||
+|| NOP || No Operation ||
+|| || ||
+|| MOV || Move ||
+|| || ||
+|| MOVZX || Move with Zero-Extend ||
+|| MOVSX/MOVSXD || Move with Sign-Extension ||
+|| || ||
+|| ADD || Add ||
 || ADC || Add with Carry ||
+|| SUB || Subtract ||
+|| SBB || Integer Subtraction with Borrow ||
+|| || ||
+|| AND || Logical AND ||
+|| OR || Logical Inclusive OR ||
+|| || ||
+|| NEG || Two's Complement Negation ||
+|| NOT || One's Complement Negation ||
+|| || ||
+|| INC || Increment by 1 ||
+|| DEC || Decrement by 1 ||
+|| || ||
+|| CMP || Compare Two Operands ||
+|| TEST || Logical Compare ||
+|| || ||
+|| CALL || Call Procedure ||
+|| RET || Return from Procedure ||
+|| || ||
+|| JMP || Jump ||
+|| Jcc || Jump if Condition Is Met ||
+|| || ||
+|| LEA || Load Effective Address ||
+|| || ||
+|| MUL || Unsigned Multiply ||
+|| IDIV || Signed Divide ||
+|| IMUL || Signed Multiply ||
+|| DIV || Unsigned Divide ||
+|| || ||
+|| CMPS/CMPSB/CMPSW/CMPSD/CMPSQ || Compare String Operands ||
+|| LODS/LODSB/LODSW/LODSD/LODSQ || Load String ||
+|| MOVS/MOVSB/MOVSW/MOVSD/MOVSQ || Move Data from String to String ||
+|| STOS/STOSB/STOSW/STOSD/STOSQ || Store String ||
+|| SCAS/SCASB/SCASW/SCASD || Scan String ||
+|| || ||
+|| BSF || Bit Scan Forward ||
+|| BSR || Bit Scan Reverse ||
+|| || ||
+|| BSWAP || Byte Swap ||
+|| || ||
+|| CMPXCHG8B/CMPXCHG16B || Compare and Exchange Bytes ||
+|| CMPXCHG || Compare and Exchange ||
+|| || ||
+|| BT || Bit Test ||
+|| BTS || Bit Test and Set ||
+|| BTR || Bit Test and Reset ||
+|| BTC || Bit Test and Complement ||
+|| || ||
+|| ENTER || Make Stack Frame for Procedure Parameters ||
+|| LEAVE || High Level Procedure Exit ||
+|| || ||
+|| INT n/INTO/INT 3 || Call to Interrupt Procedure ||
+|| || ||
+|| CBW/CWDE/CDQE || Convert Byte to Word/Convert Word to Doubleword/Convert Doubleword ||
+|| || ||
+|| CLC || Clear Carry Flag ||
+|| STC || Set Carry Flag ||
+|| CMC || Complement Carry Flag ||
+|| CLD || Clear Direction Flag ||
+|| STD || Set Direction Flag ||
+|| CLI || Clear Interrupt Flag ||
+|| STI || Set Interrupt Flag ||
+|| || ||
 || ADDPD || Add Packed Double-Precision Floating-Point Values ||
 || ADDPS || Add Packed Single-Precision Floating-Point Values ||
 || ADDSD || Add Scalar Double-Precision Floating-Point Values ||
 || ADDSS || Add Scalar Single-Precision Floating-Point Values ||
 || ADDSUBPD || Packed Double-FP Add/Subtract ||
 || ADDSUBPS || Packed Single-FP Add/Subtract ||
-|| ADD || Add ||
-|| AESDECLAST || Perform Last Round of an AES Decryption Flow ||
-|| AESDEC || Perform One Round of an AES Decryption Flow ||
-|| AESENCLAST || Perform Last Round of an AES Encryption Flow ||
-|| AESENC || Perform One Round of an AES Encryption Flow ||
-|| AESIMC || Perform the AES !InvMixColumn Transformation ||
-|| AESKEYGENASSIST || AES Round Key Generation Assist ||
 || ANDNPD || Bitwise Logical AND NOT of Packed Double-Precision Floating-Point Values ||
 || ANDNPS || Bitwise Logical AND NOT of Packed Single-Precision Floating-Point Values ||
 || ANDPD || Bitwise Logical AND of Packed Double-Precision Floating-Point Values ||
 || ANDPS || Bitwise Logical AND of Packed Single-Precision Floating-Point Values ||
-|| AND || Logical AND ||
-|| ARPL || Adjust RPL Field of Segment Selector ||
 || BLENDPD || Blend Packed Double Precision Floating-Point Values ||
 || BLENDPS || Blend Packed Single Precision Floating-Point Values ||
 || BLENDVPD || Variable Blend Packed Double Precision Floating-Point Values ||
 || BLENDVPS || Variable Blend Packed Single Precision Floating-Point Values ||
-|| BOUND || Check Array Index Against Bounds ||
-|| BSF || Bit Scan Forward ||
-|| BSR || Bit Scan Reverse ||
-|| BSWAP || Byte Swap ||
-|| BTC || Bit Test and Complement ||
-|| BTR || Bit Test and Reset ||
-|| BTS || Bit Test and Set ||
-|| BT || Bit Test ||
-|| CALL || Call Procedure ||
-|| CBW/CWDE/CDQE || Convert Byte to Word/Convert Word to Doubleword/Convert Doubleword ||
-|| CLC || Clear Carry Flag ||
-|| CLD || Clear Direction Flag ||
 || CLFLUSH || Flush Cache Line ||
-|| CLI || Clear Interrupt Flag ||
 || CLTS || Clear Task-Switched Flag in CR0 ||
-|| CMC || Complement Carry Flag ||
 || CMOVcc || Conditional Move ||
 || CMPPD || Compare Packed Double-Precision Floating-Point Values ||
 || CMPPS || Compare Packed Single-Precision Floating-Point Values ||
-|| CMPS/CMPSB/CMPSW/CMPSD/CMPSQ || Compare String Operands ||
 || CMPSD || Compare Scalar Double-Precision Floating-Point Values ||
 || CMPSS || Compare Scalar Single-Precision Floating-Point Values ||
-|| CMPXCHG8B/CMPXCHG16B || Compare and Exchange Bytes ||
-|| CMPXCHG || Compare and Exchange ||
-|| CMP || Compare Two Operands ||
 || COMISD || Compare Scalar Ordered Double-Precision Floating-Point Values and Set ||
 || COMISS || Compare Scalar Ordered Single-Precision Floating-Point Values and Set ||
 || CPUID || CPU Identification ||
@@ -81,113 +122,53 @@
 || CVTTSD2SI || Convert with Truncation Scalar Double-Precision FP Value to Signed Integer ||
 || CVTTSS2SI || Convert with Truncation Scalar Single-Precision FP Value to Dword Integer ||
 || CWD/CDQ/CQO || Convert Word to Doubleword/Convert Doubleword to Quadword ||
-|| DAA || Decimal Adjust AL after Addition ||
-|| DAS || Decimal Adjust AL after Subtraction ||
-|| DEC || Decrement by 1 ||
+|| || ||
 || DIVPD || Divide Packed Double-Precision Floating-Point Values ||
 || DIVPS || Divide Packed Single-Precision Floating-Point Values ||
 || DIVSD || Divide Scalar Double-Precision Floating-Point Values ||
 || DIVSS || Divide Scalar Single-Precision Floating-Point Values ||
-|| DIV || Unsigned Divide ||
 || DPPD || Dot Product of Packed Double Precision Floating-Point Values ||
 || DPPS || Dot Product of Packed Single Precision Floating-Point Values ||
 || EMMS || Empty MMX Technology State ||
-|| ENTER || Make Stack Frame for Procedure Parameters ||
+|| || ||
 || EXTRACTPS || Extract Packed Single Precision Floating-Point Value ||
-|| F2XM1 || Compute 2x–1 ||
-|| FABS || Absolute Value ||
-|| FADD/FADDP/FIADD || Add ||
-|| FBLD || Load Binary Coded Decimal ||
-|| FBSTP || Store BCD Integer and Pop ||
-|| FCHS || Change Sign ||
-|| FCLEX/FNCLEX || Clear Exceptions ||
-|| FCMOVcc || Floating-Point Conditional Move ||
-|| FCOMI/FCOMIP/ FUCOMI/FUCOMIP || Compare Floating Point Values and Set EFLAGS ||
-|| FCOS || Cosine ||
-|| FDECSTP || Decrement Stack-Top Pointer ||
-|| FDIV/FDIVP/FIDIV || Divide ||
-|| FDIVR/FDIVRP/FIDIVR || Reverse Divide ||
-|| FFREE || Free Floating-Point Register ||
-|| FICOM/FICOMP || Compare Integer ||
-|| FILD || Load Integer ||
-|| FINCSTP || Increment Stack-Top Pointer ||
-|| FINIT/FNINIT || Initialize Floating-Point Unit ||
-|| FIST/FISTP || Store Integer ||
-|| FISTTP || Store Integer with Truncation ||
-|| FLD1/FLDL2T/FLDL2E/FLDPI/FLDLG2/FLDLN2/FLDZ || Load Constant ||
-|| FLDCW || Load x87 FPU Control Word ||
-|| FLDENV || Load x87 FPU Environment ||
-|| FLD || Load Floating Point Value ||
-|| FMUL/FMULP/FIMUL || Multiply ||
-|| FNOP || No Operation ||
-|| FPATAN || Partial Arctangent ||
-|| FPREM1 || Partial Remainder ||
-|| FPREM || Partial Remainder ||
-|| FPTAN || Partial Tangent ||
-|| FRNDINT || Round to Integer ||
-|| FRSTOR || Restore x87 FPU State ||
-|| FSAVE/FNSAVE || Store x87 FPU State ||
-|| FSCALE || Scale ||
-|| FSINCOS || Sine and Cosine ||
-|| FSIN || Sine ||
-|| FSQRT || Square Root ||
-|| FST/FSTP || Store Floating Point Value ||
-|| FSTCW/FNSTCW || Store x87 FPU Control Word ||
-|| FSTENV/FNSTENV || Store x87 FPU Environment ||
-|| FSTSW/FNSTSW || Store x87 FPU Status Word ||
-|| FSUB/FSUBP/FISUB || Subtract ||
-|| FSUBR/FSUBRP/FISUBR || Reverse Subtract ||
-|| FTST || TEST ||
-|| FUCOM/FUCOMP/FUCOMPP || Unordered Compare Floating Point Values ||
-|| FXAM || Examine ModR/M ||
-|| FXCH || Exchange Register Contents ||
+|| || ||
 || FXRSTOR || Restore x87 FPU, MMX , XMM, and MXCSR State ||
 || FXSAVE || Save x87 FPU, MMX Technology, and SSE State ||
-|| FXTRACT || Extract Exponent and Significand ||
-|| FYL2XP1 || Compute y `*` log2(x + 1) ||
-|| FYL2X || Compute y `*` log2x ||
+|| || ||
 || HADDPD || Packed Double-FP Horizontal Add ||
 || HADDPS || Packed Single-FP Horizontal Add ||
 || HLT || Halt ||
 || HSUBPD || Packed Double-FP Horizontal Subtract ||
 || HSUBPS || Packed Single-FP Horizontal Subtract ||
-|| IDIV || Signed Divide ||
-|| IMUL || Signed Multiply ||
-|| INC || Increment by 1 ||
-|| INS/INSB/INSW/INSD || Input from Port to String ||
 || INSERTPS || Insert Packed Single Precision Floating-Point Value ||
-|| INT n/INTO/INT 3 || Call to Interrupt Procedure ||
 || INVD || Invalidate Internal Caches ||
 || INVEPT || Invalidate Translations Derived from EPT ||
 || INVLPG || Invalidate TLB Entry ||
 || INVVPID || Invalidate Translations Based on VPID ||
+|| || ||
 || IN || Input from Port ||
+|| INS/INSB/INSW/INSD || Input from Port to String ||
+|| OUT || Output to Port ||
+|| OUTS/OUTSB/OUTSW/OUTSD || Output String to Port ||
+|| || ||
 || IRET/IRETD || Interrupt Return ||
-|| JMP || Jump ||
-|| Jcc || Jump if Condition Is Met ||
-|| LAHF || Load Status Flags into AH Register ||
 || LAR || Load Access Rights Byte ||
 || LDDQU || Load Unaligned Integer 128 Bits ||
 || LDMXCSR || Load MXCSR Register ||
-|| LDS/LES/LFS/LGS/LSS || Load Far Pointer ||
-|| LEAVE || High Level Procedure Exit ||
-|| LEA || Load Effective Address ||
-|| LFENCE || Load Fence ||
-|| LGDT/LIDT || Load Global/Interrupt Descriptor Table Register ||
-|| LLDT || Load Local Descriptor Table Register ||
-|| LMSW || Load Machine Status Word ||
 || LOCK || Assert LOCK# Signal Prefix ||
-|| LODS/LODSB/LODSW/LODSD/LODSQ || Load String ||
-|| LOOP/LOOPcc || Loop According to ECX Counter ||
-|| LSL || Load Segment Limit ||
-|| LTR || Load Task Register ||
+|| || ||
 || MASKMOVDQU || Store Selected Bytes of Double Quadword ||
 || MASKMOVQ || Store Selected Bytes of Quadword ||
 || MAXPD || Return Maximum Packed Double-Precision Floating-Point Values ||
 || MAXPS || Return Maximum Packed Single-Precision Floating-Point Values ||
 || MAXSD || Return Maximum Scalar Double-Precision Floating-Point Value ||
 || MAXSS || Return Maximum Scalar Single-Precision Floating-Point Value ||
+|| || ||
+|| LFENCE || Load Fence ||
 || MFENCE || Memory Fence ||
+|| SFENCE || Store Fence ||
+|| || ||
 || MINPD || Return Minimum Packed Double-Precision Floating-Point Values ||
 || MINPS || Return Minimum Packed Single-Precision Floating-Point Values ||
 || MINSD || Return Minimum Scalar Double-Precision Floating-Point Value ||
@@ -217,33 +198,26 @@
 || MOVNTQ || Store of Quadword Using Non-Temporal Hint ||
 || MOVQ2DQ || Move Quadword from MMX Technology to XMM Register ||
 || MOVQ || Move Quadword ||
-|| MOVS/MOVSB/MOVSW/MOVSD/MOVSQ || Move Data from String to String ||
 || MOVSD || Move Scalar Double-Precision Floating-Point Value ||
 || MOVSHDUP || Move Packed Single-FP High and Duplicate ||
 || MOVSLDUP || Move Packed Single-FP Low and Duplicate ||
 || MOVSS || Move Scalar Single-Precision Floating-Point Values ||
-|| MOVSX/MOVSXD || Move with Sign-Extension ||
 || MOVUPD || Move Unaligned Packed Double-Precision Floating-Point Values ||
 || MOVUPS || Move Unaligned Packed Single-Precision Floating-Point Values ||
-|| MOVZX || Move with Zero-Extend ||
-|| MOV || Move ||
+|| || ||
 || MOV || Move to/from Control Registers ||
+|| LMSW || Load Machine Status Word ||
+|| SMSW || Store Machine Status Word ||
+|| || ||
 || MOV || Move to/from Debug Registers ||
 || MPSADBW || Compute Multiple Packed Sums of Absolute Difference ||
 || MULPD || Multiply Packed Double-Precision Floating-Point Values ||
 || MULPS || Multiply Packed Single-Precision Floating-Point Values ||
 || MULSD || Multiply Scalar Double-Precision Floating-Point Values ||
 || MULSS || Multiply Scalar Single-Precision Floating-Point Values ||
-|| MUL || Unsigned Multiply ||
 || MWAIT || Monitor Wait ||
-|| NEG || Two's Complement Negation ||
-|| NOP || No Operation ||
-|| NOT || One's Complement Negation ||
 || ORPD || Bitwise Logical OR of Double-Precision Floating-Point Values ||
 || ORPS || Bitwise Logical OR of Single-Precision Floating-Point Values ||
-|| OR || Logical Inclusive OR ||
-|| OUTS/OUTSB/OUTSW/OUTSD || Output String to Port ||
-|| OUT || Output to Port ||
 || PABSB/PABSW/PABSD || Packed Absolute Value ||
 || PACKSSWB/PACKSSDW || Pack with Signed Saturation ||
 || PACKUSDW || Pack with Unsigned Saturation ||
@@ -301,10 +275,7 @@
 || PMULLD || Multiply Packed Signed Dword Integers and Store Low Result ||
 || PMULLW || Multiply Packed Signed Integers and Store Low Result ||
 || PMULUDQ || Multiply Packed Unsigned Doubleword Integers ||
-|| POPA/POPAD || Pop All General-Purpose Registers ||
 || POPCNT || Return the Count of Number of Bits Set to 1 ||
-|| POPF/POPFD/POPFQ || Pop Stack into EFLAGS Register ||
-|| POP || Pop a Value from the Stack ||
 || POR || Bitwise Logical OR ||
 || PREFETCHh || Prefetch Data Into Caches ||
 || PSADBW || Compute Sum of Absolute Differences ||
@@ -326,19 +297,24 @@
 || PTEST || Logical Compare ||
 || PUNPCKHBW/PUNPCKHWD/PUNPCKHDQ/PUNPCKHQDQ || Unpack High Data ||
 || PUNPCKLBW/PUNPCKLWD/PUNPCKLDQ/PUNPCKLQDQ || Unpack Low Data ||
-|| PUSHA/PUSHAD || Push All General-Purpose Registers ||
-|| PUSHF/PUSHFD || Push EFLAGS Register onto the Stack ||
+|| || ||
 || PUSH || Push Word, Doubleword or Quadword Onto the Stack ||
+|| POP || Pop a Value from the Stack ||
+|| PUSHA/PUSHAD || Push All General-Purpose Registers ||
+|| POPA/POPAD || Pop All General-Purpose Registers ||
+|| || ||
 || PXOR || Logical Exclusive OR ||
-|| RCL/RCR/ROL/ROR- || Rotate ||
 || RCPPS || Compute Reciprocals of Packed Single-Precision Floating-Point Values ||
 || RCPSS || Compute Reciprocal of Scalar Single-Precision Floating-Point Values ||
 || RDMSR || Read from Model Specific Register ||
 || RDPMC || Read Performance-Monitoring Counters ||
-|| RDTSCP || Read Time-Stamp Counter and Processor ID ||
+|| || ||
 || RDTSC || Read Time-Stamp Counter ||
+|| RDTSCP || Read Time-Stamp Counter and Processor ID ||
+|| || ||
 || REP/REPE/REPZ/REPNE/REPNZ || Repeat String Operation Prefix ||
-|| RET || Return from Procedure ||
+|| LOOP/LOOPcc || Loop According to ECX Counter ||
+|| || ||
 || ROUNDPD || Round Packed Double Precision Floating-Point Values ||
 || ROUNDPS || Round Packed Single Precision Floating-Point Values ||
 || ROUNDSD || Round Scalar Double Precision Floating-Point Values ||
@@ -346,41 +322,41 @@
 || RSM || Resume from System Management Mode ||
 || RSQRTPS || Compute Reciprocals of Square Roots of Packed Single-Precision Floating- ||
 || RSQRTSS || Compute Reciprocal of Square Root of Scalar Single-Precision Floating-Point ||
+|| || ||
+|| LAHF || Load Status Flags into AH Register ||
 || SAHF || Store AH into Flags ||
+|| PUSHF/PUSHFD || Push EFLAGS Register onto the Stack ||
+|| POPF/POPFD/POPFQ || Pop Stack into EFLAGS Register ||
+|| || ||
+|| RCL/RCR/ROL/ROR- || Rotate ||
 || SAL/SAR/SHL/SHR || Shift ||
-|| SBB || Integer Subtraction with Borrow ||
-|| SCAS/SCASB/SCASW/SCASD || Scan String ||
-|| SETcc || Set Byte on Condition ||
-|| SFENCE || Store Fence ||
-|| SGDT || Store Global Descriptor Table Register ||
 || SHLD || Double Precision Shift Left ||
 || SHRD || Double Precision Shift Right ||
+|| || ||
+|| SETcc || Set Byte on Condition ||
 || SHUFPD || Shuffle Packed Double-Precision Floating-Point Values ||
 || SHUFPS || Shuffle Packed Single-Precision Floating-Point Values ||
+|| || ||
+|| LGDT/LIDT || Load Global/Interrupt Descriptor Table Register ||
+|| SGDT || Store Global Descriptor Table Register ||
 || SIDT || Store Interrupt Descriptor Table Register ||
+|| LLDT || Load Local Descriptor Table Register ||
 || SLDT || Store Local Descriptor Table Register ||
-|| SMSW || Store Machine Status Word ||
+|| || ||
 || SQRTPD || Compute Square Roots of Packed Double-Precision Floating-Point Values ||
 || SQRTPS || Compute Square Roots of Packed Single-Precision Floating-Point Values ||
 || SQRTSD || Compute Square Root of Scalar Double-Precision Floating-Point Value ||
 || SQRTSS || Compute Square Root of Scalar Single-Precision Floating-Point Value ||
-|| STC || Set Carry Flag ||
-|| STD || Set Direction Flag ||
-|| STI || Set Interrupt Flag ||
 || STMXCSR || Store MXCSR Register State ||
-|| STOS/STOSB/STOSW/STOSD/STOSQ || Store String ||
+|| || ||
+|| LTR || Load Task Register ||
 || STR || Store Task Register ||
+|| || ||
 || SUBPD || Subtract Packed Double-Precision Floating-Point Values ||
 || SUBPS || Subtract Packed Single-Precision Floating-Point Values ||
 || SUBSD || Subtract Scalar Double-Precision Floating-Point Values ||
 || SUBSS || Subtract Scalar Single-Precision Floating-Point Values ||
-|| SUB || Subtract ||
 || SWAPGS || Swap GS Base Register ||
-|| SYSCALL || Fast System Call ||
-|| SYSENTER || Fast System Call ||
-|| SYSEXIT || Fast Return from Fast System Call ||
-|| SYSRET || Return From Fast System Call ||
-|| TEST || Logical Compare ||
 || UCOMISD || Unordered Compare Scalar Double-Precision Floating-Point Values and Set ||
 || UCOMISS || Unordered Compare Scalar Single-Precision Floating-Point Values and Set ||
 || UD2 || Undefined Instruction ||
@@ -389,10 +365,10 @@
 || UNPCKLPD || Unpack and Interleave Low Packed Double-Precision Floating-Point Values ||
 || UNPCKLPS || Unpack and Interleave Low Packed Single-Precision Floating-Point Values ||
 || VBROADCAST || Load with Broadcast ||
-|| VERR/VERW || Verify a Segment for Reading or Writing ||
 || VEXTRACTF128 || Extract Packed Floating-Point Values ||
 || VINSERTF128 || Insert Packed Floating-Point Values ||
 || VMASKMOV || Conditional SIMD Packed Loads and Stores ||
+|| || ||
 || VMCALL || Call to VM Monitor ||
 || VMCLEAR || Clear Virtual-Machine Control Structure ||
 || VMLAUNCH/VMRESUME || Launch/Resume Virtual Machine ||
@@ -401,8 +377,10 @@
 || VMREAD || Read Field from Virtual-Machine Control Structure ||
 || VMRESUME || Resume Virtual Machine ||
 || VMWRITE || Write Field to Virtual-Machine Control Structure ||
+|| || ||
 || VMXOFF || Leave VMX Operation ||
 || VMXON || Enter VMX Operation ||
+|| || ||
 || VPERM2F128 || Permute Floating-Point Values ||
 || VPERMILPD || Permute Double-Precision Floating-Point Values ||
 || VPERMILPS || Permute Single-Precision Floating-Point Values ||
@@ -410,13 +388,11 @@
 || VTESTPD/VTESTPS || Packed Bit Test ||
 || VZEROALL || Zero All YMM Registers ||
 || VZEROUPPER || Zero Upper Bits of YMM Registers ||
-|| WAIT/FWAIT || Wait ||
 || WBINVD || Write Back and Invalidate Cache ||
 || WRMSR || Write to Model Specific Register ||
 || XADD || Exchange and Add ||
 || XCHG || Exchange Register/Memory with Register ||
 || XGETBV || Get Value of Extended Control Register ||
-|| XLAT/XLATB || Table Look-up Translation ||
 || XORPD || Bitwise Logical XOR for Double-Precision Floating-Point Values ||
 || XORPS || Bitwise Logical XOR for Single-Precision Floating-Point Values ||
 || XOR || Logical Exclusive OR ||
@@ -424,3 +400,130 @@
 || XSAVEOPT || Save Processor Extended States Optimized ||
 || XSAVE || Save Processor Extended States ||
 || XSETBV || Set Extended Control Register ||
+
+|| *mnemonic* || *description* ||
+|| SYSCALL || Fast System Call ||
+|| SYSRET || Return From Fast System Call ||
+|| || ||
+|| SYSENTER || Fast System Call ||
+|| SYSEXIT || Fast Return from Fast System Call ||
+
+=obsolete=
+|| *mnemonic* || *description* ||
+|| AAA || ASCII Adjust After Addition ||
+|| AAD || ASCII Adjust AX Before Division ||
+|| AAM || ASCII Adjust AX After Multiply ||
+|| AAS || ASCII Adjust AL After Subtraction ||
+|| || ||
+|| DAA || Decimal Adjust AL after Addition ||
+|| DAS || Decimal Adjust AL after Subtraction ||
+|| || ||
+|| BOUND || Check Array Index Against Bounds ||
+|| XLAT/XLATB || Table Look-up Translation ||
+|| || ||
+|| LDS/LES/LFS/LGS/LSS || Load Far Pointer ||
+|| || ||
+|| LSL || Load Segment Limit ||
+|| ARPL || Adjust RPL Field of Segment Selector ||
+|| VERR/VERW || Verify a Segment for Reading or Writing ||
+
+=AES=
+|| *mnemonic* || *description* ||
+|| AESDECLAST || Perform Last Round of an AES Decryption Flow ||
+|| AESDEC || Perform One Round of an AES Decryption Flow ||
+|| AESENCLAST || Perform Last Round of an AES Encryption Flow ||
+|| AESENC || Perform One Round of an AES Encryption Flow ||
+|| AESIMC || Perform the AES !InvMixColumn Transformation ||
+|| AESKEYGENASSIST || AES Round Key Generation Assist ||
+
+=FPU=
+
+==internals==
+|| *mnemonic* || *description* ||
+|| FINIT/FNINIT || Initialize Floating-Point Unit ||
+|| FCLEX/FNCLEX || Clear Exceptions ||
+|| FFREE || Free Floating-Point Register ||
+|| WAIT/FWAIT || Wait ||
+|| || ||
+|| FINCSTP || Increment Stack-Top Pointer ||
+|| FDECSTP || Decrement Stack-Top Pointer ||
+|| || ||
+|| FLDCW || Load x87 FPU Control Word ||
+|| FSTCW/FNSTCW || Store x87 FPU Control Word ||
+|| || ||
+|| FRSTOR || Restore x87 FPU State ||
+|| FSAVE/FNSAVE || Store x87 FPU State ||
+|| || ||
+|| FLDENV || Load x87 FPU Environment ||
+|| FSTENV/FNSTENV || Store x87 FPU Environment ||
+|| || ||
+|| FSTSW/FNSTSW || Store x87 FPU Status Word ||
+
+==data transfer==
+
+===real===
+|| *mnemonic* || *description* ||
+|| FCMOVcc || Floating-Point Conditional Move ||
+|| FLD || Load Floating Point Value ||
+|| FST/FSTP || Store Floating Point Value ||
+|| FXCH || Exchange Register Contents ||
+
+====constants====
+|| *mnemonic* || *description* ||
+|| FLD1/FLDL2T/FLDL2E/FLDPI/FLDLG2/FLDLN2/FLDZ || Load Constant ||
+
+===integer===
+|| *mnemonic* || *description* ||
+|| FILD || Load Integer ||
+|| FIST/FISTP || Store Integer ||
+
+===packed decimals===
+|| *mnemonic* || *description* ||
+|| FBLD || Load Binary Coded Decimal ||
+|| FBSTP || Store BCD Integer and Pop ||
+
+==comparison==
+|| *mnemonic* || *description* ||
+|| FCOMI/FCOMIP/ FUCOMI/FUCOMIP || Compare Floating Point Values and Set EFLAGS ||
+|| FICOM/FICOMP || Compare Integer ||
+|| FTST || TEST ||
+|| FUCOM/FUCOMP/FUCOMPP || Unordered Compare Floating Point Values ||
+|| FXAM || Examine ModR/M ||
+
+==arithmetic==
+===real===
+|| *mnemonic* || *description* ||
+|| FABS || Absolute Value ||
+|| FADD/FADDP/FIADD || Add ||
+|| FCHS || Change Sign ||
+|| FDIV/FDIVP/FIDIV || Divide ||
+|| FDIVR/FDIVRP/FIDIVR || Reverse Divide ||
+|| FMUL/FMULP/FIMUL || Multiply ||
+|| FRNDINT || Round to Integer ||
+|| FSQRT || Square Root ||
+|| FSUB/FSUBP/FISUB || Subtract ||
+|| FSUBR/FSUBRP/FISUBR || Reverse Subtract ||
+
+==trigonometric==
+|| *mnemonic* || *description* ||
+|| FCOS || Cosine ||
+|| FPATAN || Partial Arctangent ||
+|| FPTAN || Partial Tangent ||
+|| FSINCOS || Sine and Cosine ||
+|| FSIN || Sine ||
+
+==logarithmic/exponential==
+|| *mnemonic* || *description* ||
+|| F2XM1 || Compute 2x–1 ||
+|| FSCALE || Scale ||
+|| FYL2XP1 || Compute y `*` log2(x + 1) ||
+|| FYL2X || Compute y `*` log2x ||
+
+==other==
+|| *mnemonic* || *description* ||
+|| FISTTP || Store Integer with Truncation ||
+|| FNOP || No Operation ||
+|| FPREM1 || Partial Remainder ||
+|| FPREM || Partial Remainder ||
+|| FXTRACT || Extract Exponent and Significand ||
+|| || ||
