@@ -3,7 +3,7 @@
 
 このページは,エンコード,!JavaScript,PDFの構造を基本にしたPDFフォーマットのトリックについてのレジュメです.
 
-注意：リンクのファイルはクリーンで,わかりやすいように私自身によって作成されたものです.しかしながら,各種のウィルスに見受けられる様々なトリックを使っているため,お使いのアンチウィルスに検出されたり,通常使用しているプログラムをクラッシュさせる可能性があります.が,Adobe Acrobat以下では機能し,それがここでの目的であります.
+注意：リンクのファイルはクリーンで,わかりやすいように私自身によって作成されたものです.しかしながら,各種のウィルスに見受けられる様々なトリックを使っているため,お使いのアンチウィルスに検出されたり,通常使用しているプログラムをクラッシュさせる可能性があります.が,Adobe Acrobat以下では機能し,それがここでの目的です.
 
  早い話が,これらのファイルは一風変わってますが,機能はするもので,無害です.
 !JavaScriptのトリックについてさらに知りたい方はこちら： [http://bonsaiden.github.com/JavaScript-Garden/ JavaScript Garden].
@@ -172,7 +172,7 @@ BT/default 20 Tf 1 0 0 1 1 715 Tm(this text and the PDF objects are stored beyon
 ==リニアライズドPDF==
 最初のオブジェクトがリニアライズドタグを含まない場合,PDFは下から上へ解析します.また,最初のオブジェクトがリニアライズドタグを含む場合,それがどんな値であれ,PDFは上から下へ解析します.
 
-　下から上,又上から下で解析されるPDFの例　([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-parsingdirection.pdf ダウンロード]):
+　下から上,又上から下へ解析されるPDFの例　([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-parsingdirection.pdf ダウンロード]):
 {{{
 [...]
 % 空のオブジェクトを挿入又は削除することで解析の方向が変わります.
@@ -218,7 +218,7 @@ trailer
 
 
 =!JavaScriptにおけるエンコーディング=
-ここでは!JavaScriptを使ったいくつかの別のエンコーディングのトリックを説明します.（Acrobatに限ったことではありません））
+ここでは!JavaScriptを使ったいくつかの別のエンコーディングのトリックを説明します.（Acrobatに限ったことではありません）
 
 ==連結==
 最も簡単なトリックは文字列をいくつかに区切って再び連結することです.
@@ -438,9 +438,9 @@ trailer<</Root<</Pages 1 0 R>>>>
 
 
 =壊れたストリーム=
-!FlatEncodeで圧縮されたストリームが解凍中に切り取られたもしくは壊れた場合,エラーになった所まではストリームは保管されます.（通常,正常でない圧縮されたデータは無視されます.）
+!FlatEncodeで圧縮されたストリームが展開中に切り取られたもしくは壊れた場合,エラーになった所まではストリームは保管されます.（通常,正常でない圧縮されたデータは無視されます.）
 
-Acrobatがするような,解凍された壊れたストリームを取得する簡単な方法は,それを添付ファイルとともにPDFテンプレートに切り取ることです.このように添付ファイルを抽出するときにストリームを展開するのはAcrobatのみです: ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/attachstream.py 移籍のスクリプト] + [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-attached.pdf 添付ファイル付きのテンプレート])
+Acrobatがするような,展開された壊れたストリームを取得する簡単な方法は,それを添付ファイルとともにPDFテンプレートに切り取ることです.このように添付ファイルを抽出するときにストリームを展開するのはAcrobatのみです: ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/attachstream.py 移籍のスクリプト] + [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-attached.pdf 添付ファイル付きのテンプレート])
 
 =レファレンス=
  * [http://blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/ Didier Stevens]
