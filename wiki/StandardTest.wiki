@@ -1,24 +1,40 @@
-#summary a user-mode opcodes tester
-#labels Featured
+#summary a test for ASM and PE tools
 
-= Introduction =
+[http://code.google.com/p/corkami/downloads/list?can=1&q=cost CoST (Corkami Standard Test)] is a program that tests opcodes, [x86oddities x86 oddities], in a weird PE file.
 
-this program tests most usermode opcodes, from obsolete to very recent, including undocumented ones, undefined use or encodings. As well, opcodes used as anti-debugs, exception triggers, Get IPs... (it helped me to find bugs in all the disassemblers that I tested, that is: !OllyDbg, !WinDbg, IDA, XED, !BeaEngine, libdasm, HT, Hiew, diStorm, Metasm, and other private projects...)
+You can use it to test your tools or your skills.
 
-it uses several tricks to be able to test further than normally expected:
-  * using segment 33h trick to test 64b opcodes
-  * using !ZwAllocateVirtualMemory trick to allocate `[`0000-ffff`]`, so word jumps and returns are working
+It helped to find bugs in many disassemblers and PE tools (all that I tested):
+ * !OllyDbg, !WinDbg, IDA, XED, !BeaEngine, libdasm, HT, Hiew, diStorm, Metasm, pefile, and other private projects...
 
-General FPU/SSE+ opcodes are not included: It's not intended to be complete, but just stress your emulator/knowledge a bit, and insist on specific points that are interesting.
+*WARNING* The whole binary, including the PE structure, is hand-made in assembly, so your favorite security program might trigger a false positive warning.
 
-The whole binary, including the PE structure, is hand-made in assembly, so your favorite security program might trigger a false positive warning.
+=PE features=
+ * PE footer (header at the end of the file)
+ * NULL Entrypoint
+ * no section
+ * invalid values everywhere, and randomized at each build as much as possible
+ * TLS
+  * non standard structure
+  * entry added on the fly
+  * patch via !AddressOfIndex
+  * non returning code
+
+=ASM features=
+ * execution of 64b in 32b process
+ * allocation of the null page.
+
+=Download=
+see the [http://code.google.com/p/corkami/downloads/list?can=1&q=cost download list]
 
 = Details =
 
 jumps opcodes:
   * call to word
-  * jump short, near, to word, to reg32, to reg16, far
-  * return near, near word, far, interrupt
+  * jump:
+   * short, near, to word, to reg32, to reg16, far
+  * return:
+   * near, near word, far, interrupt
 
 classic opcodes:
   * mov movzx movsx lea xchg add sub sbb adc inc dec or and xor
@@ -33,7 +49,7 @@ undocumented opcodes:
   * aam xx, salc, aad xx, bswap reg16, smsw reg32
 
 cpu specific opcodes:
-  * popcnt movbe crc32
+  * popcnt movbe crc32 rdtscp
 
 undocumented encodings:
   * test, 'sal'
@@ -45,7 +61,7 @@ nops-equivalent:
   * nop, pause, sfence, mfence, lfence, prefetch`*`, 'hint nop', into, fpu, lock + operators
 
 anti-debuggers:
-  * gs, smsw, rdtsc, pushf, pop ss
+  * gs, smsw, rdtsc, pushf, pop ss, int 2A (XP)
 
 Get EIP:
   * call, call far, fstenv
@@ -58,10 +74,14 @@ documented but frequent disassembly mistakes:
   * bswap, smsw, str, branch hints, word calls/rets/loops, FS:movsd, xlatb, ud*
 
 64 bits opcodes:
-  * cwde, cmpxchg16, lea RIP, movsxd
+  * cwde, cmpxchg16, lea RIP, movsxd, 15 bit opcode
+
+32+64b code:
+  * the same hex code is executed automatically, once in 32b, then in 64b, producing different opcodes
+
 
 = Use = 
-It has currently no options. Just run it from command line, all tests will run after each other.
+It has currently no options. Just run it from command line, all tests will run after each other. It sends more output to !DbgPrint.
 
 this is the output you could get under Windows 7, 64bit
 {{{
@@ -118,10 +138,16 @@ Intermediate messages are displayed then removed, so if it crashes in the middle
 
 
 = Building = 
-assemble directly with yasm, no linker needed:
+you need YASM, pefile, and python:
+then just type
 {{{
-Yasm -o usermode_test.exe usermode_test.asm
+make
 }}}
+
+
+
+==EASY DEBUG==
+a optional #define is added, to build an executable easier to debug (less PE features, less randomization). Such a build will show it during execution.
 
 =History=
  * 2011/04/01 - version 0.1
