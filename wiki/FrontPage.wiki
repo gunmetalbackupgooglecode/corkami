@@ -1,19 +1,36 @@
 #summary the homepage of this repository
 #labels Deprecated
 
- * [PDFTricks] a summary of PDF tricks - encodings, structures, !JavaScript... ([http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語])
+ * [PDFTricks a summary of PDF tricks] - encodings, structures, !JavaScript... (translations: [http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語])
+
  * [http://code.google.com/p/corkami/downloads/list?can=1&q=cost Corkami Standard Test] is a PE/x86/x64 test program for your tools/emulators/skills (which broke pefile, IDA, Hiew, !OllyDbg...)
+
+ * [http://code.google.com/p/corkami/downloads/list?can=1&q=Binary+corpus Binary corpus] is a group of non malicious binaries, exhibiting various file formats, and more specifically, aspects of PE files.
+  * Formats: NE, PE, Elf, LX, LE, COM, EXE
+  * Compilers: Digital Mars C, Lcc, Masm, Tasm, !FreeBasic, !FreePascal, !OpenWatcom, Fasm, !GoAsm...
+  * PE:
+   * sections: none, 16 (legitimate), 199 (maximum), duplicate, PE-mapping, wrong order...
+   * Misc: Tiny PE, !EntryPoint (on 2nd section, external), no !ImageBase...
+   * Directories: none, !DelayImports, Bound Imports, !LoadConfig Directory, Copyright directory, COM directory, TLS (Empty/normal/Fake/External), Resource (recursive)....
+
  * Infographics and cheat sheets, useful to for daily use or training for reverse engineers: [http://code.google.com/p/corkami/downloads/detail?name=opcodes.pdf Opcodes] [http://code.google.com/p/corkami/downloads/detail?name=cm.pdf anti-debugs] [http://code.google.com/p/corkami/downloads/detail?name=packers.pdf packers] [http://code.google.com/p/corkami/downloads/detail?name=pe-20110117.pdf PE file format]
- * Kernel31, a trampoline DLL to enable >!XpSp3 binaries work on previous OS.
- * documented code of 
+
+ * [http://code.google.com/p/corkami/downloads/list?can=1&q=kernel31 Kernel31], a trampoline DLL to enable >!XpSp3 binaries work on previous OS.
+
+ * commented code of 
+  * Peter Ferrie's [http://corkami.googlecode.com/svn-history/trunk/misc/eicar2.asm EICAR2] (a 18% smaller version of the EICAR file)
   * [http://corkami.googlecode.com/svn-history/r539/trunk/misc/aa86.asm AA86]: Assembler encoder that makes code looks like `%@"%"@,~,%,!_^[^_^]-;>_^[^_^]%"!,^,:_^`
   * [http://corkami.googlecode.com/svn-history/r399/trunk/misc/jjencode.txt JJEncode]: Javascript encoder that makes code looks like `$=~[];$={___:++$,$$$$:(![]+"")[$],__$:++$,$_$_:(`
+
  * a [http://corkami.googlecode.com/svn/trunk/misc/MakePE/examples/packer/aplib.py one-file] aPLib compression/decompression in python
- * various !PoCs to test your tools and skills:
+
+ * various !PoCs:
   * packers
    * [http://code.google.com/p/corkami/downloads/list?can=1&q=mini_packers categories]: patcher, protecter, crypter, compresser, mutater, virtualizer
    * [http://code.google.com/p/corkami/downloads/list?can=1&q=crypters_algos crypters algos]: xor, prng, rc4
    * [http://code.google.com/p/corkami/downloads/list?can=1&q=fibo architectures of virtualization]: standard, stack, [http://en.wikipedia.org/wiki/One_instruction_set_computer#Subtract_and_branch_if_less_than_or_equal_to_zero SubLeq], [http://en.wikipedia.org/wiki/One_instruction_set_computer#Transport_triggered_architecture TTA]
   * imports [http://code.google.com/p/corkami/downloads/list?can=1&q=imports_loading loading] [http://code.google.com/p/corkami/downloads/list?can=1&q=imports_obfuscation obfuscation]
+
+ * [http://code.google.com/p/corkami/downloads/list?can=1&q=user-mode+drivers a toolkit] to run drivers in user-mode, and unpack them directly from !OllyDbg
 
 ...for more information, check the [http://corkami.blogspot.com/p/map.html blog map], the [http://code.google.com/p/corkami/w/list wiki], and the [http://code.google.com/p/corkami/downloads/list downloads tab].
