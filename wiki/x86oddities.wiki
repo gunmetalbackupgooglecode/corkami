@@ -1,23 +1,47 @@
 #summary x86 oddities
 
 =registers=
-MMX and FPU registers are mapped on each other, but in opposite directions.
- ex:
+MMX and FPU registers are mapped on each other, but in opposite directions. Thus, a single FPU operation (here, after initialization) will modify FST, ST0, but also MM7, and CR0 - under XP.
 {{{
 dbe3 finit
 d9eb fldpi
- => mm7 = 0xc90fdaa22168c235
+ => fst = 0x3800
+    st0 = 0x4000c90fdaa22168c235
+    mm7 =     0xc90fdaa22168c235
+    cr0 = 0x80010031 (XP)
 }}}
 
 ----
 =aad=
+_aad_  is by default using 10/0xA as operand, but can just use any other operand.
+it makes it the first Add and Multiply opcode, as `al = ah * operand + al`
+{{{
+
+ax = 0x325
+
+d507 aad 7
+
+==> ax = 0x3A
+}}}
 
 =aam=
+similar logic for _aam_: quotient and remainder go to _ah_/_al_
+{{{
+al = 0x3a
+
+D403 aam 3
+
+=> ah = 0x3a / 3 = 0x13
+   al = 0x3a % 3 = 1
+}}}
 
 =bswap=
- * `bswap <reg16>` is officially undefined. it just clears the registers.
- ex: `66:0FC8 bswap ax => ax = 0`
+`bswap <reg16>` is officially undefined. it just clears the registers.
+{{{
+66:0fc8 bswap ax 
 
+=> ax = 0
+}}}
 =cmpxchg8b=
  * TBC writes the target address even though the content is unchanged
  * `lock cmpxchg8b` (TBC) doesn't crash CPUs anymore, but some tools might still show obsolete warnings about it.
@@ -26,8 +50,14 @@ d9eb fldpi
 
 =mov=
  * mov to/from control and debug registers ignores the ModRM.
+{{{
+0f2000 mov eax, cr0
+}}}
+ by the usual standards it should be an invalid `mov [eax], cr0`, but isn't.
  * `mov <reg32>, <selector>` is officially MOV, (not MOVZX) yet it modifies the full DWORD. the upper word is undefined on <Pentium, and null on later CPUs.
- ex: `8CC8 mov eax, cs` => eax = 0x1b (xp)
+{{{
+8CC8 mov eax, cs => eax = 0x1b (xp)
+}}}
 
 =push=
  * `push <selector>` TODO
@@ -35,7 +65,13 @@ d9eb fldpi
 
 =movbe=
  * `movbe` is 'equivalent' to mov + bswap is an Atom opcode. It's supported by netbooks, but not by powerful desktop/laptop with I7 cpus
+{{{
+[ebx] = 0x11223344
 
+0f38f003 movbe eax, [ebx]
+
+=> eax = 0x44332211h
+}}}
 =lzcnt=
  * TBC `lzcnt` is overlapped with popcnt
 
@@ -65,3 +101,6 @@ and on the following opcodes:
   ex: `0f01e0 smsw eax` => `eax = 8001003B` (XP)
 
 =test=
+
+=rdtscp=
+_rdtscp_ is a recent opcode that just returns the usual _rdtsc_ result to eax/edx, and  is just outputting... TBC
