@@ -5,35 +5,35 @@ MMX and FPU registers are mapped on each other, but in opposite directions. Thus
 {{{
 dbe3 finit
 d9eb fldpi
- => fst = 0x3800
-    st0 = 0x4000c90fdaa22168c235
-    mm7 =     0xc90fdaa22168c235
-    cr0 = 0x80010031 (XP)
+ => fst = 03800h
+    st0 = 04000c90fdaa22168c235h
+    mm7 =     0c90fdaa22168c235h
+    cr0 = 080010031h (XP)
 }}}
 
 ----
 
 =aad=
-_aad_  is by default using 10/0xA as operand, but can just use any other operand.
+_aad_  is by default using 10/0Ah as operand, but can just use any other operand.
 it makes it the first Add and Multiply opcode, as `al = ah * operand + al`
 {{{
 
-ax = 0x325
+ax = 325h
 
 d507 aad 7
 
-==> ax = 0x3A
+==> ax = 3ah
 }}}
 
 =aam=
 similar logic for _aam_: quotient and remainder go to _ah_/_al_
 {{{
-al = 0x3a
+al = 3ah
 
 D403 aam 3
 
-=> ah = 0x3a / 3 = 0x13
-   al = 0x3a % 3 = 1
+=> ah = 3ah / 3 = 13h
+   al = 3ah % 3 = 1
 }}}
 
 =bswap=
@@ -66,7 +66,7 @@ f2 0f 38 f1c3 crc32 eax, ebx
  by the usual standards it should be an invalid `mov [eax], cr0`, but isn't.
  * `mov <reg32>, <selector>` is officially MOV, (not MOVZX) yet it modifies the full DWORD. the upper word is undefined on <Pentium, and null on later CPUs.
 {{{
-8CC8 mov eax, cs => eax = 0x1b (xp)
+8CC8 mov eax, cs => eax = 1bh (xp)
 }}}
 
 =push=
@@ -76,11 +76,11 @@ f2 0f 38 f1c3 crc32 eax, ebx
 =movbe=
 `movbe` is 'equivalent' to mov + bswap is an Atom opcode. It's supported by netbooks, but not by powerful desktop/laptop with I7 cpus
 {{{
-[ebx] = 0x11223344
+[ebx] = 011223344h
 
 0f38f003 movbe eax, [ebx]
 
-=> eax = 0x44332211h
+=> eax = 044332211h
 }}}
 =lzcnt=
  * TBC `lzcnt` is overlapped with popcnt
