@@ -12,6 +12,7 @@ d9eb fldpi
 }}}
 
 ----
+
 =aad=
 _aad_  is by default using 10/0xA as operand, but can just use any other operand.
 it makes it the first Add and Multiply opcode, as `al = ah * operand + al`
@@ -47,7 +48,16 @@ D403 aam 3
  * `lock cmpxchg8b` (TBC) doesn't crash CPUs anymore, but some tools might still show obsolete warnings about it.
 
 =crc32=
+the crc32 opcode implements the full algorithm with a single operation, however, it's not the commonly used CRC32 (used in Zip), but actually the CRC-32C (Castagnoli CRC-32), which uses a different polynomial. 
 
+While it's technically the same algorithm as the 'common' CRC32, it uses a different seed, which makes it more efficient, but it just produces different results, so it's useless for Zip, and all the countless applications of the deflate algorithm.
+{{{
+eax = 0abcdef9h
+ebx = 12345678h
+
+f2 0f 38 f1c3 crc32 eax, ebx
+=> eax, 0c0c38ce0h
+}}}
 =mov=
  * mov to/from control and debug registers ignores the ModRM.
 {{{
@@ -64,7 +74,7 @@ D403 aam 3
  * `push <reg16>` TODO
 
 =movbe=
- * `movbe` is 'equivalent' to mov + bswap is an Atom opcode. It's supported by netbooks, but not by powerful desktop/laptop with I7 cpus
+`movbe` is 'equivalent' to mov + bswap is an Atom opcode. It's supported by netbooks, but not by powerful desktop/laptop with I7 cpus
 {{{
 [ebx] = 0x11223344
 
@@ -103,4 +113,45 @@ and on the following opcodes:
 =test=
 
 =rdtscp=
-_rdtscp_ is a recent opcode that just returns the usual _rdtsc_ result to eax/edx, and  is just outputting... TBC
+_rdtscp_ is a recent opcode that just returns the usual _rdtsc_ result to eax/edx, and also changes ECX: it's  'loaded with the low-order 32-bits of
+IA32_TSC_AUX MSR' ... which means most of the time, 0.
+
+{{{
+0f01f9 rdtscp
+ => edx:eax = <rdtsc>
+    ecx = 0
+}}}
+
+----
+
+=x64=
+
+==32b zero extending==
+in 64b, opcodes are zero-extending on 32b registers.
+
+thus, while
+{{{
+inc al
+inc ax
+inc rax
+}}}
+all do what you would expect
+
+{{{inc eax}}} resets the upper 32bits of `rax`
+
+==switching between 32b and 64b modes==
+on a 64b CPU, the cpu can just change from/to 32b mode by jumping to a properly defined selector. In short, changing the number of bits just mean jumping to a different value of CS.
+
+for example, in a 64b version of windows, selector 33h is for 64b. Jumping to it from a 32b process, then jumping back, will switch to 64b, then back to 32b. It's as simple as that.
+{{{
+    <32b>
+call far 33h:here
+    <32b>
+
+here:
+    <64b>
+    ...
+    retf
+}}}
+
+since there are some opcodes specific to 32b (arpl, ...), and others specific to 64b (movsxd, ...), the same hex data can lead to completely different disassembly, just because CS is different at the start.
