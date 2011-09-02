@@ -1,6 +1,6 @@
 #summary x86 oddities
 
-This pages enumerates various oddities of the x86/x64.
+This page enumerates various oddities of the x86/x64.
 
 They are all implemented and tested in [StandardTest Standard Test].
 
@@ -18,14 +18,14 @@ d9eb: fldpi
 }}}
 
 ==GS==
-on 32bit Windows, GS is not saved in the context: When the OS switches from an application to another, the content of GS is lost. This can be used as an anti-emulator or an anti-stepping.
+On 32bit Windows, GS is not saved in the execution context: When the OS switches from an application to another, the content of GS is lost. This can be used as an anti-emulator or an anti-stepping.
 
 ----
 
 =aad=
-`aad`  is officially defined to use only 10/0Ah as a default operand, but can just use any other operand.
+`aad` is officially defined to use only 10/0Ah as a default operand, but can just use any other operand.
 
-it makes it the first Add and Multiply opcode, as `al = ah * operand + al`
+it makes it the first Add and Multiply opcode, as `al = ah * operand + al`.
 {{{
 
 ax = 325h
@@ -36,8 +36,8 @@ d507: aad 7
 }}}
 
 =aam=
-similar logic for `aam`: 
- * it's officially defined with 10/0ah, but it just works with any byte. 
+Similar logic for `aam`: 
+ * it's officially defined with 10/0ah, but it just works with any byte.
  * it's a division, and quotient and remainder go to `ah` and `al` respectively.
 
 {{{
@@ -50,7 +50,7 @@ d403: aam 3
 }}}
 
 =bswap=
-`bswap <reg16>` is *officially* undefined. In *reality*, it just clears the register.
+`bswap` is *officially* undefined on WORDS. In *reality*, it just clears the register, unexpectedly.
 {{{
 66 0fc8: bswap ax 
 
@@ -63,7 +63,7 @@ d403: aam 3
 <wiki:comment>* TBC writes the target address even though the content is unchanged.</wiki:comment>
 
 =crc32=
-the crc32 opcode implements the full algorithm with a single operation, however, it's not the commonly used CRC32 (used in Zip), but actually the CRC-32C (Castagnoli CRC-32), which uses a different polynomial. 
+The `crc32` opcode implements the full algorithm with a single operation, however, it's not the commonly used CRC32 (used in Zip), but actually the CRC-32C (Castagnoli CRC-32), which uses a different polynomial.
 
 While it's technically the same algorithm as the 'common' CRC32, it uses a different seed, which makes it more efficient, but it just produces different results, so it's useless for Zip, and all the countless applications of the deflate algorithm.
 {{{
@@ -80,16 +80,16 @@ f2 0f 38f1c3: crc32 eax, ebx
 {{{
 0f 2000: mov eax, cr0
 }}}
- by the usual standards it should have been decoded as `mov [eax], cr0`, which would be invalid, but it's an exception.
- * `mov <reg32>, <selector>` is officially MOV, (not MOVZX) yet it modifies the full DWORD. (the upper word is supposedly undefined on CPUs older (or equal) to Pentium, but it's zero on a Pentium anyway). In any case, the upper word is null on modern CPUs.
+ by the usual standards. it should have been decoded as `mov [eax], cr0`, which would be invalid, but it's an exception.
+ * `mov <reg32>, <selector>` is officially MOV, (not MOVZX) yet it modifies the full DWORD from a WORD. (the upper word is supposedly undefined on CPUs older (or equal) to Pentium, but it's zero on a Pentium anyway). In any case, the upper word is null on modern CPUs.
 {{{
 8cc8: mov eax, cs
 
-=> eax = 1bh (xp)
+=> eax = 0000001bh (xp)
 }}}
 
 =push=
-segments and selectors are WORDS-sized registers, like AX, ..., however they're not pushed on the stack the same way.
+Even though selectors are WORDS-sized registers, like standard registers such as AX, they're not pushed on the stack the same way.
 {{{
 1e: push ds
 
@@ -155,20 +155,20 @@ and on the following opcodes:
  * cmpxchg, cmpxchg8b
  * btr, bts, btc
   * `f0 0fa300: lock:bt [eax], eax` *does* trigger an exception.
- * xadd, xchg (even if they are already atomic, so the lock is superfluous)
+ * xadd, xchg (even if they are already atomic, so `lock:` is superfluous)
 
 ==XP bug==
 `lock:` is wrongly parsed by Windows XP:
  # Upon an exception, XP tries to determine whether it should be an INVALID LOCK SEQUENCE or just an ILLEGAL INSTRUCTION
- # but it checks too briefly for a F0 byte: in the case of `FEF0`, which is just undefined, an INVALID LOCK SEQUENCE is still triggered by XP even if in this case, it has nothing to do with a `lock` prefix (For reference, `FEC0` decodes as `inc al`)
+ # but it checks too briefly for a F0 byte: in the case of `FEF0`, which is just undefined, an INVALID LOCK SEQUENCE is still triggered by XP even if, in this case, it has nothing to do with a `lock` prefix (For reference, `FEC0` decodes as `inc al`)
 
 Windows 7 just avoids the problem altogether by triggering an ILLEGAL INSTRUCTION on all invalid opcodes, no matter what, including invalid use of LOCK: prefix. No parsing, no mistake !
 
 =smsw=
- * gives CR0 value (word or dword)
- * unprivileged, unlike `mov eax, cr0` (it's an old 286 instructions, while `mov cr0` is only present in 386 and later)
+ * gives CR0 value (WORD or DWORD)
+ * unprivileged, unlike `mov eax, cr0`: it's an old 286 instructions, while `mov cr0` is only present in 386 and later.
  * upper bits are officially undefined. but in reality, they're just CR0 contents.
-  ex:
+
 {{{
 
 0f 01e0: smsw eax
@@ -176,11 +176,10 @@ Windows 7 just avoids the problem altogether by triggering an ILLEGAL INSTRUCTIO
 => eax = 8001003b (XP)
 }}}
  * since CR0 is influenced by other events (FPU) under XP, it makes it a tough anti-emulator.
- * `smsw` is defined on DWORD or WORD on registers, but always on WORD in memory.
-
+ * `smsw` is defined on DWORD or WORD on registers, but always on WORD in memory(see below).
 
 =str/sldt=
-like SMSW, they work on DWORD or WORD on registers, but only on WORD in memory.
+Like `smsw`, they work on DWORD or WORD on registers, but only on WORD in memory.
 
 {{{
    0f 00c8: str eax
@@ -214,7 +213,7 @@ f7c8 44332211: test eax, 11223344h
  * it stands for [http://en.wikipedia.org/wiki/In-circuit_emulator In-Circuit Emulator] Breakpoint. 
  * it's unprivileged.
  * it triggers a SINGLE STEP exception, *after* execution.
- * it's sometimes written `Int1`, as it's the stepping interrupt, but executing Int1 doesn't trigger SINGLE STEP.
+ * it's sometimes written `Int1`, as it's the stepping interrupt, but executing `CD 01:Int 1` doesn't trigger SINGLE STEP.
 
 {{{
 f1: IceBp
@@ -235,16 +234,17 @@ IA32_TSC_AUX MSR_ ... which means most of the time, 0.
 
 =hint nop=
  * `hint nop` is officially documented by Intel as opcode `0f 1f`, but it's actually available on range `0f 19-1f`.
- * as one would expect from a nop, it never triggers an exception, even when referencing an invalid address.
+ * as one would expect from a `nop`, it never triggers an exception, even when referencing an invalid address.
 
 {{{
 0f1980 00000080: nop [eax + 8000000h] 
 
 => nothing
 }}}
+ * but, of course, if the operand is on an invalid page, it can still trigger an exception.
 
 =branch hints=
- * branch hints are officially define to give hints to the CPU whereas a branch is likely to be taken or not.
+ * branch hints are officially defined to give hints to the CPU whereas a branch is likely to be taken or not.
  * they are supposedly generated by compilers, but there is no official way to assemble or disassemble them.
  * they are re-using the 2e/3e bytes, which are mapped to `CS:` and `DS:` prefixes.
 
@@ -265,8 +265,8 @@ IA32_TSC_AUX MSR_ ... which means most of the time, 0.
 
 =x64=
 
-==32b zero extending==
-in 64b, opcodes are zero-extending on 32b registers.
+==32 bits zero extending==
+In 64 bits, opcodes are zero-extending on 32 bits registers.
 
 thus, while
 {{{
@@ -280,12 +280,12 @@ but on the other hand,
 {{{
 48 ffc0: inc eax
 }}}
-resets the upper 32 bits of `rax`.
+resets the upper 32 bits of RAX.
 
 ==switching between 32b and 64b modes==
-on a 64b CPU, the cpu can just change from/to 32b mode by jumping to a properly defined selector. In short, changing the number of bits just mean jumping to a different value of CS.
+On a 64 bits CPU, the cpu can just change from/to 32b mode by jumping to a properly defined selector. In short, changing the number of bits just mean jumping to a different value of CS.
 
-for example, in a 64b version of windows, selector 33h is for 64b. Jumping to it from a 32b process, then jumping back, will switch to 64b, then back to 32b. It's as simple as that.
+For example, in a 64b version of windows, selector 33h is for 64b. Jumping to it from a 32b process, then jumping back, will switch to 64b, then back to 32b. It's as simple as that.
 {{{
     <32b>
 call far 33h:_64b
@@ -296,10 +296,12 @@ _64b:
     ...
     retf
 }}}
+
 ===32+64===
-since there are some opcodes specific to 32b (arpl, ...), and others specific to 64b (movsxd, ...), the same hex data can lead to completely different disassembly, just because CS is different at the start.
+Since there are some opcodes specific to 32 bits mode (arpl, ...), and others specific to 64 bits mode (movsxd, ...), the same hex data can lead to completely different disassembly, just because CS is different at the start.
 
 ----
+
 ====References====
  * Peter Ferrie
  * Moritz Kroll
