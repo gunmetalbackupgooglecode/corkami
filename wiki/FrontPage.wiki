@@ -18,9 +18,9 @@
  * [http://code.google.com/p/corkami/downloads/list?can=1&q=kernel31 Kernel31], a trampoline DLL to enable >!XpSp3 binaries work on previous OS.
 
  * commented code of 
-  * Peter Ferrie's [http://corkami.googlecode.com/svn-history/trunk/misc/eicar2.asm EICAR2] (a 18% smaller version of the EICAR file)
-  * [http://corkami.googlecode.com/svn-history/r539/trunk/misc/aa86.asm AA86]: Assembler encoder that makes code looks like `%@"%"@,~,%,!_^[^_^]-;>_^[^_^]%"!,^,:_^`
-  * [http://corkami.googlecode.com/svn-history/r399/trunk/misc/jjencode.txt JJEncode]: Javascript encoder that makes code looks like `$=~[];$={___:++$,$$$$:(![]+"")[$],__$:++$,$_$_:(`
+  * Peter Ferrie's [http://corkami.googlecode.com/svn-history/trunk/misc/eicar2.asm EICAR2] (a 18% smaller version of the EICAR file): `5T2)D4)D65Z3PZEICAR-STANDARD-ANTIVIRUS-TEST-FILE!$UX!T!S`
+  * [http://corkami.googlecode.com/svn-history/r539/trunk/misc/aa86.asm AA86]: Assembler encoder that makes x86 code looks like `%@"%"@,~,%,!_^[^_^]-;>_^[^_^]%"!,^,:_^`...
+  * [http://corkami.googlecode.com/svn-history/r399/trunk/misc/jjencode.txt JJEncode]: !JavaScript encoder that makes !JavaScript code looks like `$=~[];$={___:++$,$$$$:(![]+"")[$],__$:++$,$_$_:(`...
 
  * a [http://corkami.googlecode.com/svn/trunk/misc/MakePE/examples/packer/aplib.py one-file] aPLib compression/decompression in python
 
