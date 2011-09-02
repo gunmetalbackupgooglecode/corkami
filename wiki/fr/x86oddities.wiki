@@ -1,0 +1,309 @@
+#summary bizarreries du x86
+
+Cette page énumère les bizarreries diverses du x86/x64.
+
+Elles sont toutes implémentées et testées dans [StandardTest Standard Test].
+
+=registres=
+Les registres MMX et FPU sont superposés, mais dans l'ordre inverse: 0,1,2,3... se retrouvent sur 7,6,5...
+
+Donc, une seule instruction FPU sur ST0 va modifier FST, ST0, mais aussi MM7 (et CR0, quand on est sous XP).
+{{{
+d9eb: fldpi
+
+=> fst = 03800h
+   st0 = 04000c90fdaa22168c235h
+   mm7 =     0c90fdaa22168c235h
+   cr0 = 080010031h (under XP)
+}}}
+
+==GS==
+Sous un Windows 32bit, GS n'est pas sauvé dans le 'contexte' d'exécution: quand l'OS passe d'une application à l'autre, le contenu de GS est perdu. Ça peut servir à faire un anti-émulateur ou un anti-analyse.
+
+----
+
+=aad=
+`aad` est définie officiellement comme utilisant uniquement 10/0Ah comme opérande par défaut, mais on peut en fait utiliser n'importe laquelle.
+
+Cela en fait le premier opcode 'Addition et multiplication', puisque `al` va avoir la valeur `ah * operand + al`.
+{{{
+
+ax = 325h
+
+d507: aad 7
+
+=> ax = 3 * 7 + 25h = 3ah
+}}}
+
+=aam=
+Logique similaire pour `aam`: 
+ * officiellement définie avec 10/0ah, mais ça marche avec n'importe quel octet.
+ * c'est une division, et le quotient et le reste vont dans `ah` et `al` respectivement.
+
+{{{
+al = 3ah
+
+d403: aam 3
+
+=> ah = 3ah / 3 = 13h
+   al = 3ah % 3 = 1
+}}}
+
+=bswap=
+`bswap <reg16>` est *officiellement* non définie sur un MOT. En *réalité*, le registre mis à zéro, ce qui est plutôt inattendu - on comprend qu'Intel ne s'en vante pas.
+{{{
+66 0fc8: bswap ax 
+
+=> ax = 0
+}}}
+
+=cmpxchg8b=
+`lock cmpxchg8b` ne plante plus les processeurs, mais certains outils peuvent encore donner des avertissements.
+
+<wiki:comment>* TBC écrit la cible même si le contenu est inchangé</wiki:comment>
+
+=crc32=
+L'opcode `crc32` implémente l'algorithme complet en une seule instruction, mais il ne s'agit pas du CRC32 le plus couramment utilisé (celui de Zip), mais en fait le CRC-32C(Castagnoli CRC-32), qui utilise un polynôme différent.
+
+Alors qu'il s'agit techniquement du même algorithme, comme la valeure initiale est différente, bien que plus efficace, il produit des résultats différents, donc il est inutile pour Zip et les innombrables applications qui sont basées sur l'algorithme 'Deflate'.
+{{{
+eax = 0abcdef9h
+ebx = 12345678h
+
+f2 0f 38f1c3: crc32 eax, ebx
+
+=> eax, 0c0c38ce0h
+}}}
+
+=mov=
+ * le décodage de `mov` de/vers les registres de contrôle et de déboguage ignorent le ModRM.
+{{{
+0f 2000: mov eax, cr0
+}}}
+ avec la règle standard, on aurait dû le décoder comme `mov [eax], cr0`, ce qui aurait été incorrect, mais il s'agit ici d'une exception.
+ * `mov <reg32>, <selector>` est officiellement bien un MOV (pas un MOVZX) alors que pourtant il modifie un DOUBLE MOT entier à partir d'un MOT. (le mot supérieur est supposé non défini sur les processeurs au moins plus anciens que le Pentium, mais il est nul sur un Pentium quoi qu'il en soit). Dans tous les cas, le mot supérieur est mis à zéro sur les processeurs modernes.
+{{{
+8cc8: mov eax, cs
+
+=> eax = 0000001bh (xp)
+}}}
+
+=push=
+Bien que les sélecteurs aient la taille d'un MOT, comme les registres standards tels qu'AX, ils ne sont pas empilés de la même façon.
+
+{{{
+1e: push ds
+
+=> esp = esp + 4
+   word ptr [esp] = ds
+}}}
+
+{{{
+66 50: push ax
+
+=> esp = esp + 2
+   word ptr [esp] = ax
+}}}
+
+=movbe=
+ * `movbe` est une instruction récente équivalente à `mov + bswap`. 
+{{{
+[ebx] = 011223344h
+
+0f 38f003: movbe eax, [ebx]
+
+=> eax = 044332211h
+}}}
+ * Elle n'est présente que sur les processeurs Atom. Donc, les netbooks l'implémentent, mais pas des processeurs puissants tels que les i7.
+ 
+<wiki:comment>
+=lzcnt=
+ * TBC `lzcnt` is overlapped with popcnt
+</wiki:comment>
+
+=sal=
+Shift Arithmetic Left est identique à SHL, et il est d'habitude encodé directement en tant que SHL: ça signifie que les assembleurs génèrent toujours l'instruction SHL, donc SAL est parfois totalement ignorée par certains outils.
+
+{{{
+al = 1010b
+
+c0f0 02: sal al, 2
+
+=> al = 101000b
+}}}
+
+
+=salc=
+ * `salc` est parfois écrite `setalc`
+ * cela signifie `Set AL on Carry` (défini AL selon la retenue)
+ * elle est non documentée par Intel - mais pas par AMD, et de manière surprenante, est parfaitement gérée par les outils publics d'Intel.
+ * c'est un équivalent en un seul octet de `SBB al, al`
+
+{{{
+f9: stc
+d6: salc
+
+=> al = -1
+}}}
+
+=lock=
+`lock:` marche uniquement sur les cibles en mémoires:
+ * `f0 0100: lock:add [eax], eax` est valide.
+ * `f0 01c0: lock:add eax, eax` and `f0 0300: lock:add eax, [eax]` déclenche des exceptions.
+
+et sur les instructions suivantes:
+ * adc, add, and, or, sbb, sub, xor, dec, inc, neg, not
+ * cmpxchg, cmpxchg8b
+ * btr, bts, btc
+  * `f0 0fa300: lock:bt [eax], eax` *déclenche* une exception.
+ * xadd, xchg (même si elles sont déjà atomiques, auquel cas `lock:` est superflu)
+
+==XP bug==
+`lock:` est mal décrypté par XP:
+ # après une exception, XP essaie de déterminer s'il s'agit d'une erreur de type INVALID LOCK SEQUENCE ou simplement d'une ILLEGAL INSTRUCTION standard.
+ # mais XP vérifie trop simplement la présence d'un octet F0: dans le cas de `FEF0`, qui est simplement non défini, une exception INVALID LOCK SEQUENCE est quand même déclenchée, même si, dans ce cas, ça n'a rien à voir avec un préfixe `lock:`. (A titre d'information, `FEC0` se décode en `inc al`)
+
+Windows 7 évite tout simplement le problème en déclenchant dans tous les cas ILLEGAL INSTRUCTION sur toute instruction invalide, quelle qu'elle soit. Pas d'analyse, pas d'erreur possible !
+
+=smsw=
+ * retourne la valeur de CR0 (MOT ou DOUBLE MOT)
+ * non privilégiée, contrairement à `mov eax, cr0` : c'est une vieille instruction du 286, alors que `mov cr0` n'est apparue qu'à partir du 386.
+ * le mot supérieure est non défini *officiellement*, mais en réalité, c'est juste le contenu de CR0.
+{{{
+
+0f 01e0: smsw eax
+
+=> eax = 8001003b (XP)
+}}}
+ * comme CR0 est influencé par d'autres évènements (FPU) sous XP, cela peut en faire un anti-émulateur tatillon.
+ * `smsw` est définie vers un MOT ou un DOUBLE MOT avec les registres, mais toujours sur un MOT en mémoire (voir ci-dessous).
+
+
+=str/sldt=
+Comme `smsw`, ces instructions fonctionnent sur MOT ou DOUBLE MOT avec les registres, mais toujours sur un MOT en mémoire.
+
+{{{
+   0f 00c8: str eax
+
+=> eax = 00000028h (XP)
+}}}
+
+{{{
+66 0f 00c8: str ax
+
+=> ax  =     0028h (XP)
+}}}
+
+{{{
+
+   0f 0008: str [eax]
+
+=> word ptr [eax] = 0028h (XP)
+}}}
+
+Et de même pour `sldt`.
+
+=test=
+`test <r32>, <imm32>` a un autre encodage possible qui est parfois oublié, car il n'est jamais généré par les compilateurs ou les assembleurs.
+{{{
+f7c8 44332211: test eax, 11223344h
+}}}
+
+=IceBP=
+ * comme `salc`, `IceBP` est non documentée par Intel, mais l'est par AMD, et est gérée par les outils d'Intel.
+ * cela signifie [http://fr.wikipedia.org/wiki/In-circuit_emulator In-Circuit Emulator] Breakpoint (point d'arrêt d'émulateur in-circuit - vous êtes bien avancés, hein :p)
+ * elle est non privilégiée.
+ * elle déclenche une exception SINGLE STEP, *après* exécution.
+ * elle est parfois écrite `Int1`, comme c'est l'interruption de pas à pas, mais exécuter `CD 01:Int 1` ne déclenchera pas SINGLE STEP.
+
+{{{
+f1: IceBp
+
+=> SINGLE STEP (80000004h) exception
+}}}
+
+=rdtscp=
+`rdtscp` est une instruction récente, qui retourne juste les résultats habituels de `rdtsc` en eax/edx, et aussi modifie ECX: c'est officiellement affecté aux 32 bits de poid faible de IA32_TSC_AUX MSR_ ... ce qui signifie la plupart du temps, 0. (tout ça pour ça... c'était bien la peine...)
+
+{{{
+0f 01f9: rdtscp
+
+=> edx:eax = <rdtsc>
+   ecx = 0
+}}}
+
+=hint nop=
+ * `hint nop` est officiellement documentée par Intel comme l'instruction `0f 1f`, mais c'est en fait disponible sur l'interval `0f 19-1f`.
+ * comme on s'y attendrait de la part d'un `nop`, il ne déclenche jamais d'exception, même si la mémoire référencée est invalide. 
+
+{{{
+0f1980 00000080: nop [eax + 8000000h] 
+
+=> nothing
+}}}
+
+ * par contre, si l'opérande est sur un espace mémoire invalide, une exception peut se déclencher, comme pour toute instruction multi-octets.
+ 
+=branch hints=
+ * les `branch hints` sont officiellements définies comme donnant des indications au processeur si une branche sera à priori suivie ou non.
+ * elles sont supposées être générées uniquement par le compilateur, il n'y a donc pas de manière officielle de les assembler ou de les désassembler.
+ * elles réutilisent les octets 2e/3e bytes, qui sont déjà affectés aux préfixes `CS:` et `DS:`.
+
+=flux 16b=
+ * call, jumps, return, loops peuvent sauter vers 32b ou vers 16b grâce au préfixe `66:`.
+ * il n'y a pas de manière officielle de désassembler un retour vers 16b: `small retn`, `retn word`, `retn.w`...
+
+{{{
+68 00104000: push 401000h
+66 c3:       retn
+
+=> EIP = 00001000h
+   ESP = ESP - 2
+}}}
+
+
+----
+
+=x64=
+
+==extension des valeurs en 32 bits==
+En 64 bits, les instructions avec des registres en 32 bits les étendent sur 64 bits, avec des zéros.
+
+Donc, alors que
+{{{
+   fec0: inc al
+66 ffc0: inc ax
+   ffc0: inc rax
+}}}
+font tous ce qu'on pourrait attendre d'eux...
+
+d'un autre coté,
+{{{
+48 ffc0: inc eax
+}}}
+remet à zéro les 32 bits de poids fort de RAX.
+
+==passer de 32 à 64 bits - et vice-versa==
+Sur un processeurs 64 bits, l'exécution peut passer de/à 32 bits rien qu'en sautant vers un sélecteur correctement défini. En clair, on change de nombres de bits rien qu'en changeant CS.
+
+Par exemple, sur une version 64 bits de Windows, le sélecteur 33h est pour le mode 64 bits. Donc, y sauter depuis un processus 32 bits, puis revenir, nous passera en 64 bits, et ensuite en 32 bits. C'est aussi simple que ça.
+{{{
+    <32b>
+call far 33h:_64b
+    <32b>
+
+_64b:
+    <64b>
+    ...
+    retf
+}}}
+
+===32+64===
+Puisques certaines instructions sont spécifiques au mode 32 bits (arpl, ...), et que d'autres sont spécifiques au mode 64 bits (movsxd, ...), les mêmes données hexadécimales pourront donner des instructions différentes, à la même position, juste parce que CS est différent.
+
+----
+
+====Références====
+ * Peter Ferrie
+ * Moritz Kroll
+ * Jon Larimer
