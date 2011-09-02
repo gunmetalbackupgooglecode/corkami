@@ -17,13 +17,13 @@ d9eb: fldpi
    cr0 = 080010031h (under XP)
 }}}
 
-==gs==
-on 32bit Windows, GS is not saved in the context: When the OS switch from an application to another, the content of GS is lost. This can be used as an anti-emulator or an anti-stepping.
+==GS==
+on 32bit Windows, GS is not saved in the context: When the OS switches from an application to another, the content of GS is lost. This can be used as an anti-emulator or an anti-stepping.
 
 ----
 
 =aad=
-_aad_  is officially defined to use 10/0Ah as operand, but can just use any other operand.
+`aad`  is officially defined to use only 10/0Ah as a default operand, but can just use any other operand.
 
 it makes it the first Add and Multiply opcode, as `al = ah * operand + al`
 {{{
@@ -36,9 +36,10 @@ d507: aad 7
 }}}
 
 =aam=
-similar logic for _aam_: 
+similar logic for `aam`: 
  * it's officially defined with 10/0ah, but it just works with any byte. 
- * it's a division, and quotient and remainder go to _ah_/_al_
+ * it's a division, and quotient and remainder go to `ah` and `al` respectively.
+
 {{{
 al = 3ah
 
@@ -79,8 +80,8 @@ f2 0f 38f1c3: crc32 eax, ebx
 {{{
 0f 2000: mov eax, cr0
 }}}
- by the usual standards it should be an invalid `mov [eax], cr0`, but isn't.
- * `mov <reg32>, <selector>` is officially MOV, (not MOVZX) yet it modifies the full DWORD. the upper word is undefined on <Pentium, and null on later CPUs.
+ by the usual standards it should have been decoded as `mov [eax], cr0`, which would be invalid, but it's an exception.
+ * `mov <reg32>, <selector>` is officially MOV, (not MOVZX) yet it modifies the full DWORD. (the upper word is supposedly undefined on CPUs older (or equal) to Pentium, but it's zero on a Pentium anyway). In any case, the upper word is null on modern CPUs.
 {{{
 8cc8: mov eax, cs
 
@@ -134,7 +135,7 @@ c0f0 02: sal al, 2
 =salc=
  * `salc` is sometimes written `setalc`
  * it stands for `Set AL on Carry`
- * it's is undocumented by Intel - but not AMD, and it's unexpectedly supported by Intel's public tools.
+ * it's undocumented by Intel - but not by AMD, and it's unexpectedly supported by Intel's public tools.
  * it's a one byte equivalent to `SBB al, al`
 
 {{{
@@ -143,6 +144,40 @@ d6: salc
 
 => al = -1
 }}}
+
+=lock=
+`lock:` works only on memory targets:
+ * `f0 0100: lock:add [eax], eax` is valid.
+ * `f0 01c0: lock:add eax, eax` and `f0 0300: lock:add eax, [eax]` trigger exceptions.
+
+and on the following opcodes:
+ * adc, add, and, or, sbb, sub, xor, dec, inc, neg, not
+ * cmpxchg, cmpxchg8b
+ * btr, bts, btc
+  * `f0 0fa300: lock:bt [eax], eax` *does* trigger an exception.
+ * xadd, xchg (even if they are already atomic, so the lock is superfluous)
+
+==XP bug==
+`lock:` is wrongly parsed by Windows XP:
+ # Upon an exception, XP tries to determine whether it should be an INVALID LOCK SEQUENCE or just an ILLEGAL INSTRUCTION
+ # but it checks too briefly for a F0 byte: in the case of `FEF0`, which is just undefined, an INVALID LOCK SEQUENCE is still triggered by XP even if in this case, it has nothing to do with a `lock` prefix (For reference, `FEC0` decodes as `inc al`)
+
+Windows 7 just avoids the problem altogether by triggering an ILLEGAL INSTRUCTION on all invalid opcodes, no matter what, including invalid use of LOCK: prefix. No parsing, no mistake !
+
+=smsw=
+ * gives CR0 value (word or dword)
+ * unprivileged, unlike `mov eax, cr0` (it's an old 286 instructions, while `mov cr0` is only present in 386 and later)
+ * upper bits are officially undefined. but in reality, they're just CR0 contents.
+  ex:
+{{{
+
+0f 01e0: smsw eax
+
+=> eax = 8001003b (XP)
+}}}
+ * since CR0 is influenced by other events (FPU) under XP, it makes it a tough anti-emulator.
+ * `smsw` is defined on DWORD or WORD on registers, but always on WORD in memory.
+
 
 =str/sldt=
 like SMSW, they work on DWORD or WORD on registers, but only on WORD in memory.
@@ -166,38 +201,7 @@ like SMSW, they work on DWORD or WORD on registers, but only on WORD in memory.
 => word ptr [eax] = 0028h (XP)
 }}}
 
-=lock=
-lock works only on memory targets:
- * `f0 0100: lock:add [eax], eax` is valid
- * `f0 01c0: lock:add eax, eax` and `f0 0300: lock:add eax, [eax]` trigger exceptions
-
-and on the following opcodes:
- * adc, add, and, or, sbb, sub, xor, dec, inc, neg, not
- * cmpxchg, cmpxchg8b
- * btr, bts, btc
-  * `f0 0fa300: lock:bt [eax], eax` *does* trigger an exception
- * xadd, xchg (even if they are already atomic, so the lock is superfluous)
-
-==XP bug==
-Lock is wrongly parsed by Windows XP:
- # Upon an exception, XP tries to determine whether it should be an INVALID LOCK SEQUENCE or just an ILLEGAL INSTRUCTION
- # but it checks too briefly for a F0 byte: in the case of `FEF0`, which is just undefined, an INVALID LOCK SEQUENCE is still triggered by XP even if in this case, it has nothing to do with a lock prefix. For reference, FEC0 decodes as `inc al`.
-
-Windows 7 just avoids the problem altogether by triggering an ILLEGAL INSTRUCTION on all invalid opcodes, including invalid use of LOCK: prefix. No parsing, no mistake !
-
-=smsw=
- * gives CR0 value (word or dword)
- * unprivileged, unlike `mov eax, cr0` (old 286 instructions, mov cr0 is only present in 386)
- * upper bits are officially undefined. but still CR0 contents.
-  ex:
-{{{
-
-0f 01e0: smsw eax
-
-=> eax = 8001003b (XP)
-}}}
- * since CR0 is influenced by other events (FPU) under XP, it makes it a tough anti-emulator.
- * `smsw` is defined on DWORD or WORD on registers, but always on WORD in memory.
+it's the same for `sldt`.
 
 =test=
 `test <r32>, <imm32>` has an alternate encoding that is sometimes forgotten, as it's never generated by compilers or assemblers.
@@ -208,7 +212,7 @@ f7c8 44332211: test eax, 11223344h
 =IceBP=
  * like `salc`, `IceBP` is undocumented by Intel, but not by AMD, and supported by Intel tools.
  * it stands for [http://en.wikipedia.org/wiki/In-circuit_emulator In-Circuit Emulator] Breakpoint. 
- * it's unprivileged
+ * it's unprivileged.
  * it triggers a SINGLE STEP exception, *after* execution.
  * it's sometimes written `Int1`, as it's the stepping interrupt, but executing Int1 doesn't trigger SINGLE STEP.
 
@@ -219,8 +223,8 @@ f1: IceBp
 }}}
 
 =rdtscp=
-_rdtscp_ is a recent opcode that just returns the usual _rdtsc_ result to eax/edx, and also changes ECX: it's  'loaded with the low-order 32-bits of
-IA32_TSC_AUX MSR' ... which means most of the time, 0.
+`rdtscp` is a recent opcode that just returns the usual `rdtsc` result to eax/edx, and also changes ECX: it's  _loaded with the low-order 32-bits of
+IA32_TSC_AUX MSR_ ... which means most of the time, 0.
 
 {{{
 0f 01f9: rdtscp
@@ -230,8 +234,8 @@ IA32_TSC_AUX MSR' ... which means most of the time, 0.
 }}}
 
 =hint nop=
- * `hint nop` is officially documented by Intel as opcode `0f 1f`, but it's actually available on range `0f 19-1f` 
- * as one would expect from a nop, it never triggers an exception even when referencing an invalid address.
+ * `hint nop` is officially documented by Intel as opcode `0f 1f`, but it's actually available on range `0f 19-1f`.
+ * as one would expect from a nop, it never triggers an exception, even when referencing an invalid address.
 
 {{{
 0f1980 00000080: nop [eax + 8000000h] 
@@ -242,10 +246,10 @@ IA32_TSC_AUX MSR' ... which means most of the time, 0.
 =branch hints=
  * branch hints are officially define to give hints to the CPU whereas a branch is likely to be taken or not.
  * they are supposedly generated by compilers, but there is no official way to assemble or disassemble them.
- * they are re-using the 2e/3e bytes, which are mapped to CS: and DS: prefixes.
+ * they are re-using the 2e/3e bytes, which are mapped to `CS:` and `DS:` prefixes.
 
 =16b flow=
- * call, jumps, return, loops can either jump to 32b or 16b via the 66: prefix.
+ * call, jumps, return, loops can either jump to 32b or 16b via the `66:` prefix.
  * there is no official way to disassemble a return to word : `small retn`, `retn word`, `retn.w`...
 
 {{{
@@ -272,7 +276,11 @@ thus, while
 }}}
 all do what you would expect.
 
-but on the other hand, {{{48 ffc0: inc eax}}} resets the upper 32 bits of `rax`.
+but on the other hand, 
+{{{
+48 ffc0: inc eax
+}}}
+resets the upper 32 bits of `rax`.
 
 ==switching between 32b and 64b modes==
 on a 64b CPU, the cpu can just change from/to 32b mode by jumping to a properly defined selector. In short, changing the number of bits just mean jumping to a different value of CS.
@@ -296,4 +304,3 @@ since there are some opcodes specific to 32b (arpl, ...), and others specific to
  * Peter Ferrie
  * Moritz Kroll
  * Jon Larimer
- * ...you ?
