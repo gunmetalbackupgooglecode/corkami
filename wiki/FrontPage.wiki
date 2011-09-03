@@ -3,7 +3,10 @@
 
  * [PDFTricks a summary of PDF tricks] - encodings, structures, !JavaScript... (translations: [http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語])
 
- * [StandardTest Corkami Standard Test] is a PE/x86/x64 test program for your tools/emulators/skills
+ * [StandardTest Corkami Standard Test] is a PE/x86/x64 test program for your tools/emulators/skills.
+  * it checks standard opcodes
+  * but also many [http://code.google.com/p/corkami/wiki/x86oddities x86 oddities]
+  * and how to [http://code.google.com/p/corkami/wiki/GetIP get the current IP].
 
  * [http://code.google.com/p/corkami/downloads/list?can=1&q=Binary+corpus Binary corpus] is a group of non malicious binaries, exhibiting various file formats, and more specifically, aspects of PE files.
   * Formats: NE, PE, Elf, LX, LE, COM, EXE
