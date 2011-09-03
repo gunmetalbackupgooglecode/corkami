@@ -93,14 +93,14 @@ Even though selectors are WORDS-sized registers, like standard registers such as
 {{{
 1e: push ds
 
-=> esp = esp + 4
+=> esp = esp - 4
    word ptr [esp] = ds
 }}}
 
 {{{
 66 50: push ax
 
-=> esp = esp + 2
+=> esp = esp - 2
    word ptr [esp] = ax
 }}}
 

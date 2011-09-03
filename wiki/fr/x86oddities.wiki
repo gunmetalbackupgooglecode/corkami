@@ -94,14 +94,14 @@ Bien que les sélecteurs aient la taille d'un MOT, comme les registres standards
 {{{
 1e: push ds
 
-=> esp = esp + 4
+=> esp = esp - 4
    word ptr [esp] = ds
 }}}
 
 {{{
 66 50: push ax
 
-=> esp = esp + 2
+=> esp = esp - 2
    word ptr [esp] = ax
 }}}
 
