@@ -18,7 +18,10 @@ d9eb: fldpi
 }}}
 
 ==GS==
-On 32bit Windows, GS is not saved in the execution context: When the OS switches from an application to another, the content of GS is lost. This can be used as an anti-emulator or an anti-stepping.
+On 32bit Windows, GS is not saved in the execution context: When the OS switches from an application to another, the content of GS is lost. This can be used as an anti-emulator or an anti-stepping: after some time of execution, GS will eventually be reset:
+ # set GS to X
+ # wait until GS is null `<== thread switch eventually happens, and resets GS`
+ # execution resume here
 
 ----
 
@@ -59,8 +62,6 @@ d403: aam 3
 
 =cmpxchg8b=
 `lock cmpxchg8b` doesn't crash CPUs anymore, but some tools might still show obsolete warnings about it.
-
-<wiki:comment>* TBC writes the target address even though the content is unchanged.</wiki:comment>
 
 =crc32=
 The `crc32` opcode implements the full algorithm with a single operation, however, it's not the commonly used CRC32 (used in Zip), but actually the CRC-32C (Castagnoli CRC-32), which uses a different polynomial.
@@ -104,6 +105,8 @@ Even though selectors are WORDS-sized registers, like standard registers such as
    word ptr [esp] = ax
 }}}
 
+no other word is changed.
+
 =movbe=
  * `movbe` is is a recent opcode equivalent to `mov + bswap`. 
 {{{
@@ -116,8 +119,12 @@ Even though selectors are WORDS-sized registers, like standard registers such as
  * It's found only on Atom CPUs. Thus, netbooks support it, but not powerful CPUs such as i7.
 
 <wiki:comment>
+TODO:
+* cmpxchg8b writes the target address even though the content is unchanged.
 =lzcnt=
  * TBC `lzcnt` is overlapped with popcnt
+
+ANDN
 </wiki:comment>
 
 =sal=
@@ -136,7 +143,8 @@ c0f0 02: sal al, 2
  * `salc` is sometimes written `setalc`
  * it stands for `Set AL on Carry`
  * it's undocumented by Intel - but not by AMD, and it's unexpectedly supported by Intel's public tools.
- * it's a one byte equivalent to `SBB al, al`
+ * it's a one byte equivalent of `1ac0: sb al, al`
+  * al = cf ? -1 : 0
 
 {{{
 f9: stc
@@ -163,6 +171,13 @@ and on the following opcodes:
  # but it checks too briefly for a F0 byte: in the case of `FEF0`, which is just undefined, an INVALID LOCK SEQUENCE is still triggered by XP even if, in this case, it has nothing to do with a `lock` prefix (For reference, `FEC0` decodes as `inc al`)
 
 Windows 7 just avoids the problem altogether by triggering an ILLEGAL INSTRUCTION on all invalid opcodes, no matter what, including invalid use of LOCK: prefix. No parsing, no mistake !
+
+{{{
+fef0: ??
+
+=> INVALID LOCK SEQUENCE (XP, bug)
+   ILLEGAL INSTRUCTION (W7)
+}}}
 
 =smsw=
  * gives CR0 value (WORD or DWORD)
@@ -256,8 +271,8 @@ IA32_TSC_AUX MSR_ ... which means most of the time, 0.
 68 00104000: push 401000h
 66 c3:       retn
 
-=> EIP = 00001000h
-   ESP = ESP - 2
+=> eip = 00001000h
+   esp = esp - 2
 }}}
 
 
