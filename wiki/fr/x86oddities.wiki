@@ -18,7 +18,10 @@ d9eb: fldpi
 }}}
 
 ==GS==
-Sous un Windows 32bit, GS n'est pas sauvé dans le 'contexte' d'exécution: quand l'OS passe d'une application à l'autre, le contenu de GS est perdu. Ça peut servir à faire un anti-émulateur ou un anti-analyse.
+Sous un Windows 32bit, GS n'est pas sauvé dans le 'contexte' d'exécution: quand l'OS passe d'une application à l'autre, le contenu de GS est perdu. Ça peut servir à faire un anti-émulateur ou un anti-analyse: après un temps d'exécution, GS finira par être remis à zéro:
+ # mettre GS à X
+ # attendre que GS soit nul `<== un changement de thread finira par se produire, et remettra GS à zéro`
+ # l'exécution continue ici
 
 ----
 
@@ -60,12 +63,10 @@ d403: aam 3
 =cmpxchg8b=
 `lock cmpxchg8b` ne plante plus les processeurs, mais certains outils peuvent encore donner des avertissements.
 
-<wiki:comment>* TBC écrit la cible même si le contenu est inchangé</wiki:comment>
-
 =crc32=
 L'opcode `crc32` implémente l'algorithme complet en une seule instruction, mais il ne s'agit pas du CRC32 le plus couramment utilisé (celui de Zip), mais en fait le CRC-32C(Castagnoli CRC-32), qui utilise un polynôme différent.
 
-Alors qu'il s'agit techniquement du même algorithme, comme la valeure initiale est différente, bien que plus efficace, il produit des résultats différents, donc il est inutile pour Zip et les innombrables applications qui sont basées sur l'algorithme 'Deflate'.
+Alors qu'il s'agit techniquement du même algorithme, comme la valeure initiale est différente, il produit des résultats différents, donc il est inutile pour Zip et les innombrables applications qui sont basées sur l'algorithme 'Deflate'.
 {{{
 eax = 0abcdef9h
 ebx = 12345678h
@@ -74,6 +75,8 @@ f2 0f 38f1c3: crc32 eax, ebx
 
 => eax, 0c0c38ce0h
 }}}
+
+Il est quand même toujours utilisable comme checksum (somme de contrôle): il est d'ailleurs plus efficace que le CRC32 standard, mais il est incompatible.
 
 =mov=
  * le décodage de `mov` de/vers les registres de contrôle et de déboguage ignorent le ModRM.
@@ -105,6 +108,8 @@ Bien que les sélecteurs aient la taille d'un MOT, comme les registres standards
    word ptr [esp] = ax
 }}}
 
+Aucun autre mot n'est modifié.
+
 =movbe=
  * `movbe` est une instruction récente équivalente à `mov + bswap`. 
 {{{
@@ -117,12 +122,16 @@ Bien que les sélecteurs aient la taille d'un MOT, comme les registres standards
  * Elle n'est présente que sur les processeurs Atom. Donc, les netbooks l'implémentent, mais pas des processeurs puissants tels que les i7.
  
 <wiki:comment>
+TODO:
+* cmpxchg8b writes the target address even though the content is unchanged.
 =lzcnt=
  * TBC `lzcnt` is overlapped with popcnt
+
+ANDN
 </wiki:comment>
 
 =sal=
-Shift Arithmetic Left est identique à SHL, et il est d'habitude encodé directement en tant que SHL: ça signifie que les assembleurs génèrent toujours l'instruction SHL, donc SAL est parfois totalement ignorée par certains outils.
+Shift Arithmetic Left (l'instruction au modRM 110) est identique à SHL (instruction au modRM 100), et il est d'habitude encodé directement en tant que SHL: ça signifie que les assembleurs génèrent toujours l'instruction SHL, donc SAL est parfois totalement ignorée par certains outils.
 
 {{{
 al = 1010b
@@ -132,12 +141,17 @@ c0f0 02: sal al, 2
 => al = 101000b
 }}}
 
+Elle est informellement appelée SAL, parce qu'elle est techniquement différente (l'encodage hexadécimale est différent), mais fonctionellement, elle est bien la même chose que SHL.
+
+|| modRM || 100 || 101 || 110 || 111 ||
+|| opcode || SHL || SHR || 'SAL' || SAR ||
 
 =salc=
  * `salc` est parfois écrite `setalc`
  * cela signifie `Set AL on Carry` (défini AL selon la retenue)
  * elle est non documentée par Intel - mais pas par AMD, et de manière surprenante, est parfaitement gérée par les outils publics d'Intel.
  * c'est un équivalent en un seul octet de `SBB al, al`
+  * al = cf ? -1 : 0
 
 {{{
 f9: stc
@@ -164,6 +178,13 @@ et sur les instructions suivantes:
  # mais XP vérifie trop simplement la présence d'un octet F0: dans le cas de `FEF0`, qui est simplement non défini, une exception INVALID LOCK SEQUENCE est quand même déclenchée, même si, dans ce cas, ça n'a rien à voir avec un préfixe `lock:`. (A titre d'information, `FEC0` se décode en `inc al`)
 
 Windows 7 évite tout simplement le problème en déclenchant dans tous les cas ILLEGAL INSTRUCTION sur toute instruction invalide, quelle qu'elle soit. Pas d'analyse, pas d'erreur possible !
+
+{{{
+fef0: ??
+
+=> INVALID LOCK SEQUENCE (XP, bug)
+   ILLEGAL INSTRUCTION (W7)
+}}}
 
 =smsw=
  * retourne la valeur de CR0 (MOT ou DOUBLE MOT)
@@ -257,8 +278,32 @@ f1: IceBp
 68 00104000: push 401000h
 66 c3:       retn
 
-=> EIP = 00001000h
-   ESP = ESP - 2
+=> eip = 00001000h
+   esp = esp - 2
+}}}
+
+=instructions obsolètes=
+Il y a de nombreuses instructions qui ne sont plus générées par les compilateurs actuels, et qui pourtant marchent toujours sans problème même sur les CPUs les plus récent. La liste est longue: xadd, aaa, daa, aas, das, aad, aam, l`*`s, bound, arpl, xlatb, lar, verr`*`, cmpxchg`*`, lsl...
+
+Voici un exemple de code, qui marche parfaitement sur un processeur moderne, mais qui est dur à comprendre par l'ancienneté de ses instructions:
+{{{
+into
+bound eax, [edx]
+verr cx
+lar eax, ecx
+str edx
+aaa
+lsl eax, ecx
+sfence
+arpl cx, ax
+aam
+bswap ecx
+lock cmpxchg8b [esi]
+lds ebx, [esi]
+xlatb
+daa
+xadd ecx, eax
+prefetch [eax]
 }}}
 
 
