@@ -66,7 +66,7 @@ d403: aam 3
 =crc32=
 The `crc32` opcode implements the full algorithm with a single operation, however, it's not the commonly used CRC32 (used in Zip), but actually the CRC-32C (Castagnoli CRC-32), which uses a different polynomial.
 
-While it's technically the same algorithm as the 'common' CRC32, it uses a different seed, which makes it more efficient, but it just produces different results, so it's useless for Zip, and all the countless applications of the deflate algorithm.
+While it's technically the same algorithm as the 'common' CRC32, it uses a different seed, so it gives different results, thus it's useless for Zip, and all the countless applications of the deflate algorithm. 
 {{{
 eax = 0abcdef9h
 ebx = 12345678h
@@ -75,6 +75,8 @@ f2 0f 38f1c3: crc32 eax, ebx
 
 => eax, 0c0c38ce0h
 }}}
+
+It's still usable independently as a checksum: it's actually more efficient than the standard CRC32 (when used for recovery purposes), but it's incompatible.
 
 =mov=
  * mov to/from control and debug registers ignores the ModRM.
@@ -128,7 +130,7 @@ ANDN
 </wiki:comment>
 
 =sal=
-Shift Arithmetic Left is identical to SHL, and is usually encoded directly as SHL: this means that assemblers always generates the SHL opcode, so SAL is sometimes totally ignored by disassemblers/emulators/...
+Shift Arithmetic Left (the opcode with modRM 110) is identical to SHL (opcode with modRM 100), and is usually encoded directly as SHL: this means that assemblers always generates the SHL opcode, so SAL is sometimes totally ignored by disassemblers/emulators/...
 
 {{{
 al = 1010b
@@ -138,6 +140,10 @@ c0f0 02: sal al, 2
 => al = 101000b
 }}}
 
+It's informally called SAL, because it's technically a different opcode (in hex), but functionally, it's the same as SHL.
+
+|| modRM || 100 || 101 || 110 || 111 ||
+|| opcode || SHL || SHR || 'SAL' || SAR ||
 
 =salc=
  * `salc` is sometimes written `setalc`
