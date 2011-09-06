@@ -475,9 +475,9 @@ Since there are some opcodes specific to 32 bits mode (arpl, ...), and others sp
  * BeatriX
  * Eugeny Suslikov
  * Gil Dabah
- * Guillaume Delugré
+ * Guillaume DelugrÃ©
  * Igor Skochinsky
- * Jean-Baptiste Bédrune
+ * Jean-Baptiste BÃ©drune
  * Jon Larimer
  * Moritz Kroll
  * Oleh Yuschuk
