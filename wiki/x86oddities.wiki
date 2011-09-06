@@ -71,7 +71,7 @@ However, it's possible to almost reach that limit with legitimate operations:
 f0 2e 66 67 818418 67452301 efcdab89: lock add dword cs:[eax + ebx + 001234567h], 089abcdefh
 }}}
 
-!VirtualPC has been known to be incorrectly ignoring the 15 bytes limit.
+VirtualPC has been known to be incorrectly ignoring the 15 bytes limit.
 
 ----
 
@@ -81,7 +81,8 @@ f0 2e 66 67 818418 67452301 efcdab89: lock add dword cs:[eax + ebx + 001234567h]
 90: xchg eax, eax
 
 => eax, eax = eax, eax ;)
-
+}}}
+{{{
 91: xchg ecx, eax
 
 => ecx, eax = eax, ecx
@@ -183,7 +184,7 @@ Even though selectors are WORDS-sized registers, like standard registers such as
 no other word is changed.
 
 =movbe=
- * `movbe` (MOV Big Endian) is a recent opcode equivalent to `mov + bswap`. 
+ * `movbe` (MOV Big Endian) is a recent opcode equivalent to `mov + bswap`, but only to/from memory.
 {{{
 [ebx] = 011223344h
 
@@ -191,6 +192,7 @@ no other word is changed.
 
 => eax = 044332211h
 }}}
+ * unlike `bswap`, it's able to work with a WORD without resetting it.
  * It's found only on Atom CPUs. Thus, netbooks support it, but not powerful CPUs such as i7.
 
 =lzcnt=

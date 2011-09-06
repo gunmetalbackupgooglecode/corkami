@@ -71,7 +71,7 @@ Cependant, il est possible d'approcher cette limite avec des opérations normale
 f0 2e 66 67 818418 67452301 efcdab89: lock add dword cs:[eax + ebx + 001234567h], 089abcdefh
 }}}
 
-!VirtualPC est connu pour avoir dans le passé ignoré cette limite (et être ainsi facilement détectable).
+VirtualPC est connu pour avoir dans le passé ignoré cette limite (et être ainsi facilement détectable).
 
 ----
 
@@ -81,7 +81,8 @@ f0 2e 66 67 818418 67452301 efcdab89: lock add dword cs:[eax + ebx + 001234567h]
 90: xchg eax, eax
 
 => eax, eax = eax, eax ;)
-
+}}}
+{{{
 91: xchg ecx, eax
 
 => ecx, eax = eax, ecx
@@ -184,7 +185,7 @@ Bien que les sélecteurs aient la taille d'un MOT, comme les registres standards
 Aucun autre mot n'est modifié.
 
 =movbe=
- * `movbe` (MOV Big Endian) est une instruction récente équivalente à `mov + bswap`. 
+ * `movbe` (MOV Big Endian) est une instruction récente équivalente à `mov + bswap`, mais uniquement de/vers la mémoire.
 {{{
 [ebx] = 011223344h
 
@@ -192,7 +193,8 @@ Aucun autre mot n'est modifié.
 
 => eax = 044332211h
 }}}
- * Elle n'est présente que sur les processeurs Atom. Donc, les netbooks l'implémentent, mais pas des processeurs puissants tels que les i7.
+ * contrairement à `bswap`, elle est capable d'utiliser un MOT sans le mettre à zéro.
+ * elle n'est présente que sur les processeurs Atom. Donc, les netbooks l'implémentent, mais pas des processeurs puissants tels que les i7.
 
 =lzcnt=
 `lzcnt` (Leading Zero CouNT) est une instruction apparue en 2007, qui est uniquement gérée par les AMD d'architecture Barcelona ou plus récente (elle est prévue dans les Intel Haswell pour 2013, de même que sa cousine `tzcnt`).
@@ -468,7 +470,17 @@ Puisques certaines instructions sont spécifiques au mode 32 bits (arpl, ...), e
 
 ----
 
-====Références====
+====Remerciements====
  * Peter Ferrie
- * Moritz Kroll
+
+ * BeatriX
+ * Eugeny Suslikov
+ * Gil Dabah
+ * Guillaume Delugré
+ * Igor Skochinsky
+ * Jean-Baptiste Bédrune
  * Jon Larimer
+ * Moritz Kroll
+ * Oleh Yuschuk
+ * Sebastian Biallas
+ * Yoann Guillot
