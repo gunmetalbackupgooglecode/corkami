@@ -78,7 +78,7 @@ o\
 }}}
 
 =構造=
-==切り取ったヘッダのタイトル==
+==切り取ったファイルシグネチャ==
 原則としてヘッダは`%PDF-1.[4-6]`ですが,後半の数字を無視して切り取ることができます.
 
  ヘッダを切り取った例  ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-shorter.pdf ダウンロード]):
