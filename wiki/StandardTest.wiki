@@ -83,10 +83,11 @@ documented but frequent disassembly mistakes:
 = Use = 
 It has currently no options. Just run it from command line, all tests will run after each other. It sends more output to !DbgPrint.
 
-this is the output you could get under Windows 7, 64bit
+this is the output you could get under Windows 7, 64bit, i7
 {{{
-User-mode opcodes tester v0.1, 2011/04/01
+CoST - Corkami Standard Test BETA 2011/08/16
 Ange Albertini, BSD Licence, 2009-2011 - http://corkami.com
+
 
 Info: Windows 7 found
 testing jumps opcodes...
@@ -94,7 +95,8 @@ testing classic opcodes...
 testing rare opcodes...
 testing undocumented opcodes...
 testing cpu-specific opcodes...
-Info: MOVBE not supported
+Info: CPUID GenuineIntel
+Info[cpu]: MOVBE (Atom only) not supported
 testing undocumented encodings...
 testing os-dependant opcodes...
 testing 'nop' opcodes...
@@ -105,32 +107,32 @@ testing 64 bits opcodes...
 
 ...completed!
 }}}
-and under XP SP1, running in !VmWare:
+and under XP SP3, on a netbook:
 {{{
-User-mode opcodes tester v0.1, 2011/04/01
+CoST - Corkami Standard Test BETA 2011/08/16
 Ange Albertini, BSD Licence, 2009-2011 - http://corkami.com
+
 
 Info: Windows XP found
 testing jumps opcodes...
 testing classic opcodes...
 testing rare opcodes...
-ERROR: SLDT non null (vm present ?)
-ERROR: LSL (vm present?)
 testing undocumented opcodes...
 testing cpu-specific opcodes...
-Info: MOVBE not supported
+Info: CPUID GenuineIntel
+Info[cpu]: POPCNT not supported
+Info[cpu]: CRC32 not supported
+Info[cpu]: RDTSCP not supported
 testing undocumented encodings...
 testing os-dependant opcodes...
-ERROR: SGDT (vm present?) [XP]
-ERROR: STR reg16 (vm present?) [XP]
-ERROR: STR reg32 (vm present?) [XP]
 testing 'nop' opcodes...
 testing opcode-based anti-debuggers...
 testing opcode-based GetIPs...
 testing opcode-based exception triggers...
-ERROR: privileged instruction (vmware present?) - no exception
 testing 64 bits opcodes...
 Info: 64 bits not supported
+
+...completed!
 }}}
 
 
@@ -143,8 +145,6 @@ then just type
 {{{
 make
 }}}
-
-
 
 ==EASY DEBUG==
 a optional #define is added, to build an executable easier to debug (less PE features, less randomization). Such a build will show it during execution.
