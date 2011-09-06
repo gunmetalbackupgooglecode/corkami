@@ -1,4 +1,6 @@
 #summary Initial values of cpu registers on Windows OSes
+#labels Deprecated
+_IN PROGRESS_
 =Common=
 
 ==Flags==
@@ -29,9 +31,11 @@ GDT:8003600003FF IDT:8003640007FF STR:00000028
 }}}
 
 ==2000==
+<wiki:comment>
 || ||EDI||ESI||EBP||ESP||EBX||EDX||ECX||EAX||
 ||TLS||00400000||0006F8AC||0006F8B8||0006F898||00000000||000010EC||00000000||004010C8||
 ||!EntryPoint||00000001||00000008||0006FFF0||0006FFC0||7FFDF000||FFFFFFFF||00000101||00000000||
+</wiki:comment>
 
 {{{
 TLS:        EDI:00400000 ESI:0006F8AC EBP:0006F8B8 ESP:0006F898 EBX:00000000 EDX:000010EC ECX:00000000 EAX:004010C8
@@ -145,3 +149,8 @@ CR0(after):80050031  CR0(before):80050031
 GDT:9BD640007F IDT:9BD6C00FFF STR:00000040
 }}}
 
+----
+===Greetings===
+ * Adam Blaszczyk
+ * Markus Hinderhofer
+ * Peter Ferrie
