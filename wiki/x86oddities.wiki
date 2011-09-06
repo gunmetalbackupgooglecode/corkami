@@ -5,7 +5,7 @@ This page enumerates various oddities of the x86/x64.
 They are all implemented and tested in [StandardTest Standard Test].
 
 =registers=
-MMX and FPU registers are mapped on each others, but in opposite directions: 0, 1,2,3... mapped to 7,6,5...
+MMX and FPU registers are overlapping, but in opposite directions: 0, 1,2,3... mapped to 7,6,5...
 
 Thus, a single FPU operation on ST0 will modify FST, ST0, but also MM7 (and CR0, under XP).
 {{{
@@ -25,11 +25,11 @@ On 32bit Windows, GS is not saved in the execution context: when the OS switches
 
 =os/tool/vm detection=
 At any defined point of execution (!EntryPoint, !DllMain, TLS...), registers might have different values, depending on the OS.
- * packers (such as UPX) or debuggers (such as !OllyDbg) might also alterate these values.
+ * tools like packers (such as UPX) or debuggers (such as !OllyDbg) might also alterate these values.
 
 And, at any point of execution:
  * `smsw`, `sidt`, `str`, `sgdt` will return different values depending on the OS.
- * `sldt`, `lsl`, `str` might return different values execution takes place in a virtual machine.
+ * `sldt`, `lsl`, `str` might return different values if execution takes place in a virtual machine.
 
 These values are currently being collected in the [InitialValues Initial Values page].
 
@@ -49,13 +49,13 @@ An instruction is limited to 15 bytes:
 => exception
 }}}
 
-However, it's possible to reach that limit with legitimate operations:
-in 64 bits:
+However, it's possible to almost reach that limit with legitimate operations:
+ * in 64 bits:
 {{{
  2e 67 f0 48 818480 23df067e 89abcdef: lock add qword cs:[eax + 4 * eax + 07e06df23h], 0efcdab89h
 }}}
 
-with more details:
+ * (the same with more details):
 {{{
  2e                                                   cs:
     67                                                    e         e                              
@@ -66,7 +66,7 @@ with more details:
                              89abcdef:                                                 0efcdab89h
 }}}
 
-It's also possible in 16 bits:
+ * it's also possible in 16 bits:
 {{{
 f0 2e 66 67 818418 67452301 efcdab89: lock add dword cs:[eax + ebx + 001234567h], 089abcdefh
 }}}
@@ -134,7 +134,7 @@ d403: aam 3
 
 =cmpxchg`*`=
  * `lock cmpxchg8b` doesn't crash CPUs anymore, but some tools might still show obsolete warnings about it.
- * all 3 `cmpxchg` opcodes always write the operand, even if the values are unchanged: this could trigger an exception on read-only memory.
+ * for bus optimization purposes, all 3 `cmpxchg` opcodes always write the operand, even if the values are unchanged: this could trigger an exception on read-only memory.
 
 =crc32=
 The `crc32` opcode implements the full algorithm with a single operation, however, it's not the commonly used CRC32 (used in Zip), but actually the CRC-32C (Castagnoli CRC-32), which uses a different polynomial.
@@ -198,7 +198,7 @@ no other word is changed.
 
 Recent opcodes would usually trigger an exception when executed on a CPU not supporting them. 
 
-However, this one is mapped on `0fbd: bsr` (Bit Scan Reverse) with an `f3`prefix, so it will not trigger any exception on a CPU that doesn't support it:
+However, this one is mapped on `0fbd: bsr` (Bit Scan Reverse) with an `f3` prefix, so it will not trigger any exception on a CPU that doesn't support it:
  # it will just execute `bsr` and ignore the prefix.
  # `bsr` and `lzcnt` work on the same register, and have the same instruction length, so the same target register will be modified, and the next instruction will be the same. Thus, only the target register and flags might be different.
 
@@ -224,7 +224,7 @@ f3         <== ignored prefix
 => eax = 1dh
 }}}
 
-It makes `lzcnt` an odd exception-less AMD detector (for now): on a null register, `lzcnt` will return a null value, `bsr` will leave the target unmodified.
+It makes `lzcnt` an odd exception-less AMD detector (for now): besides, with a null source, `lzcnt` will return a null value, while `bsr` will leave the target unmodified.
 
 =sal=
 Shift Arithmetic Left (the opcode with modRM 110) is identical to SHL (opcode with modRM 100), and is usually encoded directly as SHL: this means that assemblers always generates the SHL opcode, so SAL is sometimes totally ignored by disassemblers/emulators/...
