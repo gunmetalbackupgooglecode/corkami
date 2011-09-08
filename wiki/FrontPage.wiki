@@ -1,7 +1,10 @@
 #summary the homepage of this repository
-#labels Deprecated
+=Welcome !=
+this page contains:
+<wiki:toc max_depth="1" />
 
- * [PDFTricks a summary of PDF tricks] - encodings, structures, !JavaScript... (translations: [http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語])
+=docs + !PoCs=
+ * [PDFTricks a summary of PDF tricks] - encodings, structures, !JavaScript... with hand-made !PoCs (translations: [http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語])
 
  * [StandardTest Corkami Standard Test] is a PE/x86/x64 test program for your tools/emulators/skills.
   * it checks standard opcodes,
@@ -9,6 +12,7 @@
   * and how to [http://code.google.com/p/corkami/wiki/GetIP get the current IP]
   * and it's also a tricky PE, using many tricks, so many tools don't even identify it as a PE.
 
+=downloads=
  * [http://code.google.com/p/corkami/downloads/list?can=1&q=Binary+corpus Binary corpus] is a group of non malicious binaries, exhibiting various file formats, and more specifically, aspects of PE files.
   * Formats: NE, PE, Elf, LX, LE, COM, EXE
   * Compilers: Digital Mars C, Lcc, Masm, Tasm, !FreeBasic, !FreePascal, !OpenWatcom, Fasm, !GoAsm...
@@ -17,15 +21,15 @@
    * Misc: Tiny PE, !EntryPoint (on 2nd section, external), no !ImageBase...
    * Directories: none, !DelayImports, Bound Imports, !LoadConfig Directory, Copyright directory, COM directory, TLS (Empty/normal/Fake/External), Resource (recursive)....
 
+=docs=
  * Infographics and cheat sheets, useful to for daily use or training for reverse engineers: [http://code.google.com/p/corkami/downloads/detail?name=opcodes.pdf Opcodes] [http://code.google.com/p/corkami/downloads/detail?name=cm.pdf anti-debugs] [http://code.google.com/p/corkami/downloads/detail?name=packers.pdf packers] [http://code.google.com/p/corkami/downloads/detail?name=pe-20110117.pdf PE file format]
 
- * [http://code.google.com/p/corkami/downloads/list?can=1&q=kernel31 Kernel31], a trampoline DLL to enable >!XpSp3 binaries work on previous OS.
+=commented disassembly=
+ * Peter Ferrie's [http://corkami.googlecode.com/svn-history/trunk/misc/eicar2.asm EICAR2] (a 18% smaller version of the EICAR file): `5T2)D4)D65Z3PZEICAR-STANDARD-ANTIVIRUS-TEST-FILE!$UX!T!S`
+ * [http://corkami.googlecode.com/svn-history/r539/trunk/misc/aa86.asm AA86]: Assembler encoder that makes x86 code looks like `%@"%"@,~,%,!_^[^_^]-;>_^[^_^]%"!,^,:_^`...
+ * [http://corkami.googlecode.com/svn-history/r399/trunk/misc/jjencode.txt JJEncode]: !JavaScript encoder that makes !JavaScript code looks like `$=~[];$={___:++$,$$$$:(![]+"")[$],__$:++$,$_$_:(`...
 
- * commented code of 
-  * Peter Ferrie's [http://corkami.googlecode.com/svn-history/trunk/misc/eicar2.asm EICAR2] (a 18% smaller version of the EICAR file): `5T2)D4)D65Z3PZEICAR-STANDARD-ANTIVIRUS-TEST-FILE!$UX!T!S`
-  * [http://corkami.googlecode.com/svn-history/r539/trunk/misc/aa86.asm AA86]: Assembler encoder that makes x86 code looks like `%@"%"@,~,%,!_^[^_^]-;>_^[^_^]%"!,^,:_^`...
-  * [http://corkami.googlecode.com/svn-history/r399/trunk/misc/jjencode.txt JJEncode]: !JavaScript encoder that makes !JavaScript code looks like `$=~[];$={___:++$,$$$$:(![]+"")[$],__$:++$,$_$_:(`...
-
+=misc=
  * a [http://corkami.googlecode.com/svn/trunk/misc/MakePE/examples/packer/aplib.py one-file] aPLib compression/decompression in python
 
  * various !PoCs:
@@ -36,10 +40,16 @@
   * imports [http://code.google.com/p/corkami/downloads/list?can=1&q=imports_loading loading] [http://code.google.com/p/corkami/downloads/list?can=1&q=imports_obfuscation obfuscation]
 
  * [http://code.google.com/p/corkami/downloads/list?can=1&q=user-mode+drivers a toolkit] to run drivers in user-mode, and unpack them directly from !OllyDbg
+ * [http://code.google.com/p/corkami/downloads/list?can=1&q=kernel31 Kernel31], a trampoline DLL to enable >!XpSp3 binaries work on previous OS.
+ * old crackmes solutions: PredatorPirupiru LilcwXor
 
-...for more information, check the [http://corkami.blogspot.com/p/map.html blog map], the [http://code.google.com/p/corkami/w/list wiki], and the [http://code.google.com/p/corkami/downloads/list downloads tab].
+=by the same author=
+ * Screencasts:
+  * [https://sites.google.com/site/corkami/ollydbg-tracing OllyDbg Tracing] (easy level) setting !OllyDbg as a JIT debugger, tracing, optimizing tracing, finding bug, patching, saving as a new executable
+  * [http://rejava.sourceforge.net/hello.html reJava] create a .class from scratch
 
-----
-
-known derivative works:
+=known related works=
  * a very nice and simple [http://net.cs.uni-bonn.de/fileadmin/user_upload/plohmann/x86_opcode_structure_and_instruction_overview.pdf opcode table], by Daniel Plohmann
+
+===more...===
+...for more information, check the [http://corkami.blogspot.com/p/map.html blog map], the [http://code.google.com/p/corkami/w/list wiki], and the [http://code.google.com/p/corkami/downloads/list downloads tab].
