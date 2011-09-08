@@ -26,8 +26,11 @@
  * [http://corkami.googlecode.com/svn-history/r399/trunk/misc/jjencode.txt JJEncode]: !JavaScript encoder that makes !JavaScript code looks like `$=~[];$={___:++$,$$$$:(![]+"")[$],__$:++$,$_$_:(`...
 
 =misc=
- * a [http://corkami.googlecode.com/svn/trunk/misc/MakePE/examples/packer/aplib.py one-file] aPLib compression/decompression in python
 
+ * a [http://corkami.googlecode.com/svn/trunk/misc/MakePE/examples/packer/aplib.py one-file] aPLib compression/decompression in python
+ * [IntroductionToVirus Explaining what’s a computer virus to grandma]
+ * [CallingConventions Calling conventions, seen from ASM]
+ * [InitialValues (initial) values of cpu registers on Windows OSes]
  * various !PoCs:
   * packers
    * [http://code.google.com/p/corkami/downloads/list?can=1&q=mini_packers categories]: patcher, protecter, crypter, compresser, mutater, virtualizer
