@@ -1,39 +1,12 @@
 #summary x86 oddities
-
+=x86 oddities=
 This page enumerates various oddities of the x86/x64.
 
 They are all implemented and tested in [StandardTest Standard Test].
+<wiki:toc max_depth="3" />
 
-=registers=
-MMX and FPU registers are overlapping, but in opposite directions: 0, 1,2,3... mapped to 7,6,5...
-
-Thus, a single FPU operation on ST0 will modify FST, ST0, but also MM7 (and CR0, under XP).
-{{{
-d9eb: fldpi
-
-=> fst = 03800h
-   st0 = 04000c90fdaa22168c235h
-   mm7 =     0c90fdaa22168c235h
-   cr0 = 080010031h (under XP)
-}}}
-
-==GS==
-On 32bit Windows, GS is not saved in the execution context: when the OS switches from an application to another, the content of GS is lost. This can be used as an anti-emulator or an anti-stepping: after some time of execution, GS will eventually be reset:
- # set GS to X
- # wait until GS is null `<== thread switch eventually happens, and resets GS`
- # execution resume here
-
-=os/tool/vm detection=
-At any defined point of execution (!EntryPoint, !DllMain, TLS...), registers might have different values, depending on the OS.
- * tools like packers (such as UPX) or debuggers (such as !OllyDbg) might also alterate these values.
-
-And, at any point of execution:
- * `smsw`, `sidt`, `str`, `sgdt` will return different values depending on the OS.
- * `sldt`, `lsl`, `str` might return different values if execution takes place in a virtual machine.
-
-These values are currently being collected in the [InitialValues Initial Values page].
-
-=instruction length=
+=general=
+==instruction length==
 An instruction is limited to 15 bytes:
  for example, while a `nop` preceded by 14 useless prefixes is valid, 
  {{{
@@ -73,9 +46,45 @@ f0 2e 66 67 818418 67452301 efcdab89: lock add dword cs:[eax + ebx + 001234567h]
 
 VirtualPC has been known to be incorrectly ignoring the 15 bytes limit.
 
-----
+==mnemonic length==
+ * `or`, `in`, `jz/jp/js/jo`, `bt` are the smallest mnemonics
+ * `maskmovdqu`, `vbroadcast`, `vzeroupper`, `vfnmadd132pd`, `vbroadcastf128` are long names...
+  * but `aeskeygenassist` beats them all.
 
-=nop=
+=registers=
+
+==MMX and FPU==
+MMX and FPU registers are overlapping, but in opposite directions: 0, 1,2,3... mapped to 7,6,5...
+
+Thus, a single FPU operation on ST0 will modify FST, ST0, but also MM7 (and CR0, under XP).
+{{{
+d9eb: fldpi
+
+=> fst = 03800h
+   st0 = 04000c90fdaa22168c235h
+   mm7 =     0c90fdaa22168c235h
+   cr0 = 080010031h (under XP)
+}}}
+
+==GS==
+On 32bit Windows, GS is not saved in the execution context: when the OS switches from an application to another, the content of GS is lost. This can be used as an anti-emulator or an anti-stepping: after some time of execution, GS will eventually be reset:
+ # set GS to X
+ # wait until GS is null `<== thread switch eventually happens, and resets GS`
+ # execution resume here
+
+==os/tool/vm detection==
+At any defined point of execution (!EntryPoint, !DllMain, TLS...), registers might have different values, depending on the OS.
+ * tools like packers (such as UPX) or debuggers (such as !OllyDbg) might also alterate these values.
+
+And, at any point of execution:
+ * `smsw`, `sidt`, `str`, `sgdt` will return different values depending on the OS.
+ * `sldt`, `lsl`, `str` might return different values if execution takes place in a virtual machine.
+
+These values are currently being collected in the [InitialValues Initial Values page].
+
+=specific=
+
+==nop==
 `nop` is an alias mnemonic of `90:xchg *ax, *ax` (which does nothing, as no flag are affected by `xchg`): the whole 90-97 range is actually `xchg *ax, <reg32>`.
 {{{
 90: xchg eax, eax
@@ -88,7 +97,7 @@ VirtualPC has been known to be incorrectly ignoring the 15 bytes limit.
 => ecx, eax = eax, ecx
 }}}
 
-=xchg/xadd=
+==xchg/xadd==
 `xchg`, `xadd` are opcodes that affect both source and target operands (like `fxch`). 
 
 Moreover, they can operate on different parts of the same register, which has the potential to break trivial logic analyzers:
@@ -98,7 +107,7 @@ Moreover, they can operate on different parts of the same register, which has th
 => ah, al = al + ah, ah
 }}}
 
-=aad=
+==aad==
 `aad` is officially defined to use only 10/0Ah as a default operand, but can just use any other operand.
 
 it makes it the first Add and Multiply opcode, as `al = ah * operand + al`.
@@ -111,7 +120,7 @@ d507: aad 7
 => ax = 3 * 7 + 25h = 3ah
 }}}
 
-=aam=
+==aam==
 Similar logic for `aam`: 
  * it's officially defined with 10/0ah, but it just works with any byte.
  * it's a division, and quotient and remainder go to `ah` and `al` respectively.
@@ -125,7 +134,7 @@ d403: aam 3
    al = 3ah % 3 = 1
 }}}
 
-=bswap=
+==bswap==
 `bswap` is *officially undefined* on WORDS. In *reality*, it just clears the register, unexpectedly.
 {{{
 66 0fc8: bswap ax 
@@ -133,11 +142,11 @@ d403: aam 3
 => ax = 0
 }}}
 
-=cmpxchg`*`=
+==cmpxchg`*`==
  * `lock cmpxchg8b` doesn't crash CPUs anymore, but some tools might still show obsolete warnings about it.
  * for bus optimization purposes, all 3 `cmpxchg` opcodes always write the operand, even if the values are unchanged: this could trigger an exception on read-only memory.
 
-=crc32=
+==crc32==
 The `crc32` opcode implements the full algorithm with a single operation, however, it's not the commonly used CRC32 (used in Zip), but actually the CRC-32C (Castagnoli CRC-32), which uses a different polynomial.
 
 While it's technically the same algorithm as the 'common' CRC32, it uses a different seed, so it returns different results, thus it's useless for Zip, and all the countless applications of the deflate algorithm.
@@ -152,7 +161,7 @@ f2 0f 38f1c3: crc32 eax, ebx
 
 It's still usable independently as a checksum, and is actually used in network protocols such as iSCSI, SCTP; it's actually more efficient than the standard CRC32 (when used for recovery purposes), but it's just incompatible.
 
-=mov=
+==mov==
  * mov to/from control and debug registers ignores the modRM (the field that specifies if operations are done on registers or memory).
 {{{
 0f 2000: mov eax, cr0
@@ -165,7 +174,7 @@ It's still usable independently as a checksum, and is actually used in network p
 => eax = 0000001bh (xp)
 }}}
 
-=push=
+==push==
 Even though selectors are WORDS-sized registers, like standard registers such as AX, they're not pushed on the stack the same way.
 {{{
 1e: push ds
@@ -183,7 +192,7 @@ Even though selectors are WORDS-sized registers, like standard registers such as
 
 no other word is changed.
 
-=movbe=
+==movbe==
  * `movbe` (MOV Big Endian) is a recent opcode equivalent to `mov + bswap`, but only to/from memory.
 {{{
 [ebx] = 011223344h
@@ -195,7 +204,7 @@ no other word is changed.
  * unlike `bswap`, it's able to work with a WORD without resetting it.
  * It's found only on Atom CPUs. Thus, netbooks support it, but not powerful CPUs such as i7.
 
-=lzcnt=
+==lzcnt==
 `lzcnt` (Leading Zero CouNT) is an opcode created in 2007, only supported by AMD in their Barcelona architecture and later (it's planned in Intel Haswell for 2013, along with its counterpart `tzcnt`).
 
 Recent opcodes would usually trigger an exception when executed on a CPU not supporting them. 
@@ -228,7 +237,7 @@ f3         <== ignored prefix
 
 It makes `lzcnt` an odd exception-less AMD detector (for now): besides, with a null source, `lzcnt` will return a null value, while `bsr` will leave the target unmodified.
 
-=sal=
+==sal==
 Shift Arithmetic Left (the opcode with modRM 110) is identical to SHL (opcode with modRM 100), and is usually encoded directly as SHL: this means that assemblers always generates the SHL opcode, so SAL is sometimes totally ignored by disassemblers/emulators/...
 
 {{{
@@ -244,7 +253,7 @@ It's informally called SAL, because it's technically a different opcode (in hex)
 || modRM || 100 || 101 || 110 || 111 ||
 || opcode || SHL || SHR || 'SAL' || SAR ||
 
-=salc=
+==salc==
  * `salc` is sometimes written `setalc`
  * it stands for `Set AL on Carry`
  * it's undocumented by Intel - but not by AMD, and it's unexpectedly supported by Intel's public tools.
@@ -258,7 +267,7 @@ d6: salc
 => al = -1
 }}}
 
-=lock=
+==lock==
 `lock:` works only on memory targets:
  * `f0 0100: lock:add [eax], eax` is valid.
  * `f0 01c0: lock:add eax, eax` and `f0 0300: lock:add eax, [eax]` trigger exceptions.
@@ -270,7 +279,7 @@ and on the following opcodes:
   * `f0 0fa300: lock:bt [eax], eax` *does* trigger an exception.
  * xadd, xchg (even if they are already atomic, so `lock:` is superfluous)
 
-==XP bug==
+===XP bug===
 `lock:` is wrongly parsed by Windows XP:
  # Upon an exception, XP tries to determine whether it should be an INVALID LOCK SEQUENCE or just an ILLEGAL INSTRUCTION
  # but it checks too briefly for a F0 byte: in the case of `FEF0`, which is just undefined, an INVALID LOCK SEQUENCE is still triggered by XP even if, in this case, it has nothing to do with a `lock` prefix (For reference, `FEC0` decodes as `inc al`)
@@ -284,7 +293,7 @@ fef0: ??
    ILLEGAL INSTRUCTION (W7)
 }}}
 
-=smsw=
+==smsw==
  * returns CR0 value (WORD or DWORD)
  * unprivileged, unlike `mov eax, cr0`: it's an old 286 instructions, while `mov cr0` is only present in 386 and later.
  * upper bits are officially undefined. but in reality, they're just CR0 contents.
@@ -298,7 +307,7 @@ fef0: ??
  * since CR0 is influenced by other events (FPU) under XP, it makes it a tough anti-emulator.
  * `smsw` is defined on DWORD or WORD on registers, but always on WORD in memory(see below).
 
-=str/sldt=
+==str/sldt==
 Like `smsw`, they work on DWORD or WORD on registers, but only on WORD in memory.
 
 {{{
@@ -322,13 +331,13 @@ Like `smsw`, they work on DWORD or WORD on registers, but only on WORD in memory
 
 it's the same for `sldt`.
 
-=test=
+==test==
 `test <r32>, <imm32>` has an alternate encoding that is sometimes forgotten, as it's never generated by compilers or assemblers.
 {{{
 f7c8 44332211: test eax, 11223344h
 }}}
 
-=IceBP=
+==IceBP==
  * like `salc`, `IceBP` is undocumented by Intel, but not by AMD, and supported by Intel tools.
  * it stands for [http://en.wikipedia.org/wiki/In-circuit_emulator In-Circuit Emulator] Breakpoint. 
  * it's unprivileged.
@@ -341,7 +350,7 @@ f1: IceBp
 => SINGLE STEP (80000004h) exception
 }}}
 
-=rdtscp=
+==rdtscp==
 `rdtscp` is a recent opcode that just returns the usual `rdtsc` result to eax/edx, and also changes ECX: it's  _loaded with the low-order 32-bits of
 IA32_TSC_AUX MSR_ ... which means most of the time, 0.
 
@@ -352,7 +361,7 @@ IA32_TSC_AUX MSR_ ... which means most of the time, 0.
    ecx = 0
 }}}
 
-=hint nop=
+==hint nop==
  * `hint nop` is officially documented by Intel as opcode `0f 1f`, but it's actually available on range `0f 19-1f`.
  * as one would expect from a `nop`, it never triggers an exception, even when referencing an invalid address.
 
@@ -363,12 +372,12 @@ IA32_TSC_AUX MSR_ ... which means most of the time, 0.
 }}}
  * but, of course, if the operand is on an invalid page, it can still trigger an exception.
 
-=branch hints=
+==branch hints==
  * branch hints are officially defined to give hints to the CPU whereas a branch is likely to be taken or not.
  * they are supposedly generated by compilers, but there is no official way to assemble or disassemble them.
  * they are re-using the 2e/3e bytes, which are mapped to `CS:` and `DS:` prefixes.
 
-=16b flow=
+==16b flow==
  * call, jumps, return, loops can either jump to 32b or 16b via the `66:` prefix.
  * there is no official way to disassemble a return to word : `small retn`, `retn word`, `retn.w`...
 
@@ -380,7 +389,7 @@ IA32_TSC_AUX MSR_ ... which means most of the time, 0.
    esp = esp - 2
 }}}
 
-=obsolete opcodes=
+==obsolete opcodes==
 There are many opcodes that are never generated by compilers nowadays, that still fully work under modern CPUs. The list is long: xadd, aaa, daa, aas, das, aad, aam, l`*`s, bound, arpl, xlatb, lar, verr`*`, cmpxchg`*`, lsl...
 
 Here is an example of some code, fully working under a modern CPU, but obfuscated by its obsolescence:
@@ -404,7 +413,7 @@ xadd ecx, eax
 prefetch [eax]
 }}}
 
-=future opcodes=
+==future opcodes==
 Intel Haswell will introduce very useful opcodes (on general registers) such as:
  * `andn`:
 
@@ -423,13 +432,6 @@ f7d0 not eax
 
  * `mulx`, `rorx`, `sarx`, `shlx`, `shrx` will do the same as their cousins from the late 70's, but without affecting the flags.
  
-=mnemonic length= 
- * `or`, `in`, `jz/jp/js/jo`, `bt` are the smallest mnemonics
- * `maskmovdqu`, `vbroadcast`, `vzeroupper`, `vfnmadd132pd`, `vbroadcastf128` are long names...
-  * but `aeskeygenassist` beats them all.
-
-----
-
 =x64=
 
 ==32 bits zero extending==
@@ -467,9 +469,8 @@ _64b:
 ===32+64===
 Since there are some opcodes specific to 32 bits mode (arpl, ...), and others specific to 64 bits mode (movsxd, ...), the same hex data can lead to completely different disassembly, just because CS is different at the start.
 
-----
 
-===Greetings===
+=Greetings=
  * Peter Ferrie
 
  * BeatriX
