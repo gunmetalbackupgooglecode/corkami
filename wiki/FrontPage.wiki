@@ -1,8 +1,4 @@
 #summary the homepage of this repository
-=Welcome !=
-this page contains:
-<wiki:toc max_depth="1" />
-
 =docs + !PoCs=
  * [PDFTricks a summary of PDF tricks] - encodings, structures, !JavaScript... with hand-made !PoCs (translations: [http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語])
 
