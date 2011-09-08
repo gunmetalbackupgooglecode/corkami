@@ -52,4 +52,4 @@ this page contains:
  * a very nice and simple [http://net.cs.uni-bonn.de/fileadmin/user_upload/plohmann/x86_opcode_structure_and_instruction_overview.pdf opcode table], by Daniel Plohmann
 
 ===more...===
-...for more information, check the [http://corkami.blogspot.com/p/map.html blog map], the [http://code.google.com/p/corkami/w/list wiki], and the [http://code.google.com/p/corkami/downloads/list downloads tab].
+...for more information, check the (old) [http://corkami.blogspot.com/p/map.html blog map], and the [http://code.google.com/p/corkami/downloads/list downloads tab].
