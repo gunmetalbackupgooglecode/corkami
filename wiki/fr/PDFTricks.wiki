@@ -1,8 +1,11 @@
 ﻿#summary un résumé des astuces PDF - encodages, structures, JavaScript...
 
+=Astuces PDF=
 Ceci est un résumé des astuces du format PDF, qu'elles soient basées sur l'encodage, le !JavaScript, ou la structure PDF.
 
-AVERTISSEMENT: les fichiers sont sains, écris à la main, pour une meilleur compréhension et une clarté totale. Cependant, comme ils utilisent des astuces diverses présentes dans les virus, ils pourraient être détectés par votre antivirus, ou faire planter vos programmes habituels. Cela dit, ils marchent tous sous Adobe Acrobat, ce qui est le but ici.
+<wiki:toc max_depth="3" />
+
+*AVERTISSEMENT* les fichiers sont sains, écris à la main, pour une meilleur compréhension et une clarté totale. Cependant, comme ils utilisent des astuces diverses présentes dans les virus, ils pourraient être détectés par votre antivirus, ou faire planter vos programmes habituels. Cela dit, ils marchent tous sous Adobe Acrobat, ce qui est le but ici.
 
  En clair: ils sont bizarres, mais ils marchent, et ils sont innofensifs.
  
@@ -168,6 +171,7 @@ stream
 BT/default 20 Tf 1 0 0 1 1 715 Tm(this text and the PDF objects are stored beyond the %%EOF tag)Tj ET
 [...]
 }}}
+
 ==linearized==
 les PDF sont parcourus par défaut de bas en haut, sauf si le premier objet (même un objet bidon sans référence) contient le tag _Linearized_ (avec une valeur quelconque).
 
@@ -216,6 +220,7 @@ trailer
 
 =encodage en !JavaScript=
 Voici quelques autres astuces d'encodages, qui utilisent !JavaScript (pas forcément spécifique à Acrobat).
+
 ==concaténation==
 L'astuce la plus simple de toute est de couper la chaîne en morceaux, et de les reconcaténer ensuite.
 
@@ -421,7 +426,6 @@ Pour pouvoir utiliser le !JavaScript, un PDF a juste besoin d'être comme l'exem
 {{{
 %PDF-\0trailer<</Root<</Pages<<>>/OpenAction<</S/JavaScript/JS(app.alert('Hello World!');)>>>>>>
 }}}
-
 
 =Flux corrompu=
 Si un flux compressé avec !FlatEncode est tronqué ou corrompu, il sera pris tel quel - jusqu'à l'erreur - et quand même interprété (en général, des données compressées incorrectes seraient tout simplement ignorées).

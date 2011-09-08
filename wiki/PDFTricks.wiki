@@ -13,7 +13,6 @@ for many more !JavaScript tricks, check the [http://bonsaiden.github.com/JavaScr
 
 for direct downloads, see [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/ the SVN directory].
 
-
 =encodings=
 any data (or string) can be encoded in various ways.
 
@@ -93,7 +92,7 @@ theoretically `%PDF-1.[4-6]`, the signature can be truncated to ignore the last 
 ...but it can be actually even shorter, provided you insert a null character. 
 
  Example of null-based header trick ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-null.pdf download]):
- {{{
+{{{
 %PDF-\0
 }}}
 
@@ -222,6 +221,19 @@ trailer
 =!JavaScript-based encodings=
 Here are a few other encoding tricks, that use javascript (not necessarily specific to Acrobat's)
 
+==concatenation==
+the simplest tricks of all for strings in Javascript, split into parts, then concatenate back.
+
+ Example of a `Hello World!` string concatenated before display ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-concat.pdf download]):
+{{{
+[...]
+      B="Hell";
+      on="o ";
+      jour="World!";
+      app.alert(B + on + jour);
+[...]
+}}}
+
 ==replace==
 simple obfuscation, add some extra character/switch then replace/restore them before use.
 
@@ -244,19 +256,6 @@ like CAFEBABE can be read as a word or as a hex number, any uppercase word can b
  Example of a `HELLO WORLD!` string, with each word encoded as a number, in different bases ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-number.pdf download]):
 {{{
 (6873049).toString(25) + " " + (38842069).toString(33) + "!"
-}}}
-
-==concatenation==
-the simplest tricks of all for strings in Javascript, split into parts, then concatenate back.
-
- Example of a `Hello World!` string concatenated before display ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/js-concat.pdf download]):
-{{{
-[...]
-      B="Hell";
-      on="o ";
-      jour="World!";
-      app.alert(B + on + jour);
-[...]
 }}}
 
 =!JavaScript-based tricks=
@@ -344,7 +343,6 @@ Similarly, a PDF page can contain an annotation, which content can be retrieved 
 ==getfield==
 An _AcroForm Widget_ can contain some data and value, which can be retrieved via the _getField_ function.
 
-
  Example of a string stored in an !AcroForm Widget ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-getfield.pdf download]):
 {{{
 [...]
@@ -359,7 +357,7 @@ An _AcroForm Widget_ can contain some data and value, which can be retrieved via
 }}}
 
 ==anti-emulators==
-
+On top of standard !JavaScript, it's possible, via Acrobat specificities, to determine if we're in the real program or in an emulator.
 ===initial values===
 some Adobe specific global variables are initialized with default values, so checking them might stop an emulator.
 
@@ -385,6 +383,7 @@ global variables show a different behavior as opposed to normal ones: their type
 }}}
 
 =Minimalists PDF=
+see earlier in the page for PDFs as small as possible, but containing nothing.
 ==Page==
 to actually contain a page, an object, defining its kid as its parent, should be referenced in trailer/Root/Pages.
 
@@ -428,7 +427,6 @@ to be able to use !JavaScript, a PDF just needs to be empty (see above), with an
 %PDF-\0trailer<</Root<</Pages<<>>/OpenAction<</S/JavaScript/JS(app.alert('Hello World!');)>>>>>>
 }}}
 
-
 =Corrupted stream=
 if a !FlatEncoded stream is truncated or corrupted, it will be taken as is until the error - and still interpreted (typically, such a stream would be totally discarded).
 
@@ -439,4 +437,4 @@ WARNING: it will not work if the PDF is encrypted - it should be decrypted first
 =References=
  * [http://blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/ Didier Stevens]
  * [http://www.symantec.com/connect/blogs/portable-document-format-malware Kazumasa Itabashi]
- * [http://blog.zynamics.com/2010/07/13/recon-slides-how-to-really-obfuscate-your-pdf-malware/ Sebastian Porst]
+ * [http://blog.zynamics.com/2010/07/13/recon-slides-how-to-really-obfuscate-your-pdf-malware/ Sebastian Porst] 

@@ -297,7 +297,6 @@ fef0: ??
  * returns CR0 value (WORD or DWORD)
  * unprivileged, unlike `mov eax, cr0`: it's an old 286 instructions, while `mov cr0` is only present in 386 and later.
  * upper bits are officially undefined. but in reality, they're just CR0 contents.
-
 {{{
 
 0f 01e0: smsw eax
@@ -351,8 +350,7 @@ f1: IceBp
 }}}
 
 ==rdtscp==
-`rdtscp` is a recent opcode that just returns the usual `rdtsc` result to eax/edx, and also changes ECX: it's  _loaded with the low-order 32-bits of
-IA32_TSC_AUX MSR_ ... which means most of the time, 0.
+`rdtscp` is a recent opcode that just returns the usual `rdtsc` result to eax/edx, and also changes ECX: it's  _loaded with the low-order 32-bits of IA32_TSC_AUX MSR_ ... which means most of the time, 0.
 
 {{{
 0f 01f9: rdtscp
@@ -468,7 +466,6 @@ _64b:
 
 ===32+64===
 Since there are some opcodes specific to 32 bits mode (arpl, ...), and others specific to 64 bits mode (movsxd, ...), the same hex data can lead to completely different disassembly, just because CS is different at the start.
-
 
 =Greetings=
  * Peter Ferrie

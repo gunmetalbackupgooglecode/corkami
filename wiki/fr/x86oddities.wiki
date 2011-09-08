@@ -1,39 +1,12 @@
 #summary bizarreries du x86
-
+=bizarreries du x86=
 Cette page énumère les bizarreries diverses du x86/x64.
 
 Elles sont toutes implémentées et testées dans [StandardTest Standard Test].
+<wiki:toc max_depth="3" />
 
-=registres=
-Les registres MMX et FPU sont superposés, mais dans l'ordre inverse: 0,1,2,3... se retrouvent sur 7,6,5...
-
-Donc, une seule instruction FPU sur ST0 va modifier FST, ST0, mais aussi MM7 (et CR0, quand on est sous XP).
-{{{
-d9eb: fldpi
-
-=> fst = 03800h
-   st0 = 04000c90fdaa22168c235h
-   mm7 =     0c90fdaa22168c235h
-   cr0 = 080010031h (under XP)
-}}}
-
-==GS==
-Sous un Windows 32bit, GS n'est pas sauvé dans le 'contexte' d'exécution: quand l'OS passe d'une application à l'autre, le contenu de GS est perdu. Ça peut servir à faire un anti-émulateur ou un anti-analyse: après un temps d'exécution, GS finira par être remis à zéro:
- # mettre GS à X
- # attendre que GS soit nul `<== un changement de thread finira par se produire, et remettra GS à zéro`
- # l'exécution continue ici
-
-=détection de système d'exploitation/outils/machine virtuelle=
-A des points précis de l'exécution, (!EntryPoint, !DllMain, TLS...), les registres peuvent avoir des valeurs différentes selon l'OS.
- * des outils comme les packeurs (tels qu'UPX) ou les débogueurs (tels qu'!OllyDbg) peuvent aussi altérer ces valeurs.
-
-De même, à n'importe quel point de l'exécution:
- * `smsw`, `sidt`, `str`, `sgdt` vont retourner des valeurs différentes selon l'OS.
- * `sldt`, `lsl`, `str` peuvent retourner des valeurs si l'exécution est dans une machine virtuelle.
-
-Ces valeurs sont documentées sur [InitialValues cette page] (en cours de construction).
-
-=longueur des instructions=
+=générique=
+==longueur des instructions==
 Une instruction est limitée à 15 octets::
  par exemple, un `nop` précédé de 14 préfixes superflus est valide, 
  {{{
@@ -73,9 +46,45 @@ f0 2e 66 67 818418 67452301 efcdab89: lock add dword cs:[eax + ebx + 001234567h]
 
 VirtualPC est connu pour avoir dans le passé ignoré cette limite (et être ainsi facilement détectable).
 
-----
+==longueur de mnémoniques==
+ * `or`, `in`, `jz/jp/js/jo`, `bt` sont les mnémoniques les plus cours
+ * `maskmovdqu`, `vbroadcast`, `vzeroupper`, `vfnmadd132pd`, `vbroadcastf128` sont bien long...
+  * mais `aeskeygenassist` les bat tous.
 
-=nop=
+=registres=
+
+==MMX et FPU==
+Les registres MMX et FPU sont superposés, mais dans l'ordre inverse: 0,1,2,3... se retrouvent sur 7,6,5...
+
+Donc, une seule instruction FPU sur ST0 va modifier FST, ST0, mais aussi MM7 (et CR0, quand on est sous XP).
+{{{
+d9eb: fldpi
+
+=> fst = 03800h
+   st0 = 04000c90fdaa22168c235h
+   mm7 =     0c90fdaa22168c235h
+   cr0 = 080010031h (under XP)
+}}}
+
+==GS==
+Sous un Windows 32bit, GS n'est pas sauvé dans le 'contexte' d'exécution: quand l'OS passe d'une application à l'autre, le contenu de GS est perdu. Ça peut servir à faire un anti-émulateur ou un anti-analyse: après un temps d'exécution, GS finira par être remis à zéro:
+ # mettre GS à X
+ # attendre que GS soit nul `<== un changement de thread finira par se produire, et remettra GS à zéro`
+ # l'exécution continue ici
+
+==détection de système d'exploitation/outils/machine virtuelle==
+A des points précis de l'exécution, (!EntryPoint, !DllMain, TLS...), les registres peuvent avoir des valeurs différentes selon l'OS.
+ * des outils comme les packeurs (tels qu'UPX) ou les débogueurs (tels qu'!OllyDbg) peuvent aussi altérer ces valeurs.
+
+De même, à n'importe quel point de l'exécution:
+ * `smsw`, `sidt`, `str`, `sgdt` vont retourner des valeurs différentes selon l'OS.
+ * `sldt`, `lsl`, `str` peuvent retourner des valeurs si l'exécution est dans une machine virtuelle.
+
+Ces valeurs sont documentées sur [InitialValues cette page] (en cours de construction).
+
+=spécifique=
+
+==nop==
 `nop` est un mnémonique synonyme de `90:xchg *ax, *ax` (qui ne fait rien, puisque qu'aucun drapeau n'est affecté par `xchg`): l'intervalle 90-97 est en fait uniquement composé de `xchg *ax, <reg32>`.
 {{{
 90: xchg eax, eax
@@ -88,7 +97,7 @@ VirtualPC est connu pour avoir dans le passé ignoré cette limite (et être ain
 => ecx, eax = eax, ecx
 }}}
 
-=xchg/xadd=
+==xchg/xadd==
 `xchg`, `xadd` sont des instructions qui modifient à la fois la cible et la source (comme `fxch`). 
 
 De plus, elles peuvent être utilisées sur des parties différentes d'un même registre, ce qui peut potentiellement perturber des analyzeurs logiques simples:
@@ -98,7 +107,7 @@ De plus, elles peuvent être utilisées sur des parties différentes d'un même 
 => ah, al = al + ah, ah
 }}}
 
-=aad=
+==aad==
 `aad` est définie officiellement comme utilisant uniquement 10/0Ah comme opérande par défaut, mais on peut en fait utiliser n'importe laquelle.
 
 Cela en fait le premier opcode 'Addition et multiplication', puisque `al` va avoir la valeur `ah * operand + al`.
@@ -111,7 +120,7 @@ d507: aad 7
 => ax = 3 * 7 + 25h = 3ah
 }}}
 
-=aam=
+==aam==
 Logique similaire pour `aam`: 
  * officiellement définie avec 10/0ah, mais ça marche avec n'importe quel octet.
  * c'est une division, et le quotient et le reste vont dans `ah` et `al` respectivement.
@@ -125,19 +134,19 @@ d403: aam 3
    al = 3ah % 3 = 1
 }}}
 
-=bswap=
-`bswap <reg16>` est *officiellement* non définie sur un MOT. En *réalité*, le registre mis à zéro, ce qui est plutôt inattendu - on comprend qu'Intel ne s'en vante pas.
+==bswap==
+`bswap <reg16>` est *officiellement* non définie. En *réalité*, le registre mis à zéro, ce qui est plutôt inattendu - on comprend qu'Intel veuille le cacher.
 {{{
 66 0fc8: bswap ax 
 
 => ax = 0
 }}}
 
-=cmpxchg8b=
+==cmpxchg`*`==
  * `lock cmpxchg8b` ne plante plus les processeurs, mais certains outils peuvent encore donner des avertissements.
  * pour optimiser le fonctionnement du bus, les 3 instructions `cmpxchg` modifient toujours leurs cibles, mêmes si les valeurs sont inchangées: cela pourrait déclencher une exception si l'adresse mémoire est en lecture seule.
 
-=crc32=
+==crc32==
 L'opcode `crc32` implémente l'algorithme complet en une seule instruction, mais il ne s'agit pas du CRC32 le plus couramment utilisé (celui de Zip), mais en fait le CRC-32C(Castagnoli CRC-32), qui utilise un polynôme différent.
 
 Alors qu'il s'agit techniquement du même algorithme, comme la valeure initiale est différente, il produit des résultats différents, donc il est inutile pour Zip et les innombrables applications qui sont basées sur l'algorithme 'Deflate'.
@@ -152,7 +161,7 @@ f2 0f 38f1c3: crc32 eax, ebx
 
 Il est quand même toujours utilisable comme checksum (somme de contrôle), et il est d'ailleurs utilisé pour des protocoles réseaux tels que iSCSI et SCTP; il est d'ailleurs plus efficace que le CRC32 standard, mais il est tout simplement incompatible.
 
-=mov=
+==mov==
  * le décodage de `mov` de/vers les registres de contrôle et de déboguage ignorent le modRM (le champ qui spécifie si une instruction travaille avec les registres ou avec une adresse en mémoire):
 {{{
 0f 2000: mov eax, cr0
@@ -165,9 +174,8 @@ Il est quand même toujours utilisable comme checksum (somme de contrôle), et i
 => eax = 0000001bh (xp)
 }}}
 
-=push=
+==push==
 Bien que les sélecteurs aient la taille d'un MOT, comme les registres standards tels qu'AX, ils ne sont pas empilés de la même façon.
-
 {{{
 1e: push ds
 
@@ -184,7 +192,7 @@ Bien que les sélecteurs aient la taille d'un MOT, comme les registres standards
 
 Aucun autre mot n'est modifié.
 
-=movbe=
+==movbe==
  * `movbe` (MOV Big Endian) est une instruction récente équivalente à `mov + bswap`, mais uniquement de/vers la mémoire.
 {{{
 [ebx] = 011223344h
@@ -196,7 +204,7 @@ Aucun autre mot n'est modifié.
  * contrairement à `bswap`, elle est capable d'utiliser un MOT sans le mettre à zéro.
  * elle n'est présente que sur les processeurs Atom. Donc, les netbooks l'implémentent, mais pas des processeurs puissants tels que les i7.
 
-=lzcnt=
+==lzcnt==
 `lzcnt` (Leading Zero CouNT) est une instruction apparue en 2007, qui est uniquement gérée par les AMD d'architecture Barcelona ou plus récente (elle est prévue dans les Intel Haswell pour 2013, de même que sa cousine `tzcnt`).
 
 D'habitude, des instructions trop récentes non gérées déclencheraient une exception.
@@ -229,7 +237,7 @@ f3         <== préfixe ignoré
 
 Cela donne un détecteur d'AMD inattendu, sans déclenchement d'exception (jusqu'a présent): d'ailleurs, plus simplement, avec un registre nul, `lzcnt` retournera une valeur nulle, et au contraire, `bsr` ne modifiera pas le registre cible.
 
-=sal=
+==sal==
 Shift Arithmetic Left (l'instruction au modRM 110) est identique à SHL (instruction au modRM 100), et il est d'habitude encodé directement en tant que SHL: ça signifie que les assembleurs génèrent toujours l'instruction SHL, donc SAL est parfois totalement ignorée par certains outils.
 
 {{{
@@ -245,7 +253,7 @@ Elle est informellement appelée SAL, parce qu'elle est techniquement différent
 || modRM || 100 || 101 || 110 || 111 ||
 || opcode || SHL || SHR || 'SAL' || SAR ||
 
-=salc=
+==salc==
  * `salc` est parfois écrite `setalc`
  * cela signifie `Set AL on Carry` (défini AL selon la retenue)
  * elle est non documentée par Intel - mais pas par AMD, et de manière surprenante, est parfaitement gérée par les outils publics d'Intel.
@@ -259,7 +267,7 @@ d6: salc
 => al = -1
 }}}
 
-=lock=
+==lock==
 `lock:` marche uniquement sur les cibles en mémoires:
  * `f0 0100: lock:add [eax], eax` est valide.
  * `f0 01c0: lock:add eax, eax` and `f0 0300: lock:add eax, [eax]` déclenche des exceptions.
@@ -271,7 +279,7 @@ et sur les instructions suivantes:
   * `f0 0fa300: lock:bt [eax], eax` *déclenche* une exception.
  * xadd, xchg (même si elles sont déjà atomiques, auquel cas `lock:` est superflu)
 
-==XP bug==
+===XP bug===
 `lock:` est mal décrypté par XP:
  # après une exception, XP essaie de déterminer s'il s'agit d'une erreur de type INVALID LOCK SEQUENCE ou simplement d'une ILLEGAL INSTRUCTION standard.
  # mais XP vérifie trop simplement la présence d'un octet F0: dans le cas de `FEF0`, qui est simplement non défini, une exception INVALID LOCK SEQUENCE est quand même déclenchée, même si, dans ce cas, ça n'a rien à voir avec un préfixe `lock:`. (A titre d'information, `FEC0` se décode en `inc al`)
@@ -285,7 +293,7 @@ fef0: ??
    ILLEGAL INSTRUCTION (W7)
 }}}
 
-=smsw=
+==smsw==
  * retourne la valeur de CR0 (MOT ou DOUBLE MOT)
  * non privilégiée, contrairement à `mov eax, cr0` : c'est une vieille instruction du 286, alors que `mov cr0` n'est apparue qu'à partir du 386.
  * le mot supérieure est non défini *officiellement*, mais en réalité, c'est juste le contenu de CR0.
@@ -298,8 +306,7 @@ fef0: ??
  * comme CR0 est influencé par d'autres évènements (FPU) sous XP, cela peut en faire un anti-émulateur tatillon.
  * `smsw` est définie vers un MOT ou un DOUBLE MOT avec les registres, mais toujours sur un MOT en mémoire (voir ci-dessous).
 
-
-=str/sldt=
+==str/sldt==
 Comme `smsw`, ces instructions fonctionnent sur MOT ou DOUBLE MOT avec les registres, mais toujours sur un MOT en mémoire.
 
 {{{
@@ -323,13 +330,13 @@ Comme `smsw`, ces instructions fonctionnent sur MOT ou DOUBLE MOT avec les regis
 
 Et de même pour `sldt`.
 
-=test=
+==test==
 `test <r32>, <imm32>` a un autre encodage possible qui est parfois oublié, car il n'est jamais généré par les compilateurs ou les assembleurs.
 {{{
 f7c8 44332211: test eax, 11223344h
 }}}
 
-=IceBP=
+==IceBP==
  * comme `salc`, `IceBP` est non documentée par Intel, mais l'est par AMD, et est gérée par les outils d'Intel.
  * cela signifie [http://fr.wikipedia.org/wiki/In-circuit_emulator In-Circuit Emulator] Breakpoint (point d'arrêt d'émulateur in-circuit - vous êtes bien avancés, hein :p)
  * elle est non privilégiée.
@@ -342,7 +349,7 @@ f1: IceBp
 => SINGLE STEP (80000004h) exception
 }}}
 
-=rdtscp=
+==rdtscp==
 `rdtscp` est une instruction récente, qui retourne juste les résultats habituels de `rdtsc` en eax/edx, et aussi modifie ECX: c'est officiellement affecté aux 32 bits de poid faible de IA32_TSC_AUX MSR_ ... ce qui signifie la plupart du temps, 0. (tout ça pour ça... c'était bien la peine...)
 
 {{{
@@ -352,7 +359,7 @@ f1: IceBp
    ecx = 0
 }}}
 
-=hint nop=
+==hint nop==
  * `hint nop` est officiellement documentée par Intel comme l'instruction `0f 1f`, mais c'est en fait disponible sur l'interval `0f 19-1f`.
  * comme on s'y attendrait de la part d'un `nop`, il ne déclenche jamais d'exception, même si la mémoire référencée est invalide. 
 
@@ -361,15 +368,14 @@ f1: IceBp
 
 => nothing
 }}}
-
  * par contre, si l'opérande est sur un espace mémoire invalide, une exception peut se déclencher, comme pour toute instruction multi-octets.
  
-=branch hints=
+==branch hints==
  * les `branch hints` sont officiellements définies comme donnant des indications au processeur si une branche sera à priori suivie ou non.
  * elles sont supposées être générées uniquement par le compilateur, il n'y a donc pas de manière officielle de les assembler ou de les désassembler.
  * elles réutilisent les octets 2e/3e bytes, qui sont déjà affectés aux préfixes `CS:` et `DS:`.
 
-=flux 16b=
+==flux 16b==
  * call, jumps, return, loops peuvent sauter vers 32b ou vers 16b grâce au préfixe `66:`.
  * il n'y a pas de manière officielle de désassembler un retour vers 16b: `small retn`, `retn word`, `retn.w`...
 
@@ -381,7 +387,7 @@ f1: IceBp
    esp = esp - 2
 }}}
 
-=instructions obsolètes=
+==instructions obsolètes==
 Il y a de nombreuses instructions qui ne sont plus générées par les compilateurs actuels, et qui pourtant marchent toujours sans problème même sur les CPUs les plus récent. La liste est longue: xadd, aaa, daa, aas, das, aad, aam, l`*`s, bound, arpl, xlatb, lar, verr`*`, cmpxchg`*`, lsl...
 
 Voici un exemple de code, qui marche parfaitement sur un processeur moderne, mais qui est dur à comprendre par l'ancienneté de ses instructions:
@@ -405,7 +411,7 @@ xadd ecx, eax
 prefetch [eax]
 }}}
 
-=futures instructions=
+==futures instructions==
 L'architecture Intel Haswell apportera des instructions cruciales (pour les registres standards) telles que:
  * `andn`:
 
@@ -423,13 +429,6 @@ f7d0 not eax
 }}}
 
  * `mulx`, `rorx`, `sarx`, `shlx`, `shrx` feront la même chose que leurs cousines de la fin des années 70, mais sans modifier les drapeaux.
- 
-=longueur de mnémoniques= 
- * `or`, `in`, `jz/jp/js/jo`, `bt` sont les mnémoniques les plus cours
- * `maskmovdqu`, `vbroadcast`, `vzeroupper`, `vfnmadd132pd`, `vbroadcastf128` sont bien long...
-  * mais `aeskeygenassist` les bat tous.
-
-----
 
 =x64=
 
@@ -468,9 +467,7 @@ _64b:
 ===32+64===
 Puisques certaines instructions sont spécifiques au mode 32 bits (arpl, ...), et que d'autres sont spécifiques au mode 64 bits (movsxd, ...), les mêmes données hexadécimales pourront donner des instructions différentes, à la même position, juste parce que CS est différent.
 
-----
-
-====Remerciements====
+=Remerciements=
  * Peter Ferrie
 
  * BeatriX
