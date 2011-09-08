@@ -1,9 +1,11 @@
 #summary a summary of PDF tricks - encodings, structures, JavaScript...
 #labels Featured
+=PDF Tricks=
+This is a summary of PDF tricks, either based on data encodings, !JavaScript, or PDF structure, with hand-written proof-of-concepts.
 
-This is a summary of PDF tricks, either based on data encodings, !JavaScript, or PDF structure.
+<wiki:toc max_depth="3" />
 
-DISCLAIMER: The files are clean, and hand written by me, for better understanding and perfect clarity. However, because they use various tricks also present in malwares, they might be detected by your antivirus, or crash your usual program. They all work under Adobe Acrobat though, which is the point here.
+*DISCLAIMER* The files are clean, and hand written by me, for better understanding and perfect clarity. However, because they use various tricks also present in malwares, they might be detected by your antivirus, or crash your usual program. They all work under Adobe Acrobat though, which is the point here.
 
  In short: they're odd, but they work, and they're clean.
 
@@ -11,7 +13,6 @@ for many more !JavaScript tricks, check the [http://bonsaiden.github.com/JavaScr
 
 for direct downloads, see [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/ the SVN directory].
 
-----
 
 =encodings=
 any data (or string) can be encoded in various ways.
@@ -383,14 +384,6 @@ global variables show a different behavior as opposed to normal ones: their type
 [...]
 }}}
 
-<wiki:comment>
-== ==
-
- Example of _Hello World!_ string, encoded with ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/ download]):
-{{{
-}}}
-</wiki:comment>
-
 =Minimalists PDF=
 ==Page==
 to actually contain a page, an object, defining its kid as its parent, should be referenced in trailer/Root/Pages.
@@ -442,13 +435,6 @@ if a !FlatEncoded stream is truncated or corrupted, it will be taken as is until
 An easy way to get the original corrupted stream to decompress like Reader would, is to actually get Reader to decompress it - without executing it - by pruning it into a template PDF with attachment. This way, Adobe Reader will actually be the one decompressing the stream, but not execute it: ([http://corkami.googlecode.com/svn/!svn/bc/651/trunk/misc/pdf/attachstream.py prune script] + [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/structure-attached.pdf attachment template])
 
 WARNING: it will not work if the PDF is encrypted - it should be decrypted first.
-
-----
-
-=Revisions=
- * _in progress_
- * 2011/07/12 first public release
- * 2010/09/11 project started
 
 =References=
  * [http://blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/ Didier Stevens]
