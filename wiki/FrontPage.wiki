@@ -34,7 +34,7 @@
  * [http://corkami.googlecode.com/svn-history/r399/trunk/misc/jjencode.txt JJEncode]: !JavaScript encoder that makes !JavaScript code looks like `$=~[];$={___:++$,$$$$:(![]+"")[$],__$:++$,$_$_:(`...
 
 =misc=
-
+ * a [InitialValues page] gathering values of system registers and values on TLS/!EntryPoint/... of most Windows versions.
  * a [http://corkami.googlecode.com/svn/trunk/misc/MakePE/examples/packer/aplib.py one-file] aPLib compression/decompression in python
  * [IntroductionToVirus Explaining what’s a computer virus to grandma]
  * [CallingConventions Calling conventions, seen from ASM]
