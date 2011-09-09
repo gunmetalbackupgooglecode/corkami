@@ -1,5 +1,5 @@
 #summary x86 Opcodes
-#labels Deprecated
+#labels WIP
 
 =_*IN CONSTRUCTION*_=
 = Introduction =
