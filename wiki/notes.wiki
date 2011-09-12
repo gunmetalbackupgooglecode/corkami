@@ -103,4 +103,5 @@
  * *floppy* [http://dmweb.free.fr/?q=node/1429 dungeon master] [http://www.hackzapple.com/ORG1/MZ/PIRATESOFTS.HTM apple II] [http://www.softpres.org/ softpres] [http://www.kryoflux.com/ kryoflux] [http://www.lotharek.pl/product.php?pid=12 HxC floppy emulator]
  * *jigsaw* [http://www.jigthings.com/ JigThings] [http://www.jigsaws.co.uk/ Wentworth] [http://www.puzzles-et-jeux.com/ Michele Wilson]
 
- * [http://hyperpolyglot.org Programming Languages references sheets]
+ * [http://hyperpolyglot.org Programming Languages references sheets] [http://michael.peopleofhonoronly.com/vim/ vim for programmers]
+ * [http://www.codedread.com/scour/ SVG cleaning]
