@@ -51,15 +51,26 @@ GDT:8003600003FF IDT:8003640007FF STR:00000028
 
 ==XP SP1 + !VmWare==
 
-Flags:0286 ? TBC
+(Executable info: TLS callback RVA 03EC103C, TLS DD RVA:11EC Size: A3B1, !ImageBase: 03EC0000)
 
-{{{
-TLS:        EDI:00400000 ESI:0012F9E4 EBP:0012F9F0 ESP:0012F9D0 EBX:00000000 EDX:000010EC ECX:00000000 EAX:004010C8
-EntryPoint  EDI:00000000 ESI:00000002 EBP:0012FFF0 ESP:0012FFC0 EBX:7FFDF000 EDX:7FFE0304 ECX:0012FFB0 EAX:00000000
+ * OS Version
+|| Version || Platform || !ServicePack || Suite || Product ||
+|| 5.1.2600 || 2 || 1.0 || 0100 || 1 ||
 
-CR0(after):80010031  CR0(before):80010031
-GDT:8003F00003FF IDT:8003F40007FF STR:00000028
-}}}
+ * selectors
+|| CS || DS || ES || FS || SS || GS ||
+|| 1B || 23 || 23 || 3B || 23 || 0 ||
+
+ * system registers
+|| CR0 || LDT || GDT || IDT || Task Register ||
+|| 80010031|| 00000000 || 8003F00003FF || 8003F40007FF || 00000028 ||
+
+ * general registers
+|| *execution point* || || Flags || EDI || ES || EBP || ESP || EBX || EDX || ECX || EAX ||
+||||||||||||||||||||||||
+|| TLS || || 0246 || 03EC0000 || 0012F9E4 || 0012F9F0 || 0012F9D0 || 00000000 || 000011EC || 0000A3B1 || 03EC103C ||
+|| !EntryPoint || || 0286 || 00000000 || 00000002 || 0012FFF0 || 0012FFC0 || 7FFDF000 || 7FFE0304 || 0012FFB0 || 00000000 ||
+|| DLL !EntryPoint || || 0202 || 00000001 || 0012F8F8 || 0012F904 || 0012F8E4 || 05EC1000 || 00181EAC || 00000001 || 0012F958 ||
 
 === + !OllyDbg ===
 {{{
@@ -90,13 +101,25 @@ GDT:8003F00003FF IDT:8003F40007FF STR:00000028
 }}}
 
 ==XP SP3 32b==
-{{{
-TLS:        EDI:00400000 ESI:0012F9C0 EBP:0012F9CC ESP:0012F9AC EBX:00000000 EDX:000010EC ECX:00000000 EAX:004010C8
-EntryPoint  EDI:0000000A ESI:0013F918 EBP:0012FFF0 ESP:0012FFC0 EBX:7FFDA000 EDX:7C90E514 ECX:0012FFB0 EAX:00000000
+(Executable info: TLS callback RVA 03EC103C, TLS DD RVA:11EC Size: E465, !ImageBase: 03EC0000)
+ * OS Version
+|| Version || Platform || !ServicePack || Suite || Product ||
+|| 5.1.2600 || 2 || 3.0 || 0300 || 1 ||
 
-CR0(after):80010031  CR0(before):80010031
-GDT:8003F00003FF IDT:8003F40007FF STR:00000028
-}}}
+ * selectors
+|| CS || DS || ES || FS || SS || GS ||
+|| 1B || 23 || 23 || 3B || 23 || 0 ||
+
+ * system registers
+|| CR0 || LDT || GDT || IDT || Task Register ||
+|| 80010031|| 00000000 || 8003F00003FF || 8003F40007FF || 00000028 ||
+
+ * general registers
+|| *execution point* || || Flags || || EDI || ESI || EBP || ESP || EBX || EDX || ECX || EAX ||
+||||||||||||||||||||||||||
+|| TLS || || 0246 || || 03EC0000 || 0012F9C0 || 0012F9CC || 0012F9AC || 00000000 || 000011EC || 0000E465 || 03EC103C ||
+|| !EntryPoint || || 0246 || || 00000016 || 00000000 || 0012FFF0 || 0012FFC0 || 7FFD7000 || 7C90E514 || 0012FFB0 || 00000000 ||
+|| DLL !EntryPoint || || 0202 || || 00000001 || 0012F8B8 || 0012F8C4 || 0012F8A4 || 05EC1000 || 00000040 || FFFFFFFF || 0012F930 ||
 
 ==Vista SP1 32b (x64 cpu)==
 {{{
@@ -127,13 +150,26 @@ GDT:807CEC2003FF IDT:807CF02007FF STR:00000028
 
 
 ==W7 64b==
-{{{
-TLS         EDI:001F3940 ESI:000CF9F4 EBP:000CFA00 ESP:000CF9E0 EBX:004010C8 EDX:778B2080 ECX:00000011 EAX:00000000
-EntryPoint  EDI:00000000 ESI:00000000 EBP:000CFF94 ESP:000CFF88 EBX:7EFDE000 EDX:00401010 ECX:00000000 EAX:75293388
+(Executable info: TLS callback RVA 03EC103C, TLS DD RVA:11EC Size: E465, !ImageBase: 03EC0000)
+ * OS Version
+|| Version || Platform || !ServicePack || Suite || Product ||
+|| 6.1.7601 || 2 || 1.0 || 0100 || 1 ||
 
-CR0(after):80050031  CR0(before):80050031
-GDT:316F640007F IDT:316F6C00FFF STR:00000040
-}}}
+ * selectors
+|| CS || DS || ES || FS || SS || GS ||
+|| 23 || 2B || 2B || 53 || 2B || 2B ||
+
+ * system registers
+|| CR0 || LDT || GDT || IDT || Task Register ||
+|| 80050031|| 00000000 || 0316F640007F || 0316F6C00FFF || 00000040 ||
+
+ * general registers
+|| *execution point* || || Flags || || EDI || ES || EBP || ESP || EBX || EDX || ECX || EAX ||
+||||||||||||||||||||||||
+|| TLS || || 0246 || || 00413C30 || 000CF9F4 || 000CFA00 || 000CF9E0 || 03EC103C || 77F12080 || 00000011 || 00000000 ||
+|| !EntryPoint || || 0246 || || 00000000 || 00000000 || 000CFF94 || 000CFF88 || 7EFDE000 || 03EC1000 || 00000000 || 77093388 ||
+|| DLL TLS || || 0246 || || 00414FF0 || 000CFC24 || 000CFC30 || 000CFC10 || 02EC1034 || 77F12080 || 00000011 || 00000000 ||
+|| DLL !EntryPoint || || 0246 || || 000CFD1C || 000CFC60 || 000CFC6C || 000CFC4C || 00000001 || 00000000 || 77E71BCB || 00000000 ||
 
 === +!OllyDbg===
 {{{
