@@ -131,13 +131,31 @@ GDT:B95000007F IDT:B950800FFF STR:00000040
 || DLL !EntryPoint || || 0246 || || 0006F998 || 0006F8DC || 0006F8E8 || 0006F8C8 || 00000001 || 00770BBC || 777EF751 || 0000006E ||
 
 ==W7 32b==
-{{{
-TLS:        EDI:002817D8 ESI:0006FA10 EBP:0006FA1C ESP:0006F9FC EBX:004010C8 EDX:77C4CD48 ECX:00000011 EAX:00000000
-EntryPoint  EDI:00000000 ESI:00000000 EBP:0006FF94 ESP:0006FF88 EBX:7FFD5000 EDX:00401010 ECX:00000000 EAX:7797ED5A
+ * OS Version
+|| Version || Platform || !ServicePack || Suite || Product ||
+|| 6.1.7601 || 2 || 1.0 || 0100 || 1 ||
 
-CR0(after):80010031  CR0(before):8001003B
-GDT:807CEC2003FF IDT:807CF02007FF STR:00000028
-}}}
+ * selectors
+|| CS || DS || ES || FS || SS || GS ||
+|| 1B || 23 || 23 || 3B || 23 || 0 ||
+
+ * system registers
+|| CR0 || LDT || GDT || IDT || Task Register ||
+|| 8001003B (after FPU:80010031)|| 00000000 || 80B9700003FF ||
+80B9740007FF || 00000028 ||
+
+ * general registers
+|| *execution point* || || Flags || || EDI || ESI || EBP || ESP || EBX
+|| EDX || ECX || EAX ||
+||||||||||||||||||||||||||
+|| TLS || || 0246 || || 00241CD0 || 0006FA10 || 0006FA1C || 0006F9FC
+|| 03EC103C || 76F4CD48 || 00000011 || 00000000 ||
+|| !EntryPoint || || 0246 || || 00000000 || 00000000 || 0006FF94 ||
+0006FF88 || 7FFD7000 || 03EC1000 || 00000000 || 75D9ED5A ||
+|| DLL TLS || || 0246 || || 002430E8 || 0006FC28 || 0006FC34 ||
+0006FC14 || 05EC102C || 76F4CD48 || 00000011 || 00000000 ||
+|| DLL !EntryPoint || || 0246 || || 0006FD20 || 0006FC64 || 0006FC70
+|| 0006FC50 || 00000001 || 00020180 || 76E8F56A || 0000006E ||
 
 ==W7 SP0 64b==
 (Executable info: TLS callback RVA 03EC103C, TLS DD RVA:11EC Size: E465, !ImageBase: 03EC0000)
