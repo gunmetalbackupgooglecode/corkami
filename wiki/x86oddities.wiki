@@ -476,8 +476,12 @@ Since there are some opcodes specific to 32 bits mode (arpl, ...), and others sp
  * Guillaume Delugré
  * Igor Skochinsky
  * Jean-Baptiste Bédrune
+ * Jim Leonard
  * Jon Larimer
  * Moritz Kroll
  * Oleh Yuschuk
  * Sebastian Biallas
  * Yoann Guillot
+
+=Other resources=
+ * [http://feldmann.home.xs4all.nl/86bugs.htm Hamarsoft 86BUGS list] (similar list, but for 486 or older only)
