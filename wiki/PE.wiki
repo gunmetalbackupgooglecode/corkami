@@ -1,0 +1,65 @@
+#summary Portable Executable Format
+#labels WIP
+=*_DRAFT IN PROGRESS_*=
+
+=PE=
+This page deals with the PE format, or more specifically, x86/x64 Windows (from XP to W7) binaries (ie, not other OSes or systems, not OBJ format, etc...)
+
+<wiki:toc max_depth="3" />
+
+=general=
+==DOS Header ('MZ Header')==
+ * the signature can be `ZM` on a true EXE (not a PE, <=XP)
+ 
+==NT Headers ('PE Header')==
+==optional header==
+ * is anything but optional.
+===!SizeOfOptionalHeader===
+ * is not the size of the optional header, just the delta between the top of the Optional header and the start of the section table. 
+  Thus, it can be null (the section table will overlap with the Optional Header) or bigger than the file (the section table will be in virtual space, full of zero).
+ * standard value: `E0`
+ 
+===subsystem===
+ * a CONSOLE PE is exactly like a GUI PE except that it comes with a pre-attached console.
+ * a DRIVER PE only requires a correct checksum to work correctly.
+==data directories==
+==section table==
+
+===exports===
+ * export names can have any value (even null or more than 65536 characters long, with unprintable characters). just null terminated.
+===imports===
+ * under XP and later, a DLL can be called by his filename only (no extension). Extension is required under Win2K.
+===resources===
+===exception===
+===security===
+===relocations===
+===debug===
+ * under XP, the value of the Debug directory *SIZE* can't be random - even if the RVA is null !
+  * thus, it's one of the rare data directory size that makes a difference.
+===description===
+===MIPS===
+===TLS===
+ * under XP, TLS are only executed with staticly loaded DLL, not dynamicly loaded ones.
+ * on XP, TLS are executed twice, on process start and process termination. Thus, code *is* executed even after a call to !ExitProcess. That's not true under Vista or later.
+===Load config===
+===Bound import===
+ * a shortcut structure to hardcode some imports values in advance, to make import values faster
+ 
+===Import table===
+ * required on a low alignment PE to make the import table writeable
+===delay imports===
+ * trampoline added by the compiler to load imports and DLL on request
+===COM Runtime===
+===reserved===
+ * used by packers and malware as markers
+ 
+=Greetings=
+ * Peter Ferrie
+
+ * Costin Ionescu
+ * Kris Kaspersky
+ * Moritz Kroll
+
+=Other resources=
+ * the PE format
+ * Undocumented PE/COFF
