@@ -61,7 +61,7 @@
 
 =information=
  * *news* [https://twitter.com/#!/Ivanlef0u @Ivanlef0u] [http://www.reddit.com/r/ReverseEngineering/ reddit]
- * *syscalls & structs* [http://dev.metasploit.com/users/opcode/syscalls.html Metasploit] [http://code.google.com/p/native-nt-toolkit/ Native NT Toolkit] [http://undocumented.ntinternals.net/ undocumented] ([http://undocumented.ntinternals.net/UserMode/Undocumented%20Functions/NT%20Objects/Process/PEB.html PEB]) [http://msdn.moonsols.com/ Msdn(suiche)]
+ * *syscalls & structs* [http://dev.metasploit.com/users/opcode/syscalls.html Metasploit] ([http://j00ru.vexillium.org/win32k_syscalls/ j00ru]) [http://code.google.com/p/native-nt-toolkit/ Native NT Toolkit] [http://undocumented.ntinternals.net/ undocumented] ([http://undocumented.ntinternals.net/UserMode/Undocumented%20Functions/NT%20Objects/Process/PEB.html PEB]) [http://msdn.moonsols.com/ Msdn(suiche)]
  * *!JavaScript* [http://bonsaiden.github.com/JavaScript-Garden/ Garden]
  * *Master Boot Record* [http://www.hexblog.com/?p=103 IDA debugging] [http://thestarman.narod.ru/asm/mbr/index.html starman] [http://www.rayknights.org/pc_boot/pc_boot.htm RayKnights]
  * *Presentations*
