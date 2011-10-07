@@ -3,63 +3,407 @@
 =*_DRAFT IN PROGRESS_*=
 
 =PE=
-This page deals with the PE format, or more specifically, x86/x64 Windows (from XP to W7) binaries (ie, not other OSes or systems, not OBJ format, etc...)
-
+ * This page deals with the PE format, or more specifically, x86/x64 Windows (from XP to W7) binaries (ie, not other OSes or systems, not OBJ format, etc...)
+ * It deals with the reality of the loader, not the theory of the format itself.
+ * All proof of concepts are included with source. They're all working and clean. Download [http://code.google.com/p/corkami/downloads/list?q=CPC here].
 <wiki:toc max_depth="3" />
 
 =general=
 ==DOS Header ('MZ Header')==
- * the signature can be `ZM` on a true EXE (not a PE, <=XP)
- 
+most values only matters to the DOS stub.
+==e_magic===
+ * = `MZ`
+ * it could be `ZM` on an (non-PE) EXE. These executables still work under XP via ntvtm.
+===e_cparhrd===
+ * points to the dos stub.
+===e_lfanew===
+ * is a relative offset to the NT Headers.
+  * `tiny.exe` has a `e_lfanew` of 4, which means the NT Headers is overlapping the DOS Header.
+  * `appendedhdr.exe` and `apphdrW7.exe` have both a `e_lfanew` of 400h, which puts the NT Headers in appended data. However, it's required under XP that the Header is extended till there via !SizeOfHeaders.
+
+==Dos Stub==
+not covered here.
+
+==Rich header==
+not covered here.
+
 ==NT Headers ('PE Header')==
-==optional header==
- * is anything but optional.
+ * has to be dword-aligned.
+===Machine===
+ * `0x14c` for 32b
+ * `8664` for 64b
+===!NumberOfSections===
+ * can be null with low alignment PEs
+  * `nosection*.exe`, `tiny*.exe`
+ * can be up to 96 under XP:
+  * `96emptysections.exe` (all identical), `96workingsections.exe` (all physically different), `maxsecXP.exe` (garbage table)
+ * can be up to 65536 (no perfect PoC yet due to Yasm limitations)
+  * `maxsecW7.exe`: 8192 physically different code sections
+  * `maxsec_lowaligW7.exe`: 6666 garbage sections.
+=====!TimeDateStamp/!PointerToSymbolTable/!NumberOfSymbols=====
+no importance whatsoever
 ===!SizeOfOptionalHeader===
- * is not the size of the optional header, just the delta between the top of the Optional header and the start of the section table. 
-  Thus, it can be null (the section table will overlap with the Optional Header) or bigger than the file (the section table will be in virtual space, full of zero).
+very important for both OS, with different behaviors.
+ * can be null with low alignments (`tiny*.exe`)
+
+===!SizeOfOptionalHeader===
+ * is not the size of the optional header, just the delta between the top of the Optional header and the start of the section table.
+  Thus, it can be null (the section table will overlap with the Optional Header, or can be null when no sections are present) or as big as the file (the section table will be in virtual space, full of zero).
+    * `nullSOH-XP` is a PE with a null !SizeOfHeaders. the section table is thus overlapping the optional header. (XP only).
+    * `virtsectblXP` is a PE with its 85 sections of empty information, with its section table in virtual space.
  * standard value: `E0`
- 
-===subsystem===
+
+===Magic===
+=====!MajorLinkerVersion/!MinorLinkerVersion=====
+unused
+=====!SizeOfCode/!SizeOfInitializedData/!SizeOfUninitializedData=====
+unused
+===!AddressOfEntryPoint===
+ * can be null
+ * can be negative
+=====!BaseOfCode/!BaseOfData=====
+unused
+===!ImageBase===
+===!SectionAlignment/!FileAlignment===
+ * both are power of 2 (4, 8, 16...)
+ * standard mode: `200h <= FileAlignment <= SectionAlignment` and `1000h <= SectionAlignment`
+  * `normal.exe` has aligments of 1000h/200h
+  * `bigalign.exe` has alignments of 20000000h/10000h
+ * in low alignment: `4 <= FileAlignment = SectionAlignment <= 800h`
+  * all `tiny*.*`, `nosection*.exe` have alignments of 4/4
+=====!MajorOperatingSystemVersion/!MinorOperatingSystemVersion/!MajorImageVersion/!MinorImageVersion=====
+ * unused
+===!MajorSubsystemVersion===
+ * has to be 4
+=====!MinorSubsystemVersion=====
+ * unused
+=====Reserved1 (!Win32Version)=====
+not covered yet
+===!SizeOfImage===
+===!SizeOfHeaders===
+===!CheckSum===
+ * simple algorithm
+ * required for drivers only
+===Subsystem===
  * a CONSOLE PE is exactly like a GUI PE except that it comes with a pre-attached console.
  * a DRIVER PE only requires a correct checksum to work correctly.
+=====!DllCharacteristics=====
+unused
+=====!SizeOfStackReserve/!SizeOfStackCommit/!SizeOfHeapReserve/!SizeOfHeapCommit=====
+ * can be zero, but not any value
+=====!LoaderFlags=====
+===!NumberOfRvaAndSizes===
+ * rounded down to 16 if bigger (can be `FFFF`)
+ * can be 0 `tiny.exe`, etc...
+
+==Optional Header==
+ * is anything but optional on a windows executable.
+
+
 ==data directories==
-==section table==
 
 ===exports===
  * export names can have any value (even null or more than 65536 characters long, with unprintable characters). just null terminated.
+  * `dllemptyexp-ld.exe` loads `dllemptyexp.dll` with a null export
+  * `dllweirdexp-ld.exe` loads `dllweirdexp.dll` with a 131102-long non-Ascii export.
+ * an .EXE can have exports (no need of relocation nor DLL flag), and can use them normally
+  * `ownexports.exe` uses its own exports
+ * exports at fixed value can be used to encode data, when their values are filled in the Import Address Table
+  * `exportsdata.exe`'s code is stored as dodgy exports RVAs, and is restored when imports are resolved
+ * fake exports values can disrupt proper disassembly
+  * `exportobf.exe` contains fake exports to make disassmbly harder
+
 ===imports===
  * under XP and later, a DLL can be called by his filename only (no extension). Extension is required under Win2K.
+  * `imports_noext.exe` imports DLLs without extensions.
+ * a DLL can be dynamically loaded via ANSI (LoadLibraryA) or UNICODE (LoadLibraryW).
+ * like in any filename, case of the DLL can be mixed
+  * `imports_mixed.exe` imports DLLs with mixed case names.
+ * the Import Name Table is not required and can be replaced with the Import Adress Table
+  * `imports_noint.exe` contains no INT, the import descriptor are linking twice to the IAT.
+
 ===resources===
-===exception===
-===security===
+not yet
+=====exception=====
+not covered here
+
+=====security=====
+not covered here
+
 ===relocations===
+ * change of imagebase
+ * decryption
+ * odd types of relocations are still supported
+
 ===debug===
  * under XP, the value of the Debug directory *SIZE* can't be random - even if the RVA is null !
   * thus, it's one of the rare data directory size that makes a difference.
 ===description===
-===MIPS===
+ * Watcom compilers makes it point to a string. Useless whatsoever.
+=====MIPS=====
+not covered here
+
 ===TLS===
  * under XP, TLS are only executed with staticly loaded DLL, not dynamicly loaded ones.
- * on XP, TLS are executed twice, on process start and process termination. Thus, code *is* executed even after a call to !ExitProcess. That's not true under Vista or later.
-===Load config===
+ * on XP, TLS are executed twice, on process start and process termination. Thus, code *is* executed even after a call to !ExitProcess. 
+ This is true even under Windows 7, however libraries such as user32.dll might be already unloaded, preventing code using it to work normally.
+
+=====Load config=====
+this is not explored yet.
+
 ===Bound import===
  * a shortcut structure to hardcode some imports values in advance, to make import values faster
- 
+ * all the loader is take a filename, compare the timestamp of the file and the one included in the bound imports table, then use the VA directly as import if they match.
+  * `dllbound-ld.exe` loads and execute 'dllbound.dll' via bound imports.
+  {{{
+      at IMAGE_DATA_DIRECTORY_16.BoundImportsVA,   dd BoundImports - IMAGEBASE
+      ...
+      BoundImports:
+      dd 31415925h ; timestamp of the bound DLL
+      dw bounddll - BoundImports ; it's a WORD relative offset :(
+      dw 0
+      ...
+      bounddll db 'dllbound.dll', 0 ; we have to duplicate locally this string... :(
+      ...
+      dll.dll_iat:
+      __imp__export:
+         dd 01001008h ;VA of the export of the loaded DLL
+  }}}
+
+  * thus, replacing the RVA in the bound import table is an easy way to redirect imports.
+   * `dllbound-redirld.exe` will load the wrong import of `dllbound.dll` because one RVA has been changed.
+   {{{
+   dll.dll_iat:
+   __imp__export:
+       dd 01001018h ; corrupted VA of the import
+   }}}
+
+  * under XP only, it's even possible to put a different filename and timestamp. a completely different DLL will be used no matter what the standard import table says.
+   * `dllbound-redirldXP.exe` will load the wrong dll `dllbound2.dll`, as the name and timestamp have been modified.
+   {{{
+   BoundImports:
+   dd 27182818h ; timestamp of the hijacking DLL
+   dw bounddll - BoundImports
+   dw 0
+
+   ;terminator
+   dd 0, 0
+
+   bounddll db 'dllbound2.dll', 0 ; hijacking DLL name
+   }}}
+
 ===Import table===
- * required on a low alignment PE to make the import table writeable
+ * the RVA *and* the Size required to be set on a low alignment PE to make the import table writeable, under XP.
+
 ===delay imports===
- * trampoline added by the compiler to load imports and DLL on request
-===COM Runtime===
-===reserved===
+ * it's just trampoline added by the compiler to load imports and DLL on request
+
+=====COM Runtime=====
+this is not explored yet.
+
+======reserved======
  * used by packers and malware as markers
- 
+
+==section table==
+=====Name=====
+===!Misc_VirtualSize===
+===!VirtualAddress===
+===!SizeOfRawData===
+===!PointerToRawData===
+=====!PointerToRelocations/!PointerToLinenumbers/!NumberOfRelocations/!NumberOfLinenumbers=====
+no importance whatsoever
+===Characteristics===
+
+=!PoCs=
+Here are the outputs of each proof of concept during their execution:
+
+normal.exe:
+ * a normal PE
+compiled.exe:
+ * a 'compiled' PE
+truncsectbl.exe:
+ * truncated section table
+bigalign.exe
+
+PE with many sections:
+96emptysections.exe:
+ * 96 sections (95 are empty)
+96workingsections.exe:
+ * a PE with 96 used code sections
+
+TLS:
+tls.exe:
+ * simple TLS:
+  # 1st TLS call
+  # !EntryPoint executed
+  # !ExitProcess called
+tls_onthefly.exe:
+ * TLS on the fly update started
+  # adding 2nd TLS to callbacks
+  # 2nd TLS executed. removing all TLS from callbacks to prevent further executions
+tls_obfuscation.exe:
+ * fake TLS callbacks for obfuscation
+exportobf.exe:
+ * fake exports to disrupt disassembly
+exportsdata.exe:
+ * data stored as fake export table
+
+Imports loading:
+imports.exe:
+ * standard DLL import
+imports_noint.exe:
+ * no Import Name Table
+imports_noext.exe:
+ * extensions-less imported dlls (>= XP)
+imports_mixed.exe:
+ * mixed-case imported dlls
+importshint.exe:
+ * correct import called via hinting
+impbyord.exe:
+ * imports resolving to its own exports
+
+DLL loading:
+ * statically loaded DLL and export call
+dll-ld.exe:
+  # DLL !EntryPoint called on attach
+  # DLL export called
+  # DLL !EntryPoint called on detach
+dll-dynld.exe:
+ * dynamically loaded DLL and export call
+  # loading dll
+  # DLL !EntryPoint called on attach
+  # DLL export called
+  # unloading dll
+  # DLL !EntryPoint called on detach
+dll-dynunicld.exe:
+ * loading DLL by Unicode
+  # DLL !EntryPoint called on attach
+  # DLL !EntryPoint called on detach
+dllweirdexp-ld.exe:
+ * statically loaded DLL with weird export name
+dllemptyexp-ld.exe:
+ * statically loaded DLL with empty export name
+dllord-ld.exe:
+ * DLL export by ordinal called
+dllnoreloc-ld.exe:
+ * DLL with no relocation (with direct call)
+dllnoexp-dynld.exe:
+ * dynamically loading export-less DLL
+  # loading dll
+  # DLL EntryPoint called on attach
+  # unloading dll
+  # DLL EntryPoint called on detach
+ownexports.exe:
+ * imports resolving to its own exports
+
+export forwarding:
+dllfw-ld.exe:
+ * forwarded import call via Export
+dllfwloop-ld.exe:
+ * forwarded import call via forwarding loops
+
+bound imports:
+dllbound-ld.exe:
+ * export called (bound imports)
+dllbound-redirld.exe:
+ * unexpected export called (corrupted bound imports)
+
+tiny PE
+tiny.exe:
+ * 268b universal tiny PE (XP-W7x64)
+
+!ImageBase:
+ibkernel.exe:
+ * kernel range IMAGEBASE (and relocations)
+reloccrypt.exe:
+ * decryption via relocations
+
+!EntryPoint:
+nullEP.exe:
+ * null !EntryPoint
+virtEP.exe:
+ * virtual !EntryPoint
+dllextep-ld.exe:
+ * external !EntryPoint (in fixed address DLL)
+
+sections:
+bigsec.exe:
+ * virtually oversized section
+dupsec.exe:
+ * several sections - including the header - with the same physical content
+duphead.exe:
+ * section mapping the complete PE (offset rounded down to 0x200, !FileAlignment is 400h)
+secinsec:
+ * section in section
+appendedsecttbl.exe:
+ * section table in appended data
+appendedhdr.exe:
+ * NT headers in appended data
+footer.exe:
+ * NT headers at the bottom of the file
+bottomsecttbl.exe:
+ * section table at the bottom of the file
+truncatedlast.exe:
+ * last section truncated
+shuffledsect.exe:
+ * sections in wrong physical order
+
+gaps:
+slackspace.exe:
+ * slack space between sections
+appendeddata.exe:
+ * appended data
+hiddenappdata1.exe:
+ * appended data, hidden by an extra section
+hiddenappdata2.exe:
+ * appended data, hidden by enlarged last section
+virtgap.exe:
+ * virtual gap between code sections
+foldedhdr.exe:
+ * PE header overwritten on loading
+
+== XP only==
+ibnullXP.exe:
+ * null IMAGEBASE with relocations (XP only)
+dllbound-redirld2.exe:
+ * export of an unexpected DLL called (corrupted bound imports)
+
+Low alignments:
+nosectionXP.exe:
+ * Low alignment PE with no section (XP)
+virtsectblXP.exe:
+ * Low alignment PE with a virtual section table (XP)
+nullSOH-XP.exe:
+ * Low alignment PE with a null !SizeOfOptionalHeader (XP)
+maxsecXP.exe:
+ * Low alignment PE with 96 fake sections (XP)
+
+misc:
+tinydllXP-ld.exe:
+ * dynamically loading minimal 97 bytes DLL
+  # dll loaded
+reloccryptXP.exe:
+ * decryption via relocations (from null imagebase, XP only)
+==W7 only==
+Low alignments:
+tinyW7_3264.exe:
+ * tiny 268 bytes PE32 (W7 32b/64b)
+tinyW7x64.exe:
+ * tiny 268 bytes PE32+ (W7 64b only)
+maxsec_lowaligW7.exe:
+ * Low alignment PE with 6666 sections (W7)
+nosectionW7.exe:
+ * Low alignment PE with no section (W7)
+maxsecW7.exe:
+ * PE with 8192 code sections (W7)
 =Greetings=
  * Peter Ferrie
 
  * Costin Ionescu
  * Kris Kaspersky
+ * Ivanlef0u
  * Moritz Kroll
 
 =Other resources=
  * the PE format
- * Undocumented PE/COFF
+ * [http://www.reversinglabs.com/advisory/pecoff.php Undocumented PE/COFF]
