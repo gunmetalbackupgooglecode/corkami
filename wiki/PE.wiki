@@ -5,8 +5,8 @@
 =PE=
  * This page deals with the PE format, or more specifically, x86/x64 Windows (from XP to W7) binaries (ie, not other OSes or systems, not OBJ format, etc...)
  * It deals with the reality of the loader, not the theory of the format itself.
- * All proof of concepts are included with source. 
-  * They're all working and clean. 
+ * All proof of concepts are included with source.
+  * They're all working and clean.
   * They're all generated in asssembly, by hand, from scratch, so no superfluous information is included (they might be wrongly detected as suspicious for that)
   * [https://corkami.googlecode.com/svn repository directory] [http://code.google.com/p/corkami/downloads/list?q=CPC source and binary download].
 <wiki:toc max_depth="3" />
@@ -210,6 +210,13 @@ IMAGEBASE equ 33000000h
 unused
 
 ===!ImageBase===
+ * is a multiple of 10000h
+ * can be null, under XP. In this case, the binary will be relocated to 1000h
+  * `ibnullXP.exe` has a null imagebase, and relocations
+ * can be any value as long as `ImageBase + 'SizeOfImage' < 80000000h`
+  * `bigib.exe` has an !ImageBase of 7ffd0000h, and no relocations
+ * if the !ImageBase is bigger than that, the binary will be relocated to 10000h
+  * `ibkernel.exe` has an !ImageBase of 0FFFF0000h and relocations.
 
 ===!SectionAlignment/!FileAlignment===
  * both are power of 2 (4, 8, 16...)
@@ -245,11 +252,12 @@ unused
  * a DRIVER PE only requires a correct checksum to work correctly.
 
 =====!DllCharacteristics=====
-unused
+ * not necessary
+  * `dll.dll` is a working DLL with this value set to 0
 
 =====!SizeOfStackReserve/!SizeOfStackCommit/!SizeOfHeapReserve/!SizeOfHeapCommit=====
  * can be zero, but not any value
-
+  * `normal.exe` has these value set to zero.
 =====!LoaderFlags=====
 
 ===!NumberOfRvaAndSizes===
@@ -263,6 +271,50 @@ unused
 ==data directories==
 
 ===exports===
+ * like many data directories, Exports' size are not necessary
+ * Characteristics, !TimeDateStamp, !MajorVersion and !MinorVersion are not necessary.
+ * Base is only used for ordinal imports
+  * `dll.dll` has a small export table, for one named entry:
+ {{{
+    at IMAGE_DATA_DIRECTORY_16.ExportsVA,  dd Exports_Directory - IMAGEBASE
+...
+Exports_Directory:
+  Characteristics       dd 0
+  TimeDateStamp         dd 0
+  MajorVersion          dw 0
+  MinorVersion          dw 0
+  Name                  dd aDllName - IMAGEBASE
+  Base                  dd 0
+  NumberOfFunctions     dd NUMBER_OF_FUNCTIONS
+  NumberOfNames         dd NUMBER_OF_NAMES
+  AddressOfFunctions    dd address_of_functions - IMAGEBASE
+  AddressOfNames        dd address_of_names - IMAGEBASE
+  AddressOfNameOrdinals dd address_of_name_ordinals - IMAGEBASE
+...
+aDllName db 'dll.dll', 0
+...
+address_of_functions:
+    dd __exp__Export - IMAGEBASE
+NUMBER_OF_FUNCTIONS equ ($ - address_of_functions) / 4
+...
+address_of_names:
+    dd a__exp__Export - IMAGEBASE
+NUMBER_OF_NAMES equ ($ - address_of_names) / 4
+...
+address_of_name_ordinals:
+    dw 0
+...
+a__exp__Export db 'export', 0
+}}}  
+ * the Export Name is not necessary, and can be anything.
+  * `dllweirdexp.dll` is correctly exported, with a corrupted Export Name
+  {{{
+Exports_Directory:
+...
+  Name                  dd VDELTA + aDllName - IMAGEBASE
+...
+aDllName db 'completely unrelated dll name', 1, 2, 3, 4, 0
+}}}
  * export names can have any value (even null or more than 65536 characters long, with unprintable characters). just null terminated.
   * `dllemptyexp-ld.exe` loads `dllemptyexp.dll` with a null export
   * `dllweirdexp-ld.exe` loads `dllweirdexp.dll` with a 131102-long non-Ascii export.
@@ -290,17 +342,92 @@ NBFUNCTIONS equ ($ - address_of_functions) / 4
 ...
 }}}
  * fake exports values can disrupt proper disassembly
-  * `exportobf.exe` contains fake exports to make disassmbly harder
+  * `exportobf.exe` contains fake exports to make disassembly harder
+ * ordinals-only exports can make the structure even smaller (no !NumberOfFunctions/!NumberOfNames/!AddressOfNames/!AddressOfNameOrdinals). Fake entries can be also present in exports as long as Base + Ordinal matches the wanted export.
+  * `impbyord.exe` calls its own imports by ordinals
+  * `dllord-ld.exe` is importing export #314 from `dllord.dll`
+   * `dllord-ld.exe`
+ {{{
+dll.dll_iat:
+__imp__export:
+    dd 1 << 31 | 314h ; highest bit set to indicate imports by ordinal
+}}}
+
+   * `dllord.dll`
+ {{{
+ Exports_Directory:
+...
+  Base                  dd 313h
+...
+  AddressOfFunctions    dd address_of_functions - IMAGEBASE
+...
+
+address_of_functions:
+    dd -1                                   ; bogus entry that will be 313h
+    dd __exp__Export - IMAGEBASE
+}}}
 
 ===imports===
+ * Imports size is not used. !ImportAddressTable is typically not required (excepted in low alignments, under XP)
+  * `dll-ld.exe` imports `dll.dll` with a small import table:
+{{{
+    at IMAGE_DATA_DIRECTORY_16.ImportsVA,   dd Import_Descriptor - IMAGEBASE
+...
+EntryPoint:
+    call [__imp__export]
+...
+
+Import_Descriptor:
+...
+dll.dll_DESCRIPTOR:
+    dd dll.dll_hintnames - IMAGEBASE
+    dd 0, 0
+    dd dll.dll - IMAGEBASE
+    dd dll.dll_iat - IMAGEBASE
+;terminator
+    dd 0, 0, 0, 0, 0
+...
+dll.dll_hintnames:
+    dd hndllexport - IMAGEBASE
+    dd 0
+...
+hndllexport:
+    dw 0
+    db 'export', 0
+...
+dll.dll_iat:
+__imp__export:
+    dd hndllexport - IMAGEBASE
+    dd 0
+...
+dll.dll db 'dll.dll', 0
+}}}
  * under XP and later, a DLL can be called by his filename only (no extension). Extension is required under Win2K.
   * `imports_noext.exe` imports DLLs without extensions.
+ {{{
+kernel32.dll db 'kernel32', 0
+msvcrt.dll db 'msvcrt', 0
+}}}
  * a DLL can be dynamically loaded via ANSI (LoadLibraryA) or UNICODE (LoadLibraryW).
  * like in any filename, case of the DLL can be mixed
   * `imports_mixed.exe` imports DLLs with mixed case names.
+ {{{
+kernel32.dll db 'KernEl32', 0
+msvcrt.dll db 'mSVCrT', 0
+}}}
  * the Import Name Table is not required and can be replaced with the Import Adress Table
   * `imports_noint.exe` contains no INT, the import descriptor are linking twice to the IAT.
-
+  {{{
+...
+Import_Descriptor:
+kernel32.dll_DESCRIPTOR:
+    dd kernel32.dll_iat - IMAGEBASE
+    dd 0, 0
+    dd kernel32.dll - IMAGEBASE
+    dd kernel32.dll_iat - IMAGEBASE
+...
+}}}
+ * imports are not necessary. either don't call any API (ex, resource placeholders), or locate Kernel32 and its exports by hand (not covered here)
 ===resources===
  * chained structure
  * in standard, 3 levels
@@ -315,10 +442,75 @@ not covered here
 not covered here
 
 ===relocations===
- * change of imagebase
- * decryption
- * odd types of relocations are still supported
+ * relocations are used when the PE is loaded at a different !ImageBase. Hardcoded Addresses such as `push <addr>` and `call [<addr>]` have to be adjusted.
+ * relocations size is compulsory to tell the loader when to stop.
+  * `dll.dll` contains simple relocations:
+ {{{
+    at IMAGE_DATA_DIRECTORY_16.FixupsVA,   dd Directory_Entry_Basereloc - IMAGEBASE
+    at IMAGE_DATA_DIRECTORY_16.FixupsSize, dd DIRECTORY_ENTRY_BASERELOC_SIZE
+...
+reloc01:
+    push detach
+reloc22:
+    call [__imp__printf]
+...
+Directory_Entry_Basereloc:
+block_start0:
+    .VirtualAddress dd reloc01 - IMAGEBASE
+    .SizeOfBlock dd BASE_RELOC_SIZE_OF_BLOCK0
+    dw (IMAGE_REL_BASED_HIGHLOW << 12) | (reloc01 + 1 - reloc01)
+    dw (IMAGE_REL_BASED_HIGHLOW << 12) | (reloc22 + 2 - reloc01)
+BASE_RELOC_SIZE_OF_BLOCK0 equ $ - block_start0
+...
+DIRECTORY_ENTRY_BASERELOC_SIZE  equ $ - Directory_Entry_Basereloc
+}}}
 
+ * IMAGE_REL_BASED_ABSOLUTE doesn't do anything, used for padding.
+ * IMAGE_REL_BASED_HIGHLOW is the 'standard' relocation, for which `<real base> - ImageBase` will be added to the pointed address
+ * IMAGE_REL_BASED_HIGH does the same but only the highest WORD of the delta is added. (in short, same operation one WORD earlier)
+ * IMAGE_REL_BASED_LOW does the same but only the lowest WORD of the delta is added, which makes no change, as both bases are 10000h-aligned.
+ * Other sort of relocations such as Mips and 64 bits are still supported by Windows 7. 
+ * forcing the binary to relocate to a known place (ex, with a null or kernel !ImageBase) makes it possible for the relocations to have predictable behavior. Thus, they can be used to decrypt or clear some values in memory. Also, relocations may be used to modify themselves.
+  * `reloccrypt.exe` has a 0ffff0000h !ImageBase, and its relocations are, first, modifying themselves, using uncommon relocation types, then decrypting the code to be executed.
+ {{{
+EntryPoint:
+reloc01:            ;68h push VDELTA + msg
+crypt168 db 0
+    dd VDELTA + msg
+...
+Directory_Entry_Basereloc:
+; this block will fix the SizeOfBlock of the next block
+block_start:
+    .VirtualAddress dd VDELTA + relocated_reloc - IMAGEBASE
+    .SizeOfBlock dd BASE_RELOC_SIZE_OF_BLOCK
+    dw (IMAGE_REL_BASED_HIGHLOW << 12) ; + 10000h
+    dw (IMAGE_REL_BASED_ABSOLUTE << 12)
+    dw (IMAGE_REL_BASED_HIGHLOW << 12) ; + 10000h
+    dw (IMAGE_REL_BASED_HIGHADJ << 12)
+    dw (IMAGE_REL_BASED_HIGH    << 12) ; + 00001h
+    dw (IMAGE_REL_BASED_LOW     << 12) ; + 0
+    dw (IMAGE_REL_BASED_SECTION << 12)
+    dw (IMAGE_REL_BASED_REL32 << 12)
+...
+;this block is actually the genuine relocations
+block_start0:
+    .VirtualAddress dd VDELTA + reloc01 - IMAGEBASE
+relocated_reloc:
+    .SizeOfBlock dd BASE_RELOC_SIZE_OF_BLOCK0 - 40002h
+...
+%macro cryptblock 2
+block_start%1:
+    .VirtualAddress dd VDELTA + %1 - IMAGEBASE
+    .SizeOfBlock dd BASE_RELOC_SIZE_OF_BLOCK%1
+    dw (IMAGE_REL_BASED_ABSOLUTE << 12)
+    times %2 / 2 dw (IMAGE_REL_BASED_HIGH << 12)
+BASE_RELOC_SIZE_OF_BLOCK%1 equ $ - block_start%1
+%endmacro
+
+;these blocks are the ones to implement the decryption
+cryptblock crypt168, 068h
+...
+}}}
 ===debug===
  * under XP, the value of the Debug directory *SIZE* can't be random - even if the RVA is null !
   * thus, it's one of the rare data directory size that makes a difference.
@@ -383,8 +575,8 @@ tls2:
 this is not explored yet.
 
 ===Bound import===
- * a shortcut structure to hardcode some imports values in advance, to make import values faster
- * all the loader is take a filename, compare the timestamp of the file and the one included in the bound imports table, then use the VA directly as import if they match.
+ * are a shortcut structure to hardcode some imports values in advance, to make import values faster
+ * all the loader does is take a filename, compare the timestamp of the file and the one included in the bound imports table, then use the VA directly as import if they match.
   * `dllbound-ld.exe` loads and execute 'dllbound.dll' via bound imports.
  {{{
   at IMAGE_DATA_DIRECTORY_16.BoundImportsVA,   dd BoundImports - IMAGEBASE
@@ -425,6 +617,7 @@ bounddll db 'dllbound2.dll', 0 ; hijacking DLL name
 
 ===Import table===
  * the RVA *and* the Size required to be set on a low alignment PE to make the import table writeable, under XP.
+  * `nosectionXP.exe` needs an IAT to make its imports writeable
 
 ===delay imports===
  * it's just trampoline added by the compiler to load imports and DLL on request
@@ -452,195 +645,15 @@ this is not explored yet.
  * no importance whatsoever
 
 ===Characteristics===
+    at IMAGE_SECTION_HEADER.Characteristics,  dd IMAGE_SCN_MEM_EXECUTE | IMAGE_SCN_MEM_WRITE
 
 ----
-=!PoCs=
-Here are the outputs of each proof of concept during their execution:
 
- * a normal PE
-compiled.exe:
- * a 'compiled' PE
-truncsectbl.exe:
- * truncated section table
-bigalign.exe
+=specific cases=
 
-PE with many sections:
-96emptysections.exe:
- * 96 sections (95 are empty)
-96workingsections.exe:
- * a PE with 96 used code sections
+==folded header==
 
-TLS:
-tls.exe:
- * simple TLS:
-  # 1st TLS call
-  # !EntryPoint executed
-  # !ExitProcess called
-tls_onthefly.exe:
- * TLS on the fly update started
-  # adding 2nd TLS to callbacks
-  # 2nd TLS executed. removing all TLS from callbacks to prevent further executions
-tls_obfuscation.exe:
- * fake TLS callbacks for obfuscation
-exportobf.exe:
- * fake exports to disrupt disassembly
-exportsdata.exe:
- * data stored as fake export table
-
-Imports loading:
-imports.exe:
- * standard DLL import
-imports_noint.exe:
- * no Import Name Table
-imports_noext.exe:
- * extensions-less imported dlls (>= XP)
-imports_mixed.exe:
- * mixed-case imported dlls
-importshint.exe:
- * correct import called via hinting
-impbyord.exe:
- * imports resolving to its own exports
-
-DLL loading:
- * statically loaded DLL and export call
-dll-ld.exe:
-  # DLL !EntryPoint called on attach
-  # DLL export called
-  # DLL !EntryPoint called on detach
-dll-dynld.exe:
- * dynamically loaded DLL and export call
-  # loading dll
-  # DLL !EntryPoint called on attach
-  # DLL export called
-  # unloading dll
-  # DLL !EntryPoint called on detach
-dll-dynunicld.exe:
- * loading DLL by Unicode
-  # DLL !EntryPoint called on attach
-  # DLL !EntryPoint called on detach
-dllweirdexp-ld.exe:
- * statically loaded DLL with weird export name
-dllemptyexp-ld.exe:
- * statically loaded DLL with empty export name
-dllord-ld.exe:
- * DLL export by ordinal called
-dllnoreloc-ld.exe:
- * DLL with no relocation (with direct call)
-dllnoexp-dynld.exe:
- * dynamically loading export-less DLL
-  # loading dll
-  # DLL EntryPoint called on attach
-  # unloading dll
-  # DLL EntryPoint called on detach
-ownexports.exe:
- * imports resolving to its own exports
-
-export forwarding:
-dllfw-ld.exe:
- * forwarded import call via Export
-dllfwloop-ld.exe:
- * forwarded import call via forwarding loops
-
-bound imports:
-dllbound-ld.exe:
- * export called (bound imports)
-dllbound-redirld.exe:
- * unexpected export called (corrupted bound imports)
-
-tiny PE
-tiny.exe:
- * 268b universal tiny PE (XP-W7x64)
-
-!ImageBase:
-ibkernel.exe:
- * kernel range IMAGEBASE (and relocations)
-reloccrypt.exe:
- * decryption via relocations
-
-!EntryPoint:
-nullEP.exe:
- * null !EntryPoint
-virtEP.exe:
- * virtual !EntryPoint
-dllextep-ld.exe:
- * external !EntryPoint (in fixed address DLL)
-
-sections:
-bigsec.exe:
- * virtually oversized section
-dupsec.exe:
- * several sections - including the header - with the same physical content
-duphead.exe:
- * section mapping the complete PE (offset rounded down to 200, !FileAlignment is 400)
-secinsec:
- * section in section
-appendedsecttbl.exe:
- * section table in appended data
-appendedhdr.exe:
- * NT headers in appended data
-footer.exe:
- * NT headers at the bottom of the file
-bottomsecttbl.exe:
- * section table at the bottom of the file
-truncatedlast.exe:
- * last section truncated
-shuffledsect.exe:
- * sections in wrong physical order
-
-gaps:
-slackspace.exe:
- * slack space between sections
-appendeddata.exe:
- * appended data
-hiddenappdata1.exe:
- * appended data, hidden by an extra section
-hiddenappdata2.exe:
- * appended data, hidden by enlarged last section
-virtgap.exe:
- * virtual gap between code sections
-foldedhdr.exe:
- * PE header overwritten on loading
-
-== XP only==
-ibnullXP.exe:
- * null IMAGEBASE with relocations (XP only)
-dllbound-redirld2.exe:
- * export of an unexpected DLL called (corrupted bound imports)
-
-Low alignments:
-nosectionXP.exe:
- * Low alignment PE with no section (XP)
-virtsectblXP.exe:
- * Low alignment PE with a virtual section table (XP)
-nullSOH-XP.exe:
- * Low alignment PE with a null !SizeOfOptionalHeader (XP)
-maxsecXP.exe:
- * Low alignment PE with 96 fake sections (XP)
-
-misc:
-tinydllXP-ld.exe:
- * dynamically loading minimal 97 bytes DLL
-  # dll loaded
-reloccryptXP.exe:
- * decryption via relocations (from null imagebase, XP only)
-==W7 only==
-Low alignments:
-tinyW7_3264.exe:
- * tiny 268 bytes PE32 (W7 32b/64b)
-tinyW7x64.exe:
- * tiny 268 bytes PE32+ (W7 64b only)
-maxsec_lowaligW7.exe:
- * Low alignment PE with 6666 sections (W7)
-nosectionW7.exe:
- * Low alignment PE with no section (W7)
-maxsecW7.exe:
- * PE with 8192 code sections (W7)
-
-==specific cases==
-
-===folded header===
-
-===PE + PDF===
+==PE + PDF==
 
 ----
 
