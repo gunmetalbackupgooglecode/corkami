@@ -305,7 +305,7 @@ address_of_name_ordinals:
     dw 0
 ...
 a__exp__Export db 'export', 0
-}}}  
+}}}
  * the Export Name is not necessary, and can be anything.
   * `dllweirdexp.dll` is correctly exported, with a corrupted Export Name
   {{{
@@ -352,7 +352,6 @@ dll.dll_iat:
 __imp__export:
     dd 1 << 31 | 314h ; highest bit set to indicate imports by ordinal
 }}}
-
    * `dllord.dll`
  {{{
  Exports_Directory:
@@ -429,10 +428,139 @@ kernel32.dll_DESCRIPTOR:
 }}}
  * imports are not necessary. either don't call any API (ex, resource placeholders), or locate Kernel32 and its exports by hand (not covered here)
 ===resources===
- * chained structure
- * in standard, 3 levels
+ * directory-like structure.
+ {{{
+...
+at IMAGE_DATA_DIRECTORY_16.ResourceVA, dd Directory_Entry_Resource - IMAGEBASE
+...
+push SOME_TYPE              ; lpType
+push SOME_NAME              ; lpName
+push 0                      ; hModule
+call [__imp__FindResourceA]
+...
+Directory_Entry_Resource:
+; root directory
+istruc IMAGE_RESOURCE_DIRECTORY
+    at IMAGE_RESOURCE_DIRECTORY.NumberOfIdEntries, dw 1
+iend
+istruc IMAGE_RESOURCE_DIRECTORY_ENTRY
+    at IMAGE_RESOURCE_DIRECTORY_ENTRY.NameID, dd SOME_TYPE    ; .. resource type of that directory
+    at IMAGE_RESOURCE_DIRECTORY_ENTRY.OffsetToData, dd (1<<31) | (resource_directory_type - Directory_Entry_Resource)
+iend
+
+resource_directory_type:
+istruc IMAGE_RESOURCE_DIRECTORY
+    at IMAGE_RESOURCE_DIRECTORY.NumberOfIdEntries, dw 1
+iend
+istruc IMAGE_RESOURCE_DIRECTORY_ENTRY
+    at IMAGE_RESOURCE_DIRECTORY_ENTRY.NameID, dd SOME_NAME ; name of the underneath resource
+    at IMAGE_RESOURCE_DIRECTORY_ENTRY.OffsetToData, dd (1<<31) | (resource_directory_language - Directory_Entry_Resource)
+iend
+
+resource_directory_language:
+istruc IMAGE_RESOURCE_DIRECTORY
+    at IMAGE_RESOURCE_DIRECTORY.NumberOfIdEntries, dw 1
+iend
+istruc IMAGE_RESOURCE_DIRECTORY_ENTRY
+at IMAGE_RESOURCE_DIRECTORY_ENTRY.OffsetToData, dd resource_entry - Directory_Entry_Resource
+iend
+
+resource_entry:
+istruc IMAGE_RESOURCE_DATA_ENTRY
+    at IMAGE_RESOURCE_DATA_ENTRY.OffsetToData, dd resource_data - IMAGEBASE
+    at IMAGE_RESOURCE_DATA_ENTRY.Size1, dd RESOURCE_SIZE
+iend
+
+resource_data:
+Msg db " * message stored in resources", 0ah, 0
+RESOURCE_SIZE equ $ - resource_data
+}}}
+ * in standard, 3 levels: `Root/Type/Name/Language` but anything else is possible.
+
    * loops are possible
+    * `resourceloop.exe` contains several loops between resource directories
+    {{{
+resource_directory_type:
+...
+    at IMAGE_RESOURCE_DIRECTORY_ENTRY.OffsetToData,  dd (1<<31) | (resource_directory_loop - Directory_Entry_Resource)
+...
+
+resource_directory_loop:
+...
+; double level recursivity
+...
+    at IMAGE_RESOURCE_DIRECTORY_ENTRY.OffsetToData,  dd (1<<31) | (resource_directory_type - Directory_Entry_Resource)
+...
+; direct recursivity
+...
+    at IMAGE_RESOURCE_DIRECTORY_ENTRY.OffsetToData,  dd (1<<31) | (resource_directory_loop - Directory_Entry_Resource)
+}}}
+
+ * Names and Types of a resource can be used:
+  * immediate integers (aka IDs) - like `resource.exe`
+  {{{
+SOME_TYPE equ 315h
+SOME_NAME equ 7354h
+...
+push SOME_TYPE              ; lpType
+push SOME_NAME              ; lpName
+push 0                      ; hModule
+call [__imp__FindResourceA]
+...
+at IMAGE_RESOURCE_DIRECTORY_ENTRY.NameID, dd SOME_TYPE    ; .. resource type of that directory
+...
+at IMAGE_RESOURCE_DIRECTORY_ENTRY.NameID, dd SOME_NAME ; name of the underneath resource
+}}}
+  * immediate integers (aka IDs) converted as string for loading - like `resource2.exe`
+  {{{
+push atype                  ; lpType
+push ares                   ; lpName
+push 0                      ; hModule
+call [__imp__FindResourceA]
+...
+atype db '#315', 0
+ares db "#7354", 0
+...
+SOME_TYPE equ 315
+SOME_NAME equ 7354
+...
+at IMAGE_RESOURCE_DIRECTORY_ENTRY.NameID, dd SOME_TYPE    ; .. resource type of that directory
+...
+at IMAGE_RESOURCE_DIRECTORY_ENTRY.NameID, dd SOME_NAME ; name of the underneath resource
+...
+}}}
+  * strings (aka Names). the Name in resource directory is with the format `length + widestring` - like `namedresource.exe`
+  {{{
+push arestype               ; lpType
+push aresname               ; lpName
+push 0                      ; hModule
+call [__imp__FindResourceA]
+...
+aresname db 'RES', 0
+arestype db 'TYPE', 0
+...
+    .NumberOfNamedEntries dw 0
+    .NumberOfIdEntries    dw 1
+    .ID dd (1 << 31) | (alrestype - resource_directory)    ; .. resource type of that directory
+...
+    .NumberOfNamedEntries dw 0
+    .NumberOfIdEntries    dw 1
+    .ID dd (1 << 31) | (alresname - resource_directory)  ; name of the underneath resource
+...
+; length + widestring
+alresname dw 3, "R", "E", "S", 0
+alrestype dw 4, "T", "Y", "P", "E", 0
+}}}
  * the resource structures are relative to the start of the Data Directory, but the resource data can be anywhere in the file (RVA)
+  * `reshdr.exe` has its resource data in the PE header
+  {{{
+at IMAGE_DOS_HEADER.e_magic, db 'MZ'
+at IMAGE_DOS_HEADER.e_lfanew, dd NT_Signature - IMAGEBASE
+...
+resource_data:
+Msg db " * resource stored in header and shuffled resource structure", 0ah, 0
+RESOURCE_SIZE equ $ - resource_data
+}}}
  * resource strings have their own awkward format.
 
 =====exception=====
@@ -469,7 +597,7 @@ DIRECTORY_ENTRY_BASERELOC_SIZE  equ $ - Directory_Entry_Basereloc
  * IMAGE_REL_BASED_HIGHLOW is the 'standard' relocation, for which `<real base> - ImageBase` will be added to the pointed address
  * IMAGE_REL_BASED_HIGH does the same but only the highest WORD of the delta is added. (in short, same operation one WORD earlier)
  * IMAGE_REL_BASED_LOW does the same but only the lowest WORD of the delta is added, which makes no change, as both bases are 10000h-aligned.
- * Other sort of relocations such as Mips and 64 bits are still supported by Windows 7. 
+ * Other sort of relocations such as Mips and 64 bits are still supported by Windows 7.
  * forcing the binary to relocate to a known place (ex, with a null or kernel !ImageBase) makes it possible for the relocations to have predictable behavior. Thus, they can be used to decrypt or clear some values in memory. Also, relocations may be used to modify themselves.
   * `reloccrypt.exe` has a 0ffff0000h !ImageBase, and its relocations are, first, modifying themselves, using uncommon relocation types, then decrypting the code to be executed.
  {{{
@@ -661,8 +789,8 @@ this is not explored yet.
  * Peter Ferrie
 
  * Costin Ionescu
- * Kris Kaspersky
  * Ivanlef0u
+ * Kris Kaspersky
  * Moritz Kroll
 
 =Other resources=
