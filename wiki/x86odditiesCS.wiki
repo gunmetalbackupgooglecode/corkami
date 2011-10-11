@@ -1,7 +1,6 @@
 #summary x86/x64 oddities cheat sheet
-
 =x86/x64 oddities=
-|| *OPCODE*|| *EQUIVALENT*|| *EXAMPLE* ||
+|| *OPCODE*|| *DESCRIPTION*|| *EXAMPLE* ||
 || _66 0f??:_ [http://code.google.com/p/corkami/wiki/x86oddities#bswap bswap] `<`reg16`>` || xor `<`reg16`>`, `<`reg16`>` || _66 0fc8:_ bswap ax ||
 || _d5??:_ [http://code.google.com/p/corkami/wiki/x86oddities#aad aad] `<`imm8`>` || ax = ah `*` `<`imm8`>` + al || _d507:_ aad 7 ||
 || _d4??:_ [http://code.google.com/p/corkami/wiki/x86oddities#aam aam] `<`imm8`>` || ah, al = al / `<`imm8`>`, al % `<`imm8`>` || _d403:_ aam 3 ||
@@ -11,9 +10,11 @@
 || _0f 20-24 ??:_ [http://code.google.com/p/corkami/wiki/x86oddities#mov mov] to/from control/debug register || memory operand ignored || _0f 2000:_ mov eax, cr0 ||
 || _8c ??:_ [http://code.google.com/p/corkami/wiki/x86oddities#mov mov] to/from segment || upper register cleared || _8cc8:_ mov eax, cs ||
 || _66 `*`:_ [http://code.google.com/p/corkami/wiki/x86oddities#16b_flow jmp/retn/call] || jump to IP || _66 e9 fcff:_ jmp ip ||
+|| [http://code.google.com/p/corkami/wiki/x86oddities#os/tool/vm_detection smsw/sidt/str/sgdt/sldt/lsl/str] || OS/VM detection || ... ||
 
 == 64 bits ==
-|| cs = 33h || 64b mode || _9a `<`addr32`>`3300:_ call 0033:`<`addr32`>` ||
+|| *OPCODE*|| *DESCRIPTION*|| *EXAMPLE* ||
+|| [http://code.google.com/p/corkami/wiki/x86oddities#switching_between_32b_and_64b_modes cs = 33h] (Windows) || 64b mode || _9a `<`addr32`>`3300:_ call 0033:`<`addr32`>` ||
 || (no REX) _63 ??:_ movsxd `<`reg64`>`, `<`reg32`>` || mov `<`reg32`>`, `<`reg32`>` || _63c8:_ movsxd ecx, eax ||
 
 ======Ange Albertini, [http://corkami.com]======
