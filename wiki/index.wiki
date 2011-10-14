@@ -1,5 +1,5 @@
 #summary the homepage of this repository
-=docs with [http://en.wikipedia.org/wiki/Proof_of_concept pocs]=
+=Docs=
 (all pocs are open-source whenever possible)
  * [PDFTricks a summary of PDF tricks] - encodings, structures, !JavaScript... with hand-made !PoCs ([http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語])
 
