@@ -1,6 +1,4 @@
 #summary the Portable Executable Format on Windows
-#labels WIP
-=*_DRAFT IN PROGRESS_*=
 
 =PE=
  * This page deals with the PE format, or more specifically, x86/x64 Windows (from XP to W7) binaries (ie, not other OSes or systems, not OBJ format, etc...)
@@ -8,7 +6,7 @@
  * All proof of concepts are included with source.
   * They're all working and clean.
   * They're all generated in asssembly, by hand, from scratch, so no superfluous information is included (they might be wrongly detected as suspicious for that)
-  * [https://corkami.googlecode.com/svn repository directory] [http://code.google.com/p/corkami/downloads/list?q=CPC source and binary download].
+  * [http://corkami.googlecode.com/svn/trunk/asm/PE/ repository directory] [http://code.google.com/p/corkami/downloads/list?q=CPC sources+binaries download].
 <wiki:toc max_depth="3" />
 
 =required elements=
@@ -78,7 +76,7 @@ dos_msg
  * it could be `ZM` on an (non-PE) EXE. These executables still work under XP via ntvtm.
   * `dosZMXP.exe` is a non-PE EXE with a ZM signature
   {{{
-      at IMAGE_DOS_HEADER.e_magic, db 'ZM'
+at IMAGE_DOS_HEADER.e_magic, db 'ZM'
 }}}
 
 ===e_cparhrd===
@@ -127,9 +125,8 @@ align 16, db 0
   * `nosection*.exe`, `tiny*.exe`
  * can be up to 96 under XP:
   * `96emptysections.exe` (all identical), `96workingsections.exe` (all physically different), `maxsecXP.exe` (garbage table)
- * can be up to 65536 (no perfect PoC yet due to Yasm limitations)
-  * `maxsecW7.exe`: 8192 physically different code sections
-  * `maxsec_lowaligW7.exe`: 6666 garbage sections.
+ * can be up to 65535
+  * `65535sects.exe` has 65535 sections, that are all virtually executed.
 
 ===!TimeDateStamp===
  * has a different meaning whether it's a Borland or a Microsoft compiler
@@ -240,6 +237,9 @@ unused
  * can override Major/Minor !OperatingSystem/Image Versions
 
 ===!SizeOfImage===
+ * normally equal the total virtual size of all sections + headers
+  * `65535sects.exe` has a !SizeOfImage of 0x7027A000 (W7 only)
+  * `tinyXP` has a !SizeOfImage of 0x2e. it only covers up to the !EntryPoint value.
 
 ===!SizeOfHeaders===
 
@@ -365,7 +365,44 @@ address_of_functions:
     dd -1                                   ; bogus entry that will be 313h
     dd __exp__Export - IMAGEBASE
 }}}
+ * exports can be used just to forward imports. in this case, the forwarded import is written as `dll.API` and must be within exportsVA and Size.
+  * `dllfw.dll` forwards imports from msvcrt
+ {{{
+address_of_functions:
+    dd amsvcrt_printf - IMAGEBASE
+...
+address_of_names:
+    dd a__exp__Export - IMAGEBASE
+...
+amsvcrt_printf db "msvcrt.printf", 0 ; forwarding string can only be within the official export directory bounds
+a__exp__Export db 'ExitProcess', 0
 
+EXPORTS_SIZE equ $ - Exports_Directory
+}}}
+ * exports can also forward each other and create loops
+  * `dllfwloop.dll` forwards its own imports until the right API is called.
+ {{{
+...
+address_of_functions:
+    dd adllfwloop_loophere  - IMAGEBASE
+    dd adllfwloop_looponceagain  - IMAGEBASE
+    dd amsvcrt_printf - IMAGEBASE
+    dd adllfwloop_GroundHogDay - IMAGEBASE
+    dd adllfwloop_Yang - IMAGEBASE
+    dd adllfwloop_Ying - IMAGEBASE
+NUMBER_OF_FUNCTIONS equ ($ - address_of_functions) / 4
+_d
+
+address_of_names:
+    dd a__exp__ExitProcess - IMAGEBASE
+    dd a__exp__LoopHere - IMAGEBASE
+    dd a__exp__LoopOnceAgain - IMAGEBASE
+    dd a__exp__GroundHogDay - IMAGEBASE
+    dd a__exp__Ying - IMAGEBASE
+    dd a__exp__Yang - IMAGEBASE
+NUMBER_OF_NAMES equ ($ - address_of_names) / 4
+...
+}}}
 ===imports===
  * Imports size is not used. !ImportAddressTable is typically not required (excepted in low alignments, under XP)
   * `dll-ld.exe` imports `dll.dll` with a small import table:
@@ -427,6 +464,18 @@ kernel32.dll_DESCRIPTOR:
 ...
 }}}
  * imports are not necessary. either don't call any API (ex, resource placeholders), or locate Kernel32 and its exports by hand (not covered here)
+ * the terminator of imports descriptor only needs to have its Name offset null. the other values are not important.
+ * `imports_badterm` has a bad terminator, that looks almost like a valid one:
+ {{{
+...
+;disguised terminator - dll address is 0
+dd msvcrt.dll_hintnames - IMAGEBASE
+dd 0, 0
+dd 0 ;msvcrt.dll - IMAGEBASE
+dd msvcrt.dll_iat - IMAGEBASE
+...
+}}}
+
 ===resources===
  * directory-like structure.
  {{{
@@ -675,8 +724,8 @@ tls:
  * The callbacks are VAs, not RVAs (!ImageBase *is* included).
  * each callback is executed until an error happens or a null dword is next in the list. then, no matter what happened (error or not) the !EntryPoint is executed:
   * a TLS doesn't need to return cleanly if it knows it's the last one
-   * CoST uses this technique
-  * an incorrect entry in the list doesn't create an entry
+   * [x86oddities CoST] uses this technique
+  * an incorrect entry in the list doesn't trigger a visible error
    * `tls_obfuscation.exe` has many fake TLS callback entries to disrupt disassembly
  * like the entrypoint value, a callback VA is blindly called. It can be:
   * outside the PE, in a known in advance address
@@ -698,11 +747,17 @@ tls:
 tls2:
 ...
 }}}
+ * TLS !AddressOfIndex is cleared on loading. Thus, it can be used to modify code execution.
+  * `tls_aoi` patches the operand of a looping jump by pointing !AddressOfIndex to it.
+ {{{
+AddressOfIndex equ $ + 1
+    jmp long $
+}}}
 
 =====Load config=====
 this is not explored yet.
 
-===Bound import===
+===Bound imports===
  * are a shortcut structure to hardcode some imports values in advance, to make import values faster
  * all the loader does is take a filename, compare the timestamp of the file and the one included in the bound imports table, then use the VA directly as import if they match.
   * `dllbound-ld.exe` loads and execute 'dllbound.dll' via bound imports.
@@ -748,7 +803,39 @@ bounddll db 'dllbound2.dll', 0 ; hijacking DLL name
   * `nosectionXP.exe` needs an IAT to make its imports writeable
 
 ===delay imports===
- * it's just trampoline added by the compiler to load imports and DLL on request
+ * is a rip-off, a fake structure.
+ * it's just trampoline added by the compiler to load imports and DLL on request, 
+   with a 'frontend' in the data directories, with a structure similar to standard imports (adress table + name table) so that external tools can still indicate that imports calls are present.
+  * `delayimports.exe` has working delay imports (displayed by other tools):
+  {{{
+...
+at IMAGE_DATA_DIRECTORY_16.DelayImportsVA, dd delay_imports - IMAGEBASE
+at IMAGE_DATA_DIRECTORY_16.DelayImportsSize, dd DELAY_IMPORTS_SIZE
+...
+delay_imports:
+istruc _IMAGE_DELAY_IMPORT_DESCRIPTOR
+    at _IMAGE_DELAY_IMPORT_DESCRIPTOR.rvaDLLName,   dd msvcrt.dll
+    at _IMAGE_DELAY_IMPORT_DESCRIPTOR.rvaIAT,       dd delay_iat - IMAGEBASE
+    at _IMAGE_DELAY_IMPORT_DESCRIPTOR.rvaINT,       dd msvcrt_int
+iend
+istruc _IMAGE_DELAY_IMPORT_DESCRIPTOR
+iend
+
+delay_iat:
+__imp__printf:
+    dd __delay__printf
+    dd 0
+}}}
+ * the information in the header is not required to make delay import works, are they are extra code added *in* the file by the compiler. 
+  * Erasing the data directory VA from a standard file with delay imports will not disturb its execution
+  * `delaycorrupt.exe` has the same structure as `delayimports.exe`, but the descriptors are empty.
+ {{{
+...
+delay_imports:
+istruc _IMAGE_DELAY_IMPORT_DESCRIPTOR
+iend
+...
+}}}
 
 =====COM Runtime=====
 this is not explored yet.
@@ -757,31 +844,146 @@ this is not explored yet.
  * used by packers and malware as markers
 
 ==section table==
-
 =====Name=====
  * no importance whatsoever
 
 ===!Misc_VirtualSize===
-
+ * `bigsec` has a section with a virtual size of 0x10001000.
+ * later, check samples ;)
+ 
 ===!VirtualAddress===
-
+ * later, check samples ;)
 ===!SizeOfRawData===
-
+ * with standard alignments, sections can be physically empty.
 ===!PointerToRawData===
+ * later, check samples ;)
 
 =====!PointerToRelocations/!PointerToLinenumbers/!NumberOfRelocations/!NumberOfLinenumbers=====
  * no importance whatsoever
 
 ===Characteristics===
-    at IMAGE_SECTION_HEADER.Characteristics,  dd IMAGE_SCN_MEM_EXECUTE | IMAGE_SCN_MEM_WRITE
+ * later, check samples ;)
 
 ----
 
 =specific cases=
 
 ==folded header==
+ * found out by Reversing Labs as 'Dual PE Header'
+ * the first checks of the PE are done on file. then the file is loaded in memory. then imports are resolved, from the image in memory.
+ * by extending the header until the first !SectionAlignment, it's possible to have the first section overlapping the header partially.
+ thus, the actual data directories used for imports resolving will not be the contiguous ones on the disk.
+<code language="c">
+{{{
+...
+ section progbits vstart=IMAGEBASE + SECTIONALIGN align=FILEALIGN
 
+;---------------------------------------------- CUT and FOLD here ----------------------------------
+
+; ok here we're at RVA 1000h (start of 1st section),
+; so this data will overwrite the PE headers originally loaded from offset F80h, physically further in the file.
+
+dd Import_Descriptor - IMAGEBASE, 0
+...
+times 0f80h - FILEALIGN * 2 db 0 ; to make the header overlap on address offset/rva 1000h
+
+NT_Signature:
+istruc IMAGE_NT_HEADERS
+    at IMAGE_NT_HEADERS.Signature, db 'PE', 0, 0
+iend
+...
+istruc IMAGE_DATA_DIRECTORY_16
+dd 88660001h,010009988h
+;---------------------------------------------- CUT and FOLD here ----------------------------------
+; we cut the header here, and we're right at offset 1000h
+;---------------------------------------------- CUT and FOLD here ----------------------------------
+
+dd 86600010h,001000998h
+dd 66000100h,000100099h
+dd 6000100Fh,0F0010009h
+...
+}}}
+</code>
 ==PE + PDF==
+ * PDF can have their start signature up to offset 0x400.
+ * using this, `pdf.exe` is an both a working PE and a working PDF. 
+ If you run it, it will copy itself as a PDF and opens it
+ {{{
+...
+call [__imp__CopyFile]
+...
+call [__imp__ShellExecute]
+...
+incbin 'helloworld-X.pdf'
+...
+}}}
+
+==quine==
+ * a quine is a file that prints its own source.
+ * by putting the PE header further in the file and only using printable characters in between,
+ `quine.exe` has its own source directly accessible via the _type_ command. 
+ after the source, an EOF character is inserted.
+ {{{
+db 'MZ'
+align 3bh, db 0dh
+dd nt_header - IMAGEBASE
+    db 0dh
+
+incbin 'quine.asm'
+db 1ah
+}}}
+ * when executed, quine will open a command window to type itself.
+ {{{
+op db "open", 0
+fn db "cmd", 0
+param db "/K type quine.exe", 0
+...
+EntryPoint:
+    push 1
+    push 0
+    push param
+    push fn
+    push op
+    push 0
+    call [ShellExecuteA]
+}}}
+ 
+==tls_aoiOSDET==
+ * the address pointed by TLS.!AddressOfIndex is cleared on loading.
+ * if IMAGE_IMPORT_DESCRIPTOR.Name is null, this import descriptor is considered a terminator (imports are no further parsed).
+
+ * under XP, it's cleared after imports are parsed, thus the imports are completely loaded.
+ * under W7, it's cleared before, so the descriptor is considered as a terminator, so imports are no further parsed.
+ 
+so, depending on the OS that is running, `tls_aoiOSDET` behaves differently by checking its own imports
+{{{
+...
+mov eax, [__imp__MessageBoxA]
+cmp eax, hnMessageBoxA - IMAGEBASE
+jz W7
+
+...
+;user32.dll_DESCRIPTOR:
+    dd user32.dll_hintnames - IMAGEBASE
+    dd 0, 0
+AddressOfIndex:
+    dd user32.dll - IMAGEBASE
+    dd user32.dll_iat - IMAGEBASE
+...
+}}}
+
+===manyimportsW7===
+ * this W7-only binary use the TLS !AoI trick to clean its imports. On disk, the import table is full of bogus descriptors, which will be ignored on loading
+ {{{
+Image_Tls_Directory32:
+...
+AddressOfIndex        dd zero_here_plz
+...
+zero_here_plz:
+%rep 40000h
+dd fake_imports - IMAGEBASE + i * 4
+...
+}}}
 
 ----
 
@@ -794,5 +996,4 @@ this is not explored yet.
  * Moritz Kroll
 
 =Other resources=
- * the PE format
  * [http://www.reversinglabs.com/advisory/pecoff.php Undocumented PE/COFF]
