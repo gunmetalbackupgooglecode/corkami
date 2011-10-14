@@ -1,8 +1,8 @@
-#summary the homepage of this repository
+#summary index page the wiki
 
-Welcome! ([About about this project])
+====[About about Corkami]====
 
-=Articles=
+=articles=
  * [PDFTricks a summary of PDF tricks] - encodings, structures, !JavaScript... with hand-made !PoCs ([http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語])
 
  * [StandardTest Corkami Standard Test] is a PE/x86/x64 test program for your tools/emulators/skills.
@@ -44,7 +44,7 @@ Welcome! ([About about this project])
  * [http://code.google.com/p/corkami/downloads/list?can=1&q=kernel31 Kernel31], a trampoline DLL to enable >!XpSp3 binaries work on previous OS.
  * old crackmes solutions: PredatorPirupiru LilcwXor
 
-=by the same author=
+=external works=
  * Screencasts:
   * [https://sites.google.com/site/corkami/ollydbg-tracing OllyDbg Tracing] (easy level) setting !OllyDbg as a JIT debugger, tracing, optimizing tracing, finding bug, patching, saving as a new executable
   * [http://rejava.sourceforge.net/hello.html reJava] create a .class from scratch
