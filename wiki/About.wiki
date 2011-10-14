@@ -1,0 +1,21 @@
+#summary About the Corkami project
+Corkami is the project that I started, to share my findings and experiments.
+
+Here are the guidelines I'm *trying* to follow (I only work on it in my spare time, at home, on a netbook):
+ * pure technical content, with as much detail as possible
+ * free to browse (no annoying layout, no ads, ...)
+ * free to download (no login required)
+ * free to test (pre-compiled proof of concepts included)
+ * free to modify (BSD Licence, complete sources included, even for pictures and documents, using open-source tools)
+ * constantly updated (wiki format)
+ * easy to bring with you (printable cheats sheets and graphs)
+
+That's why it ended up here, after many different tries, as a project on google code.
+
+Hope you like it,
+
+Ange
+
+[http://twitter.com/#!/ange4771 @ange4771] ([http://twitter.com/#!/corkami @corkami] for news only)
+
+Comments, critics, suggestions, etc... are welcome.
