@@ -1,6 +1,8 @@
 #summary the homepage of this repository
-=Docs=
-(all pocs are open-source whenever possible)
+
+Welcome! ([About about this project])
+
+=Articles=
  * [PDFTricks a summary of PDF tricks] - encodings, structures, !JavaScript... with hand-made !PoCs ([http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語])
 
  * [StandardTest Corkami Standard Test] is a PE/x86/x64 test program for your tools/emulators/skills.
