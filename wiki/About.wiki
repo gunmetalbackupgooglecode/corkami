@@ -1,5 +1,5 @@
 #summary About the Corkami project
-Corkami is the project that I started, to share my findings and experiments.
+Corkami is the name of the project that I started, to share my findings and experiments. (_Corkami_ doesn't mean anything btw, except maybe 'daughters' in polish, but that's a coincidence)
 
 Here are the guidelines I'm *trying* to follow (I only work on it in my spare time, at home, on a netbook):
  * pure technical content, with as much detail as possible
@@ -10,7 +10,7 @@ Here are the guidelines I'm *trying* to follow (I only work on it in my spare ti
  * constantly updated (wiki format)
  * easy to bring with you (printable cheats sheets and graphs)
 
-That's why it ended up here, after many different tries, as a project on google code.
+That's why it ended up here, after many different tries, as a project on google code. It's not perfect (the wiki is _sub-optimal_ for now), but better than anything else (blog, knoll, site,...) I tried so far).
 
 Hope you like it,
 
@@ -19,3 +19,51 @@ Ange
 [http://twitter.com/#!/ange4771 @ange4771] ([http://twitter.com/#!/corkami @corkami] for news only)
 
 Comments, critics, suggestions, etc... are welcome.
+
+=landmarks=
+== step 1 (2011/10/14) ==
+ * the basics are now covered: [x86oddities x86] and [PE].
+ * the style of publication reached a suitable form:
+  * wiki pages with proof of concepts, and quoted snippets of code ([PE], [x86oddities x86] [PDFTricks PDF])
+  * pdf made from svg ([http://code.google.com/p/corkami/downloads/list?q=pdf cheat sheets])
+  * screencasts, with Wink ([http://rejava.sourceforge.net/hello.html reJava] [https://sites.google.com/site/corkami/ollydbg-tracing OllyDbg tracing])
+
+so Corkami can step up and move on to the next level, following the same methods but tackling more advanced topics such as malware/packer analysis.
+
+= eternal thanks =
+these people were beyond helpful or supportive:
+ * Adam Blaszczyk
+ * Cathal Mullaney
+ * Peter Ferrie
+
+if you ever meet them, pay them a beer !
+
+== greetings ==
+a lot of people contributed (directly or not) to this project:
+ BeatriX, Bruce Dang, 
+ Candid Wüest, Costin Ionescu,
+ Damien Saint Macary, Donato Ferrante, Didier Stevens, 
+ Elia Florio, Elias Bachaalany, Ero Carrera, Eugeny Suslikov,
+ Georg Wicherski, Gil Dabah, Guillaume Delugré, Guillaume Lovet, Gynvael Coldwin,
+ Heather Shannon,
+ Igor Skochinsky, Ilfak Guilfanov, Ivanlef0u,
+ Jean-Baptiste Bédrune, j00ru, Jim Leonard, Jon Larimer,
+ Kazumasa Itabashi, Kris Kaspersky,
+ Oleh Yuschuk,
+ Mark Vincent Yason, Markus Hinderhofer, Mircea Ciubotariu, Moritz Kroll,
+ Nicolas Brulez, Nicolas Fallière,
+ Rewolf,
+ Sami Koivu, Sebastian Biallas, Sebastian Porst, StalkR,
+ Tomislav Pericin,
+ Yoann Guillot
+
+and those who pulled me forward: 
+
+ Andreas Naive,
+ CrackZ,
+ Dimedrol,
+ Fravia,
+ Kostya Kortchinsky, 
+ Nicola Salmoria,
+ Omar Cornut,
+ ...
