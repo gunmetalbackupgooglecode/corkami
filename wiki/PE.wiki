@@ -1,7 +1,7 @@
 #summary the Portable Executable Format on Windows
 
 =PE=
- * This page deals with the PE format, or more specifically, x86/x64 Windows (from XP to W7) binaries (ie, not other OSes or systems, not OBJ format, etc...)
+ * This page ([http://code.google.com/p/corkami/wiki/PE?show=content printable version] [http://corkami.googlecode.com/svn/wiki/PE.wiki wiki source]) deals with the PE format, or more specifically, x86/x64 Windows (from XP to W7) binaries (ie, not other OSes or systems, not OBJ format, etc...)
  * It deals with the reality of the loader, not the theory of the format itself.
  * All proof of concepts are included with source.
   * They're all working and clean.

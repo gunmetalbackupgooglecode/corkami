@@ -1,6 +1,6 @@
 #summary x86 oddities
 =x86 oddities=
-This page enumerates various oddities of the x86/x64.
+This page ([http://code.google.com/p/corkami/wiki/x86oddities?show=content printable version] [http://corkami.googlecode.com/svn/wiki/x86oddities.wiki wiki source]) enumerates various oddities of the x86/x64.
 
 They are all implemented and tested in [StandardTest Standard Test].
 <wiki:toc max_depth="3" />
