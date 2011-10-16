@@ -1,4 +1,5 @@
 #summary About the Corkami project
+#labels Featured
 Corkami is the name of the project that I started, to share my findings and experiments. (_Corkami_ doesn't mean anything btw, except maybe 'daughters' in polish, but that's a coincidence)
 
 Here are the guidelines I'm *trying* to follow (I only work on it in my spare time, at home, on a netbook):
@@ -32,7 +33,7 @@ so Corkami can step up and move on to the next level, following the same methods
 
 = eternal thanks =
 these people were beyond helpful or supportive:
- * Adam Blaszczyk
+ * Adam BÅ‚aszczyk
  * Cathal Mullaney
  * Peter Ferrie
 
@@ -40,29 +41,31 @@ if you ever meet them, pay them a beer !
 
 == greetings ==
 a lot of people contributed (directly or not) to this project:
+ Alexander Matrosov,
  BeatriX, Bruce Dang, 
- Candid Wüest, Costin Ionescu,
- Damien Saint Macary, Donato Ferrante, Didier Stevens, 
+ Candid WÃ¼est, Costin Ionescu,
+ Damien Saint Macary, deroko, Donato Ferrante, Didier Stevens, 
  Elia Florio, Elias Bachaalany, Ero Carrera, Eugeny Suslikov,
- Georg Wicherski, Gil Dabah, Guillaume Delugré, Guillaume Lovet, Gynvael Coldwin,
+ Frank Boldewin,
+ Georg Wicherski, Gil Dabah, Guillaume DelugrÃ©, Guillaume Lovet, Gynvael Coldwin,
  Heather Shannon,
  Igor Skochinsky, Ilfak Guilfanov, Ivanlef0u,
- Jean-Baptiste Bédrune, j00ru, Jim Leonard, Jon Larimer,
- Kazumasa Itabashi, Kris Kaspersky,
+ Jean-Baptiste BÃ©drune, j00ru, Jim Leonard, Jon Larimer,
+ Karthik Selvaraj, Kazumasa Itabashi, Kris Kaspersky,
  Oleh Yuschuk,
  Mark Vincent Yason, Markus Hinderhofer, Mircea Ciubotariu, Moritz Kroll,
- Nicolas Brulez, Nicolas Fallière,
- Rewolf,
+ Nicolas Brulez, Nicolas FalliÃ¨re,
+ Rewolf, Robert !McArdle,
  Sami Koivu, Sebastian Biallas, Sebastian Porst, StalkR,
  Tomislav Pericin,
  Yoann Guillot
-
+ .
 and those who pulled me forward: 
 
  Andreas Naive,
- CrackZ,
+ Charles !McDonald, CrackZ,
  Dimedrol,
- Fravia,
+ Fabrice Catoir, Fravia,
  Kostya Kortchinsky, 
  Nicola Salmoria,
  Omar Cornut,
