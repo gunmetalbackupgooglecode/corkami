@@ -73,6 +73,7 @@ dos_msg
 
 ==e_magic===
  * = `MZ`
+ * stands for [http://en.wikipedia.org/wiki/Mark_Zbikowski Mark Zbikowski]
  * it could be `ZM` on an (non-PE) EXE. These executables still work under XP via ntvtm.
   * `dosZMXP.exe` is a non-PE EXE with a ZM signature
   {{{
