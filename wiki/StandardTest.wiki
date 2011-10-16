@@ -160,7 +160,7 @@ a optional #define is added, to build an executable easier to debug (less PE fea
   * for reference: PCMPISTRM, 16b LOCK ADD
 
 ----
-Greetings
+Acknowledgements:
   * BeatriX
   * Eugeny Suslikov
   * Gil Dabah

@@ -987,7 +987,7 @@ dd fake_imports - IMAGEBASE + i * 4
 
 ----
 
-=Greetings=
+=acknowledgements=
  * Peter Ferrie
 
  * Costin Ionescu

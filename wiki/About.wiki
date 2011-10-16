@@ -39,7 +39,7 @@ these people were beyond helpful or supportive:
 
 if you ever meet them, pay them a beer !
 
-== greetings ==
+==acknowledgements==
 a lot of people contributed (directly or not) to this project:
  Alexander Matrosov,
  BeatriX, Bruce Dang, 

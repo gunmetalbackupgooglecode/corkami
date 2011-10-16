@@ -467,7 +467,7 @@ _64b:
 ===32+64===
 Since there are some opcodes specific to 32 bits mode (arpl, ...), and others specific to 64 bits mode (movsxd, ...), the same hex data can lead to completely different disassembly, just because CS is different at the start.
 
-=Greetings=
+=acknowledgements=
  * Peter Ferrie
 
  * BeatriX

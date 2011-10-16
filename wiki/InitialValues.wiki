@@ -287,7 +287,7 @@ for 64b (CPU, not OS => even on 32b os on 64b cpu):
   * CPU = 64b ? 40h
   * CPU = 32b ? 28h
 
-=Greetings=
+=Acknowledgements=
  * Adam Blaszczyk
  * Markus Hinderhofer
  * Moritz Kroll
