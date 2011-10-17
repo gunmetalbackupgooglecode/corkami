@@ -7,7 +7,7 @@ They are all implemented and tested in [StandardTest Standard Test].
 
 =general=
 ==instruction length==
-An instruction is limited to 15 bytes:
+An instruction is limited to 15 bytes on recent CPUs (it changed over time):
  for example, while a `nop` preceded by 14 useless prefixes is valid, 
  {{{
 66 66 66 66 66 66 66 66 66 66 66 66 66 66 90: nop
@@ -67,13 +67,17 @@ d9eb: fldpi
 }}}
 
 ==GS==
-On 32bit Windows, GS is not saved in the execution context: when the OS switches from an application to another, the content of GS is lost. This can be used as an anti-emulator or an anti-stepping: after some time of execution, GS will eventually be reset:
+On 32bit Windows, GS is not saved in the execution context:
+when the OS switches from an application to another, the content of GS is lost.
+This can be used as an anti-emulator or an anti-stepping:
+after some time of execution, GS will eventually be reset:
  # set GS to X
  # wait until GS is null `<== thread switch eventually happens, and resets GS`
  # execution resume here
 
 ==os/tool/vm detection==
-At any defined point of execution (!EntryPoint, !DllMain, TLS...), registers might have different values, depending on the OS.
+At any defined point of execution (!EntryPoint, !DllMain, TLS...),
+registers might have different values, depending on the OS.
  * tools like packers (such as UPX) or debuggers (such as !OllyDbg) might also alterate these values.
 
 And, at any point of execution:
@@ -85,7 +89,9 @@ These values are currently being collected in the [InitialValues Initial Values 
 =specific=
 
 ==nop==
-`nop` is an alias mnemonic of `90:xchg *ax, *ax` (which does nothing, as no flag are affected by `xchg`): the whole 90-97 range is actually `xchg *ax, <reg32>`.
+`nop` is an alias mnemonic of `90:xchg *ax, *ax`
+(which does nothing, as no flag are affected by `xchg`):
+the whole 90-97 range is actually `xchg *ax, <reg32>`.
 {{{
 90: xchg eax, eax
 
@@ -97,10 +103,21 @@ These values are currently being collected in the [InitialValues Initial Values 
 => ecx, eax = eax, ecx
 }}}
 
+However, `xchg *ax, *ax` has another encoding, which is not considered a `nop`.
+And, on 64 bits, it clears the upper 32 bits of `rax`. So, not all `xchg *ax, *ax` are nops.
+{{{
+87c0: xchg eax, eax
+
+=> rax = eax
+}}}
+
+Hopefully, 90 is truly a `nop`, even in 64 bits.
+
 ==xchg/xadd==
 `xchg`, `xadd` are opcodes that affect both source and target operands (like `fxch`). 
 
-Moreover, they can operate on different parts of the same register, which has the potential to break trivial logic analyzers:
+Moreover, they can operate on different parts of the same register,
+which has the potential to break trivial logic analyzers:
 {{{
 0f c0c4: xadd ah, al
 
@@ -143,7 +160,8 @@ d403: aam 3
 }}}
 
 ==cmpxchg`*`==
- * `lock cmpxchg8b` doesn't crash CPUs anymore, but some tools might still show obsolete warnings about it.
+ * `lock cmpxchg8b` doesn't crash CPUs anymore,
+but some tools might still show obsolete warnings about it.
  * for bus optimization purposes, all 3 `cmpxchg` opcodes always write the operand, even if the values are unchanged: this could trigger an exception on read-only memory.
 
 ==crc32==
@@ -471,6 +489,7 @@ Since there are some opcodes specific to 32 bits mode (arpl, ...), and others sp
  * Peter Ferrie
 
  * BeatriX
+ * Czerno
  * Eugeny Suslikov
  * Gil Dabah
  * Guillaume Delugré
@@ -484,4 +503,5 @@ Since there are some opcodes specific to 32 bits mode (arpl, ...), and others sp
  * Yoann Guillot
 
 =Other resources=
- * [http://feldmann.home.xs4all.nl/86bugs.htm Hamarsoft 86BUGS list] (similar list, but for 486 or older only)
+ * [http://feldmann.home.xs4all.nl/86bugs.htm Hamarsoft 86BUGS list]
+ * [http://www.rcollins.org/ddj/ddj.html Dr. Dobb's Undocumented Corner]
