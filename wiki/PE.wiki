@@ -2,10 +2,10 @@
 
 =PE=
  * This page ([http://code.google.com/p/corkami/wiki/PE?show=content printable version] [http://corkami.googlecode.com/svn/wiki/PE.wiki wiki source]) deals with the PE format, or more specifically, x86/x64 Windows (from XP to W7) binaries (ie, not other OSes or systems, not OBJ format, etc...)
- * It deals with the reality of the loader, not the theory of the format itself.
+ * It deals with the reality of the loader, not the theory of the format itself, as specified in _Microsoft PE and COFF Specification_. Many malwares or packers actually run without a problem, while they theoretically shouldn't.
  * All proof of concepts are included with source.
   * They're all working and clean.
-  * They're all generated in asssembly, by hand, from scratch, so no superfluous information is included (they might be wrongly detected as suspicious for that)
+  * They're all generated in asssembly, by hand, from scratch, so no superfluous information is included (they might be wrongly detected as suspicious for that).
   * [http://corkami.googlecode.com/svn/trunk/asm/PE/ repository directory] [http://code.google.com/p/corkami/downloads/list?q=CPC sources+binaries download].
 <wiki:toc max_depth="3" />
 
@@ -209,7 +209,7 @@ unused
 
 ===!ImageBase===
  * is a multiple of 10000h
- * can be null, under XP. In this case, the binary will be relocated to 1000h
+ * can be null, under XP. In this case, the binary will be relocated to 10000h
   * `ibnullXP.exe` has a null imagebase, and relocations
  * can be any value as long as `ImageBase + 'SizeOfImage' < 80000000h`
   * `bigib.exe` has an !ImageBase of 7ffd0000h, and no relocations
@@ -221,21 +221,19 @@ unused
  * standard mode: `200 <= FileAlignment <= SectionAlignment` and `1000 <= SectionAlignment`
   * `normal.exe` has aligments of 1000/200
   * `bigalign.exe` has alignments of 20000000/10000
- * in low alignment: `4 <= FileAlignment = SectionAlignment <= 800`
-  * all `tiny*.*`, `nosection*.exe` have alignments of 4/4
+ * in low alignment: `1 <= FileAlignment = SectionAlignment <= 800`
+  * all `nosection*.exe` have alignments of 1/1
 
 =====!MajorOperatingSystemVersion/!MinorOperatingSystemVersion/!MajorImageVersion/!MinorImageVersion=====
  * unused
 
-===!MajorSubsystemVersion===
- * has to be 4
-
-=====!MinorSubsystemVersion=====
- * unused
+===!MajorSubsystemVersion/!MinorSubsystemVersion===
+ * !MajorSubsystemVersion.!MinorSubsystemVersion has to be at least 3.10
+  * `dll-ld.exe` has a version of 3.10
+ * this effects heap flags, and can be overriden by Reserved1 (see below)
 
 =====Reserved1 (!Win32Version)=====
- * not covered yet
- * can override Major/Minor !OperatingSystem/Image Versions
+ * can override Major/Minor !OperatingSystem/Image Versions, after loading.
 
 ===!SizeOfImage===
  * normally equal the total virtual size of all sections + headers
@@ -243,6 +241,9 @@ unused
   * `tinyXP` has a !SizeOfImage of 0x2e. it only covers up to the !EntryPoint value.
 
 ===!SizeOfHeaders===
+ * can be extended to the whole file, and sometimes be smaller than the header itself.
+  * `foldedhdrW7.exe` is a PE with standard alignments and a !SizeOfHeaders of 1.
+  * `maxsec_lowaligW7.exe` has a !SizeOfHeaders of 27570879.
 
 ===!CheckSum===
  * simple algorithm
@@ -272,7 +273,7 @@ unused
 ==data directories==
 
 ===exports===
- * like many data directories, Exports' size are not necessary
+ * like many data directories, Exports' size are not necessary, except for forwarding (see below).
  * Characteristics, !TimeDateStamp, !MajorVersion and !MinorVersion are not necessary.
  * Base is only used for ordinal imports
   * `dll.dll` has a small export table, for one named entry:
@@ -452,8 +453,8 @@ msvcrt.dll db 'msvcrt', 0
 kernel32.dll db 'KernEl32', 0
 msvcrt.dll db 'mSVCrT', 0
 }}}
- * the Import Name Table is not required and can be replaced with the Import Adress Table
-  * `imports_noint.exe` contains no INT, the import descriptor are linking twice to the IAT.
+ * the Import Lookup Table is not required and can be replaced with the Import Adress Table
+  * `imports_noint.exe` contains no ILT, the import descriptor are linking twice to the IAT.
   {{{
 ...
 Import_Descriptor:
@@ -464,7 +465,7 @@ kernel32.dll_DESCRIPTOR:
     dd kernel32.dll_iat - IMAGEBASE
 ...
 }}}
- * imports are not necessary. either don't call any API (ex, resource placeholders), or locate Kernel32 and its exports by hand (not covered here)
+ * the imports directory is not compulsory (XP or later). either don't call any API (ex, resource placeholders), or locate Kernel32 and its exports by hand (not covered here)
  * the terminator of imports descriptor only needs to have its Name offset null. the other values are not important.
  * `imports_badterm` has a bad terminator, that looks almost like a valid one:
  {{{
@@ -805,7 +806,7 @@ bounddll db 'dllbound2.dll', 0 ; hijacking DLL name
 
 ===delay imports===
  * is a rip-off, a fake structure.
- * it's just trampoline added by the compiler to load imports and DLL on request, 
+ * is just a trampoline added by the compiler to load imports and DLL on request,
    with a 'frontend' in the data directories, with a structure similar to standard imports (adress table + name table) so that external tools can still indicate that imports calls are present.
   * `delayimports.exe` has working delay imports (displayed by other tools):
   {{{
@@ -827,7 +828,7 @@ __imp__printf:
     dd __delay__printf
     dd 0
 }}}
- * the information in the header is not required to make delay import works, are they are extra code added *in* the file by the compiler. 
+ * the information in the header is not required to make delay import works, are they are extra code added *in* the file by the compiler.
   * Erasing the data directory VA from a standard file with delay imports will not disturb its execution
   * `delaycorrupt.exe` has the same structure as `delayimports.exe`, but the descriptors are empty.
  {{{
@@ -850,20 +851,22 @@ this is not explored yet.
 
 ===!Misc_VirtualSize===
  * `bigsec` has a section with a virtual size of 0x10001000.
- * later, check samples ;)
- 
+ * to be detailed here later - check the examples.
+
 ===!VirtualAddress===
- * later, check samples ;)
+ * to be detailed here later - check the examples.
+
 ===!SizeOfRawData===
  * with standard alignments, sections can be physically empty.
+
 ===!PointerToRawData===
- * later, check samples ;)
+ * to be detailed here later - check the examples.
 
 =====!PointerToRelocations/!PointerToLinenumbers/!NumberOfRelocations/!NumberOfLinenumbers=====
  * no importance whatsoever
 
 ===Characteristics===
- * later, check samples ;)
+ * to be detailed here later - check the examples.
 
 ----
 
@@ -907,7 +910,7 @@ dd 6000100Fh,0F0010009h
 </code>
 ==PE + PDF==
  * PDF can have their start signature up to offset 0x400.
- * using this, `pdf.exe` is an both a working PE and a working PDF. 
+ * using this, `pdf.exe` is an both a working PE and a working PDF.
  If you run it, it will copy itself as a PDF and opens it
  {{{
 ...
@@ -922,7 +925,7 @@ incbin 'helloworld-X.pdf'
 ==quine==
  * a quine is a file that prints its own source.
  * by putting the PE header further in the file and only using printable characters in between,
- `quine.exe` has its own source directly accessible via the _type_ command. 
+ `quine.exe` has its own source directly accessible via the _type_ command.
  after the source, an EOF character is inserted.
  {{{
 db 'MZ'
@@ -948,14 +951,14 @@ EntryPoint:
     push 0
     call [ShellExecuteA]
 }}}
- 
+
 ==tls_aoiOSDET==
  * the address pointed by TLS.!AddressOfIndex is cleared on loading.
  * if IMAGE_IMPORT_DESCRIPTOR.Name is null, this import descriptor is considered a terminator (imports are no further parsed).
 
  * under XP, it's cleared after imports are parsed, thus the imports are completely loaded.
  * under W7, it's cleared before, so the descriptor is considered as a terminator, so imports are no further parsed.
- 
+
 so, depending on the OS that is running, `tls_aoiOSDET` behaves differently by checking its own imports
 {{{
 ...
