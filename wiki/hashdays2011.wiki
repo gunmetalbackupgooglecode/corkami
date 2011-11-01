@@ -2,7 +2,8 @@
 #labels Featured
 
 =Such a weird processor - messing with x86 opcodes (and PE files too...)=
- I studied ASM and PE from scratch, and failed all the tools I tried in the process.
+ I studied [http://code.google.com/p/corkami/wiki/x86oddities x86] and [http://code.google.com/p/corkami/wiki/PE PE] from scratch, and failed all the tools I tried in the process:
+ after an easy-to-medium level introduction, I present a few of the !PoCs available on this site, as well as [http://code.google.com/p/corkami/wiki/StandardTest CoST], a standard test for PE and x86.
 =abstract=
  Whether it's for malware analysis, vulnerability research or emulation, having a correct disassembly of a binary is the essential thing you need when you analyze code. Unfortunately, many people are not aware that there are a lot of opcodes that are rarely used in normal files, but valid for execution, but also several common opcodes have rarely seen behaviours, which could lead to wrong conclusions after an improper analysis.
 
@@ -15,7 +16,7 @@
  * [http://www.slideshare.net/ange4771/such-a-weird-processor-messing-with-opcodes-and-a-little-bit-of-pe Slideshare page]
 
 =downloads=
- [http://code.google.com/p/corkami/downloads/list?q=hashdays+2011 demo slides (PDF) + complete slides deck with notes (ODP) + Proof of Concepts]
+ [http://corkami.googlecode.com/files/hashdays2011.zip demo slides (PDF) + complete slides deck with notes (ODP) + Proof of Concepts]
 
 =video=
  * not available yet
