@@ -20,3 +20,6 @@
 
 =video=
  * not available yet
+
+=comments=
+ * "Besides a highly technical topic, the presentation was pleasant and accessible to non-experts. It gave a succinct yet convincing overview of some anti-debugging tricks used in malware." _(Jean-Philippe Aumasson)_
