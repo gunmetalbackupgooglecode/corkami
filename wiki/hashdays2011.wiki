@@ -1,0 +1,21 @@
+#summary Such a weird processor - messing with x86 opcodes (and PE files too...)
+#labels Featured
+
+=Such a weird processor - messing with x86 opcodes (and PE files too...)=
+ I studied ASM and PE from scratch, and failed all the tools I tried in the process.
+=abstract=
+ Whether it's for malware analysis, vulnerability research or emulation, having a correct disassembly of a binary is the essential thing you need when you analyze code. Unfortunately, many people are not aware that there are a lot of opcodes that are rarely used in normal files, but valid for execution, but also several common opcodes have rarely seen behaviours, which could lead to wrong conclusions after an improper analysis.
+
+ For this research, I decided to go back to the basics and study assembly from scratch, covering all opcodes, whether they're obsolete or brand new, common or undocumented. This helped me to find bugs in all the disassemblers I tried, including the most famous ones. This presentation introduces the funniest aspects of the x86 CPUs, that I discovered in the process, including unexpected or rarely known opcodes and undocumented behavior of common opcodes.
+
+ The talk will also cover opcodes that are used in armored code (malware/commercial protectors) that are likely to break tools (disassemblers, analyzers, emulators, tracers,...), and introduce some useful tools and documents that were created in the process of the research.
+
+=slides=
+ <wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/iframe.xml" width=595 height=497 border=0/>
+ * [http://www.slideshare.net/ange4771/such-a-weird-processor-messing-with-opcodes-and-a-little-bit-of-pe Slideshare page]
+
+=downloads=
+ [http://code.google.com/p/corkami/downloads/list?q=hashdays+2011 demo slides (PDF) + complete slides deck with notes (ODP) + Proof of Concepts]
+
+=video=
+ * not available yet
