@@ -2,7 +2,7 @@
 
 ====[About about Corkami]====
 =presentations=
- * Hashdays 2011: Such a weird processor - messing with opcodes (...and a little bit of PE) [http://code.google.com/p/corkami/downloads/list?q=hashdays+2011 slides and PoCs]
+ * [http://code.google.com/p/corkami/wiki/hashdays2011 Hashdays 2011]: Such a weird processor - messing with opcodes (...and a little bit of PE)
 =articles=
  * [PE the PE format]
  * [PDFTricks a summary of PDF tricks] - encodings, structures, !JavaScript... with hand-made !PoCs ([http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語])
