@@ -14,7 +14,7 @@
 
 =slides=
  [http://www.slideshare.net/ange4771/such-a-weird-processor-messing-with-opcodes-and-a-little-bit-of-pe Slideshare page (with speaker's notes)]
- <wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/iframe.xml" width=595 height=497 border=0/>
+ <wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/hashdays_slideshare.xml" width=595 height=497 border=0/>
 
 =downloads=
  [http://corkami.googlecode.com/files/hashdays2011.zip demo slides (PDF) + complete slides deck with notes (ODP) + Proof of Concepts]
