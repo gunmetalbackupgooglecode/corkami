@@ -12,8 +12,8 @@
  The talk will also cover opcodes that are used in armored code (malware/commercial protectors) that are likely to break tools (disassemblers, analyzers, emulators, tracers,...), and introduce some useful tools and documents that were created in the process of the research.
 
 =slides=
+ [http://www.slideshare.net/ange4771/such-a-weird-processor-messing-with-opcodes-and-a-little-bit-of-pe Slideshare page (with speaker's notes)]
  <wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/iframe.xml" width=595 height=497 border=0/>
- * [http://www.slideshare.net/ange4771/such-a-weird-processor-messing-with-opcodes-and-a-little-bit-of-pe Slideshare page]
 
 =downloads=
  [http://corkami.googlecode.com/files/hashdays2011.zip demo slides (PDF) + complete slides deck with notes (ODP) + Proof of Concepts]
