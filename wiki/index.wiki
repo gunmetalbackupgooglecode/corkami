@@ -1,6 +1,8 @@
 #summary index page the wiki
 
 ====[About about Corkami]====
+<wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/twitter_corkami.xml" width=700 border=0/>
+
 =presentations=
  * [http://code.google.com/p/corkami/wiki/hashdays2011 Hashdays 2011]: Such a weird processor - messing with opcodes (...and a little bit of PE)
 =articles=
