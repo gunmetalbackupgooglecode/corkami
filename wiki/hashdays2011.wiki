@@ -22,6 +22,12 @@
 =video=
  * not available yet
 
-=comments=
- * "Besides a highly technical topic, the presentation was pleasant and accessible to non-experts. It gave a succinct yet convincing overview of some anti-debugging tricks used in malware." _(Jean-Philippe Aumasson)_
- * "It was nice to see a technical lecture at Hashdays. It taught me new things and Ange's enthousiasm made it very enjoyable. You can tell he's dived deep into it and enjoys it." _(Walter Belgers)_
+=comments & ranking=
+ * "Besides a highly technical topic, the presentation was pleasant and accessible to non-experts. It gave a succinct yet convincing overview of some anti-debugging tricks used in malware." _Jean-Philippe Aumasson_
+ * "It was nice to see a technical lecture at Hashdays. It taught me new things and Ange's enthousiasm made it very enjoyable. You can tell he's dived deep into it and enjoys it." _Walter Belgers_
+ * "Personally I thought the presentation was great - you are a really energetic speaker and made the whole topic very interesting. Really liked all the examples - did not realise that half of that stuff existed in x86 or PE :) I've passed on the slides to the other reversers in work, and they've all had positive things to say. Overall really good job, would be great to see another presentation next year!" _Robert !McArdle_
+
+ * "best talk ever!" an anonymous Hashdays feedback form
+
+== ranking ==
+7th best rated from 25 talks (rated with 4.5 on a 1-5 scale, deviation 0.71, variance 0.55)
