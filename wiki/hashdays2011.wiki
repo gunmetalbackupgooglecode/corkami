@@ -24,3 +24,4 @@
 
 =comments=
  * "Besides a highly technical topic, the presentation was pleasant and accessible to non-experts. It gave a succinct yet convincing overview of some anti-debugging tricks used in malware." _(Jean-Philippe Aumasson)_
+ * "It was nice to see a technical lecture at Hashdays. It taught me new things and Ange's enthousiasm made it very enjoyable. You can tell he's dived deep into it and enjoys it." _(Walter Belgers)_
