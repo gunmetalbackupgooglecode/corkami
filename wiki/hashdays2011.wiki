@@ -27,6 +27,7 @@
  * "It was nice to see a technical lecture at Hashdays. It taught me new things and Ange's enthousiasm made it very enjoyable. You can tell he's dived deep into it and enjoys it." _Walter Belgers_
  * "Personally I thought the presentation was great - you are a really energetic speaker and made the whole topic very interesting. Really liked all the examples - did not realise that half of that stuff existed in x86 or PE :) I've passed on the slides to the other reversers in work, and they've all had positive things to say. Overall really good job, would be great to see another presentation next year!" _Robert !McArdle_
  * "Ange presented the results of his thorough research into the undocumented and unexpected realms of IA-32 and x64 instructions with quite a few surprises. He also covered cornercases of the PE file format, all of which he provides as inidividual test cases on his web site. I greatly enjoyed this presentation and would recommend Ange to give it again." _FX_
+ * "The presentation Ange gave at the hashdays 2011 in Luzern Switzerland gave the audience a deep look into some of the less explored corners of x86 assembly and the PE executable format. My expectation of the talk was more then met and I learned some realy interesting things about both topics. I appreciate Anges hard work and the openness of the results as they can be used in daily work especially for debuggers and emulators. One of the most interesting talks at hashdays this year thanks so much." _Tim Kornau_
 
  * "best talk ever!" an anonymous Hashdays feedback form
 
