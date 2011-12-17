@@ -74,7 +74,7 @@ dos_msg
 ==e_magic===
  * = `MZ`
  * stands for [http://en.wikipedia.org/wiki/Mark_Zbikowski Mark Zbikowski]
- * it could be `ZM` on an (non-PE) EXE. These executables still work under XP via ntvdm.
+ * it can be `ZM` on an (non-PE) EXE. These executables still work under XP via ntvdm.
   * `dosZMXP.exe` is a non-PE EXE with a ZM signature
   {{{
 at IMAGE_DOS_HEADER.e_magic, db 'ZM'
@@ -250,8 +250,14 @@ unused
  * required for drivers only
 
 ===Subsystem===
+From a technical perspective, drivers and gui/console PEs are identical, except that:
+ * DRIVER need low alignments, a correct checksum, and to be signed under Vista or later (if not running in debug mode).
  * a CONSOLE PE is exactly like a GUI PE except that it comes with a pre-attached console.
- * a DRIVER PE only requires a correct checksum to work correctly.
+ * `multiss` is a multi subsystem PE that will work correctly and display a message.
+   https://corkami.googlecode.com/svn/wiki/pics/PE_multiss.png
+   # thus, it can't have any static import
+   # determines the level of execution by checking CS
+   # resolve NTOSKRNL/KERNEL32 imports manually (by checksum)
 
 =====!DllCharacteristics=====
  * not necessary
