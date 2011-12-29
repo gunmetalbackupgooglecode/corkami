@@ -4,12 +4,15 @@ Corkami is the name of the project that I started, to share my findings and expe
 
 Here are the guidelines I'm *trying* to follow (I only work on it in my spare time, at home, on a netbook):
  * pure technical content, with as much detail as possible
- * free to browse (no annoying layout, no ads, ...)
- * free to download (no login required)
- * free to test (pre-compiled proof of concepts included)
- * free to modify (BSD Licence, complete sources included, even for pictures and documents, using open-source tools)
+ * free
+  * to browse (no annoying layout, no ads, ...)
+  * to download (no login required)
+  * to test (pre-compiled proof of concepts included)
+  * to modify (BSD Licence, complete sources included, even for pictures and documents, using open-source tools)
  * constantly updated (wiki format)
  * easy to bring with you (printable cheats sheets and graphs)
+
+When I learn something new, I code a small !PoC that just focus on this specific point. And when I have enough !PoCs on a subject, I write a summary page for it. But my !PoCs are the most up to date part, so be sure to check the nightly builds!
 
 That's why it ended up here, after many different tries, as a project on google code. It's not perfect (the wiki is _sub-optimal_ for now), but better than anything else (blog, knoll, site,...) I tried so far).
 
@@ -22,6 +25,12 @@ Ange
 Comments, critics, suggestions, etc... are welcome.
 
 =landmarks=
+== step 1.5 (2011/12/30) ==
+ * Thanks to Candid Wüest and FX for pushing me (I initially didn't plan that at all, in both cases), I presented at [http://code.google.com/p/corkami/wiki/hashdays2011 Hashdays] and [http://code.google.com/p/corkami/wiki/BerlinSidesX2 BerlinSides].
+  * Both were great experiences, and as things went not too wrong, I had a good time, while being able to express myself freely, and experimenting on making presentations.
+  * I spend maybe too much time on them, but I have my own personal style now, and I'll definitely reiterate the experience next year.
+
+This unplanned extra step makes this year 2011 even better. It was great altogether!
 == step 1 (2011/10/14) ==
  * the basics are now covered: [x86oddities x86] and [PE].
  * the style of publication reached a suitable form:
