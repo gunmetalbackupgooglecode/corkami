@@ -4,7 +4,8 @@
 <wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/twitter_corkami.xml" width=700 border=0/>
 
 =presentations=
- * [http://code.google.com/p/corkami/wiki/hashdays2011 Hashdays 2011]: Such a weird processor - messing with opcodes (...and a little bit of PE)
+ * [http://code.google.com/p/corkami/wiki/BerlinSidesX2 BerlinSides x2]: x86 & PE (28th December 2011)
+ * [http://code.google.com/p/corkami/wiki/hashdays2011 Hashdays 2011]: Such a weird processor - messing with opcodes (...and a little bit of PE) (28th October 2011)
 =articles=
  * [PE the PE format]
  * [PDFTricks a summary of PDF tricks] - encodings, structures, !JavaScript... with hand-made !PoCs ([http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語])
