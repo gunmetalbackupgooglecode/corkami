@@ -4,3 +4,5 @@ a presentation at [http://berlinsides.org/ BerlinSides] x2, on the 28th of Decem
 
 ==Slides==
 <wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/berlinsides_slideshare.xml" width=595 height=497 border=0/>
+
+<wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/bs_screencasts.xml" width=595 height=497 border=0/>
