@@ -1,0 +1,6 @@
+#summary x86 & PE - presentation at BerlinSides x2
+=x86 & PE=
+a presentation at [http://berlinsides.org/ BerlinSides] x2, on the 28th of December, at the Universal Hall, in Berlin.
+
+==Slides==
+<wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/berlinsides_slideshare.xml" width=595 height=497 border=0/>
