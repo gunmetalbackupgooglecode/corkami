@@ -2,11 +2,14 @@
 =x86 & PE=
 a presentation at [http://berlinsides.org/ BerlinSides] x2, on the 28th of December 2011, at the Universal Hall, in Berlin (Germany).
 
+<wiki:toc max_depth="3" />
+
 ==Downloads==
  * [http://xchg.info/corkami/PoCs_screencasts.rar PoCs + screencasts]
  * [http://xchg.info/corkami/slides.pdf PDF] [http://xchg.info/corkami/slides_with_notes.pdf PDF with notes] (in 2nd half)
 
 ==Slides==
+[http://www.slideshare.net/ange4771/x86-pe Slideshare page, with notes]
 <wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/berlinsides_slideshare.xml" width=595 height=497 border=0/>
 
 ==Demos==
