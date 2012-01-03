@@ -16,5 +16,9 @@ Slide notes are available in the 2nd half of the [http://xchg.info/corkami/slide
 <wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/bs_screencasts.xml" width=830 height=650 border=0/>
 
 ==Downloads==
+ * [http://xchg.info/corkami/slides_with_notes.pdf PDF] (with notes in 2nd half)
  * [http://xchg.info/corkami/PoCs_screencasts.rar PoCs + screencasts]
- * [http://xchg.info/corkami/slides.pdf PDF] [http://xchg.info/corkami/slides_with_notes.pdf with notes]
+
+Original files:
+ * [http://corkami.googlecode.com/files/bsx2_wink.rar screencasts Wink projects]
+ * [http://corkami.googlecode.com/files/bsx2.odp OpenOffice slide deck]
