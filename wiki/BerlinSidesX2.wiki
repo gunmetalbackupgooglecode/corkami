@@ -1,7 +1,7 @@
 #summary x86 & PE - presentation at BerlinSides x2
 #labels Featured
 =x86 & PE=
-<wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/bsx2_slide_notes_screencasts.xml" width=1200 height=650 border=1/>
+<wiki:gadget url="https://corkami.googlecode.com/svn/trunk/pics/bsx2/bsx2.xml" width=1200 height=650 border=1/>
 
  * Slides: [http://www.slideshare.net/ange4771/x86-pe Slideshare] [http://corkami.googlecode.com/files/bsx2.odp OpenOffice] [http://xchg.info/corkami/slides_with_notes.pdf PDF] (with notes in 2nd half)
  * [http://xchg.info/corkami/PoCs_screencasts.rar PoCs + screencasts]
