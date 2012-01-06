@@ -1,11 +1,11 @@
-#summary x86 & PE - presentation at BerlinSides x2
+#summary x86 & PE - presentation at BerlinSides x2, 28th December 2011
 #labels Featured
 =x86 & PE=
 <wiki:gadget url="https://corkami.googlecode.com/svn/trunk/pics/bsx2/bsx2.xml" width=1200 height=650 border=1/>
 
- * Slides: [http://corkami.googlecode.com/files/bsx2.odp OpenOffice] [http://corkami.googlecode.com/files/bsx2_with_notes.pdf PDF] (with notes in 2nd half)
+ * Slides: [http://corkami.googlecode.com/files/bsx2.odp original OpenOffice document], [http://corkami.googlecode.com/files/bsx2_with_notes.pdf PDF conversion] (with notes in 2nd half)
  * [http://corkami.googlecode.com/files/bsx2_pocs.rar PoCs]
- * [http://corkami.googlecode.com/files/bsx2_wink.rar Wink] (screencasts' original files)
+ * [http://corkami.googlecode.com/files/bsx2_wink.rar demos' screencasts] (source file, using [http://www.debugmode.com/wink/ Wink])
 
 <wiki:comment>
 
