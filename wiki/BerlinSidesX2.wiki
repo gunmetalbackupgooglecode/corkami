@@ -3,11 +3,13 @@
 =x86 & PE=
 <wiki:gadget url="https://corkami.googlecode.com/svn/trunk/pics/bsx2/bsx2.xml" width=1200 height=650 border=1/>
 
- * Slides: [http://www.slideshare.net/ange4771/x86-pe Slideshare] [http://corkami.googlecode.com/files/bsx2.odp OpenOffice] [http://xchg.info/corkami/slides_with_notes.pdf PDF] (with notes in 2nd half)
- * [http://xchg.info/corkami/PoCs_screencasts.rar PoCs + screencasts]
- * [http://corkami.googlecode.com/files/bsx2_wink.rar Wink files]
+ * Slides: [http://corkami.googlecode.com/files/bsx2.odp OpenOffice] [http://corkami.googlecode.com/files/bsx2_with_notes.pdf PDF] (with notes in 2nd half)
+ * [http://corkami.googlecode.com/files/bsx2_pocs.rar PoCs]
+ * [http://corkami.googlecode.com/files/bsx2_wink.rar Wink] (screencasts' original files)
 
 <wiki:comment>
+
+[http://www.slideshare.net/ange4771/x86-pe Slideshare] 
 
  * a presentation on the oddities of x86 assembly and the Portable Executable format
  * presented at [http://berlinsides.org/ BerlinSides] x2, on the 28th of December 2011, at the Universal Hall, in Berlin (Germany).
