@@ -50,6 +50,7 @@ so everything else is not required.
  * starts at offset 0
  * most values only matters to the DOS stub.
   * `compiled` contains a DOS stub
+   https://corkami.googlecode.com/svn/wiki/pics/PE_dosstub.png
    {{{
    DOS_HEADER:
 ...
@@ -76,6 +77,7 @@ dos_msg
  * stands for [http://en.wikipedia.org/wiki/Mark_Zbikowski Mark Zbikowski]
  * it can be `ZM` on an (non-PE) EXE. These executables still work under XP via ntvdm.
   * `dosZMXP` is a non-PE EXE with a ZM signature
+  https://corkami.googlecode.com/svn/wiki/pics/PE_doszmxp.png
   {{{
 at IMAGE_DOS_HEADER.e_magic, db 'ZM'
 }}}
@@ -205,6 +207,7 @@ IMAGEBASE equ 33000000h
 }}}
  * can be virtual
   * `virtEP.exe` code starts one byte before the start of the section. This virtual space will be full of 0 on loading, so the first opcode will be made from one virtual byte and one physical byte.
+  https://corkami.googlecode.com/svn/wiki/pics/PE_virtEP.png
 {{{
     at IMAGE_OPTIONAL_HEADER32.AddressOfEntryPoint,       dd EntryPoint - IMAGEBASE - 1 ; -1 to start in virtual space
 ...
@@ -401,6 +404,7 @@ EXPORTS_SIZE equ $ - Exports_Directory
 }}}
  * exports can also forward each other and create loops
   * `dllfwloop.dll` forwards its own imports until the right API is called.
+ https://corkami.googlecode.com/svn/wiki/pics/PE_dllfwloop.png
  {{{
 ...
 address_of_functions:
@@ -531,6 +535,7 @@ Import_Descriptor:
 }}}
 
   * `imports_tiny` combines a lot of these techniques with ordinals, to make a working imports structure as small as possible (40 bytes for 2 imports from 2 dlls)
+ https://corkami.googlecode.com/svn/wiki/pics/PE_imports_tiny.png
  {{{
   Import_Descriptor:
 ;kernel32.dll_DESCRIPTOR:
@@ -757,6 +762,7 @@ DIRECTORY_ENTRY_BASERELOC_SIZE  equ $ - Directory_Entry_Basereloc
  * IMAGE_REL_BASED_LOW does the same but only the lowest WORD of the delta is added, which makes no change, as both bases are 10000h-aligned.
  * Other sort of relocations such as Mips and 64 bits are still supported by Windows 7, even if the PE specifies an x86 CPU.
   * `reloccrypt.exe` uses MIPS relocations (thus, involving masking and shifting):
+  https://corkami.googlecode.com/svn/wiki/pics/PE_reloccrypt.png
   {{{
 ...
 block_start:
@@ -821,6 +827,7 @@ cryptblock crypt168, 068h
    }}}
   * if the file knows where it will be relocated, it can apply its relocation manually in advance. The code will look wrong on disk, but ok in memory.
    * `ibkmanual.exe` uses such a technique of pre-relocated code
+  https://corkami.googlecode.com/svn/wiki/pics/PE_ibkmanual.png
   {{{
     IMAGEBASE equ 0FFFF0000h
     ...
@@ -1060,12 +1067,14 @@ iend
 }}}
  * sections don't have to be virtually contiguous
   * `virtgap` introduces a gap of 10000000h between 2 sections.
+  https://corkami.googlecode.com/svn/wiki/pics/PE_virtgap.png
 
 ===!SizeOfRawData===
  * with standard alignments, sections can be physically empty.
  * the last section doesn't have to be physically aligned in size, cf `truncatedlast.exe`
  * if bigger than virtual size, then virtual size is taken.
   * `bigSoRD.exe` has an inflated section
+  https://corkami.googlecode.com/svn/wiki/pics/PE_bigsort.png
   {{{
       at IMAGE_SECTION_HEADER.SizeOfRawData,    dd 1 * FILEALIGN + 0ffff0000h
   }}}
@@ -1201,6 +1210,7 @@ incbin 'helloworld-X.pdf'
  * by putting the PE header further in the file and only using printable characters in between,
  `quine.exe` has its own source directly accessible via the _type_ command.
  after the source, an EOF character is inserted.
+ https://corkami.googlecode.com/svn/wiki/pics/PE_quine.png
  {{{
 db 'MZ'
 align 3bh, db 0dh
