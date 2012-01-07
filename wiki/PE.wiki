@@ -1,4 +1,5 @@
 #summary the Portable Executable Format on Windows
+#labels Featured
 
 =PE=
  * This page ([http://code.google.com/p/corkami/wiki/PE?show=content printable version] [http://corkami.googlecode.com/svn/wiki/PE.wiki wiki source]) deals with the PE format, or more specifically, x86/x64 Windows (from XP to W7) binaries (ie, not other OSes or systems, not OBJ format, etc...)
@@ -1169,6 +1170,7 @@ the minimal size for a PE is:
   * in 64b, `tinyW7x64`
  
  so, 268 bytes is the smallest size for a universal tiny PE.
+
  https://corkami.googlecode.com/svn/wiki/pics/PE_tiny.png
 ----
 
