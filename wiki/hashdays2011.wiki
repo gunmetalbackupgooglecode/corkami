@@ -1,5 +1,4 @@
 #summary Such a weird processor - messing with x86 opcodes (and PE files too...)
-#labels Featured
 
 =Such a weird processor - messing with x86 opcodes (and PE files too...)=
 ====presented the 28th October 2011 during Hashdays 2011 at Luzern, Switzerland ====
