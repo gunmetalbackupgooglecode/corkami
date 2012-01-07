@@ -126,6 +126,8 @@ align 16, db 0
 ===!NumberOfSections===
  * can be null with low alignment PEs
   * `nosection*.exe`, `tiny*.exe`
+  * and in this case, the values are just checked but not really used (under XP)
+  https://corkami.googlecode.com/svn/wiki/pics/PE_maxsecxp.png
  * can be up to 96 under XP:
   * `96emptysections.exe` (all identical), `96workingsections.exe` (all physically different), `maxsecXP.exe` (garbage table)
  * can be up to 65535
@@ -180,6 +182,7 @@ unused
 ===!AddressOfEntryPoint===
  * can be null
   * `nullEP.exe` has a null !EntryPoint: Execution starts at !ImageBase, executing 'MZ' as 'dec ebp/pop edx'
+  https://corkami.googlecode.com/svn/wiki/pics/PE_nullep.png
   {{{
 EntryPoint:
 istruc IMAGE_DOS_HEADER
@@ -193,8 +196,10 @@ istruc IMAGE_DOS_HEADER
 
     at IMAGE_DOS_HEADER.e_lfanew, dd NT_Signature - IMAGEBASE
 }}}
+ * can be absent/bypassed (see TLS)
  * can be negative
   * `dllextep-ld` has an external !EntryPoint that is located in `dllextep.dll` (a dll with no relocations)
+  https://corkami.googlecode.com/svn/wiki/pics/PE_dllextep.png
    * `dllext-ep`:
    {{{
 IMAGEBASE equ 1000000h
@@ -1074,7 +1079,7 @@ iend
  * the last section doesn't have to be physically aligned in size, cf `truncatedlast.exe`
  * if bigger than virtual size, then virtual size is taken.
   * `bigSoRD.exe` has an inflated section
-  https://corkami.googlecode.com/svn/wiki/pics/PE_bigsort.png
+  https://corkami.googlecode.com/svn/wiki/pics/PE_bigsord.png
   {{{
       at IMAGE_SECTION_HEADER.SizeOfRawData,    dd 1 * FILEALIGN + 0ffff0000h
   }}}
@@ -1082,6 +1087,7 @@ iend
 ===!PointerToRawData===
  * sections can be physically overlapping.
   * dupsec has 2 identical sections (besides the !VirtualAddress)
+  https://corkami.googlecode.com/svn/wiki/pics/PE_dupsec.png
 {{{
 SectionHeader:
 istruc IMAGE_SECTION_HEADER
@@ -1101,7 +1107,8 @@ iend
 }}}
  * if a section starts at offset 0, it's invalid.
  * if a section's physical start is lower than 200h (the lower limit for standard alignment), it is rounded down to 0. Thus, it's a legitimate way to map the header.
-  * `duphead.exe` maps the header in a section via rounding down it's physical start.
+  * `duphead.exe` maps the header in a section via rounding down it's physical start:
+  https://corkami.googlecode.com/svn/wiki/pics/PE_duphead.png
 {{{
     at IMAGE_SECTION_HEADER.PointerToRawData, dd 1ffh ; upper limit of the down-rounding trick
 }}}
@@ -1151,6 +1158,18 @@ istruc IMAGE_SECTION_HEADER
 ===Characteristics===
  * to be detailed here later - check the examples.
 
+=extra=
+==minimal sizes==
+the minimal size for a PE is:
+ * 92 bytes, under XP: `tinyXP`
+ https://corkami.googlecode.com/svn/wiki/pics/PE_tinyXP.png
+ * 252 bytes, under Vista/Windows 7 (the same as under XP, with null padding): `tinyW7`
+ * 268 bytes, under Vista/Windows 7 (same again, just null bytes to get the required size, but the same elements as `tinyXP`)
+  * in 32b, `tinyW7_3264`
+  * in 64b, `tinyW7x64`
+ 
+ so, 268 bytes is the smallest size for a universal tiny PE.
+ https://corkami.googlecode.com/svn/wiki/pics/PE_tiny.png
 ----
 
 =specific cases=
@@ -1160,6 +1179,7 @@ istruc IMAGE_SECTION_HEADER
  * the first checks of the PE are done on file. then the file is loaded in memory. then imports are resolved, from the image in memory.
  * by extending the header until the first !SectionAlignment, it's possible to have the first section overlapping the header partially.
  thus, the actual data directories used for imports resolving will not be the contiguous ones on the disk.
+ https://corkami.googlecode.com/svn/wiki/pics/PE_foldedhdr.png
 <code language="c">
 {{{
 ...
@@ -1195,6 +1215,7 @@ dd 6000100Fh,0F0010009h
  * PDF can have their start signature up to offset 0x400.
  * using this, `pdf.exe` is an both a working PE and a working PDF.
  If you run it, it will copy itself as a PDF and opens it
+ https://corkami.googlecode.com/svn/wiki/pics/PE_pdf.png
  {{{
 ...
 call [__imp__CopyFile]
