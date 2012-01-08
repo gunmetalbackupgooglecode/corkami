@@ -917,6 +917,7 @@ tls:
    * [x86oddities CoST] uses this technique
   * an incorrect entry in the list doesn't trigger a visible error
    * `tls_obfuscation.exe` has many fake TLS callback entries to disrupt disassembly
+   https://corkami.googlecode.com/svn/wiki/pics/PE_obfuscation.png
  * like the entrypoint value, a callback VA is blindly called. It can be:
   * outside the PE, in a known in advance address
   * pointing an Import Address Table entry, which means an API will be called with !ImageBase as parameter.
@@ -928,6 +929,7 @@ tls:
  * TLS callbacks are not executed if no DLL importing kernel32 is imported. Thus, no execution if kernel32 is the only import.
  * TLS callbacks' list is updated at each callback execution. If a TLS or the !EntryPoint code add or remove an entry, it will be taken into consideration
   * `tls_onthefly`'s first TLS adds a second one on the list that will be executed directly after the first one is over
+  https://corkami.googlecode.com/svn/wiki/pics/PE_tls_onthefly.png
  {{{
 tls:
 ...
@@ -941,6 +943,7 @@ tls2:
  * if a callbacks call !ExitProcess, the !EntryPoint won't be called, however the callback will be executed after the !ExitProcess call
   * `tls_exiting.exe` contains an exiting TLS callback, preventing the !EntryPoint code to be ever called.
   * `tls_noEP.exe` contains no !EntryPoint, its callback calls !ExitProcess, then the first callback is called again.
+  https://corkami.googlecode.com/svn/wiki/pics/PE_tls_noep.png
 {{{
 ...
     at IMAGE_OPTIONAL_HEADER32.AddressOfEntryPoint,       dd 0 - IMAGEBASE
@@ -959,6 +962,7 @@ tls2:
 
  * TLS !AddressOfIndex is cleared on loading. Thus, it can be used to modify code execution.
   * `tls_aoi` patches the operand of a looping jump by pointing !AddressOfIndex to it.
+  https://corkami.googlecode.com/svn/wiki/pics/PE_tls_aoi.png
  {{{
 AddressOfIndex equ $ + 1
     jmp long $
@@ -1021,6 +1025,7 @@ bounddll db 'dllbound2.dll', 0 ; hijacking DLL name
  * is just a trampoline added by the compiler to load imports and DLL on request,
    with a 'frontend' in the data directories, with a structure similar to standard imports (adress table + name table) so that external tools can still indicate that imports calls are present.
   * `delayimports.exe` has working delay imports (displayed by other tools):
+  https://corkami.googlecode.com/svn/wiki/pics/PE_delayimports.png
   {{{
 ...
 at IMAGE_DATA_DIRECTORY_16.DelayImportsVA, dd delay_imports - IMAGEBASE
@@ -1043,6 +1048,7 @@ __imp__printf:
  * the information in the header is not required to make delay import works, are they are extra code added *in* the file by the compiler.
   * Erasing the data directory VA from a standard file with delay imports will not disturb its execution
   * `delaycorrupt.exe` has the same structure as `delayimports.exe`, but the descriptors are empty.
+  https://corkami.googlecode.com/svn/wiki/pics/PE_delaycorrupt.png
  {{{
 ...
 delay_imports:
@@ -1065,9 +1071,27 @@ iend
  * no importance whatsoever
 
 ===!Misc_VirtualSize===
- * `bigsec` has a section with a virtual size of 0x10001000.
- * to be detailed here later - check the examples.
+ * `bigsec` has a section with a virtual size of 0x10001000 (and executes code at the bottom of it).
+ https://corkami.googlecode.com/svn/wiki/pics/PE_bigsec.png
+{{{
+...
+extravirtualspace equ 010000h
+    at IMAGE_OPTIONAL_HEADER32.SizeOfImage,               dd (2 + extravirtualspace) * SECTIONALIGN
+...
+    at IMAGE_SECTION_HEADER.VirtualSize,      dd (1 + extravirtualspace) * SECTIONALIGN
+...
+EntryPoint:
+VirtualStart equ (extravirtualspace - 1) * SECTIONALIGN + IMAGEBASE
+    mov edi, VirtualStart
 
+    ; 68 xxxxxxxx push Msg
+    mov al, 68h
+        stosb
+    mov eax, Msg
+        stosd
+...
+    jmp VirtualStart
+}}}
 ===!VirtualAddress===
  * sections have to be in increasing order, virtually.
  * A section can start before the previous one ends. Which means that offset-wise, the address is not constantly increasing.
@@ -1169,6 +1193,7 @@ istruc IMAGE_SECTION_HEADER
   }}}
  * the physically-last section defines the appended data. However, it's easy to 'hide' appended data by either:
   * adding a fake extra section (even physically one byte), such as in `hiddenappdata1` (creating some slackspace)
+   https://corkami.googlecode.com/svn/wiki/pics/PE_hiddenappdata1.png
   * enlarging the physically-last section, such as in `hiddenappdata2`
 
 =====!PointerToRelocations/!PointerToLinenumbers/!NumberOfRelocations/!NumberOfLinenumbers=====
