@@ -1181,7 +1181,7 @@ the minimal size for a PE is:
  * the first checks of the PE are done on file. then the file is loaded in memory. then imports are resolved, from the image in memory.
  * by extending the header until the first !SectionAlignment, it's possible to have the first section overlapping the header partially.
  thus, the actual data directories used for imports resolving will not be the contiguous ones on the disk.
- https://corkami.googlecode.com/svn/wiki/pics/PE_foldedhdr.png
+  https://corkami.googlecode.com/svn/wiki/pics/PE_foldedhdr.png
 <code language="c">
 {{{
 ...
@@ -1217,7 +1217,7 @@ dd 6000100Fh,0F0010009h
  * PDF can have their start signature up to offset 0x400.
  * using this, `pdf.exe` is an both a working PE and a working PDF.
  If you run it, it will copy itself as a PDF and opens it
- https://corkami.googlecode.com/svn/wiki/pics/PE_pdf.png
+  https://corkami.googlecode.com/svn/wiki/pics/PE_pdf.png
  {{{
 ...
 call [__imp__CopyFile]
@@ -1233,7 +1233,7 @@ incbin 'helloworld-X.pdf'
  * by putting the PE header further in the file and only using printable characters in between,
  `quine.exe` has its own source directly accessible via the _type_ command.
  after the source, an EOF character is inserted.
- https://corkami.googlecode.com/svn/wiki/pics/PE_quine.png
+  https://corkami.googlecode.com/svn/wiki/pics/PE_quine.png
  {{{
 db 'MZ'
 align 3bh, db 0dh
