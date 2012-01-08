@@ -145,6 +145,7 @@ no importance whatsoever for the loader
  * is not the size of the optional header, just the delta between the top of the Optional header and the start of the section table.
  Thus, it can be null (the section table will overlap with the Optional Header, or can be null when no sections are present) or as big as the file (the section table will be in virtual space, full of zero).
   * `nullSOH-XP` is a PE with a null !SizeOfHeaders. the section table is thus overlapping the optional header. (XP only).
+  https://corkami.googlecode.com/svn/wiki/pics/PE_nullSOH-xp.png
     {{{
 ...
 SECTIONALIGN equ 4
@@ -158,6 +159,7 @@ istruc IMAGE_OPTIONAL_HEADER32
 ...
 }}}
   * `virtsectblXP` is a PE with its 82 sections of empty information, with its section table in virtual space.
+  https://corkami.googlecode.com/svn/wiki/pics/PE_virtsectblxp.png
 {{{
 ...
     at IMAGE_FILE_HEADER.NumberOfSections,      dw 82 ; 0 <= NumberOfSections <= 82 (varies with SizeOfOptionalHeader)
@@ -230,18 +232,22 @@ unused
  * is a multiple of 10000h
  * can be null, under XP. In this case, the binary will be relocated to 10000h
   * `ibnullXP.exe` has a null imagebase, and relocations
+   https://corkami.googlecode.com/svn/wiki/pics/PE_ibnullxp.png
  * can be any value as long as `ImageBase + 'SizeOfImage' < 80000000h`
   * `bigib.exe` has an !ImageBase of 7ffd0000h, and no relocations
+   https://corkami.googlecode.com/svn/wiki/pics/PE_bigib.png
  * !ImageBase can't collide with ntdll.dll or kernel32, even if relocations are present (in the loaded PE), because they can't be relocated.
   * in this case, it gives a unique error message, under Windows 7: `the subsystem needed to support the image type is not present.` even if it has nothing to do with the subsystem.
  * if the !ImageBase is bigger than that, the binary will be relocated to 10000h
   * `ibkernel.exe` has an !ImageBase of 0FFFF0000h and relocations.
+  https://corkami.googlecode.com/svn/wiki/pics/PE_ibkernel.png
 
 ===!SectionAlignment/!FileAlignment===
  * both are power of 2 (4, 8, 16...)
  * standard mode: `200 <= FileAlignment <= SectionAlignment` and `1000 <= SectionAlignment`
   * `normal.exe` has aligments of 1000/200
   * `bigalign.exe` has alignments of 20000000/10000
+  https://corkami.googlecode.com/svn/wiki/pics/PE_bigalign.png
  * in low alignment: `1 <= FileAlignment = SectionAlignment <= 800`
   * all `nosection*.exe` have alignments of 1/1
 
@@ -337,6 +343,7 @@ a__exp__Export db 'export', 0
 }}}
  * the Export Name is not necessary, and can be anything.
   * `dllweirdexp.dll` is correctly exported, with a corrupted Export Name
+  https://corkami.googlecode.com/svn/wiki/pics/PE_dllweirdexp.png
   {{{
 Exports_Directory:
 ...
@@ -346,6 +353,7 @@ aDllName db 'completely unrelated dll name', 1, 2, 3, 4, 0
 }}}
  * export names can have any value (even null or more than 65536 characters long, with unprintable characters). just null terminated.
   * `dllemptyexp-ld.exe` loads `dllemptyexp.dll` with a null export
+   https://corkami.googlecode.com/svn/wiki/pics/PE_dllemptyexp.png
   * `dllweirdexp-ld.exe` loads `dllweirdexp.dll` with a 131102-long non-Ascii export.
  * an .EXE can have exports (no need of relocation nor DLL flag), and can use them normally
   * `ownexports.exe` uses its own exports
@@ -638,6 +646,7 @@ resource_directory_loop:
 
  * Names and Types of a resource can be used:
   * immediate integers (aka IDs) - like `resource.exe`
+  https://corkami.googlecode.com/svn/wiki/pics/PE_resources.png
   {{{
 SOME_TYPE equ 315h
 SOME_NAME equ 7354h
@@ -693,6 +702,7 @@ alrestype dw 4, "T", "Y", "P", "E", 0
 }}}
  * the resource structures are relative to the start of the Data Directory, but the resource data can be anywhere in the file (RVA)
   * `reshdr.exe` has its resource data in the PE header
+  https://corkami.googlecode.com/svn/wiki/pics/PE_reshdr.png
   {{{
 at IMAGE_DOS_HEADER.e_magic, db 'MZ'
 at IMAGE_DOS_HEADER.e_lfanew, dd NT_Signature - IMAGEBASE
@@ -714,6 +724,7 @@ RESOURCE_SIZE equ $ - resource_data
  * relocations are used when the PE is loaded at a different !ImageBase. Hardcoded Addresses such as `push <addr>` and `call [<addr>]` have to be adjusted.
  * relocations are not used (even with corrupted ones) if the PE can be loaded at the expected address.
   * `fakerelocs.exe` contains fake unused relocations:
+  https://corkami.googlecode.com/svn/wiki/pics/PE_fakerelocs.png
   {{{
     Directory_Entry_Basereloc:
     ...
@@ -748,6 +759,7 @@ DIRECTORY_ENTRY_BASERELOC_SIZE  equ $ - Directory_Entry_Basereloc
 
   * TLS structures and callbacks have to be relocated as well
    * `tls_reloc.exe` has a relocated TLS:
+   https://corkami.googlecode.com/svn/wiki/pics/PE_tls_reloc.png
   {{{
     ...
     reloc40:
@@ -843,6 +855,7 @@ cryptblock crypt168, 068h
  }}}
   * applying manually an extra relocations on the !ImageBase field itself doesn't change the memory mapping, as the used value was read from disk, and relocations are done in memory. However, once the PE is mapped, relocations are performed, altering the !ImageBase in memory, and thus influencing the value of the !EntryPoint (for it to work, a writeable header is required, thus low alignments)
    * `ibreloc.exe` is a low alignment PE with a altered !EntryPoint and an extra relocation on the !ImageBase field.
+   https://corkami.googlecode.com/svn/wiki/pics/PE_ibreloc.png
 {{{
 ...
 IMAGEBASE equ 0FFFF0000h
@@ -908,6 +921,7 @@ tls:
   * outside the PE, in a known in advance address
   * pointing an Import Address Table entry, which means an API will be called with !ImageBase as parameter.
    * `tls_import.exe` executes `mz.exe` via a call to !WinExec through a TLS callback in its IAT.
+   https://corkami.googlecode.com/svn/wiki/pics/PE_tls_import.png
  * under XP, TLS are only executed with staticly loaded DLL, not dynamicly loaded ones.
  * on XP, TLS are executed twice, on process start and process termination. Thus, code *is* executed even after a call to !ExitProcess.
  This is true even under Windows 7, however libraries such as user32.dll might be already unloaded, preventing code using it to work normally.
@@ -956,6 +970,7 @@ AddressOfIndex equ $ + 1
 
 ===Bound imports===
  * are a shortcut structure to hardcode some imports values in advance, to make import values faster
+ https://corkami.googlecode.com/svn/wiki/pics/PE_boundexports.png
  * all the loader does is take a filename, compare the timestamp of the file and the one included in the bound imports table, then use the VA directly as import if they match.
   * `dllbound-ld.exe` loads and execute 'dllbound.dll' via bound imports.
  {{{
@@ -998,6 +1013,7 @@ bounddll db 'dllbound2.dll', 0 ; hijacking DLL name
 ===Import table===
  * the RVA *and* the Size required to be set on a low alignment PE to make the import table writeable, under XP.
   * `nosectionXP.exe` needs an IAT to make its imports writeable
+  https://corkami.googlecode.com/svn/wiki/pics/PE_nosectionXP.png
 
 ===delay imports===
  * is a rip-off, a fake structure.
@@ -1115,6 +1131,7 @@ iend
 }}}
  * sections can be in wrong order physically
   * `shuffledsect.exe` has sections in a wrong physical order.
+  https://corkami.googlecode.com/svn/wiki/pics/PE_shuffled.png
 {{{
 SectionHeader:
 istruc IMAGE_SECTION_HEADER
@@ -1132,6 +1149,7 @@ istruc IMAGE_SECTION_HEADER
 }}}
  * sections can leave a physically unused space in the PE
   * `slackspace.exe` has 2 section leaving an unused physical space in between
+  https://corkami.googlecode.com/svn/wiki/pics/PE_slackspace.png
   {{{
 ...
 SectionHeader:
@@ -1164,6 +1182,8 @@ istruc IMAGE_SECTION_HEADER
 the minimal size for a PE is:
  * 92 bytes, under XP: `tinyXP`
  https://corkami.googlecode.com/svn/wiki/pics/PE_tinyXP.png
+  * the same rule applies to drivers
+   https://corkami.googlecode.com/svn/wiki/pics/PE_tinydrvxp.png
  * 252 bytes, under Vista/Windows 7 (the same as under XP, with null padding): `tinyW7`
  * 268 bytes, under Vista/Windows 7 (same again, just null bytes to get the required size, but the same elements as `tinyXP`)
   * in 32b, `tinyW7_3264`
