@@ -917,7 +917,7 @@ tls:
    * [x86oddities CoST] uses this technique
   * an incorrect entry in the list doesn't trigger a visible error
    * `tls_obfuscation.exe` has many fake TLS callback entries to disrupt disassembly
-   https://corkami.googlecode.com/svn/wiki/pics/PE_obfuscation.png
+   https://corkami.googlecode.com/svn/wiki/pics/PE_tls_obfuscation.png
  * like the entrypoint value, a callback VA is blindly called. It can be:
   * outside the PE, in a known in advance address
   * pointing an Import Address Table entry, which means an API will be called with !ImageBase as parameter.
