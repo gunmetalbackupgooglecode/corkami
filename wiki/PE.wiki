@@ -297,8 +297,11 @@ From a technical perspective, drivers and gui/console PEs are identical, except 
 =====!LoaderFlags=====
 
 ===!NumberOfRvaAndSizes===
- * rounded down to 16 if bigger (can be `FFFF`)
- * can be 0 `tiny.exe`, etc...
+ * rounded down to 16 if bigger
+  * `maxvals` has a maximum of PE structures set to FF, including its !NumberOfRvaAndSizes. set to FFFF
+  https://corkami.googlecode.com/svn/wiki/pics/PE_maxvals.png
+ * can be 0
+  * `no_dd` has no data directory (see `imports`)
 
 ==Optional Header==
  * is anything but optional on a windows executable.
@@ -577,6 +580,11 @@ msvcrt.dll:
 dd 'msvcrt',0
 align 4, db 0 ; <= imports terminator NULL
 }}}
+
+ * imports' Data Directory is not required to load imports: by locating kernel32 manually then parsing its exports manually, it's possible to resolve !LoadLibraryA, then it's possible to manually load any DLL and resolve any of its exports (manually or via !GetProcAddress).
+  * `no_dd` has no data directory, and loads its imports manually.
+
+  https://corkami.googlecode.com/svn/wiki/pics/PE_no_dd.png
 
 ===resources===
  * directory-like structure.
@@ -1211,7 +1219,7 @@ istruc IMAGE_SECTION_HEADER
 =extra=
 ==64b==
 a 64b PE (PE32+) is like a 32b PE, except that the FILE HEADER's Machine and the OPTIONAL HEADER's Magic have AMD specific values, and the Imports's INT, as well as the !ImageBase, and the Stack and Heap info are QWORD (which drops a few fields from the Optional header as a consequence
- 
+
 https://corkami.googlecode.com/svn/wiki/pics/PE_normal64.png
 
 {{{
