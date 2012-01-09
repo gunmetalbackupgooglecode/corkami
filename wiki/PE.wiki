@@ -526,6 +526,8 @@ dd msvcrt.dll_iat - IMAGEBASE
 }}}
  * under Vista and Windows 7, the dll names can be redirected from `API-MS-*` to standard system DLLs by `c:\windows\system32\apisecschema.dll`, as documented by [http://xchg.info/wiki/index.php?title=ApiMapSet deroko]
   * `imports_apimsW7` imports !ExitProcess via `API-MS-Win-Core-Localization-L1-1-0.dll` which is redirected during loading to `kernel32.dll`
+
+  https://corkami.googlecode.com/svn/wiki/pics/PE_imports_apimsw7.png
  * as most fields of a descriptor are not necessary, it's possible to squeeze an overlapping IAT in it.
   * `imports_iatindesc.exe` has IATs in descriptors
 {{{
