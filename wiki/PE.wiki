@@ -133,6 +133,7 @@ align 16, db 0
   * `96emptysections.exe` (all identical), `96workingsections.exe` (all physically different), `maxsecXP.exe` (garbage table)
  * can be up to 65535
   * `65535sects.exe` has 65535 sections, that are all virtually executed.
+   https://corkami.googlecode.com/svn/wiki/pics/PE_65535.png
 
 ===!TimeDateStamp===
  * has a different meaning whether it's a Borland or a Microsoft compiler
@@ -839,6 +840,7 @@ cryptblock crypt168, 068h
   * on 64b, code can be RIP-relative, which removes the need from relocations altogether.
    * some system files such as `TDI.SYS` still have a relocation Data directory, but with no relocation block inside.
    * `ibknoreloc64.exe` has a kernel-range !ImageBase, which implies relocation will happen, but uses only RIP-relative code.
+    https://corkami.googlecode.com/svn/wiki/pics/PE_ibknoreloc64.png
    {{{
     lea ecx, [rel Msg]
     call [rel __imp__printf]
@@ -1203,6 +1205,29 @@ istruc IMAGE_SECTION_HEADER
  * to be detailed here later - check the examples.
 
 =extra=
+==64b==
+a 64b PE (PE32+) is like a 32b PE, except that the FILE HEADER's Machine and the OPTIONAL HEADER's Magic have AMD specific values, and the Imports's INT, as well as the !ImageBase, and the Stack and Heap info are QWORD (which drops a few fields from the Optional header as a consequence
+https://corkami.googlecode.com/svn/wiki/pics/PE_normal64.png
+
+{{{
+...
+    at IMAGE_FILE_HEADER.Machine,     dw IMAGE_FILE_MACHINE_AMD64
+...
+    at IMAGE_OPTIONAL_HEADER64.Magic, dw IMAGE_NT_OPTIONAL_HDR64_MAGIC
+...
+  .ImageBase                    resq 1
+...
+  .SizeOfStackReserve           resq 1
+  .SizeOfStackCommit            resq 1
+  .SizeOfHeapReserve            resq 1
+  .SizeOfHeapCommit             resq 1
+  .LoaderFlags                  resd 1
+...
+kernel32.dll_hintnames:
+    dq hnExitProcess - IMAGEBASE
+    dq 0
+}}}
+
 ==minimal sizes==
 the minimal size for a PE is:
  * 92 bytes, under XP: `tinyXP`
@@ -1213,7 +1238,7 @@ the minimal size for a PE is:
  * 268 bytes, under Vista/Windows 7 (same again, just null bytes to get the required size, but the same elements as `tinyXP`)
   * in 32b, `tinyW7_3264`
   * in 64b, `tinyW7x64`
- 
+   https://corkami.googlecode.com/svn/wiki/pics/PE_tinw7x64.png
  so, 268 bytes is the smallest size for a universal tiny PE.
 
  https://corkami.googlecode.com/svn/wiki/pics/PE_tiny.png
@@ -1340,6 +1365,8 @@ zero_here_plz:
 dd fake_imports - IMAGEBASE + i * 4
 ...
 }}}
+
+https://corkami.googlecode.com/svn/wiki/pics/PE_manyimportsW7.png
 
 ===no0code===
  * by using a similar trick as in quine to make a printable DOS header, and relocating the NT HEADERS far enough so that e_lfanew contains no null char, no0code contains no null byte before the code start.
