@@ -1207,6 +1207,7 @@ istruc IMAGE_SECTION_HEADER
 =extra=
 ==64b==
 a 64b PE (PE32+) is like a 32b PE, except that the FILE HEADER's Machine and the OPTIONAL HEADER's Magic have AMD specific values, and the Imports's INT, as well as the !ImageBase, and the Stack and Heap info are QWORD (which drops a few fields from the Optional header as a consequence
+ 
 https://corkami.googlecode.com/svn/wiki/pics/PE_normal64.png
 
 {{{
@@ -1242,6 +1243,7 @@ the minimal size for a PE is:
  so, 268 bytes is the smallest size for a universal tiny PE.
 
  https://corkami.googlecode.com/svn/wiki/pics/PE_tiny.png
+
 ----
 
 =specific cases=
@@ -1287,6 +1289,7 @@ dd 6000100Fh,0F0010009h
  * PDF can have their start signature up to offset 0x400.
  * using this, `pdf.exe` is an both a working PE and a working PDF.
  If you run it, it will copy itself as a PDF and opens it
+
   https://corkami.googlecode.com/svn/wiki/pics/PE_pdf.png
  {{{
 ...
