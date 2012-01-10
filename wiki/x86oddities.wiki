@@ -163,6 +163,7 @@ d403: aam 3
 
 ==bswap==
 https://corkami.googlecode.com/svn/wiki/pics/x86_bswap.gif
+
 `bswap` is *officially undefined* on WORDS. In *reality*, it just clears the register, unexpectedly.
 {{{
 66 0fc8: bswap ax
