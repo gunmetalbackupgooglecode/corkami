@@ -1368,6 +1368,7 @@ AddressOfIndex:
 ...
 }}}
 
+https://corkami.googlecode.com/svn/wiki/pics/PE_tlsaoidet_w7.png https://corkami.googlecode.com/svn/wiki/pics/PE_tlsaoidet_xp.png
 ===manyimportsW7===
  * this W7-only binary use the TLS !AoI trick to clean its imports. On disk, the import table is full of bogus descriptors, which will be ignored on loading
  {{{
