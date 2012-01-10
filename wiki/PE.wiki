@@ -849,14 +849,14 @@ cryptblock crypt168, 068h
  * if the PE is loaded at a different address, and no relocations are present, execution still happens
   * on 64b, code can be RIP-relative, which removes the need from relocations altogether.
    * some system files such as `TDI.SYS` still have a relocation Data directory, but with no relocation block inside.
-<wiki:comment>
    * `ibknoreloc64.exe` has a kernel-range !ImageBase, which implies relocation will happen, but uses only RIP-relative code.
     https://corkami.googlecode.com/svn/wiki/pics/PE_ibknoreloc64.png
-   {{{
-    lea ecx, [rel Msg]
-    call [rel __imp__printf]
-   }}}
-</wiki:comment>
+{{{
+IMAGEBASE equ 0fffffffffff0000h
+...
+lea ecx, [rel Msg]
+call [rel __imp__printf]
+}}}
   * if the file knows where it will be relocated, it can apply its relocation manually in advance. The code will look wrong on disk, but ok in memory.
    * `ibkmanual.exe` uses such a technique of pre-relocated code
   https://corkami.googlecode.com/svn/wiki/pics/PE_ibkmanual.png
