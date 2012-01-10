@@ -9,7 +9,7 @@ They are all implemented and tested in [StandardTest Standard Test].
 =general=
 ==instruction length==
 An instruction is limited to 15 bytes on recent CPUs (it changed over time):
- for example, while a `nop` preceded by 14 useless prefixes is valid, 
+ for example, while a `nop` preceded by 14 useless prefixes is valid,
  {{{
 66 66 66 66 66 66 66 66 66 66 66 66 66 66 90: nop
 
@@ -32,10 +32,10 @@ However, it's possible to almost reach that limit with legitimate operations:
  * (the same with more details):
 {{{
  2e                                                   cs:
-    67                                                    e         e                              
+    67                                                    e         e
        f0                              lock
           48                                    qword
-             818480                         add          [?ax + 4 * ?ax +           ],          
+             818480                         add          [?ax + 4 * ?ax +           ],
                     23df067e                                              07e06df23h
                              89abcdef:                                                 0efcdab89h
 }}}
@@ -119,7 +119,7 @@ And, on 64 bits, it clears the upper 32 bits of `rax`. So, not all `xchg *ax, *a
 Hopefully, 90 is truly a `nop`, even in 64 bits.
 
 ==xchg/xadd==
-`xchg`, `xadd` are opcodes that affect both source and target operands (like `fxch`). 
+`xchg`, `xadd` are opcodes that affect both source and target operands (like `fxch`).
 
 Moreover, they can operate on different parts of the same register,
 which has the potential to break trivial logic analyzers:
@@ -133,6 +133,9 @@ which has the potential to break trivial logic analyzers:
 `aad` is officially defined to use only 10/0Ah as a default operand, but can just use any other operand.
 
 it makes it the first Add and Multiply opcode, as `al = ah * operand + al`.
+
+https://corkami.googlecode.com/svn/wiki/pics/x86_aad.gif
+
 {{{
 
 ax = 325h
@@ -143,9 +146,11 @@ d507: aad 7
 }}}
 
 ==aam==
-Similar logic for `aam`: 
+Similar logic for `aam`:
  * it's officially defined with 10/0ah, but it just works with any byte.
  * it's a division, and quotient and remainder go to `ah` and `al` respectively.
+
+https://corkami.googlecode.com/svn/wiki/pics/x86_aam.gif
 
 {{{
 al = 3ah
@@ -157,9 +162,10 @@ d403: aam 3
 }}}
 
 ==bswap==
+https://corkami.googlecode.com/svn/wiki/pics/x86_bswap.gif
 `bswap` is *officially undefined* on WORDS. In *reality*, it just clears the register, unexpectedly.
 {{{
-66 0fc8: bswap ax 
+66 0fc8: bswap ax
 
 => ax = 0
 }}}
@@ -239,7 +245,7 @@ https://corkami.googlecode.com/svn/wiki/pics/x86_movbe.gif
 ==lzcnt==
 `lzcnt` (Leading Zero CouNT) is an opcode created in 2007, only supported by AMD in their Barcelona architecture and later (it's planned in Intel Haswell for 2013, along with its counterpart `tzcnt`).
 
-Recent opcodes would usually trigger an exception when executed on a CPU not supporting them. 
+Recent opcodes would usually trigger an exception when executed on a CPU not supporting them.
 
 However, this one is mapped on `0fbd: bsr` (Bit Scan Reverse) with an `f3` prefix, so it will not trigger any exception on a CPU that doesn't support it:
  # it will just execute `bsr` and ignore the prefix.
@@ -249,7 +255,7 @@ if you execute:
 {{{
 ecx = 35abc80eh (00110101101010111100100000001110b)
 
-f3 0f bdc1: 
+f3 0f bdc1:
 }}}
 
 if `lzcnt` is supported by the CPU:
@@ -383,7 +389,7 @@ https://corkami.googlecode.com/svn/wiki/pics/x86_icebp.gif
 
 
  * like `salc`, `IceBP` is undocumented by Intel, but not by AMD, and supported by Intel tools.
- * it stands for [http://en.wikipedia.org/wiki/In-circuit_emulator In-Circuit Emulator] Breakpoint. 
+ * it stands for [http://en.wikipedia.org/wiki/In-circuit_emulator In-Circuit Emulator] Breakpoint.
  * it's unprivileged.
  * it triggers a SINGLE STEP exception, *after* execution.
  * it's sometimes written `Int1`, as it's the stepping interrupt, but executing `CD 01:Int 1` doesn't trigger SINGLE STEP.
@@ -413,7 +419,7 @@ https://corkami.googlecode.com/svn/wiki/pics/x86_hintnopmem.gif
  * as one would expect from a `nop`, it never triggers an exception, even when referencing an invalid address.
 
 {{{
-0f1980 00000080: nop [eax + 8000000h] 
+0f1980 00000080: nop [eax + 8000000h]
 
 => nothing
 }}}
@@ -482,7 +488,7 @@ f7d0 not eax
 }}}
 
  * `mulx`, `rorx`, `sarx`, `shlx`, `shrx` will do the same as their cousins from the late 70's, but without affecting the flags.
- 
+
 =x64=
 
 ==32 bits zero extending==
@@ -496,7 +502,7 @@ thus, while
 }}}
 all do what you would expect.
 
-but on the other hand, 
+but on the other hand,
 {{{
 48 ffc0: inc eax
 }}}
