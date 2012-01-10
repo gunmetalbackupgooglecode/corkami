@@ -168,6 +168,8 @@ but some tools might still show obsolete warnings about it.
  * for bus optimization purposes, all 3 `cmpxchg` opcodes always write the operand, even if the values are unchanged: this could trigger an exception on read-only memory.
 
 ==crc32==
+https://corkami.googlecode.com/svn/wiki/pics/x86_crc32.gif
+
 The `crc32` opcode implements the full algorithm with a single operation, however, it's not the commonly used CRC32 (used in Zip), but actually the CRC-32C (Castagnoli CRC-32), which uses a different polynomial.
 
 While it's technically the same algorithm as the 'common' CRC32, it uses a different seed, so it returns different results, thus it's useless for Zip, and all the countless applications of the deflate algorithm.
@@ -391,6 +393,8 @@ f1: IceBp
 }}}
 
 ==rdtscp==
+https://corkami.googlecode.com/svn/wiki/pics/x86_rdtscp.gif
+
 `rdtscp` is a recent opcode that just returns the usual `rdtsc` result to eax/edx, and also changes ECX: it's  _loaded with the low-order 32-bits of IA32_TSC_AUX MSR_ ... which means most of the time, 0.
 
 {{{
