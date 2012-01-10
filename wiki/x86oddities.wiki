@@ -198,6 +198,9 @@ It's still usable independently as a checksum, and is actually used in network p
 0f 2000: mov eax, cr0
 }}}
  by the usual standards, it should have been decoded as `mov [eax], cr0` instead, which would be invalid.
+
+https://corkami.googlecode.com/svn/wiki/pics/x86_cr0.png
+
  * `mov <reg32>, <selector>` is officially MOV, (not MOVZX) yet it modifies the full DWORD from a WORD. (the upper word is supposedly undefined on CPUs older (or equal) to Pentium, but it's zero on a Pentium anyway). In any case, the upper word is null on modern CPUs.
 {{{
 8cc8: mov eax, cs
