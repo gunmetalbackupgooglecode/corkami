@@ -45,6 +45,8 @@ However, it's possible to almost reach that limit with legitimate operations:
 f0 2e 66 67 818418 67452301 efcdab89: lock add dword cs:[eax + ebx + 001234567h], 089abcdefh
 }}}
 
+https://corkami.googlecode.com/svn/wiki/pics/x86_15bop_16b.png
+
 VirtualPC has been known to be incorrectly ignoring the 15 bytes limit.
 
 ==mnemonic length==
