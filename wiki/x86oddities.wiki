@@ -7,6 +7,13 @@ They are all implemented and tested in [StandardTest Standard Test].
 <wiki:toc max_depth="3" />
 
 =general=
+==register order==
+ * In 32b, each register has some unique role (unlike in 64b, where all registers of the r9-r15 group are equivalent, from an mnemonic perspective): STOSD, reads from `[`ESI`]` to EAX, LOOP relies on ECX, XLAT uses EBX as a base, IN reads from port DX...
+ * Registers are using A, B, C, D letters, but it stands for Accumulator, Base, Counter, Data, not the letters themselves.
+   Their logical order is not the alphabetic one: In the CPU, they're encoded in the A, C, D, B order:  for example, INC EAX is encoded 40, INC ECX is encoded 41, and so on.
+
+https://corkami.googlecode.com/svn/wiki/pics/x86_regorder.png
+
 ==instruction length==
 An instruction is limited to 15 bytes on recent CPUs (it changed over time):
  for example, while a `nop` preceded by 14 useless prefixes is valid,
@@ -39,6 +46,7 @@ However, it's possible to almost reach that limit with legitimate operations:
                     23df067e                                              07e06df23h
                              89abcdef:                                                 0efcdab89h
 }}}
+https://corkami.googlecode.com/svn/wiki/pics/x86_15bop_64b.gif
 
  * it's also possible in 16 bits:
 {{{
