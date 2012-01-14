@@ -361,6 +361,9 @@ aDllName db 'completely unrelated dll name', 1, 2, 3, 4, 0
   * `dllweirdexp-ld.exe` loads `dllweirdexp.dll` with a 131102-long non-Ascii export.
  * an .EXE can have exports (no need of relocation nor DLL flag), and can use them normally
   * `ownexports.exe` uses its own exports
+  * or they can be not used for execution, but for documenting the internal code
+   * `PE_exports_doc` has internal exports used as address symbols
+    https://corkami.googlecode.com/svn/wiki/pics/PE_exports_doc.png
  * exports at fixed value can be used to encode data, when their values are filled in the Import Address Table
   * `exportsdata.exe`'s code is stored as dodgy exports RVAs, and is restored when imports are resolved
   {{{
@@ -446,7 +449,8 @@ NUMBER_OF_NAMES equ ($ - address_of_names) / 4
 ...
 }}}
 ===imports===
- * Imports size is not used. !ImportAddressTable is typically not required (excepted in low alignments, under XP)
+ * Imports size is not used.
+ * !ImportAddressTable is typically not required (excepted in low alignments, under XP)
   * `dll-ld.exe` imports `dll.dll` with a small import table:
 {{{
     at IMAGE_DATA_DIRECTORY_16.ImportsVA,   dd Import_Descriptor - IMAGEBASE
@@ -493,7 +497,7 @@ msvcrt.dll db 'msvcrt', 0
 kernel32.dll db 'KernEl32', 0
 msvcrt.dll db 'mSVCrT', 0
 }}}
- * the Import Lookup Table is not required and can be replaced with the Import Adress Table
+ * the Import Lookup Table is not required and can be replaced by the Import Adress Table, or it can be just null
   * `imports_noint.exe` contains no ILT, the import descriptor are linking twice to the IAT.
   {{{
 ...
@@ -505,9 +509,12 @@ kernel32.dll_DESCRIPTOR:
     dd kernel32.dll_iat - IMAGEBASE
 ...
 }}}
+  * because it can be null, it can be put in virtual space, like the next 2 dwords (timestamp, forwarderchain)
+   * `imports_virtdesc` has an import descriptor starting in virtual space over its 3 first dwords
+    https://corkami.googlecode.com/svn/wiki/pics/PE_imports_virtdesc.png
  * if the IAT is empty, then the DLL is not loaded, and the file is loaded even with an invalid dll name.
   * `imports_nothunk` has a bogus descriptor with an empty IAT, and a bogus DLL name, between real descriptors.
- * the imports directory is not compulsory (XP or later). either don't call any API (ex, resource placeholders), or locate Kernel32 and its exports by hand (not covered here)
+ * the imports directory is not compulsory (XP or later). either don't call any API (ex, resource placeholders), or locate Kernel32 and its exports by hand (see below, `no_dd`)
  * the imports descriptor terminator just need to have null values. So, it can be placed in virtual space.
   * `imports_vterm.exe` has a virtual terminator
   {{{
@@ -722,7 +729,9 @@ resource_data:
 Msg db " * resource stored in header and shuffled resource structure", 0ah, 0
 RESOURCE_SIZE equ $ - resource_data
 }}}
- * resource strings have their own awkward format.
+ * resource strings have their own awkward format, in which 16 strings are stored in each block, and a null string is equivalent to no string, as all strings of the same block are stored consecutively as `<length16><string>`.
+  * `resource_string` stores and access its message via resource string
+   https://corkami.googlecode.com/svn/wiki/pics/PE_resource_string.png
 
 =====exception=====
  * not covered here
@@ -941,6 +950,8 @@ tls:
  * on XP, TLS are executed twice, on process start and process termination. Thus, code *is* executed even after a call to !ExitProcess.
  This is true even under Windows 7, however libraries such as user32.dll might be already unloaded, preventing code using it to work normally.
  * TLS callbacks are not executed if no DLL importing kernel32 is imported. Thus, no execution if kernel32 is the only import.
+  * `tls_k32` has only imports to kernel32, and a TLS that is ignored.
+   https://corkami.googlecode.com/svn/wiki/pics/PE_tls_k32.png
  * TLS callbacks' list is updated at each callback execution. If a TLS or the !EntryPoint code add or remove an entry, it will be taken into consideration
   * `tls_onthefly`'s first TLS adds a second one on the list that will be executed directly after the first one is over
   https://corkami.googlecode.com/svn/wiki/pics/PE_tls_onthefly.png
