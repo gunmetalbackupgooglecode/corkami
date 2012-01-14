@@ -364,7 +364,10 @@ aDllName db 'completely unrelated dll name', 1, 2, 3, 4, 0
   * or they can be not used for execution, but for documenting the internal code
    * `PE_exports_doc` has internal exports used as address symbols
     https://corkami.googlecode.com/svn/wiki/pics/PE_exports_doc.png
- * exports at fixed value can be used to encode data, when their values are filled in the Import Address Table
+  * or they can have external or virtual addresses (but no address of 0, (un?)surprisingly)
+   * `ownexports2` has a -1 export, to which it jumps (after adding 1). It also has an export in virtual space, which is executed.
+    https://corkami.googlecode.com/svn/wiki/pics/PE_virtual_exports.gif
+ * exports at fixed value can be used to encode data, when their values are filled in the Import Address Table (their actual value doesn't matter as long as they are not executed, it's just a copied dword)
   * `exportsdata.exe`'s code is stored as dodgy exports RVAs, and is restored when imports are resolved
   {{{
 EntryPoint:
@@ -1414,7 +1417,15 @@ istruc IMAGE_NT_HEADERS
  * however, the NT HEADERS magic contains necessarily 2 null bytes, thus it's impossible to have a working PE with no null byte at all.
 
 ----
+=conclusion=
+ * a PE executing code can have either no sections, no entrypoint, no data directories - but not at least one of the 3 is required - which breaks the typical model.
+ * many fields are not relevant, and can have completely bogus values (even important-looking ones such as !BaseOfCode, !SizeOfCode...)
+ * many fields are taken into account only once the PE is mapped in memory, which requires a different way of thinking (allocated areas, mapped sections...)
+  * most fields are not checked for boundaries, even important ones such as !EntryPoint, TLS !Callbacks, imports, exports...
+ * several fields enable loader-based decryption (relocations, exports)
+ * TLS is arguably the most f`*`cked up part of the PE format.
 
+----
 =acknowledgements=
  * Peter Ferrie
 
