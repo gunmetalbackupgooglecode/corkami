@@ -1,0 +1,40 @@
+#summary Vectored and Structured Exception Handlers
+#labels WIP
+
+ * This page ([http://code.google.com/p/corkami/wiki/Exceptions?show=content printable version] [http://corkami.googlecode.com/svn/wiki/Exceptions.wiki wiki source]) ...
+
+ <wiki:toc max_depth="3" />
+
+Exceptions happen when something 'wrong' happens during code execution.
+
+the system will handle it if no other code handled it before (it's a chain of handlers)
+
+you can set a Vectored Exception Handler (one per thread) or a Structured Exception Handler (typically, per function).
+
+VEH are set via APIs, but SEH are set directly via a few instructions.
+
+FS is an obvious reference, but can be hidden...
+ * via `fs:[0]`
+ * via `fs:[18h]`
+ * hardcoded value
+  * read it via !GetThreadSelectorEntry
+ * pass to gs, ds...
+
+Handlers get access to the context => easy and powerful way to modify your own thread without any API call
+ * read/set registers values
+ * read/set hardware breakpoint
+  * detect debuggers
+  * set them manually to reuse (ensure they're not used by a debugger)
+ * read/set flag
+  * read flags to 'emulate' conditional jump behavior (exception-controlled flow)
+  * set trap flag manually to trigger an instruction after the next one is emulated
+
+ * skip ntdll
+  * overwrite return address in stack, to return directly to expected URL
+ * overwrite handler address in stack, trigger another exception
+
+----
+=acknowledgements=
+ * Peter Ferrie
+
+=Other resources=
