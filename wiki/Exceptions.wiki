@@ -1,16 +1,38 @@
 #summary Vectored and Structured Exception Handlers
 #labels WIP
 
- * This page ([http://code.google.com/p/corkami/wiki/Exceptions?show=content printable version] [http://corkami.googlecode.com/svn/wiki/Exceptions.wiki wiki source]) ...
+ * This page ([http://code.google.com/p/corkami/wiki/Exceptions?show=content printable version] [http://corkami.googlecode.com/svn/wiki/Exceptions.wiki wiki source]) deals with exceptions, exception handling, and other related tricks, under Windows.
 
  <wiki:toc max_depth="3" />
 
- # Exceptions happen when something 'wrong' happens during code execution.
- https://corkami.googlecode.com/svn/wiki/pics/seh_bpint_3.gif https://corkami.googlecode.com/svn/wiki/pics/seh_bpint3.gif https://corkami.googlecode.com/svn/wiki/pics/seh_divzero.gif https://corkami.googlecode.com/svn/wiki/pics/seh_intof1.gif https://corkami.googlecode.com/svn/wiki/pics/seh_invmem.gif https://corkami.googlecode.com/svn/wiki/pics/seh_privins.gif https://corkami.googlecode.com/svn/wiki/pics/seh_ssicebp.gif https://corkami.googlecode.com/svn/wiki/pics/seh_trig_inv.gif
- # the system will handle it if no other code handled it before (it's a chain of handlers)
- # the handler is running on the same thread, but can read the context (values of all registers, including debug registers) of the thread when it happened.
- 
+=in short=
+ # an exception handler is set up (there's always a default one by the OS)
+ # an exception happens
+ # control is tranferred to the handler
+  # the handler can read and write the context (ie, all the registers) of the code when the exception was triggered
+ # the handler returns, telling the OS whether it handled it or not.
+ # if the exception is considered handled, the thread resume according to the (updated) context
 
+==triggers==
+ * exceptions are triggered when something 'wrong' happens during code execution.
+  https://corkami.googlecode.com/svn/wiki/pics/seh_divzero.gif https://corkami.googlecode.com/svn/wiki/pics/seh_intof1.gif
+  https://corkami.googlecode.com/svn/wiki/pics/seh_invmem.gif https://corkami.googlecode.com/svn/wiki/pics/seh_privins.gif
+  https://corkami.googlecode.com/svn/wiki/pics/seh_trig_inv.gif
+  * or some specific triggers are called
+  https://corkami.googlecode.com/svn/wiki/pics/seh_bpint_3.gif https://corkami.googlecode.com/svn/wiki/pics/seh_bpint3.gif
+  https://corkami.googlecode.com/svn/wiki/pics/seh_ssicebp.gif
+  
+ * the exception might happen:
+  * before the current operation is executed (i.e. it's *NOT* executed, most likely because it can't)
+  * after it's executed (like, an information signal)
+  * or after the next instruction is executed (stepping exception)
+
+==handlers==
+ # the system will handle it if no other code handled it before (it's a chain of handlers) - and typically just terminates the program.
+
+ # the handler is running on the same thread, but can read the context (values of all registers, including debug registers) of the thread when it happened, then modify this context, which will be taken into account when the handler finished its job.
+=in details=
+==set up==
 you can set a Vectored Exception Handler (one per thread) or a Structured Exception Handler (typically, per function).
 
 VEH are set via APIs, but SEH are set directly via a few instructions.
@@ -31,6 +53,7 @@ Handlers get access to the context => easy and powerful way to modify your own t
   * read flags to 'emulate' conditional jump behavior (exception-controlled flow)
   * set trap flag manually to trigger an instruction after the next one is emulated
 
+==tricks==
  * skip ntdll
   * overwrite return address in stack, to return directly to expected URL
  * overwrite handler address in stack, trigger another exception
