@@ -5,9 +5,11 @@
 
  <wiki:toc max_depth="3" />
 
-Exceptions happen when something 'wrong' happens during code execution.
-
-the system will handle it if no other code handled it before (it's a chain of handlers)
+ # Exceptions happen when something 'wrong' happens during code execution.
+ https://corkami.googlecode.com/svn/wiki/pics/seh_bpint_3.gif https://corkami.googlecode.com/svn/wiki/pics/seh_bpint3.gif https://corkami.googlecode.com/svn/wiki/pics/seh_divzero.gif https://corkami.googlecode.com/svn/wiki/pics/seh_intof1.gif https://corkami.googlecode.com/svn/wiki/pics/seh_invmem.gif https://corkami.googlecode.com/svn/wiki/pics/seh_privins.gif https://corkami.googlecode.com/svn/wiki/pics/seh_ssicebp.gif https://corkami.googlecode.com/svn/wiki/pics/seh_trig_inv.gif
+ # the system will handle it if no other code handled it before (it's a chain of handlers)
+ # the handler is running on the same thread, but can read the context (values of all registers, including debug registers) of the thread when it happened.
+ 
 
 you can set a Vectored Exception Handler (one per thread) or a Structured Exception Handler (typically, per function).
 
