@@ -6,6 +6,7 @@
  <wiki:toc max_depth="3" />
 
 =in short=
+https://corkami.googlecode.com/svn/wiki/pics/seh_flowchart.png
  # an exception handler is set up (there's always a default one by the OS)
  # an exception happens
  # control is tranferred to the handler
