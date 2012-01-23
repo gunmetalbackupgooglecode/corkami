@@ -105,3 +105,10 @@
 
  * [http://hyperpolyglot.org Programming Languages references sheets] [http://michael.peopleofhonoronly.com/vim/ vim for programmers]
  * [http://www.codedread.com/scour/ SVG cleaning]
+
+====== encodings======
+
+|| || bin || oct  || dec || hex || unicode || unicode long ||
+|| !WinDbg || 0y  || || 0n || 0x || || ||
+|| Python strings ||     || \0 - \777 || || \x0 - \xff || \u0000 - \uffff  || \U00000000 - \UFFFFFFFF ||
+|| Hiew || 010i || 010 / 77o || 010t || ff / 0ffh / 0xff ||  || ||
