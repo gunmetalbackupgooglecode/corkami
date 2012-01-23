@@ -22,12 +22,14 @@ https://corkami.googlecode.com/svn/wiki/pics/seh_flowchart.png
   * or some specific triggers are called
   https://corkami.googlecode.com/svn/wiki/pics/seh_bpint_3.gif https://corkami.googlecode.com/svn/wiki/pics/seh_bpint3.gif
   https://corkami.googlecode.com/svn/wiki/pics/seh_ssicebp.gif
-  
+
  * the exception might happen:
   * before the current operation is executed (i.e. it's *NOT* executed, most likely because it can't)
   * after it's executed (like, an information signal)
   * or after the next instruction is executed (stepping exception)
 
+ * the exceptions might be different depending on the OS or the configuration
+  * https://corkami.googlecode.com/svn/wiki/pics/seh_privinsvmw.gif
 ==handlers==
  # the system will handle it if no other code handled it before (it's a chain of handlers) - and typically just terminates the program.
 
