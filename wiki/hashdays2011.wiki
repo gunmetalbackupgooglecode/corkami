@@ -19,7 +19,9 @@
  [http://corkami.googlecode.com/files/hashdays2011.zip demo slides (PDF) + complete slides deck with notes (ODP) + Proof of Concepts]
 
 =video=
- * not available yet
+<wiki:video url="http://www.youtube.com/watch?v=MJvsshovITE"/>
+
+You might want to check my [http://bsx2.corkami.com BerlinSides presentation] for recorded screencasts of the demos.
 
 =comments & ranking=
  * "Besides a highly technical topic, the presentation was pleasant and accessible to non-experts. It gave a succinct yet convincing overview of some anti-debugging tricks used in malware." _Jean-Philippe Aumasson_
