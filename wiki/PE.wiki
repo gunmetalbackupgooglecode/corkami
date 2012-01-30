@@ -1311,20 +1311,50 @@ dd 6000100Fh,0F0010009h
 ...
 }}}
 </code>
-==PE + PDF==
- * PDF can have their start signature up to offset 0x400.
- * using this, `pdf.exe` is an both a working PE and a working PDF.
- If you run it, it will copy itself as a PDF and opens it
 
-  https://corkami.googlecode.com/svn/wiki/pics/PE_pdf.png
- {{{
-...
-call [__imp__CopyFile]
-...
-call [__imp__ShellExecute]
-...
-incbin 'helloworld-X.pdf'
-...
+==PE + PDF + ZIP==
+  https://corkami.googlecode.com/svn/wiki/pics/PE_pdf_zip.png
+
+ * PDF in/and ZIP:
+  * PDF documents don't need to have their signature starting at offset 0
+  * in a ZIP archive with no compression, the file is stored in its original form
+
+So it's possible to make a ZIP containing a PDF that also works as the PDF itself.
+
+ * ZIP archives also don't need to start at offset 0
+  * so a PE can contain such a ZIP, and work as both a PE and a ZIP
+ * moving the 'PE' headers far enough via increasing `e_lfanew` enables to store any size of file in the PE
+
+so it's possible to make a PE containing a ZIP containing a uncompressed PDF, that works as both a document (PDF), an archive (ZIP), and an executable (PE), like `pdf_zip_pe.exe`.
+
+File formats should have enforce their signature at offset 0.
+
+===file walkthrough===
+ # start of the file (as a PE):
+{{{
+00000000:  4D 5A 00 00 00 00 00 00 00 00 00 00 00 00 00 00  MZ..............
+}}}
+ # start of the ZIP archive:
+{{{
+00000030:        50 4B 03 04 0A 00 00 00 00 00 74 01 00 00    PK???.....t?..\
+}}}
+ # e_lfanew pointing to the PE header (PE) (overlapping ZIP's lastmod)
+{{{
+00000030:                                      74 01 00 00              t?..
+}}}
+ # PDF signature (PDF):
+{{{
+00000050:                                            25 50                %P
+00000060:  44 46 2D 31.2E 0A 31 20.30 20 6F 62.6A 3C 3C 2F  DF-1.?1 0 obj<</
+}}}
+ # end of central directory (ZIP):
+{{{
+00000150:                                            50 4B                PK
+00000160:  05 06 00 00.00 00 01 00.01 00 3C 00.00 00 F0 00  ??....?.?.<...=.
+}}}
+ # PE header (PE):
+{{{
+00000170:              50 45 00 00.4C 01 00 00.00 00 00 00      PE  L?......
 }}}
 
 ==quine==
