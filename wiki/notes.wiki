@@ -38,26 +38,25 @@
 
  * [http://www.sysinternals.com sysinternals] (`net use \\live.sysinternals.com`) [http://www.nirsoft.net nirsoft]
 =Exploits=
- * *CVE-2007-5659* PDF, collectEmailInfo
- * *CVE-2008-2992* PDF, util.printf
- * *CVE-2009-0432* PDF, media.newPlayer
- * *CVE-2009-0658* PDF, JBIG2
- * *CVE-2009-0927* PDF, Collab.getIcon
- * *CVE-2009-1492* PDF, getAnnots
- * *CVE-2009-1493* PDF, customDictionaryOpen linux
- * *CVE-2009-3459* PDF, !FlateDecode
- * *CVE-2009-3867* Java, Soundbank
- * *CVE-2009-3953* PDF, U3D
- * *CVE-2010-0188* TIFF, !DotRange in PDF [http://bugix-security.blogspot.com/2010/03/adobe-pdf-libtiff-working-exploitcve.html PoC @ bugix] [http://blog.fortinet.com/cve-2010-0188-exploit-in-the-wild/ fortinet]
- * *CVE-2010-1297* Flash, newfunction
- * *CVE-2010-2065* TIFF, LibTIFF Integer Overflow !StripByteCount
- * *CVE-2010-2883* PDF, Cooltype [http://bugix-security.blogspot.com/2010/09/cve-2010-2883-made-in-korea.html bugix]
- * *CVE-2010-3333* RTF in Word [http://blogs.technet.com/b/mmpc/archive/2010/12/29/targeted-attacks-against-recently-addressed-microsoft-office-vulnerability-cve-2010-3333-ms10-087.aspx Microsoft]
- * *CVE-2010-3654* Flash, !RadioButtonGroup [http://www.abysssec.com/blog/2011/04/exploiting-adobe-flash-player-on-windows-7/ Abyssec]
- * *CVE-2011-0609* Flash, [http://blog.fortinet.com/advanced-exploitation-of-the-recent-flash-zero-day-vulnerability-cve-2011-0609/ Haifei Li @ Cansecwest]
- * *CVE-2011-0611* Flash [http://secunia.com/blog/210/ secunia] [http://blogs.technet.com/b/mmpc/archive/2011/04/12/analysis-of-the-cve-2011-0611-adobe-flash-player-vulnerability-exploitation.aspx microsoft]
- * *CVE-2011-0041* GDI+ [http://www.abysssec.com/blog/2011/07/analysis-of-cve-2011-0041-vulnerability-in-gdi/ Abyssec]
- * *CVE-2011-0226* Jailbreakme 3 [http://esec-lab.sogeti.com/post/Analysis-of-the-jailbreakme-v3-font-exploit Sogeti]
+|| CVE || filetype || specific || links ||
+|| CVE-2007-5659 || PDF || collectEmailInfo || ||
+|| CVE-2008-2992 || PDF || util.printf || ||
+|| CVE-2009-0432 || PDF || media.newPlayer || ||
+|| CVE-2009-0658 || PDF || JBIG2 || ||
+|| CVE-2009-0927 || PDF || Collab.getIcon || ||
+|| CVE-2009-1492 || PDF || getAnnots || ||
+|| CVE-2009-1493 || PDF || customDictionaryOpen linux || ||
+|| CVE-2009-3459 || PDF || !FlateDecode || ||
+|| CVE-2009-3867 || Java || Soundbank || ||
+|| CVE-2009-3953 || PDF || U3D || ||
+|| CVE-2010-0188 || TIFF || !DotRange in PDF || [http://bugix-security.blogspot.com/2010/03/adobe-pdf-libtiff-working-exploitcve.html PoC @ bugix] [http://blog.fortinet.com/cve-2010-0188-exploit-in-the-wild/ fortinet] ||
+|| CVE-2010-1297 || Flash || newfunction || ||
+|| CVE-2010-2065 || TIFF (pdf)|| LibTIFF Integer Overflow !StripByteCount || ||
+|| CVE-2010-2883 || PDF || Cooltype || [http://bugix-security.blogspot.com/2010/09/cve-2010-2883-made-in-korea.html bugix] ||
+|| CVE-2010-3333 || RTF || (in Word) ||  [http://blogs.technet.com/b/mmpc/archive/2010/12/29/targeted-attacks-against-recently-addressed-microsoft-office-vulnerability-cve-2010-3333-ms10-087.aspx Microsoft] ||
+|| CVE-2010-3654 || Flash || !RadioButtonGroup || [http://www.abysssec.com/blog/2011/04/exploiting-adobe-flash-player-on-windows-7/ Abyssec] ||
+|| CVE-2011-0609 || Flash || || [http://blog.fortinet.com/advanced-exploitation-of-the-recent-flash-zero-day-vulnerability-cve-2011-0609/ Haifei Li @ Cansecwest] ||
+|| CVE-2011-0611 || Flash || || [http://secunia.com/blog/210/ secunia] [http://blogs.technet.com/b/mmpc/archive/2011/04/12/analysis-of-the-cve-2011-0611-adobe-flash-player-vulnerability-exploitation.aspx microsoft] ||
 
 =information=
  * *news* [https://twitter.com/#!/Ivanlef0u @Ivanlef0u] [http://www.reddit.com/r/ReverseEngineering/ reddit]
