@@ -2,6 +2,7 @@
 #labels WIP
 =Formats=
 =Tools=
+ * *file format* [https://bitbucket.org/haypo/hachoir/wiki hachoir]
  * *hash* [http://hashcat.net/hashcat/ hashcat] [http://fsumfe.sourceforge.net/ FsumFE]
 
  * *forensics* [http://www.moonsols.com/ressources moonsols] [https://www.volatilesystems.com/default/volatility volatility]
@@ -38,9 +39,10 @@
 
  * [http://www.sysinternals.com sysinternals] (`net use \\live.sysinternals.com`) [http://www.nirsoft.net nirsoft]
 =Exploits=
-|| CVE || filetype || specific || links ||
+|| CVE || filetype || specific || (worthy) links ||
 || CVE-2007-5659 || PDF || collectEmailInfo || ||
 || CVE-2008-2992 || PDF || util.printf || ||
+|| CVE-2008-5353 || Java || calendar deserialization || [http://blog.cr0.org/2009/05/write-once-own-everyone.html Tinnes] [http://slightlyrandombrokenthoughts.blogspot.com/2008/12/calendar-bug.html Koivu] || 
 || CVE-2009-0432 || PDF || media.newPlayer || ||
 || CVE-2009-0658 || PDF || JBIG2 || ||
 || CVE-2009-0927 || PDF || Collab.getIcon || ||
@@ -49,16 +51,18 @@
 || CVE-2009-3459 || PDF || !FlateDecode || ||
 || CVE-2009-3867 || Java || Soundbank || ||
 || CVE-2009-3953 || PDF || U3D || ||
-|| CVE-2010-0188 || TIFF || !DotRange in PDF || [http://bugix-security.blogspot.com/2010/03/adobe-pdf-libtiff-working-exploitcve.html PoC @ bugix] [http://blog.fortinet.com/cve-2010-0188-exploit-in-the-wild/ fortinet] ||
+|| CVE-2010-0188 || TIFF || !DotRange in PDF || [http://bugix-security.blogspot.com/2010/03/adobe-pdf-libtiff-working-exploitcve.html PoC @ bugix] [http://blog.fortinet.com/cve-2010-0188-exploit-in-the-wild/ Liu @ fortinet] ||
 || CVE-2010-1297 || Flash || newfunction || ||
-|| CVE-2010-2065 || TIFF (pdf)|| LibTIFF Integer Overflow !StripByteCount || ||
+|| CVE-2010-2065 || TIFF (pdf)|| LibTIFF !StripByteCount || ||
 || CVE-2010-2883 || PDF || Cooltype || [http://bugix-security.blogspot.com/2010/09/cve-2010-2883-made-in-korea.html bugix] ||
 || CVE-2010-3333 || RTF || (in Word) ||  [http://blogs.technet.com/b/mmpc/archive/2010/12/29/targeted-attacks-against-recently-addressed-microsoft-office-vulnerability-cve-2010-3333-ms10-087.aspx Microsoft] ||
 || CVE-2010-3654 || Flash || !RadioButtonGroup || [http://www.abysssec.com/blog/2011/04/exploiting-adobe-flash-player-on-windows-7/ Abyssec] ||
-|| CVE-2011-0609 || Flash || || [http://blog.fortinet.com/advanced-exploitation-of-the-recent-flash-zero-day-vulnerability-cve-2011-0609/ Haifei Li @ Cansecwest] ||
+|| CVE-2011-0609 || Flash || || [http://blog.fortinet.com/advanced-exploitation-of-the-recent-flash-zero-day-vulnerability-cve-2011-0609/ Li @ fortinet] [http://www.vupen.com/blog/20110326.Technical_Analysis_and_Win7_Exploitation_Adobe_Flash_0Day_CVE-2011-0609.php Joly @ vupen] ||
 || CVE-2011-0611 || Flash || || [http://secunia.com/blog/210/ secunia] [http://blogs.technet.com/b/mmpc/archive/2011/04/12/analysis-of-the-cve-2011-0611-adobe-flash-player-vulnerability-exploitation.aspx microsoft] ||
 || CVE-2011-0041 || GDI+ || || [http://www.abysssec.com/blog/2011/07/analysis-of-cve-2011-0041-vulnerability-in-gdi/ Abyssec] ||
 || CVE-2011-0226 || Jailbreakme 3  || || [http://esec-lab.sogeti.com/post/Analysis-of-the-jailbreakme-v3-font-exploit Sogeti] ||
+|| CVE-2011-2462 || U3D PDF || || ||
+|| CVE-2011-3402 || TTF || Duqu MS11-087 || [http://exploitshop.wordpress.com/2012/01/18/ms11-087-aka-duqu-vulnerability-in-windows-kernel-mode-drivers-could-allow-remote-code-execution/ lifeasageek] ||
 || CVE-2011-3544 || Java || Rhino || [http://schierlm.users.sourceforge.net/CVE-2011-3544.html shierlm] ||
 || CVE-2012-0003 || Midi || midiOutPlayNextPolyEvent MS12-004|| [http://www.exploit-db.com/exploits/18426/ metasploit] ||
 
@@ -95,13 +99,13 @@
  * *fonts*
   * bitmap [http://damieng.com/creative/typography/palmos-font PalmOS] simple small bitmap font
   * vector [http://damieng.com/blog/tag/envy-code-r Envy Code R] very nice scalable programming font
- * *compression* 
-  * *javascript* [http://code.google.com/p/jssfx/ jssfx] [http://utf-8.jp/ aaencode/jjencode/jsf*ck] [http://dean.edwards.name/packer/ p,a,c,k,e,d]
+ * *obfuscation*
+  * *javascript* [http://code.google.com/p/jssfx/ jssfx] [http://utf-8.jp/ aaencode/jjencode/jsf*ck] [http://dean.edwards.name/packer/ p,a,c,k,e,d] [http://blog.9bplus.com/doomsday-javascript-encoder doomsday]
  * *videos*
   * [http://youtu.be/u6XAPnuFjJc RSA Animate - Drive: The surprising truth about what motivates us]
  * *typing* [http://www.exideas.com/ME/index.php MessagEase]
  * *checksum* [http://fsumfe.sourceforge.net/ FsumFE]
- * *shop* [http://www.inventables.com inventables] 
+ * *shop* [http://www.inventables.com inventables]
  * *format extractor* [http://aluigi.org/papers.htm#quickbms QuickBMS]
  * *floppy* [http://dmweb.free.fr/?q=node/1429 dungeon master] [http://www.hackzapple.com/ORG1/MZ/PIRATESOFTS.HTM apple II] [http://www.softpres.org/ softpres] [http://www.kryoflux.com/ kryoflux] [http://www.lotharek.pl/product.php?pid=12 HxC floppy emulator]
  * *jigsaw* [http://www.jigthings.com/ JigThings] [http://www.jigsaws.co.uk/ Wentworth] [http://www.puzzles-et-jeux.com/ Michele Wilson]
