@@ -57,6 +57,10 @@
 || CVE-2010-3654 || Flash || !RadioButtonGroup || [http://www.abysssec.com/blog/2011/04/exploiting-adobe-flash-player-on-windows-7/ Abyssec] ||
 || CVE-2011-0609 || Flash || || [http://blog.fortinet.com/advanced-exploitation-of-the-recent-flash-zero-day-vulnerability-cve-2011-0609/ Haifei Li @ Cansecwest] ||
 || CVE-2011-0611 || Flash || || [http://secunia.com/blog/210/ secunia] [http://blogs.technet.com/b/mmpc/archive/2011/04/12/analysis-of-the-cve-2011-0611-adobe-flash-player-vulnerability-exploitation.aspx microsoft] ||
+|| CVE-2011-0041 || GDI+ || || [http://www.abysssec.com/blog/2011/07/analysis-of-cve-2011-0041-vulnerability-in-gdi/ Abyssec] ||
+|| CVE-2011-0226 || Jailbreakme 3  || || [http://esec-lab.sogeti.com/post/Analysis-of-the-jailbreakme-v3-font-exploit Sogeti] ||
+|| CVE-2011-3544 || Java || Rhino || [http://schierlm.users.sourceforge.net/CVE-2011-3544.html shierlm] ||
+|| CVE-2012-0003 || Midi || midiOutPlayNextPolyEvent MS12-004|| [http://www.exploit-db.com/exploits/18426/ metasploit] ||
 
 =information=
  * *news* [https://twitter.com/#!/Ivanlef0u @Ivanlef0u] [http://www.reddit.com/r/ReverseEngineering/ reddit]
