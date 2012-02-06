@@ -72,6 +72,12 @@ bits 16
 dos_msg
     db 'This program cannot be run in DOS mode.', 0dh, 0dh, 0ah, '$'
 }}}
+ * While it's usually just printing a string and terminating, the dos stub can do everything: open, modify files, and even executes PE.
+
+===exe2pe===
+https://corkami.googlecode.com/svn/wiki/pics/PE_exe2pe.png
+
+this file is a broken 32b PE that is fixed (on disk), then launched by its (16b) dos stub.
 
 ==e_magic===
  * = `MZ`
