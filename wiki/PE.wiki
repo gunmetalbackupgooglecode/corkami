@@ -232,6 +232,8 @@ EntryPoint:
     db 0c0h
 ...
 }}}
+  * `tls_virtEP` has an 'invalid' !EntryPoint, but the TLS allocates the memory space and generates some codes, so the !EntryPoint works fine.
+  https://corkami.googlecode.com/svn/wiki/pics/PE_tlsvirtEP.png
 =====!BaseOfCode/!BaseOfData=====
 unused
 
