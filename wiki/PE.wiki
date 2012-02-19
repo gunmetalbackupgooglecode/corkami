@@ -1265,7 +1265,7 @@ kernel32.dll_hintnames:
 
 ==minimal sizes==
 the minimal size for a PE is:
- * 92 bytes, under XP: `tinyXP`
+ * 97 bytes, under XP: `tinyXP`
  https://corkami.googlecode.com/svn/wiki/pics/PE_tinyXP.png
   * the same rule applies to drivers
    https://corkami.googlecode.com/svn/wiki/pics/PE_tinydrvxp.png
