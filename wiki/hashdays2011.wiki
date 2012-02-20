@@ -19,7 +19,8 @@
  [http://corkami.googlecode.com/files/hashdays2011.zip demo slides (PDF) + complete slides deck with notes (ODP) + Proof of Concepts]
 
 =video=
-<wiki:video url="http://www.youtube.com/watch?v=MJvsshovITE"/>
+[http://www.youtube.com/watch?v=MJvsshovITE YouTube's original] [http://www.universalsubtitles.org/en/videos/MCGL8ABJUdv7/info/-days:%20Ange%20Albertini:%20Such%20a%20weird%20processor%20-%20messing%20with%20x86%20opcodes English/French subtitles]
+<wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/hashdays2011_subs.xml" width=620 height=405 border=0/>
 
 You might want to check my [http://bsx2.corkami.com BerlinSides presentation] for recorded screencasts of the demos.
 
