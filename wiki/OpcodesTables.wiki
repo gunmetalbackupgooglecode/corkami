@@ -1,6 +1,6 @@
 #summary Opcodes' tables
 #labels Featured
-<wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/imgur_opcodes.xml" width=100% height=550 border=0/>
+<wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/imgur_opcodes.xml" width=700 height=550 border=0/>
 
 ==Opcodes' Tables==
 also called _Instruction set maps_
