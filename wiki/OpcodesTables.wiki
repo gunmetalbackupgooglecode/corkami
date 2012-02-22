@@ -1,0 +1,19 @@
+#summary Opcodes' tables
+#labels Featured
+<wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/imgur_opcodes.xml" width=100% height=550 border=0/>
+Opcodes' Tables (also called _Instruction set maps_), available as either:
+ * complete: posters, with instructions descriptions
+ * compact: one-page sheets
+in the following formats:
+ * [http://imgur.com/a/N5bqg Images] in hi-res, with transparency
+ * PDF (vector -> smaller filesize + perfect zooming) [http://xchg.info/corkami/opcodes_tables_complete.pdf complete] [http://xchg.info/corkami/opcodes_tables_compact.pdf compact]
+ * !OpenOffice (the original document if you want to modify them):
+  * source: [https://corkami.googlecode.com/svn/trunk/oOo/opcodes_tables_complete complete] [https://corkami.googlecode.com/svn/trunk/oOo/opcodes_tables_compact compact]
+  * Nightly builds: [http://xchg.info/corkami/opcodes_tables_complete.ods complete] [http://xchg.info/corkami/opcodes_tables_compact.ods compact]
+
+===acknowledgments===
+ * Daniel Plohmann
+
+ * Damien Cauquil
+ * Eloi Vanderbeken
+ * Francisco Falcon
