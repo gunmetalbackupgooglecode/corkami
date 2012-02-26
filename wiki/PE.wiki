@@ -1,6 +1,8 @@
 #summary the Portable Executable Format on Windows
 #labels Featured
 
+====[http://code.google.com/p/corkami/ << back to index]====
+
 =PE=
  * This page ([http://code.google.com/p/corkami/wiki/PE?show=content printable version] [http://corkami.googlecode.com/svn/wiki/PE.wiki wiki source]) deals with the PE format, or more specifically, x86/x64 Windows (from XP to W7) binaries (ie, not other OSes or systems, not OBJ format, etc...)
  * It deals with the reality of the loader, not the theory of the format itself, as specified in _Microsoft PE and COFF Specification_. Many malwares or packers actually run without a problem, while they theoretically shouldn't.
@@ -1474,3 +1476,5 @@ istruc IMAGE_NT_HEADERS
 
 =Other resources=
  * [http://www.reversinglabs.com/advisory/pecoff.php Undocumented PE/COFF]
+
+====[http://code.google.com/p/corkami/ << back to index]====

@@ -1,7 +1,10 @@
 #summary a summary of PDF tricks - encodings, structures, JavaScript...
 #labels Featured
+
+====[http://code.google.com/p/corkami/ << back to index]====
+
 =PDF Tricks=
-This is a summary of PDF tricks, either based on data encodings, !JavaScript, or PDF structure, with hand-written proof-of-concepts.
+This page ([http://code.google.com/p/corkami/wiki/PDFTricks?show=content printable version] [http://corkami.googlecode.com/svn/wiki/PDFTricks.wiki wiki source])is a summary of PDF tricks, either based on data encodings, !JavaScript, or PDF structure, with hand-written proof-of-concepts.
 
 <wiki:toc max_depth="3" />
 
@@ -89,7 +92,7 @@ theoretically `%PDF-1.[4-6]`, the signature can be truncated to ignore the last 
 }}}
 
 ==null signature==
-...but it can be actually even shorter, provided you insert a null character. 
+...but it can be actually even shorter, provided you insert a null character.
 
  Example of null-based header trick ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/signature-null.pdf download]):
 {{{
@@ -150,7 +153,7 @@ PDF is a format that supports incremental updates, so information can be written
 {{{
 [...]
 %%EOF
-             
+
 % dummy object to make this PDF valid
 [...]
 15 0 obj
@@ -181,7 +184,7 @@ PDF are parsed bottom-up by default, except if the first object (even a dummy no
 % inserting/removing a dummy first object will change the parsing direction
 12 0 obj <<<>>
 [...]
-31415 0 obj 
+31415 0 obj
 << /Linearized -42 >>
 endobj
 [...]
@@ -215,7 +218,7 @@ trailer
   <<
   /Pages 10 0 R
   >>
->> 
+>>
 }}}
 
 =!JavaScript-based encodings=
@@ -251,7 +254,7 @@ unescape("%48%65%6C%6C%6F%20%57%6F%72%6C%64%21")
 }}}
 
 ==base encoding==
-like CAFEBABE can be read as a word or as a hex number, any uppercase word can be written as a base32 (32 or less, depending on the last (in the alphabet) used character) numbers. 
+like CAFEBABE can be read as a word or as a hex number, any uppercase word can be written as a base32 (32 or less, depending on the last (in the alphabet) used character) numbers.
 
  Example of a `HELLO WORLD!` string, with each word encoded as a number, in different bases ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-number.pdf download]):
 {{{
@@ -296,7 +299,7 @@ A !JavaScript function can access its own code, and use it for anything. Thus, a
  Example of a decryption function, using its own code as decryption key ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-callee.pdf download]):
 {{{
 [...]
-      function decrypt(cipher) 
+      function decrypt(cipher)
 [...]
             key = arguments.callee.toString();
 [...]
@@ -377,7 +380,7 @@ global variables show a different behavior as opposed to normal ones: their type
 [...]
       hidden=0;  // global
       hidden_=0; // not global
-      if ((hidden_ === 0) && (hidden !== 0)) 
+      if ((hidden_ === 0) && (hidden !== 0))
           app.alert("nothing unusual detected.");
 [...]
 }}}
@@ -437,4 +440,6 @@ WARNING: it will not work if the PDF is encrypted - it should be decrypted first
 =References=
  * [http://blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/ Didier Stevens]
  * [http://www.symantec.com/connect/blogs/portable-document-format-malware Kazumasa Itabashi]
- * [http://blog.zynamics.com/2010/07/13/recon-slides-how-to-really-obfuscate-your-pdf-malware/ Sebastian Porst] 
+ * [http://blog.zynamics.com/2010/07/13/recon-slides-how-to-really-obfuscate-your-pdf-malware/ Sebastian Porst]
+
+====[http://code.google.com/p/corkami/ << back to index]====

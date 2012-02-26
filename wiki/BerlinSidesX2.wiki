@@ -1,5 +1,8 @@
 #summary x86 & PE - presentation at BerlinSides x2, 28th December 2011
 #labels Featured
+
+====[http://code.google.com/p/corkami/ << back to index]====
+
 =x86 & PE=
 <wiki:gadget url="https://corkami.googlecode.com/svn/trunk/pics/bsx2/bsx2.xml" width=1200 height=650 border=1/>
 
@@ -9,7 +12,7 @@
 
 <wiki:comment>
 
-[http://www.slideshare.net/ange4771/x86-pe Slideshare] 
+[http://www.slideshare.net/ange4771/x86-pe Slideshare]
 
  * a presentation on the oddities of x86 assembly and the Portable Executable format
  * presented at [http://berlinsides.org/ BerlinSides] x2, on the 28th of December 2011, at the Universal Hall, in Berlin (Germany).

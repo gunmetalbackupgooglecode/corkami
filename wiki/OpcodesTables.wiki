@@ -2,6 +2,8 @@
 #labels Featured
 <wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/imgur_opcodes.xml" width=700 height=550 border=0/>
 
+====[http://code.google.com/p/corkami/ << back to index]====
+
 ==Opcodes' Tables==
 also called _Instruction set maps_
 
@@ -29,3 +31,5 @@ also called _Instruction set maps_
  * Eloi Vanderbeken
  * Francisco Falcon
  * Sébastien Kirche
+
+====[http://code.google.com/p/corkami/ << back to index]====
