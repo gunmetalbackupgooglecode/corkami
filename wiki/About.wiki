@@ -1,20 +1,27 @@
 #summary About the Corkami project
 #labels Featured
-Corkami is the name of the project that I started, to share my findings and experiments. (_Corkami_ doesn't mean anything btw, except maybe 'daughters' in polish, but that's a coincidence)
-
-Here are the guidelines I'm *trying* to follow (I only work on it in my spare time, at home, on a netbook):
- * pure technical content, with as much detail as possible
- * free
+Corkami is:
+ * *technical*
+  * based on findings on real hardware
+  * confirmed with !PoCs
+ * *free*
   * to browse (no annoying layout, no ads, ...)
   * to download (no login required)
   * to test (pre-compiled proof of concepts included)
   * to modify (BSD Licence, complete sources included, even for pictures and documents, using open-source tools)
- * constantly updated (wiki format)
- * easy to bring with you (printable cheats sheets and graphs)
+ * *useful*
+  * constantly updated (wiki format)
+   * always public, thus subject to feedback: correction, suggestion, etc...
+  * binaries are directly downloadable
+  * binaries are hand-made, to focus on what's important
+  * printable documents (cheat sheets, diagrams, tables) to use daily for work
 
-When I learn something new, I code a small !PoC that just focus on this specific point. And when I have enough !PoCs on a subject, I write a summary page for it. But my !PoCs are the most up to date part, so be sure to check the nightly builds!
-
-That's why it ended up here, after many different tries, as a project on google code. It's not perfect (the wiki is _sub-optimal_ for now), but better than anything else (blog, knoll, site,...) I tried so far).
+the way I work:
+ # I study a specific topic (PDF, PE, x86...)
+ # when I learn something new, I code a small PoC that just focuses on this specific point
+ # when I have enough !PoCs, I write a *wiki page* for it (but my !PoCs are the most up to date part, so be sure to check the nightly builds!)
+ # everything is public, thus commented, corrected, noticed by the community
+ # when my coverage of the topic is good enough, I apply to *present* in a conference.
 
 Hope you like it,
 
