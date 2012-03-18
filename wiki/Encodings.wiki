@@ -1,0 +1,65 @@
+#summary curious Encodings
+
+====[http://code.google.com/p/corkami/ << back to index]====
+
+=Encodings=
+ * This page ([http://code.google.com/p/corkami/wiki/Encodings?show=content printable version] [http://corkami.googlecode.com/svn/wiki/Encodings.wiki wiki source]) explains curious encodings or encoded files.
+<wiki:toc max_depth="3" />
+
+=!JavaScript=
+==jjencode==
+https://corkami.googlecode.com/svn/wiki/pics/misc_jjencode.png
+
+JJEncode is a !JavaScript encoding by Yosuke Hasegawa that turns standard javascript into symbol-only code, including the decoder.
+
+ * [https://corkami.googlecode.com/svn/trunk/asm/encodings/jjencode.txt commented source code]
+
+=COM=
+Not the ActiveX thingy, but the old headerless binaries from DOS (and Windows XP or before)
+
+==aa86==
+https://corkami.googlecode.com/svn/wiki/pics/misc_aa86.png
+
+Aa86 is a .COM file encoder by Yosuke Hasegawa that encodes binaries using only symbols characters, with a decoder.
+
+so for example, a simple `hello world` binary is encoded as:
+{{{
+%@"%"@,~,%,!`_^[^_^]-;>`_^[^_^]%"!,^,:`_^[^_^]-@{-`{-?:`_[^_^]_-``-``-@@`_^[^_^]-`~-``-@$`_^[^_^]-``-``-@@`_^[^_^]-`~-``-@#`_^[^_^]-+~-/~-?;`_^[^_^]%!~-;-,;`_^[^_^]-"$-@~-@``_^[^_^]-{[-);-@:`_^[^_^]-/*,%`_^[^_^]`_^[^_^]`_^[^_^]`_^[^_^]%@$-@;-?;`_^[^_^]-/~-`&,#`_^[^_^]-`~-`{,*`_^[^_^]-@@-$!`_^[^_^]-:$,[,<`_^[^_^]-!|-.),!`_^[^_^]-@{-@`-/(`_^[^_^]`_^[^_^]`_^[^_^]`_^[^_^]-{!-{.,.`_^[^_^]-~/-/``_^[^_^]%""-}@$"`_^[^_^]%@@-!/,!`_^[^_^]-:*-=%`[[[[[[[[`^^^^^-%+)@@^^^!;@@_!,((,.((-$+)@*+@!!@-,!"(+@@,$-,!"($%&,&,&_&@"'%_&"',&$&!"-@*@$"
+}}}
+
+ * [https://corkami.googlecode.com/svn/trunk/asm/encodings/aa86.asm commented assembly source]
+ * [https://corkami.googlecode.com/svn/trunk/asm/encodings/aa86.py standalone encoder]
+
+===aa86-based dropper===
+https://corkami.googlecode.com/svn/wiki/pics/misc_aa86drop.png
+
+Using Aa86 and a simple .COM dropper, it's possible to make an embedded PE not only non-null, but even typeable.
+
+Example of an Aa86-encoded dropper with embedded PE:
+{{{
+%@"%"@,~,%,!`_^[^_^]-;>`_^[^_^]%"!,^,:`_^[^_^]-@{-`{-?:`_[^_^]_-``-``-@@`_^[^_^]-`~-``-@$`_^[^_^]-``-``-@@`_^[^_^]-`~-``-@#`_^[^_^]-+~-/~-?;`_^[^_^]%!~-;-,;`_^[^_^]-"$-@~-@``_^[^_^]-{[-);-@:`_^[^_^]-/*,%`_^[^_^]`_^[^_^]`_^[^_^]`_^[^_^]%@$-@;-?;`_^[^_^]-/~-`&,#`_^[^_^]-`~-`{,*`_^[^_^]-@@-$!`_^[^_^]-:$,[,<`_^[^_^]-!|-.),!`_^[^_^]-@{-@`-/(`_^[^_^]`_^[^_^]`_^[^_^]`_^[^_^]-{!-{.,.`_^[^_^]-~/-/``_^[^_^]%""-}@$"`_^[^_^]%@@-!/,!`_^[^_^]-:*-=%`[[[[[[[[`^^^^^-%+)@@^^^!;!@%+.@_!*+@(!@$+)@-,!"$+*$,+--"@)(#.!(#,@(@@!,+.$@-,!"$+,#)+@@@@*+&&!@-,!""'(##*"&!@+(.!"&!@.!$+@$*+)*!@)+,@!@-,!"_!"'#"$+.#+(.!"&!@-,!""')!.!'@++-&!@,(_%$@,(_%(@,(_%,@$++$@+@@*+&&!@-,!""'@@(+!@,$-,!"@@@@@@@@%$@%."%$(%%$@@@@@@@(@@@@@@,%@@@@@@,&@@@@@@@@@@@@@@@@@"#"@"$&"'_&@'@')&.&'&@"@%%$@"("&&"'_&-&@"!#&#"&)&$'@"."#$_$-$@"&&)&,&%&)"-@-@*@$"-$*%@@@@@%%$@@@@,$!@@@@@-&#'&'#&"'$'."$&,&,&@@@@@@@@"@!@+@!@(&$.@@@$@@__%!$$@@@$@@+.)@@@.!@@@@@@@@@@@@@@#($,$@#,@@@@@$@@$@@@@@@@$@@@@@@@!&@@@@@@@@@@@@@@$@@@@@@@@@@@@@@@,@!@@@@@+@!@@@@@@@@@@@@@#@@@@@@'"')&.&$'&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-@@@@@@@@@@@@@@@@@@@@@@@((@@@@@@$$@@@@@@@@@@@@@@@@@@@@@@,@@@@@@@$$@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@$$@@@@@@(@@@@@@@@"#"@"$&"'_&@'@'%&$&@"@%%$@"("##"#"&@"@%%$@"&&)&,&%&)"*@@@@@@@@@@@@@@@@@@@@@@@@@
+}}}
+
+==EICAR==
+https://corkami.googlecode.com/svn/wiki/pics/misc_eicar2.png
+
+the EICAR file is a tiny test file that is made of printable characters and prints the eicar test string.
+
+ * [https://corkami.googlecode.com/svn/trunk/asm/encodings/eicar.asm commented assembly source]
+
+{{{
+X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*
+}}}
+===EICAR2===
+Peter Ferrie rewrote the EICAR file, smaller this time, as the test string itself is executed in this new version.
+{{{
+5T2)D4)D65Z3PZEICAR-STANDARD-ANTIVIRUS-TEST-FILE!$UX!T!S
+}}}
+
+ * [https://corkami.googlecode.com/svn/trunk/asm/encodings/eicar2.asm commented assembly source]
+----
+=acknowledgements=
+ * Peter Ferrie
+ * [http://utf-8.jp/ Yosuke Hasegawa]
+
+====[http://code.google.com/p/corkami/ << back to index]====
