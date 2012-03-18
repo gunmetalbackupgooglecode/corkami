@@ -16,6 +16,7 @@
   * but also many [http://code.google.com/p/corkami/wiki/x86oddities x86 oddities],
   * and how to [http://code.google.com/p/corkami/wiki/GetIP get the current IP]
   * and it's also a tricky PE, using many tricks, so many tools don't even identify it as a PE.
+ * [Encodings curious encodings]
 
 =binaries=
  * [http://code.google.com/p/corkami/downloads/list?can=1&q=Binary+corpus Binary corpus] is a group of non malicious binaries, exhibiting various file formats, and more specifically, aspects of PE files.
@@ -36,11 +37,6 @@
 =cheat sheets=
  * [OpcodesTables Opcodes' tables] of Java, .Net, Android, x86 - as either compact one page cheat sheets, or full descriptive posters.
  * Infographics and cheat sheets, useful to for daily use or training for reverse engineers: [http://code.google.com/p/corkami/downloads/detail?name=opcodes.pdf Opcodes] [http://code.google.com/p/corkami/downloads/detail?name=cm.pdf anti-debugs] [http://code.google.com/p/corkami/downloads/detail?name=packers.pdf packers] [http://code.google.com/p/corkami/downloads/detail?name=pe-20110117.pdf PE file format]
-
-=commented disassembly=
- * Peter Ferrie's [http://corkami.googlecode.com/svn-history/trunk/misc/eicar2.asm EICAR2] (a 18% smaller version of the EICAR file): `5T2)D4)D65Z3PZEICAR-STANDARD-ANTIVIRUS-TEST-FILE!$UX!T!S`
- * [http://corkami.googlecode.com/svn-history/r539/trunk/misc/aa86.asm AA86]: Assembler encoder that makes x86 code looks like `%@"%"@,~,%,!_^[^_^]-;>_^[^_^]%"!,^,:_^`...
- * [http://corkami.googlecode.com/svn-history/r399/trunk/misc/jjencode.txt JJEncode]: !JavaScript encoder that makes !JavaScript code looks like `$=~[];$={___:++$,$$$$:(![]+"")[$],__$:++$,$_$_:(`...
 
 =misc=
  * a [InitialValues page] gathering values of system registers and values on TLS/!EntryPoint/... of most Windows versions.
