@@ -4,12 +4,15 @@
 ====[http://code.google.com/p/corkami/ << back to index]====
 
 =PE=
- * This page ([http://code.google.com/p/corkami/wiki/PE?show=content printable version] [http://corkami.googlecode.com/svn/wiki/PE.wiki wiki source]) deals with the PE format, or more specifically, x86/x64 Windows (from XP to W7) binaries (ie, not other OSes or systems, not OBJ format, etc...)
+ * This page  deals with the PE format, or more specifically, x86/x64 Windows (from XP to W7) binaries (ie, not other OSes or systems, not OBJ format, etc...)
  * It deals with the reality of the loader, not the theory of the format itself, as specified in _Microsoft PE and COFF Specification_. Many malwares or packers actually run without a problem, while they theoretically shouldn't.
  * All proof of concepts are included with source.
   * They're all working and clean.
   * They're all generated in asssembly, by hand, from scratch, so no superfluous information is included (they might be wrongly detected as suspicious for that).
-  * [http://corkami.googlecode.com/svn/trunk/asm/PE/ repository directory] [http://code.google.com/p/corkami/downloads/list?q=CPC sources+binaries download] [http://xchg.info/corkami nightly builds]
+  * links
+   * this page: [http://code.google.com/p/corkami/wiki/PE?show=content printable version] [http://corkami.googlecode.com/svn/wiki/PE.wiki wiki source]
+   * sources: [http://corkami.googlecode.com/svn/trunk/asm/PE/ repository directory]
+   * binaries with sources: [http://code.google.com/p/corkami/downloads/list?q=CPC official builds] [http://xchg.info/corkami nightly builds] *[http://xchg.info/corkami/latest/pe.rar latest]*
 <wiki:toc max_depth="3" />
 
 =required elements=
