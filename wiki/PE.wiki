@@ -1,6 +1,5 @@
 #summary the Portable Executable Format on Windows
 #labels Featured
-
 ====[http://code.google.com/p/corkami/ << back to index]====
 
 =PE=
@@ -1479,5 +1478,7 @@ istruc IMAGE_NT_HEADERS
 
 =Other resources=
  * [http://www.reversinglabs.com/advisory/pecoff.php Undocumented PE/COFF]
+ * [http://code.google.com/p/corkami/downloads/list?q=pe*.pdf+Type%3DInfographics PE infographics]
+ https://corkami.googlecode.com/svn/trunk/pics/misc/PE%20headers%20diagram.png
 
 ====[http://code.google.com/p/corkami/ << back to index]====
