@@ -13,8 +13,8 @@ Corkami is:
   * constantly updated (wiki format)
    * always public, thus subject to feedback: correction, suggestion, etc...
   * binaries are directly downloadable
-  * binaries are hand-made, to focus on what's important
-  * printable documents (cheat sheets, diagrams, tables) to use daily for work
+  * binaries are hand made to be concise
+  * printable documents (cheat sheets, diagrams, tables) to use daily at work
 
 the way I work:
  # I study a specific topic (PDF, PE, x86...)
@@ -30,6 +30,8 @@ Ange
 [http://twitter.com/#!/ange4771 @ange4771] ([http://twitter.com/#!/corkami @corkami] for news only)
 
 Comments, critics, suggestions, etc... are welcome.
+
+If you like it and find it useful, then you can actually prove it via my [http://www.amazon.de/registry/wishlist/11FVTHTOLVZ0C wishlist] (and also this [http://www.amazon.fr/registry/wishlist/13MJPFNU8QPAC one] if you're french).
 
 =landmarks=
 == step 1.5 (2011/12/30) ==
