@@ -1425,6 +1425,7 @@ AddressOfIndex:
 }}}
 
 https://corkami.googlecode.com/svn/wiki/pics/PE_tlsaoidet_w7.png https://corkami.googlecode.com/svn/wiki/pics/PE_tlsaoidet_xp.png
+
 ===manyimportsW7===
  * this W7-only binary use the TLS !AoI trick to clean its imports. On disk, the import table is full of bogus descriptors, which will be ignored on loading
  {{{
@@ -1457,6 +1458,23 @@ istruc IMAGE_NT_HEADERS
     at IMAGE_NT_HEADERS.Signature, db 'PE',0,0
 }}}
  * however, the NT HEADERS magic contains necessarily 2 null bytes, thus it's impossible to have a working PE with no null byte at all.
+
+==data PEs==
+some specific cases require PE files with less elements than otherwise mentioned
+
+===Data Files===
+loading a file via !LoadLibraryEx with LOAD_LIBRARY_AS_DATAFILE needs a PE file with only a very few defined elements: not even the Subsystem or the Machine needs to be defined for such a ''library''.
+ * `d_tiny.dll` is a 61 bytes PE with only 3 defined elements
+  https://corkami.googlecode.com/svn/wiki/pics/PE_tiny_dpe.png
+
+yet even if nothing is defined, its code can still be ran. This allows us to make a non-null PE with code.
+ * `d_nonnull.dll` is a data PE with executed code and no null character
+  https://corkami.googlecode.com/svn/wiki/pics/PE_nonnull_dpe.png
+
+===resources===
+A standard use for code-less PEs is to store resources. In this case, more fields are required (Machine, !SizeOfOptionalHeader, !SizeOfHeaders), but most fields can contain bogus values.
+ * `d_resource.dll` is a PE with a lot of corrupted fields yet correct and usable resources
+  https://corkami.googlecode.com/svn/wiki/pics/PE_resourcedPE.png
 
 ----
 =conclusion=
