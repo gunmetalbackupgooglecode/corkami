@@ -272,7 +272,7 @@ unused
   * `dll-ld.exe` has a version of 3.10
  * this effects heap flags
 
-=====Reserved1 (!Win32VersionValue)=====
+===Reserved1 (!Win32VersionValue)===
  * officially defined as ''reserved'' and should be null
  * if non null, it overrides !MajorVersion/!MinorVersion/!BuildNumber/!PlatformId !OperatingSystem Versions values located in the PEB, after loading.
   * `winver.exe` has a non-null !Win32VersionValue to shows altered values, via GetVersionExA
