@@ -270,10 +270,22 @@ unused
 ===!MajorSubsystemVersion/!MinorSubsystemVersion===
  * !MajorSubsystemVersion.!MinorSubsystemVersion has to be at least 3.10
   * `dll-ld.exe` has a version of 3.10
- * this effects heap flags, and can be overriden by Reserved1 (see below)
+ * this effects heap flags
 
-=====Reserved1 (!Win32Version)=====
- * can override Major/Minor !OperatingSystem/Image Versions, after loading.
+=====Reserved1 (!Win32VersionValue)=====
+ * officially defined as ''reserved'' and should be null
+ * if non null, it overrides !MajorVersion/!MinorVersion/!BuildNumber/!PlatformId !OperatingSystem Versions values located in the PEB, after loading.
+  * `winver.exe` has a non-null !Win32VersionValue to shows altered values, via GetVersionExA
+{{{
+OSMAJOR equ 31
+OSMINOR equ 41
+BUILD equ 5926
+ID equ 3 ; [0;3]
+
+	at IMAGE_OPTIONAL_HEADER32.Win32VersionValue, dd OSMAJOR | (OSMINOR << 8) | ((BUILD & 03fffh) << 16) | (((ID & 3) ^ 02h) << 30)
+}}}
+
+   https://corkami.googlecode.com/svn/wiki/pics/PE_winver.png
 
 ===!SizeOfImage===
  * normally equal the total virtual size of all sections + headers
