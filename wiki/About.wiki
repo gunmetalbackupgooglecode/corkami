@@ -27,11 +27,9 @@ Hope you like it,
 
 Ange
 
-[http://twitter.com/#!/ange4771 @ange4771] ([http://twitter.com/#!/corkami @corkami] for news only)
+[http://twitter.com/#!/ange4771 @ange4771] ([http://twitter.com/#!/corkami @corkami], for news only)
 
 Comments, critics, suggestions, etc... are welcome.
-
-If you like it and find it useful, then you can actually prove it via my [http://www.amazon.de/registry/wishlist/11FVTHTOLVZ0C wishlist] (and also this [http://www.amazon.fr/registry/wishlist/13MJPFNU8QPAC one] if you're french).
 
 =landmarks=
 == step 1.5 (2011/12/30) ==
@@ -88,3 +86,8 @@ and those who pulled me forward:
  Nicola Salmoria,
  Omar Cornut,
  ...
+
+==donations==
+If you like it, and find it truly useful, then you can actually prove it by: 
+ * buying something in my [http://www.amazon.de/registry/wishlist/11FVTHTOLVZ0C Amazon wishlist] (et [http://www.amazon.fr/registry/wishlist/13MJPFNU8QPAC celle-ci] pour les français).
+ * donating via Paypal <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/donate.xml height=67 width=202 border=0/>
