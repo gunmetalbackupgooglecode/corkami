@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+<ModulePrefs title="Flash Player"
+width="1024"
+height="788"
+scrolling="false"
+>
+<Require feature="flash" />
+</ModulePrefs>
+
+<UserPref name="File" display_name="File (*.swf)" required="true" default_value="" />
+<UserPref name="FlashWidth" display_name="Flash Width" required="true" default_value="1024" />
+<UserPref name="FlashHeight" display_name="Flash Height" required="true" default_value="788" />
+<UserPref name="ContainerCol" display_name="Container Color" required="true" default_value="#d1dae3" />
+
+<Content type="html">
+<![CDATA[
+
+<style type="text/css">
+body
+{
+padding: 0;
+margin: 0;
+background: __UP_ContainerCol__;
+}
+
+</style>
+
+<div id="flashcontainer" style="text-align: center; "></div>
+
+<script type="text/javascript">
+
+var prefs = new _IG_Prefs(__MODULE_ID__);
+
+var s_file=_trim(prefs.getString("File"));
+var s_width=_trim(prefs.getString("FlashWidth"));
+var s_height=_trim(prefs.getString("FlashHeight"));
+
+function display()
+{
+_IG_EmbedFlash(s_file, "flashcontainer", {
+swf_version: 10,
+id: "flashid",
+wmode: "transparent",
+scale: "showall",
+width: s_width,
+height: s_height
+})
+}
+
+_IG_RegisterOnloadHandler(display);
+
+</script>
+]]>
+</Content>
+</Module>
