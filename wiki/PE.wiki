@@ -55,7 +55,7 @@ so everything else is not required.
  * starts at offset 0
  * most values only matters to the DOS stub.
   * `compiled` contains a DOS stub
-   https://corkami.googlecode.com/svn/wiki/pics/PE_dosstub.png
+      <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_dosstub.swf up_FlashHeight=157 up_FlashWidth=380 up_ContainerCol="#d1dae3" height=157 width=380 title="" border=0/>
    {{{
    DOS_HEADER:
 ...
@@ -79,7 +79,7 @@ dos_msg
  * While it's usually just printing a string and terminating, the dos stub can do everything: open, modify files, and even executes PE.
 
 ===exe2pe===
-https://corkami.googlecode.com/svn/wiki/pics/PE_exe2pe.png
+<wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_exe2pe.swf up_FlashHeight=276 up_FlashWidth=747 up_ContainerCol="#d1dae3" height=276 width=747 title="" border=0/>
 
 this file is a broken 32b PE that is fixed (on disk), then launched by its (16b) dos stub.
 
@@ -88,7 +88,7 @@ this file is a broken 32b PE that is fixed (on disk), then launched by its (16b)
  * stands for [http://en.wikipedia.org/wiki/Mark_Zbikowski Mark Zbikowski]
  * it can be `ZM` on an (non-PE) EXE. These executables still work under XP via ntvdm.
   * `dosZMXP` is a non-PE EXE with a ZM signature
-  https://corkami.googlecode.com/svn/wiki/pics/PE_doszmxp.png
+  <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_doszmxp.swf up_FlashHeight=133 up_FlashWidth=207 up_ContainerCol="#d1dae3" height=133 width=207 title="" border=0/>
   {{{
 at IMAGE_DOS_HEADER.e_magic, db 'ZM'
 }}}
@@ -307,7 +307,7 @@ From a technical perspective, drivers and gui/console PEs are identical, except 
  * a CONSOLE PE is exactly like a GUI PE except that it comes with a pre-attached console.
 
  * `multiss` is a multi subsystem PE that will work correctly under all 3 subsystems, and display a message.
-   https://corkami.googlecode.com/svn/wiki/pics/PE_multiss.png
+   <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_multiss.swf up_FlashHeight=245 up_FlashWidth=397 up_ContainerCol="#d1dae3" height=245 width=397 title="" border=0/>
    # determines the level of execution by checking CS
    # resolve NTOSKRNL/KERNEL32 imports manually (by checksum, as it can't have any static import)
 
