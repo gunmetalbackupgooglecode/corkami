@@ -143,7 +143,7 @@ align 16, db 0
   * `96emptysections.exe` (all identical), `96workingsections.exe` (all physically different), `maxsecXP.exe` (garbage table)
  * can be up to 65535
   * `65535sects.exe` has 65535 sections, that are all virtually executed.
-   https://corkami.googlecode.com/svn/wiki/pics/PE_65535.png
+   <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_65535.swf up_FlashWidth=508 up_FlashHeight=415 up_ContainerCol="#d1dae3" height=415 width=508 title="" border=0/>
 
 ===!TimeDateStamp===
  * has a different meaning whether it's a Borland or a Microsoft compiler
