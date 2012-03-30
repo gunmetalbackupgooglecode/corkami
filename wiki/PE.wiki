@@ -88,7 +88,7 @@ this file is a broken 32b PE that is fixed (on disk), then launched by its (16b)
  * stands for [http://en.wikipedia.org/wiki/Mark_Zbikowski Mark Zbikowski]
  * it can be `ZM` on an (non-PE) EXE. These executables still work under XP via ntvdm.
   * `dosZMXP` is a non-PE EXE with a ZM signature
-  <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_doszmxp.swf up_FlashHeight=133 up_FlashWidth=207 up_ContainerCol="#d1dae3" height=133 width=207 title="" border=0/>
+  <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_doszmxp.swf up_FlashHeight=208 up_FlashWidth=207 up_ContainerCol="#d1dae3" height=208 width=207 title="" border=0/>
   {{{
 at IMAGE_DOS_HEADER.e_magic, db 'ZM'
 }}}
