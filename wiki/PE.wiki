@@ -138,7 +138,7 @@ align 16, db 0
  * can be null with low alignment PEs
   * `nosection*.exe`, `tiny*.exe`
   * and in this case, the values are just checked but not really used (under XP)
-  https://corkami.googlecode.com/svn/wiki/pics/PE_maxsecxp.png
+  <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_maxsecxp.swf up_FlashHeight=234 up_FlashWidth=509 up_ContainerCol="#d1dae3" height=234 width=509 title="" border=0/>
  * can be up to 96 under XP:
   * `96emptysections.exe` (all identical), `96workingsections.exe` (all physically different), `maxsecXP.exe` (garbage table)
  * can be up to 65535
@@ -156,7 +156,7 @@ no importance whatsoever for the loader
  * is not the size of the optional header, just the delta between the top of the Optional header and the start of the section table.
  Thus, it can be null (the section table will overlap with the Optional Header, or can be null when no sections are present) or as big as the file (the section table will be in virtual space, full of zero).
   * `nullSOH-XP` is a PE with a null !SizeOfHeaders. the section table is thus overlapping the optional header. (XP only).
-  https://corkami.googlecode.com/svn/wiki/pics/PE_nullSOH-xp.png
+  <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_nullSOH-xp.swf up_FlashHeight=211 up_FlashWidth=511 up_ContainerCol="#d1dae3" height=211 width=511 title="" border=0/>
     {{{
 ...
 SECTIONALIGN equ 4
@@ -170,7 +170,7 @@ istruc IMAGE_OPTIONAL_HEADER32
 ...
 }}}
   * `virtsectblXP` is a PE with its 82 sections of empty information, with its section table in virtual space.
-  https://corkami.googlecode.com/svn/wiki/pics/PE_virtsectblxp.png
+  <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_virtsectblxp.swf up_FlashHeight=273 up_FlashWidth=548 up_ContainerCol="#d1dae3" height=273 width=548 title="" border=0/>
 {{{
 ...
     at IMAGE_FILE_HEADER.NumberOfSections,      dw 82 ; 0 <= NumberOfSections <= 82 (varies with SizeOfOptionalHeader)
