@@ -196,7 +196,7 @@ unused
 ===!AddressOfEntryPoint===
  * can be null
   * `nullEP.exe` has a null !EntryPoint: Execution starts at !ImageBase, executing 'MZ' as 'dec ebp/pop edx'
-  https://corkami.googlecode.com/svn/wiki/pics/PE_nullep.png
+  <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_nullep.swf up_FlashHeight=247 up_FlashWidth=557 up_ContainerCol="#d1dae3" height=247 width=557 title="" border=0/>
   {{{
 EntryPoint:
 istruc IMAGE_DOS_HEADER
@@ -213,7 +213,7 @@ istruc IMAGE_DOS_HEADER
  * can be absent/bypassed (see TLS)
  * can be negative
   * `dllextep-ld` has an external !EntryPoint that is located in `dllextep.dll` (a dll with no relocations)
-  https://corkami.googlecode.com/svn/wiki/pics/PE_dllextep.png
+  <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_dllextep.swf up_FlashHeight=238 up_FlashWidth=608 up_ContainerCol="#d1dae3" height=238 width=608 title="" border=0/>
    * `dllext-ep`:
    {{{
 IMAGEBASE equ 1000000h
@@ -226,7 +226,7 @@ IMAGEBASE equ 33000000h
 }}}
  * can be virtual
   * `virtEP.exe` code starts one byte before the start of the section. This virtual space will be full of 0 on loading, so the first opcode will be made from one virtual byte and one physical byte.
-  https://corkami.googlecode.com/svn/wiki/pics/PE_virtEP.png
+  <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_virtEP.swf up_FlashHeight=268 up_FlashWidth=358 up_ContainerCol="#d1dae3" height=268 width=358 title="" border=0/>
 {{{
     at IMAGE_OPTIONAL_HEADER32.AddressOfEntryPoint,       dd EntryPoint - IMAGEBASE - 1 ; -1 to start in virtual space
 ...
@@ -237,7 +237,7 @@ EntryPoint:
 ...
 }}}
   * `tls_virtEP` has an 'invalid' !EntryPoint, but the TLS allocates the memory space and generates some codes, so the !EntryPoint works fine.
-  https://corkami.googlecode.com/svn/wiki/pics/PE_tlsvirtEP.png
+  <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_tlsvirtEP.swf up_FlashHeight=284 up_FlashWidth=532 up_ContainerCol="#d1dae3" height=284 width=532 title="" border=0/>
 =====!BaseOfCode/!BaseOfData=====
 unused
 
@@ -245,7 +245,7 @@ unused
  * is a multiple of 10000h
  * can be null, under XP. In this case, the binary will be relocated to 10000h
   * `ibnullXP.exe` has a null imagebase, and relocations
-   https://corkami.googlecode.com/svn/wiki/pics/PE_ibnullxp.png
+   <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_ibnullxp.swf up_FlashHeight=155 up_FlashWidth=380 up_ContainerCol="#d1dae3" height=155 width=380 title="" border=0/>
  * can be any value as long as `ImageBase + 'SizeOfImage' < 80000000h`
   * `bigib.exe` has an !ImageBase of 7ffd0000h, and no relocations
    https://corkami.googlecode.com/svn/wiki/pics/PE_bigib.png
