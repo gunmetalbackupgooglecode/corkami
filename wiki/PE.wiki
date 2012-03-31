@@ -771,7 +771,7 @@ RESOURCE_SIZE equ $ - resource_data
  * relocations are used when the PE is loaded at a different !ImageBase. Hardcoded Addresses such as `push <addr>` and `call [<addr>]` have to be adjusted.
  * relocations are not used (even with corrupted ones) if the PE can be loaded at the expected address.
   * `fakerelocs.exe` contains fake unused relocations:
-  https://corkami.googlecode.com/svn/wiki/pics/PE_fakerelocs.png
+  <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_fakerelocs.swf up_FlashHeight=289 up_FlashWidth=331 up_ContainerCol="#d1dae3" height=289 width=331 title="" border=0/>
   {{{
     Directory_Entry_Basereloc:
     ...
@@ -895,7 +895,7 @@ call [rel __imp__printf]
 }}}
   * if the file knows where it will be relocated, it can apply its relocation manually in advance. The code will look wrong on disk, but ok in memory.
    * `ibkmanual.exe` uses such a technique of pre-relocated code
-  https://corkami.googlecode.com/svn/wiki/pics/PE_ibkmanual.png
+  <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_ibkmanual.swf up_FlashHeight=151 up_FlashWidth=464 up_ContainerCol="#d1dae3" height=151 width=464 title="" border=0/>
   {{{
     IMAGEBASE equ 0FFFF0000h
     ...
