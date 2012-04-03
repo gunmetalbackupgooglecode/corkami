@@ -1,17 +1,20 @@
 #summary the Portable Executable Format on Windows
 #labels Featured
+
 ====[http://code.google.com/p/corkami/ << back to index]====
 
 =PE=
- * This page  deals with the PE format, or more specifically, x86/x64 Windows (from XP to W7) binaries (ie, not other OSes or systems, not OBJ format, etc...)
- * It deals with the reality of the loader, not the theory of the format itself, as specified in _Microsoft PE and COFF Specification_. Many malwares or packers actually run without a problem, while they theoretically shouldn't.
- * All proof of concepts are included with source.
-  * They're all working and clean.
-  * They're all generated in asssembly, by hand, from scratch, so no superfluous information is included (they might be wrongly detected as suspicious for that).
-  * links
-   * this page: [http://code.google.com/p/corkami/wiki/PE?show=content printable version] [http://corkami.googlecode.com/svn/wiki/PE.wiki wiki source]
-   * sources: [http://corkami.googlecode.com/svn/trunk/asm/PE/ repository directory]
-   * binaries with sources: [http://code.google.com/p/corkami/downloads/list?q=CPC official builds] [http://xchg.info/corkami nightly builds] *[http://xchg.info/corkami/latest/pe.rar latest]*
+This page deals with the PE format, or more specifically, x86/x64 Windows (from XP to W7) binaries (ie, not other OSes or systems, not OBJ format, etc...)
+
+It deals with the *reality* of the loader, not the theory of the format itself, as specified in _Microsoft PE and COFF Specification_. Many malwares or packers actually run without a problem, while they theoretically shouldn't.
+
+All proof of concepts are included with source:
+ * They're all working and clean.
+ * They're all generated in asssembly, by hand, from scratch, so no superfluous information is included (they might be wrongly detected as suspicious for that).
+ * links
+  * this page: [http://code.google.com/p/corkami/wiki/PE?show=content printable version] [http://corkami.googlecode.com/svn/wiki/PE.wiki wiki source]
+  * sources: [http://corkami.googlecode.com/svn/trunk/asm/PE/ repository directory]
+  * binaries with sources: [http://code.google.com/p/corkami/downloads/list?q=CPC official builds] [http://xchg.info/corkami nightly builds] *[http://xchg.info/corkami/latest/pe.rar latest]*
 <wiki:toc max_depth="3" />
 
 =required elements=
@@ -25,7 +28,7 @@ a standard (high aligments, sections, imports) PE such as `normal` can be define
     at IMAGE_FILE_HEADER.Machine,               dw IMAGE_FILE_MACHINE_I386
     at IMAGE_FILE_HEADER.NumberOfSections,      dw NUMBEROFSECTIONS
     at IMAGE_FILE_HEADER.SizeOfOptionalHeader,  dw SIZEOFOPTIONALHEADER
-    at IMAGE_FILE_HEADER.Characteristics,       dw IMAGE_FILE_EXECUTABLE_IMAGE | IMAGE_FILE_32BIT_MACHINE
+    at IMAGE_FILE_HEADER.Characteristics,       dw IMAGE_FILE_EXECUTABLE_IMAGE
 ...
     istruc IMAGE_OPTIONAL_HEADER32
     at IMAGE_OPTIONAL_HEADER32.Magic,                     dw IMAGE_NT_OPTIONAL_HDR32_MAGIC
@@ -81,7 +84,7 @@ dos_msg
 ===exe2pe===
 <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_exe2pe.swf up_FlashHeight=276 up_FlashWidth=747 up_ContainerCol="#d1dae3" height=276 width=747 title="" border=0/>
 
-this file is a broken 32b PE that is fixed (on disk), then launched by its (16b) dos stub.
+this file is a broken 32b PE that is fixed (on disk), then launched by its (16b) dos stub. What's the most surprising is that a 16b process can launch the 32b part of a PE: if you were in a DOS environment, the 16b stub would be executed.
 
 ==e_magic===
  * = `MZ`
@@ -97,7 +100,10 @@ at IMAGE_DOS_HEADER.e_magic, db 'ZM'
  * points to the dos stub, shifted by 4 (count of paragraphs)
 
 ===e_lfanew===
+ * is the only required element (besides the signature) of the DOS HEADER to turn the EXE into a PE.
  * is a relative offset to the NT Headers.
+ * can't be null (signatures would overlap)
+ * can be 4 at minimum
   * `tiny` has a `e_lfanew` of 4, which means the NT Headers is overlapping the DOS Header.
  {{{
 DOS_HEADER:
@@ -128,11 +134,15 @@ dd "Rich", 0 ^ RichKey  , 0, 0
 align 16, db 0
 }}}
 ==NT Headers ('PE Header')==
+ * must start with 'PE', 0, 0
+  * this is the smallest requirement for a valid PE. see
  * has to be dword-aligned.
 
 ===Machine===
- * `014c` for 32b
- * `8664` for 64b
+ * specifies the used CPU
+  * `014c` for 32b, which officially correspond to 'Intel 386 or later'. `014d`/`014e` are unofficially corresponding to 486 and Pentium, however such Machine types are rejected for execution by Windows.
+  * `8664` for 64b (AMD64 only, not Itaniums, with `0200`)
+ * is not required when no code should be executed (see [#Data_Files data or resource-only PEs])
 
 ===!NumberOfSections===
  * can be null with low alignment PEs
@@ -141,7 +151,7 @@ align 16, db 0
   <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_maxsecxp.swf up_FlashHeight=234 up_FlashWidth=509 up_ContainerCol="#d1dae3" height=234 width=509 title="" border=0/>
  * can be up to 96 under XP:
   * `96emptysections.exe` (all identical), `96workingsections.exe` (all physically different), `maxsecXP.exe` (garbage table)
- * can be up to 65535
+ * can be up to 65535 under Vista and later:
   * `65535sects.exe` has 65535 sections, that are all virtually executed.
    <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_65535.swf up_FlashHeight=417 up_FlashWidth=510 up_ContainerCol="#d1dae3" height=417 width=510 title="" border=0/>
 
@@ -153,8 +163,8 @@ align 16, db 0
 no importance whatsoever for the loader
 
 ===!SizeOfOptionalHeader===
- * is not the size of the optional header, just the delta between the top of the Optional header and the start of the section table.
- Thus, it can be null (the section table will overlap with the Optional Header, or can be null when no sections are present) or as big as the file (the section table will be in virtual space, full of zero).
+ * is not the size of the optional header, but the delta between the top of the Optional header and the start of the section table.
+ Thus, it can be null (the section table will overlap the Optional Header, or can be null when no sections are present), or bigger than the file (the section table will be in virtual space, full of zeroes), but can't be negative.
   * `nullSOH-XP` is a PE with a null !SizeOfHeaders. the section table is thus overlapping the optional header. (XP only).
   <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_nullSOH-xp.swf up_FlashHeight=211 up_FlashWidth=511 up_ContainerCol="#d1dae3" height=211 width=511 title="" border=0/>
     {{{
@@ -181,17 +191,36 @@ SIZEOFOPTIONALHEADER equ 10h + $ - IMAGEBASE ; bigger than the file itself !
 }}}
  * standard value: `E0`
 
- ==Optional Header==
+===Characteristics===
+ * 0x2 IMAGE_FILE_EXECUTABLE_IMAGE is required when code is executed.
+ * 0x2000 / IMAGE_FILE_DLL is required in for DLLs, in most cases, except:
+  * if it's not set, the DLLMain of a staticly loaded DLL will not be called, but the DLL is loaded and exports are usable.
+   * `dllnomain.dll` is staticly-loaded, has no valid !DllMain, but its export is executed.
+   https://corkami.googlecode.com/svn/wiki/pics/PE_dllnomain.png
+{{{
+...
+    at IMAGE_FILE_HEADER.Characteristics,       dw IMAGE_FILE_EXECUTABLE_IMAGE
+...
+    at IMAGE_OPTIONAL_HEADER32.AddressOfEntryPoint,       dd 31415926h
+...
+}}}
+ * 0x100 / IMAGE_FILE_32BIT_MACHINE is *not* required, even in 32b.
+  * it can be set for a 64b PE32+, and causes no problem.
+ * nothing else is required
+
+==Optional Header==
+ * is anything but optional, as soon as execution is required.
 
 ===Magic===
- * `10b` for 32b
- * `20b` for 64b
+ * specifies the exact format of OptionalHeader
+  * `10b` for 32b
+  * `20b` for 64b
 
 =====!MajorLinkerVersion/!MinorLinkerVersion=====
-unused
+no particular importance whatsoever
 
 =====!SizeOfCode/!SizeOfInitializedData/!SizeOfUninitializedData=====
-unused
+no particular importance whatsoever
 
 ===!AddressOfEntryPoint===
  * can be null
@@ -238,8 +267,9 @@ EntryPoint:
 }}}
   * `tls_virtEP` has an 'invalid' !EntryPoint, but the TLS allocates the memory space and generates some codes, so the !EntryPoint works fine.
   <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_tlsvirtEP.swf up_FlashHeight=284 up_FlashWidth=532 up_ContainerCol="#d1dae3" height=284 width=532 title="" border=0/>
+ * is not used when a staticly loaded DLL doesn't have IMAGE_FILE_DLL set as IMAGE_FILE_HEADER.Characteristics
 =====!BaseOfCode/!BaseOfData=====
-unused
+no particular importance whatsoever
 
 ===!ImageBase===
  * is a multiple of 10000h
@@ -265,7 +295,7 @@ unused
   * all `nosection*.exe` have alignments of 1/1
 
 =====!MajorOperatingSystemVersion/!MinorOperatingSystemVersion/!MajorImageVersion/!MinorImageVersion=====
- * unused
+no particular importance whatsoever
 
 ===!MajorSubsystemVersion/!MinorSubsystemVersion===
  * !MajorSubsystemVersion.!MinorSubsystemVersion has to be at least 3.10
@@ -322,14 +352,10 @@ From a technical perspective, drivers and gui/console PEs are identical, except 
 
 ===!NumberOfRvaAndSizes===
  * rounded down to 16 if bigger
-  * `maxvals` has a maximum of PE structures set to FF, including its !NumberOfRvaAndSizes. set to FFFF
+  * `maxvals` has a maximum of PE structures set to FF, including its !NumberOfRvaAndSizes which is set to FFFF
   https://corkami.googlecode.com/svn/wiki/pics/PE_maxvals.png
  * can be 0
   * `no_dd` has no data directory (see `imports`)
-
-==Optional Header==
- * is anything but optional on a windows executable.
-
 
 ==data directories==
 
@@ -379,7 +405,7 @@ Exports_Directory:
 ...
 aDllName db 'completely unrelated dll name', 1, 2, 3, 4, 0
 }}}
- * export names can have any value (even null or more than 65536 characters long, with unprintable characters). just null terminated.
+ * export names can have any value (even null or more than 65536 characters long, with unprintable characters), just null terminated.
   * `dllemptyexp-ld.exe` loads `dllemptyexp.dll` with a null export
    https://corkami.googlecode.com/svn/wiki/pics/PE_dllemptyexp.png
   * `dllweirdexp-ld.exe` loads `dllweirdexp.dll` with a 131102-long non-Ascii export.
@@ -436,7 +462,7 @@ address_of_functions:
     dd -1                                   ; bogus entry that will be 313h
     dd __exp__Export - IMAGEBASE
 }}}
- * exports can be used just to forward imports. in this case, the forwarded import is written as `dll.API` and must be within exportsVA and Size.
+ * exports can be used just to forward imports. in this case, the forwarded import is written as `dll.API` and must be within exportsVA and exportsVA+Size.
   * `dllfw.dll` forwards imports from msvcrt
  {{{
 address_of_functions:
@@ -992,7 +1018,7 @@ tls:
 tls2:
 ...
 }}}
- * if a callbacks call !ExitProcess, the !EntryPoint won't be called, however the callback will be executed after the !ExitProcess call
+ * if a callback calls !ExitProcess, the !EntryPoint won't be called, however the callback will be executed after the !ExitProcess call
   * `tls_exiting.exe` contains an exiting TLS callback, preventing the !EntryPoint code to be ever called.
   * `tls_noEP.exe` contains no !EntryPoint, its callback calls !ExitProcess, then the first callback is called again.
   https://corkami.googlecode.com/svn/wiki/pics/PE_tls_noep.png
@@ -1022,7 +1048,7 @@ AddressOfIndex equ $ + 1
 
 =====Load config=====
  * not covered here
- * store various OS related flags
+ * store various OS related flags, including the !SafeSEH structure
 
 ===Bound imports===
  * are a shortcut structure to hardcode some imports values in advance, to make import values faster
@@ -1505,10 +1531,14 @@ A standard use for code-less PEs is to store resources. In this case, more field
  * Ivanlef0u
  * Kris Kaspersky
  * Moritz Kroll
+ * Walied Assar
 
-=Other resources=
- * [http://www.reversinglabs.com/advisory/pecoff.php Undocumented PE/COFF]
+=extra resources=
  * [http://code.google.com/p/corkami/downloads/list?q=pe*.pdf+Type%3DInfographics PE infographics]
- https://corkami.googlecode.com/svn/trunk/pics/misc/PE%20headers%20diagram.png
+  <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/slideshare_PE.xml width=477 height=510 border=1>
+
+=external resources=
+ * [http://www.reversinglabs.com/advisory/pecoff.php Undocumented PE/COFF] _Reversing Labs_
+ * [http://ntcore.com/files/richsign.htm Microsoft's Rich Signature (undocumented)] _Daniel Pistelli_
 
 ====[http://code.google.com/p/corkami/ << back to index]====
