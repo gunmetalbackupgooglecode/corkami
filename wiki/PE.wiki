@@ -194,7 +194,7 @@ SIZEOFOPTIONALHEADER equ 10h + $ - IMAGEBASE ; bigger than the file itself !
 ===Characteristics===
  * 0x2 IMAGE_FILE_EXECUTABLE_IMAGE is required when code is executed.
  * 0x2000 / IMAGE_FILE_DLL is required in for DLLs, in most cases, except:
-  * if it's not set, the DLLMain of a staticly loaded DLL will not be called, but the DLL is loaded and exports are usable.
+  * if it's not set, the DLLMain will not be called, but the DLL is loaded and exports are usable. if it was dynamically called, the imports of the DLL won't be resolved
    * `dllnomain.dll` is staticly-loaded, has no valid !DllMain, but its export is executed.
    https://corkami.googlecode.com/svn/wiki/pics/PE_dllnomain.png
 {{{
@@ -204,6 +204,10 @@ SIZEOFOPTIONALHEADER equ 10h + $ - IMAGEBASE ; bigger than the file itself !
     at IMAGE_OPTIONAL_HEADER32.AddressOfEntryPoint,       dd 31415926h
 ...
 }}}
+   * `dllnomain2.dll` is an import-less dynamically loaded dll with no !DllMain
+  * IMAGE_FILE_DLL should NOT be set for a non-DLL PE.
+   * `maxvalues.exe` has all its characteristics set excepted IMAGE_FILE_DLL.
+   https://corkami.googlecode.com/svn/wiki/pics/PE_maxvals2.png
  * 0x100 / IMAGE_FILE_32BIT_MACHINE is *not* required, even in 32b.
   * it can be set for a 64b PE32+, and causes no problem.
  * nothing else is required
