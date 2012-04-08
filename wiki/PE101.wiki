@@ -2,7 +2,6 @@
 #labels WIP
 
 =VERY EARLY WIP=
-
 ====[http://code.google.com/p/corkami/ << back to index]====
 This is a walkthrough of a simple PE file (a Windows binary), to explain the basics of the format and thus provide an easy introduction.
 
@@ -98,3 +97,5 @@ Data section
 [...]
 000007F0: 00 00 00 00-00 00 00 00-00 00 00 00-00 00 00 00  ................
 }}}
+
+https://corkami.googlecode.com/svn/wiki/pics/simple-overview.svg
