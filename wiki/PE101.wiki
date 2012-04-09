@@ -7,8 +7,12 @@ This is a walkthrough of a simple PE file (a Windows binary), to explain the bas
 
 *DISCLAIMER*
  * this walkthrough is simplified, on purpose
- * the studied PE was also written by hand to be concise (standard PEs contain more information that are not essential here). You can download this file [here].
+ * the studied PE was also written by hand to be concise (standard PEs contain more information that are not essential here). 
+*[http://corkami.googlecode.com/files/PE101.zip download the example PE]*.
 
+https://corkami.googlecode.com/svn/wiki/pics/simple_executable.png
+
+https://corkami.googlecode.com/svn/wiki/pics/simple-overview.png
 
 PE files start with a DOS Header, also called 'MZ header'
 =MZ Header=
@@ -97,5 +101,3 @@ Data section
 [...]
 000007F0: 00 00 00 00-00 00 00 00-00 00 00 00-00 00 00 00  ................
 }}}
-
-https://corkami.googlecode.com/svn/wiki/pics/simple-overview.svg
