@@ -87,6 +87,15 @@
   * rootkits
    * Hunting rootkits with Windbg - Frank Boldewin
 =misc=
+ * *hex editors* with colors
+  * simple
+   * [http://sourceforge.net/projects/wxhexeditor/ wxHexEditor] nice, simple, good
+   * [http://phenoelit.org/BinID/BinID2.exe BinID2] lightweight, straightforward
+  * with templates
+   * [http://www.sweetscape.com/010editor/ 010 editor] many templates, lacks easy manual coloring, but recommended
+   * [http://www.hexworkshop.com/ hex workshop] nice competitor, limited scripting and availability
+   * [http://www.hhdsoftware.com/free-hex-editor Hex editor Neo] interesting features (multiple selections) but heavy
+
  * *text editors* [http://notepad-plus-plus.org/ notepad++] [http://www.contexteditor.org/ conTEXT] [http://www.esperanto.mv.ru/UniRed/ENG/index.html UniRed]
  * *audio/video* [http://www.foobar2000.org/ foobar2000] [http://www.nirsoft.net/utils/video_cache_view.html Videocacheview] mp4box dvddecrypter flvextract dvdshrinker vobrator ifoedit vobedit virtualdub audacity eac lame wavegain
 
@@ -97,8 +106,10 @@
  * *screencasts* [http://www.instant-demo.com/ InstantDemo] [http://www.debugmode.com/wink/ Wink] (+[http://codex.gallery2.org/Codex:How_to_Create_a_Wink_Tutorial good tutorial])
   * [http://www.brianapps.net/sizer/ Sizer] [http://technet.microsoft.com/en-us/sysinternals/bb897434 ZoomIt] [http://www.donationcoder.com/Software/Skrommel/index.html#ShowOff ShowOff]
  * *fonts*
-  * bitmap [http://damieng.com/creative/typography/palmos-font PalmOS] simple small bitmap font
-  * vector [http://damieng.com/blog/tag/envy-code-r Envy Code R] very nice scalable programming font
+  * bitmap 
+   * [http://damieng.com/creative/typography/palmos-font PalmOS] simple small bitmap font
+   * [http://www.donationcoder.com/Software/Jibz/Dina/ dina] nice as well
+  * vector [http://damieng.com/blog/tag/envy-code-r Envy Code R] very nice scalable programming font *recommended*
  * *obfuscation*
   * *javascript* [http://code.google.com/p/jssfx/ jssfx] [http://utf-8.jp/ aaencode/jjencode/jsf*ck] [http://dean.edwards.name/packer/ p,a,c,k,e,d] [http://blog.9bplus.com/doomsday-javascript-encoder doomsday]
  * *videos*
