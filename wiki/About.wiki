@@ -92,3 +92,5 @@ If you like it, and find it truly useful, then you can actually prove it by:
  * buying something in my [http://www.amazon.de/registry/wishlist/11FVTHTOLVZ0C Amazon wishlist] (et [http://www.amazon.fr/registry/wishlist/13MJPFNU8QPAC celle-ci] pour les français).
  * donating via Paypal
  [https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DJM7S3QAURFCC https://www.paypalobjects.com/en_US/FR/i/btn/btn_donateCC_LG.gif]
+=====donators=====
+Sébastien Kirche
