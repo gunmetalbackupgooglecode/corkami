@@ -122,6 +122,7 @@ A PDF can contain a Names tree, in which each element is sequentially evaluated.
 ==no object==
 on Acrobat X, a valid PDF doesn't need an object.
 
+ https://corkami.googlecode.com/svn/wiki/pics/pdf_emptyx.png
  Example of a valid trailer-only, 36 bytes PDF, under Acrobat X ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/emptyX.pdf download]):
 {{{
 %PDF-\0trailer<</Root<</Pages<<>>>>>>
@@ -389,7 +390,7 @@ global variables show a different behavior as opposed to normal ones: their type
 see earlier in the page for PDFs as small as possible, but containing nothing.
 ==Page==
 to actually contain a page, an object, defining its kid as its parent, should be referenced in trailer/Root/Pages.
-
+ https://corkami.googlecode.com/svn/wiki/pics/pdf_blankpage.png
  Example of a minimalist PDF with a page ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/blankpage.pdf download]):
 {{{
 %PDF-\01 0 obj<</Kids[<</Parent 1 0 R>>]>>trailer<</Root<</Pages 1 0 R>>>>
@@ -397,6 +398,7 @@ to actually contain a page, an object, defining its kid as its parent, should be
 
 ==Page + Text==
 To define a text, the page should have empty resources, and a content, made of the text itself.
+ https://corkami.googlecode.com/svn/wiki/pics/pdf_helloworldx.png
 
  Example of a minimalist PDF with page + text, under Acrobat <=9 ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld.pdf download]):
 {{{
