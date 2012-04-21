@@ -422,6 +422,7 @@ trailer<</Root<</Pages 1 0 R>>>>
 ==!JavaScript==
 to be able to use !JavaScript, a PDF just needs to be empty (see above), with an _!OpenAction_ in the _trailer/root_.
 
+ https://corkami.googlecode.com/svn/wiki/pics/pdf_js.png
  Example of a minimalist PDF using !JavaScript, under Acrobat <=9 ([http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/helloworld_js.pdf download]):
 {{{
 %PDF-\0obj<<>>trailer<</Root<</Pages<<>>/OpenAction<</S/JavaScript/JS(app.alert('Hello World!');)>>>>>>
