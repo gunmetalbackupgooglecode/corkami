@@ -3,6 +3,7 @@
 
 =VERY EARLY WIP=
 ====[http://code.google.com/p/corkami/ << back to index]====
+<wiki:comment>
 This is a walkthrough of a simple PE file (a Windows binary), to explain the basics of the format and thus provide an easy introduction.
 
 *DISCLAIMER*
@@ -101,3 +102,4 @@ Data section
 [...]
 000007F0: 00 00 00 00-00 00 00 00-00 00 00 00-00 00 00 00  ................
 }}}
+</wiki:comment>
