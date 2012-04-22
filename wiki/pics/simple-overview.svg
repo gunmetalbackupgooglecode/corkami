@@ -26,11 +26,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.47376739"
-     inkscape:cx="1197.8452"
-     inkscape:cy="467.4982"
+     inkscape:zoom="1.7119105"
+     inkscape:cx="1987.5911"
+     inkscape:cy="231.42079"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer3"
      showgrid="false"
      inkscape:snap-bbox="true"
      showborder="true"
@@ -65,6 +65,10 @@
        visible="true"
        enabled="true"
        snapvisiblegridlinesonly="true" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="2096.94,566.4657"
+       id="guide4008" />
   </sodipodi:namedview>
   <title
      id="title3725">PE 101 - a windows executable walkthrough</title>
@@ -508,90 +512,64 @@
          x="1915.4846"
          y="-623.5351"
          style="font-size:10px;fill:#000000"
-         id="tspan5380">kernel32</tspan><tspan
+         id="tspan3868">descriptor </tspan><tspan
          sodipodi:role="line"
          x="1915.4846"
          y="-611.0351"
          style="font-size:10px;fill:#800000"
-         id="tspan5414"> OriginalFirstThunk 0x203c  </tspan><tspan
+         id="tspan3872"><tspan
+   style="fill:#000000"
+   id="tspan3874"> OriginalFirstThunk</tspan> 0x203c    0x2044</tspan><tspan
          sodipodi:role="line"
          x="1915.4846"
          y="-598.5351"
          style="font-size:10px;fill:#808000"
-         id="tspan5416"> Name1              0x2078</tspan><tspan
+         id="tspan5416"><tspan
+   style="fill:#000000"
+   id="tspan3838"> Name1</tspan>              0x2078    0x2085</tspan><tspan
          sodipodi:role="line"
          x="1915.4846"
          y="-586.0351"
          style="font-size:10px;fill:#008000"
-         id="tspan5418"> FirstThunk         0x2068</tspan><tspan
+         id="tspan5418"><tspan
+   style="fill:#000000"
+   id="tspan3841"> FirstThunk</tspan>         0x2068    0x2070</tspan><tspan
          sodipodi:role="line"
          x="1915.4846"
          y="-573.5351"
-         style="font-size:10px;fill:#000000"
-         id="tspan5420" /><tspan
+         style="font-size:10px;fill:#008000"
+         id="tspan3876" /><tspan
          sodipodi:role="line"
          x="1915.4846"
          y="-561.0351"
-         style="font-size:10px;fill:#000000"
-         id="tspan6583">user32</tspan><tspan
+         style="font-size:10px;fill:#000080"
+         id="tspan5386"><tspan
+   id="tspan3901"
+   style="font-size:10px;fill:#000000">INT                </tspan><tspan
+   id="tspan3898"
+   style="font-size:10px;fill:#008080">0x204c/0  </tspan>0x205a/0</tspan><tspan
          sodipodi:role="line"
          x="1915.4846"
          y="-548.5351"
-         style="font-size:10px;fill:#800000"
-         id="tspan5422"> OriginalFirstThunk 0x2044</tspan><tspan
+         style="font-size:10px;fill:#808000"
+         id="tspan5406"><tspan
+   id="tspan3908"
+   style="font-size:10px;fill:#000000">IAT                </tspan><tspan
+   id="tspan3905"
+   style="font-size:10px;fill:#800000">0x204c/0  </tspan>0x205a/0</tspan><tspan
          sodipodi:role="line"
          x="1915.4846"
          y="-536.0351"
-         style="font-size:10px;fill:#808000"
-         id="tspan5424"> Name1              0x2085</tspan><tspan
-         sodipodi:role="line"
-         x="1915.4846"
-         y="-523.5351"
-         style="font-size:10px;fill:#008000"
-         id="tspan5426"> FirstThunk         0x2070</tspan><tspan
-         sodipodi:role="line"
-         x="1915.4846"
-         y="-511.0351"
-         style="font-size:10px;fill:#000000"
-         id="tspan5428" /><tspan
-         sodipodi:role="line"
-         x="1915.4846"
-         y="-498.5351"
-         style="font-size:10px;fill:#008080"
-         id="tspan5430">kernel32 INT  0x204c, 0</tspan><tspan
-         sodipodi:role="line"
-         x="1915.4846"
-         y="-486.0351"
-         style="font-size:10px;fill:#000080"
-         id="tspan5386">user32 INT    0x205a, 0</tspan><tspan
-         sodipodi:role="line"
-         x="1915.4846"
-         y="-473.5351"
-         style="font-size:10px;fill:#000000"
-         id="tspan5390" /><tspan
-         sodipodi:role="line"
-         x="1915.4846"
-         y="-461.0351"
-         style="font-size:10px;fill:#800000"
-         id="tspan5400">kernel32 IAT  0x204c, 0</tspan><tspan
-         sodipodi:role="line"
-         x="1915.4846"
-         y="-448.5351"
-         style="font-size:10px;fill:#808000"
-         id="tspan5406">user32 IAT    0x205a, 0</tspan><tspan
-         sodipodi:role="line"
-         x="1915.4846"
-         y="-436.0351"
          style="font-size:10px;fill:#000000"
          id="tspan5408" /><tspan
          sodipodi:role="line"
          x="1915.4846"
-         y="-423.5351"
+         y="-523.5351"
          style="font-size:10px;fill:#000000"
          id="tspan5410" /><tspan
          sodipodi:role="line"
          x="1915.4846"
-         y="-411.0351"
+         y="-511.0351"
          id="tspan5288"
          style="font-size:10px;fill:#000000" /></text>
     <a
@@ -1756,16 +1734,12 @@
          sodipodi:role="line" /></text>
     <text
        id="text8009"
-       y="-697.06622"
+       y="-660.30133"
        x="2183.0093"
        style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Lucida Console;-inkscape-font-specification:Lucida Console"
        xml:space="preserve"><tspan
-         y="-697.06622"
-         x="2183.0093"
-         id="tspan8011"
-         sodipodi:role="line">MessageBox(0, ¨Hello World!¨,¨a simple PE executable¨, 0);</tspan><tspan
          id="tspan8013"
-         y="-687.06622"
+         y="-660.30133"
          x="2183.0093"
          sodipodi:role="line">ExitProcess(0);</tspan></text>
     <text
@@ -2957,6 +2931,30 @@
        id="path3823-1-1"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccccc" />
+    <rect
+       style="color:#000000;fill:none;stroke:#00ffff;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3928"
+       width="38.427502"
+       height="35.37077"
+       x="2034.8964"
+       y="-619.57147" />
+    <rect
+       style="color:#000000;fill:none;stroke:#00ffff;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3928-0"
+       width="38.427502"
+       height="35.37077"
+       x="2095.333"
+       y="-619.57147" />
+    <text
+       id="text8009-5"
+       y="-703.06622"
+       x="2183.0093"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Lucida Console;-inkscape-font-specification:Lucida Console"
+       xml:space="preserve"><tspan
+         id="tspan8013-1"
+         y="-703.06622"
+         x="2183.0093"
+         sodipodi:role="line">MessageBox(0, ¨Hello World!¨,¨a simple PE executable¨, 0);</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -3513,6 +3511,17 @@
      id="layer3"
      inkscape:label="titles"
      transform="translate(-53.309608,1390.947)">
+    <text
+       sodipodi:linespacing="125%"
+       id="text3800-0-4-5-5-1"
+       y="-668.31116"
+       x="1984.1396"
+       style="font-size:6px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans"
+       xml:space="preserve"><tspan
+         id="tspan3840-1-6-8-7"
+         y="-668.31116"
+         x="1984.1396"
+         sodipodi:role="line">203c:</tspan></text>
     <path
        style="color:#000000;fill:url(#linearGradient5488);fill-opacity:1;fill-rule:nonzero;stroke:#b3b3b3;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        d="m 354.5,-965.27356 54.46512,-74.96424 0,324.71119 L 354.5,-790.27356 z"
@@ -4195,12 +4204,12 @@
        sodipodi:linespacing="125%"
        id="text3800-0-4-5-5-9"
        y="-838.68103"
-       x="2153.4529"
+       x="2151.4529"
        style="font-size:6px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans"
        xml:space="preserve"><tspan
          id="tspan3840-1-6-8-2"
          y="-838.68103"
-         x="2153.4529"
+         x="2151.4529"
          sodipodi:role="line">equivalent C code</tspan></text>
     <path
        transform="matrix(0.105845,0,0,0.105845,2313,-1358)"
@@ -4623,5 +4632,38 @@
          y="-1331.1791"
          x="1433.5841"
          sodipodi:role="line">this is the whole file. However, most PE files contain more elements.</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3800-0-4-5-5-1-9"
+       y="-655.55042"
+       x="1984.2429"
+       style="font-size:6px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans"
+       xml:space="preserve"><tspan
+         id="tspan3840-1-6-8-7-4"
+         y="-655.55042"
+         x="1984.2429"
+         sodipodi:role="line">2068:</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3800-0-4-5-5-1-8"
+       y="-668.03418"
+       x="2044.2429"
+       style="font-size:6px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans"
+       xml:space="preserve"><tspan
+         id="tspan3840-1-6-8-7-8"
+         y="-668.03418"
+         x="2044.2429"
+         sodipodi:role="line">2044:</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3800-0-4-5-5-1-9-2"
+       y="-656.03418"
+       x="2044.2429"
+       style="font-size:6px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans"
+       xml:space="preserve"><tspan
+         id="tspan3840-1-6-8-7-4-4"
+         y="-656.03418"
+         x="2044.2429"
+         sodipodi:role="line">2070:</tspan></text>
   </g>
 </svg>
