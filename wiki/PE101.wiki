@@ -1,20 +1,20 @@
-#summary PE 101 - a simple PE walkthrough
+#summary Portable Executable 101 - a windows executable walkthrough
 #labels WIP
 
-=VERY EARLY WIP=
 ====[http://code.google.com/p/corkami/ << back to index]====
-<wiki:comment>
-This is a walkthrough of a simple PE file (a Windows binary), to explain the basics of the format and thus provide an easy introduction.
+=Portable Executable 101 - a windows executable walkthrough=
 
-*DISCLAIMER*
- * this walkthrough is simplified, on purpose
- * the studied PE was also written by hand to be concise (standard PEs contain more information that are not essential here). 
-*[http://corkami.googlecode.com/files/PE101.zip download the example PE]*.
+https://corkami.googlecode.com/svn/wiki/pics/blah.png
+
+This is a walkthrough of a *[http://corkami.googlecode.com/files/PE101.zip simple windows executable]*
 
 https://corkami.googlecode.com/svn/wiki/pics/simple_executable.png
 
-https://corkami.googlecode.com/svn/wiki/pics/simple-overview.png
+this file was *entirely written by hand* to be concise (standard PEs contain more informations that are not essential for understanding). 
 
+https://slideshare.goin/blah.png
+
+<wiki:comment>
 PE files start with a DOS Header, also called 'MZ header'
 =MZ Header=
 the MZ HEADER:
