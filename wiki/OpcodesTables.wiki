@@ -19,7 +19,7 @@ also called _Instruction set maps_
 
 ===file formats===
  * [http://imgur.com/a/N5bqg Images] in hi-res, with transparency
- * PDF (vector -> smaller filesize + perfect zooming) [http://xchg.info/corkami/opcodes_tables_complete.pdf complete] [http://xchg.info/corkami/opcodes_tables_compact.pdf compact]
+ * PDF (vector -> smaller filesize + perfect zooming) [http://corkami.googlecode.com/files/opcodes_tables_complete-120221.pdf complete] [http://corkami.googlecode.com/files/opcodes_tables_compact-120221.pdf compact]
  * !OpenOffice (the original document if you want to modify them):
   * source: [https://corkami.googlecode.com/svn/trunk/oOo/opcodes_tables_complete complete] [https://corkami.googlecode.com/svn/trunk/oOo/opcodes_tables_compact compact]
   * Nightly builds: [http://xchg.info/corkami/opcodes_tables_complete.ods complete] [http://xchg.info/corkami/opcodes_tables_compact.ods compact]
