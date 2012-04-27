@@ -2,19 +2,22 @@
 #labels WIP
 
 ====[http://code.google.com/p/corkami/ << back to index]====
+=WIP=
+<wiki:comment>
 =Portable Executable 101 - a windows executable walkthrough=
 
 https://corkami.googlecode.com/svn/wiki/pics/blah.png
 
-This is a walkthrough of a *[http://corkami.googlecode.com/files/PE101.zip simple windows executable]*
+This graph ([http://corkami.googlecode.com/files/PE101.PDF PDF] [http://corkami.googlecode.com/files/PE101.png PNG]) is a walkthrough of a *[http://corkami.googlecode.com/files/PE101.zip simple windows executable]*
 
 https://corkami.googlecode.com/svn/wiki/pics/simple_executable.png
 
 this file was *entirely written by hand* to be concise (standard PEs contain more informations that are not essential for understanding). 
 
-https://slideshare.goin/blah.png
+https://slideshare.goin/blah.pdf
 
-<wiki:comment>
+[https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101.svg Original SVG] (requires the [http://damieng.com/blog/2008/05/26/envy-code-r-preview-7-coding-font-released Envy Code R] font)
+
 PE files start with a DOS Header, also called 'MZ header'
 =MZ Header=
 the MZ HEADER:
