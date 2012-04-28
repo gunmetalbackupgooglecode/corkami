@@ -4,8 +4,9 @@
 <wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/twitter_corkami.xml" width=700 border=0/>
 
 =presentations=
- * [http://code.google.com/p/corkami/wiki/BerlinSidesX2 BerlinSides x2]: x86 & PE (28th December 2011) - with demo as [http://code-opensocial.googleusercontent.com/gadgets/ifr?url=https%3A%2F%2Fcorkami.googlecode.com%2Fsvn%2Ftrunk%2Fpics%2Fbsx2%2Fbsx2.xml&parent=%2F%2Fcode.google.com%2Fhosting&container=code#slide42 screencasts]
- * [http://code.google.com/p/corkami/wiki/hashdays2011 Hashdays 2011]: Such a weird processor - messing with opcodes (...and a little bit of PE) (28th October 2011) - [http://www.youtube.com/watch?v=MJvsshovITE video] [http://www.universalsubtitles.org/en/videos/MCGL8ABJUdv7/info/-days:%20Ange%20Albertini:%20Such%20a%20weird%20processor%20-%20messing%20with%20x86%20opcodes/ with subtitles]
+ * x86 & PE: first presented and recorded at Hashdays, then improved at Berlinsides
+  # [http://code.google.com/p/corkami/wiki/hashdays2011 Hashdays 2011]: Such a weird processor - messing with opcodes (...and a little bit of PE) (28th October 2011) - [http://www.youtube.com/watch?v=MJvsshovITE video] [http://www.universalsubtitles.org/en/videos/MCGL8ABJUdv7/info/-days:%20Ange%20Albertini:%20Such%20a%20weird%20processor%20-%20messing%20with%20x86%20opcodes/ with subtitles]
+  # [http://code.google.com/p/corkami/wiki/BerlinSidesX2 BerlinSides x2]: x86 & PE (28th December 2011) - with demo as [http://code-opensocial.googleusercontent.com/gadgets/ifr?url=https%3A%2F%2Fcorkami.googlecode.com%2Fsvn%2Ftrunk%2Fpics%2Fbsx2%2Fbsx2.xml&parent=%2F%2Fcode.google.com%2Fhosting&container=code#slide42 screencasts]
 
 =articles=
  * [PE the PE format]
