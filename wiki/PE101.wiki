@@ -8,7 +8,7 @@
 
 https://corkami.googlecode.com/svn/wiki/pics/blah.png
 
-This graphic ([http://corkami.googlecode.com/files/PE101.PDF PDF] [http://corkami.googlecode.com/files/PE101.png PNG]) is a walkthrough of a *[http://corkami.googlecode.com/files/PE101.zip simple windows executable]*, showing its dissected structures, then explaining how it's loaded by the operating system.
+This graphic ([http://corkami.googlecode.com/files/PE101-v1.PDF PDF] [http://corkami.googlecode.com/files/PE101-v1.png PNG]) is a walkthrough of a *[http://corkami.googlecode.com/files/PE101.zip simple windows executable]*, showing its dissected structures, then explaining how it's loaded by the operating system.
 
 https://corkami.googlecode.com/svn/wiki/pics/simple_executable.png
 
@@ -22,6 +22,8 @@ https://slideshare.goin/blah.pdf
 =Acknowledgments=
  * *Daniel Plohmann*
 
+ * David Curran
+ * Moritz Kroll
  * Patrick Fitzgerald
 
 <wiki:comment>
