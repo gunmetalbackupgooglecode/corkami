@@ -8,11 +8,11 @@
 
 https://corkami.googlecode.com/svn/wiki/pics/blah.png
 
-This graph ([http://corkami.googlecode.com/files/PE101.PDF PDF] [http://corkami.googlecode.com/files/PE101.png PNG]) is a walkthrough of a *[http://corkami.googlecode.com/files/PE101.zip simple windows executable]*
+This graphic ([http://corkami.googlecode.com/files/PE101.PDF PDF] [http://corkami.googlecode.com/files/PE101.png PNG]) is a walkthrough of a *[http://corkami.googlecode.com/files/PE101.zip simple windows executable]*, showing its dissected structures, then explaining how it's loaded by the operating system.
 
 https://corkami.googlecode.com/svn/wiki/pics/simple_executable.png
 
-this file was *entirely written by hand* to be concise (standard PEs contain more informations that are not essential for first introduction). 
+this file was *entirely written by hand* to be concise (standard PEs contain more informations that are not essential for such a first introduction). 
 
 https://slideshare.goin/blah.pdf
 
@@ -20,7 +20,7 @@ https://slideshare.goin/blah.pdf
  * Creative Commons licence
  * requires the [http://damieng.com/blog/2008/05/26/envy-code-r-preview-7-coding-font-released Envy Code R] font
 =Acknowledgments=
- * Daniel Plohmann
+ * *Daniel Plohmann*
 
  * Patrick Fitzgerald
 
