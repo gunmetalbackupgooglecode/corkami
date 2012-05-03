@@ -1,5 +1,5 @@
 #summary Portable Executable 101 - a windows executable walkthrough
-#labels WIP
+#labels Featured
 
 ====[http://code.google.com/p/corkami/ << back to index]====
 =Portable Executable 101 - a windows executable walkthrough=
