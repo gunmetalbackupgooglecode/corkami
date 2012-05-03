@@ -35,7 +35,8 @@
  * [http://code.google.com/p/corkami/downloads/list?can=2&q=strings string encodings] 
  * [http://code.google.com/p/corkami/downloads/list?can=1&q=user-mode+drivers a toolkit] to run drivers in user-mode, and unpack them directly from !OllyDbg
 
-=cheat sheets=
+=graphics=
+ * [PE101 PE 101] - a windows executable walkthrough
  * [OpcodesTables Opcodes' tables] of Java, .Net, Android, x86 - as either compact one page cheat sheets, or full descriptive posters.
  * Infographics and cheat sheets, useful to for daily use or training for reverse engineers: [http://code.google.com/p/corkami/downloads/detail?name=opcodes.pdf Opcodes] [http://code.google.com/p/corkami/downloads/detail?name=cm.pdf anti-debugs] [http://code.google.com/p/corkami/downloads/detail?name=packers.pdf packers] [http://code.google.com/p/corkami/downloads/detail?name=pe-20110117.pdf PE file format]
 
