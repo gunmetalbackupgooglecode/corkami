@@ -4,15 +4,15 @@
 ====[http://code.google.com/p/corkami/ << back to index]====
 =Portable Executable 101 - a windows executable walkthrough=
 
+This graphic ([http://corkami.googlecode.com/files/PE101-v1.pdf PDF] [http://corkami.googlecode.com/files/PE101-v1.jpg JPG]) is a walkthrough of a *[http://corkami.googlecode.com/files/PE101.zip simple windows executable]*, that shows its dissected structure and explains how it's loaded by the operating system.
+
 https://corkami.googlecode.com/svn/wiki/pics/pe101-preview.jpg
-
-This graphic ([http://corkami.googlecode.com/files/PE101-v1.pdf PDF] [http://corkami.googlecode.com/files/PE101-v1.jpg JPG]) is a walkthrough of a *[http://corkami.googlecode.com/files/PE101.zip simple windows executable]*, showing its dissected structures, then explaining how it's loaded by the operating system.
-
-https://corkami.googlecode.com/svn/wiki/pics/simple_executable.png
 
 this file was *entirely written by hand* to be concise (standard PEs contain more informations that are not essential for such a first introduction).
 
-[https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101.svg Original SVG]
+https://corkami.googlecode.com/svn/wiki/pics/simple_executable.png
+
+[https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101.svg Inkscape SVG]
  * Creative Commons licence
  * requires the [http://damieng.com/blog/2008/05/26/envy-code-r-preview-7-coding-font-released Envy Code R] font
 
