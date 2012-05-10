@@ -3,21 +3,39 @@
 ====[About about Corkami]====
 <wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/twitter_corkami.xml" width=700 border=0/>
 
+=graphics=
+ * [PE101 PE 101] - a windows executable walkthrough
+  https://corkami.googlecode.com/svn/wiki/pics/pe101_thumb.jpg
+ * [OpcodesTables Opcodes' tables] of Java, .Net, Android, x86 - as either compact one page cheat sheets, or full descriptive posters.
+  http://corkami.googlecode.com/svn/wiki/pics/tables_thumb.jpg
+ * Infographics and cheat sheets, useful to for daily use or training for reverse engineers:
+  * [http://code.google.com/p/corkami/downloads/detail?name=opcodes.pdf Opcodes]
+   http://corkami.googlecode.com/svn/wiki/pics/opcodes_thumb.jpg
+  * [http://code.google.com/p/corkami/downloads/detail?name=packers.pdf packers]
+   http://corkami.googlecode.com/svn/wiki/pics/packers_thumb.jpg
+  * [http://code.google.com/p/corkami/downloads/detail?name=pe-20110117.pdf PE file format]
+  * [http://code.google.com/p/corkami/downloads/detail?name=cm.pdf anti-debugs]
+
 =presentations=
  * x86 & PE: first presented and recorded at Hashdays, then improved at Berlinsides
-  # [http://code.google.com/p/corkami/wiki/hashdays2011 Hashdays 2011]: Such a weird processor - messing with opcodes (...and a little bit of PE) (28th October 2011) - [http://www.youtube.com/watch?v=MJvsshovITE video] [http://www.universalsubtitles.org/en/videos/MCGL8ABJUdv7/info/-days:%20Ange%20Albertini:%20Such%20a%20weird%20processor%20-%20messing%20with%20x86%20opcodes/ with subtitles]
+  # [http://code.google.com/p/corkami/wiki/hashdays2011 Hashdays 2011]: Such a weird processor - messing with opcodes (...and a little bit of PE) (28th October 2011)  <wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/hashdays2011_subs.xml" width=620 height=405 border=0/>
+
   # [http://code.google.com/p/corkami/wiki/BerlinSidesX2 BerlinSides x2]: x86 & PE (28th December 2011) - with demo as [http://code-opensocial.googleusercontent.com/gadgets/ifr?url=https%3A%2F%2Fcorkami.googlecode.com%2Fsvn%2Ftrunk%2Fpics%2Fbsx2%2Fbsx2.xml&parent=%2F%2Fcode.google.com%2Fhosting&container=code#slide42 screencasts]
 
 =articles=
  * [PE the PE format]
- * [PDFTricks a summary of PDF tricks] - encodings, structures, !JavaScript... with hand-made !PoCs ([http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語])
+   <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_virtEP.swf up_FlashHeight=268 up_FlashWidth=358 up_ContainerCol="#d1dae3" height=268 width=358 title="" border=0/>
+ * [http://code.google.com/p/corkami/wiki/PDFTricks?wl=en a summary of PDF tricks] - encodings, structures, !JavaScript... with hand-made !PoCs ([http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語])
+ https://corkami.googlecode.com/svn/wiki/pics/pdf_js.png
 
  * [StandardTest Corkami Standard Test] is a PE/x86/x64 test program for your tools/emulators/skills.
   * it checks standard opcodes,
   * but also many [http://code.google.com/p/corkami/wiki/x86oddities x86 oddities],
   * and how to [http://code.google.com/p/corkami/wiki/GetIP get the current IP]
   * and it's also a tricky PE, using many tricks, so many tools don't even identify it as a PE.
+  http://corkami.googlecode.com/svn/wiki/pics/x86_96b.gif 
  * [Encodings curious encodings]
+  https://corkami.googlecode.com/svn/wiki/pics/misc_aa86.png
 
 =binaries=
  * [http://code.google.com/p/corkami/downloads/list?can=1&q=Binary+corpus Binary corpus] is a group of non malicious binaries, exhibiting various file formats, and more specifically, aspects of PE files.
@@ -34,11 +52,6 @@
  * imports [http://code.google.com/p/corkami/downloads/list?can=1&q=imports_loading loading] [http://code.google.com/p/corkami/downloads/list?can=1&q=imports_obfuscation obfuscation]
  * [http://code.google.com/p/corkami/downloads/list?can=2&q=strings string encodings] 
  * [http://code.google.com/p/corkami/downloads/list?can=1&q=user-mode+drivers a toolkit] to run drivers in user-mode, and unpack them directly from !OllyDbg
-
-=graphics=
- * [PE101 PE 101] - a windows executable walkthrough
- * [OpcodesTables Opcodes' tables] of Java, .Net, Android, x86 - as either compact one page cheat sheets, or full descriptive posters.
- * Infographics and cheat sheets, useful to for daily use or training for reverse engineers: [http://code.google.com/p/corkami/downloads/detail?name=opcodes.pdf Opcodes] [http://code.google.com/p/corkami/downloads/detail?name=cm.pdf anti-debugs] [http://code.google.com/p/corkami/downloads/detail?name=packers.pdf packers] [http://code.google.com/p/corkami/downloads/detail?name=pe-20110117.pdf PE file format]
 
 =misc=
  * a [InitialValues page] gathering values of system registers and values on TLS/!EntryPoint/... of most Windows versions.
