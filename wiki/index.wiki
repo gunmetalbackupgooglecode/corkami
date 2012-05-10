@@ -4,11 +4,11 @@
 <wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/twitter_corkami.xml" width=700 border=0/>
 
 =graphics=
- * [PE101 PE 101] - a windows executable walkthrough
-  https://corkami.googlecode.com/svn/wiki/pics/pe101_thumb.jpg
- * [OpcodesTables Opcodes' tables] of Java, .Net, Android, x86 - as either compact one page cheat sheets, or full descriptive posters.
-  http://corkami.googlecode.com/svn/wiki/pics/tables_thumb.jpg
- * Infographics and cheat sheets, useful to for daily use or training for reverse engineers:
+ * Graphics and cheat sheets, useful for daily reference, or training for reverse engineers:
+  * [PE101 PE 101] - a windows executable walkthrough
+   https://corkami.googlecode.com/svn/wiki/pics/pe101_thumb.jpg
+  * [OpcodesTables Opcodes' tables] of Java, .Net, Android, x86 - as either compact one page cheat sheets, or full descriptive posters.
+   http://corkami.googlecode.com/svn/wiki/pics/tables_thumb.jpg
   * [http://code.google.com/p/corkami/downloads/detail?name=opcodes.pdf Opcodes]
    http://corkami.googlecode.com/svn/wiki/pics/opcodes_thumb.jpg
   * [http://code.google.com/p/corkami/downloads/detail?name=packers.pdf packers]
