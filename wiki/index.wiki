@@ -4,16 +4,16 @@
 <wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/twitter_corkami.xml" width=700 border=0/>
 
 =graphics=
- * Graphics and cheat sheets, useful for daily reference, or training for reverse engineers:
+ * Graphics and cheat sheets, useful for daily reference, or training:
   * [PE101 PE 101] - a windows executable walkthrough
    https://corkami.googlecode.com/svn/wiki/pics/pe101_thumb.jpg
-  * [OpcodesTables Opcodes' tables] of Java, .Net, Android, x86 - as either compact one page cheat sheets, or full descriptive posters.
+  * [OpcodesTables Opcodes' tables] of Java, .Net, Android, x86 - as either compact single-page cheat sheets, or full descriptive posters.
    http://corkami.googlecode.com/svn/wiki/pics/tables_thumb.jpg
-  * [http://code.google.com/p/corkami/downloads/detail?name=opcodes.pdf Opcodes]
+  * [http://code.google.com/p/corkami/downloads/detail?name=opcodes.pdf Opcodes] (x86 & x64 simplified tables, one-liners)
    http://corkami.googlecode.com/svn/wiki/pics/opcodes_thumb.jpg
-  * [http://code.google.com/p/corkami/downloads/detail?name=packers.pdf packers]
+  * [http://code.google.com/p/corkami/downloads/detail?name=packers.pdf packers] (models, categories & features, landscape, detailed features, entrypoints, algorithms)
    http://corkami.googlecode.com/svn/wiki/pics/packers_thumb.jpg
-  * [http://code.google.com/p/corkami/downloads/detail?name=pe-20110117.pdf PE file format]
+  * [http://code.google.com/p/corkami/downloads/detail?name=pe-20110117.pdf PE file format] (file & memory layout, headers, data directories)
   * [http://code.google.com/p/corkami/downloads/detail?name=cm.pdf anti-debugs]
 
 =presentations=
