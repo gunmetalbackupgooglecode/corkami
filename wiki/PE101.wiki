@@ -19,6 +19,7 @@ https://corkami.googlecode.com/svn/wiki/pics/simple_executable.png
 =Acknowledgments=
  * Daniel Plohmann
  * David Curran
+ * Fabian Sauter
 
  * Moritz Kroll
  * Patrick Fitzgerald
