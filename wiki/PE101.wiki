@@ -6,6 +6,8 @@
 
 This graphic ([http://corkami.googlecode.com/files/PE101-v1.pdf PDF] [http://corkami.googlecode.com/files/PE101-v1.jpg JPG]) is a walkthrough of a *[http://corkami.googlecode.com/files/PE101.zip simple windows executable]*, that shows its dissected structure and explains how it's loaded by the operating system.
 
+version française: [http://corkami.googlecode.com/files/pe101-v1FR.pdf PDF] [http://corkami.googlecode.com/files/pe101-v1FR.png PNG]
+
 https://corkami.googlecode.com/svn/wiki/pics/pe101-preview.jpg
 
 this file was *entirely written by hand* to be concise (standard PEs contain more informations that are not essential for such a first introduction).
@@ -21,5 +23,6 @@ https://corkami.googlecode.com/svn/wiki/pics/simple_executable.png
  * David Curran
  * Fabian Sauter
 
+ * Caroline Détente
  * Moritz Kroll
  * Patrick Fitzgerald
