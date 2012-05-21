@@ -25,4 +25,5 @@ https://corkami.googlecode.com/svn/wiki/pics/simple_executable.png
 
  * Caroline Détente
  * Moritz Kroll
+ * Nicolas Ruff
  * Patrick Fitzgerald
