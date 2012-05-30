@@ -216,12 +216,14 @@ SIZEOFOPTIONALHEADER equ 10h + $ - IMAGEBASE ; bigger than the file itself !
  * is anything but optional, as soon as execution is required.
 
 ===Magic===
- * specifies the exact format of OptionalHeader
+ * specifies the exact format of !OptionalHeader
   * `10b` for 32b
   * `20b` for 64b
 
 =====!MajorLinkerVersion/!MinorLinkerVersion=====
 no particular importance whatsoever
+
+if !LinkerVersion < 2.5, Microsoft !AppLocker might wrongly report `is not a valid Win32 application. (Exception from HRESULT: 0x800700C1)` for no apparent reason. Changing these fields might fix the problem.
 
 =====!SizeOfCode/!SizeOfInitializedData/!SizeOfUninitializedData=====
 no particular importance whatsoever
