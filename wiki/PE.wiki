@@ -1533,6 +1533,7 @@ A standard use for code-less PEs is to store resources. In this case, more field
 =acknowledgements=
  * Peter Ferrie
 
+ * Bernhard Treutwein
  * Costin Ionescu
  * Ivanlef0u
  * Kris Kaspersky
