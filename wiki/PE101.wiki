@@ -7,9 +7,9 @@
 This graphic ([http://corkami.googlecode.com/files/PE101-v1.pdf PDF] [http://corkami.googlecode.com/files/PE101-v1.jpg JPG]) is a walkthrough of a *[http://corkami.googlecode.com/files/PE101.zip simple windows executable]*, that shows its dissected structure and explains how it's loaded by the operating system.
 
 translations:
- * Deutsch: Ein Überblick über Windows Executables [http://corkami.googlecode.com/files/PE101-v1DE.pdf PDF] [http://corkami.googlecode.com/files/PE101-v1DE.png PNG]
- * Français: visite guidée d'un exécutable Windows [http://corkami.googlecode.com/files/pe101-v1FR.pdf PDF] [http://corkami.googlecode.com/files/pe101-v1FR.png PNG]
- * Polski: Plik PE krok po kroku [http://corkami.googlecode.com/files/PE101-v1PL.pdf PDF] [http://corkami.googlecode.com/files/PE101-v1PL.png PNG]
+ * Deutsch: Ein Überblick über Windows Executables, by Daniel Plohmann [http://corkami.googlecode.com/files/PE101-v1DE.pdf PDF] [http://corkami.googlecode.com/files/PE101-v1DE.png PNG] [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101de.svg SVG]
+ * Français: visite guidée d'un exécutable Windows [http://corkami.googlecode.com/files/pe101-v1FR.pdf PDF] [http://corkami.googlecode.com/files/pe101-v1FR.png PNG] [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101fr.svg SVG]
+ * Polski: Plik PE krok po kroku, by Adam Błaszczyk [http://corkami.googlecode.com/files/PE101-v1PL.pdf PDF] [http://corkami.googlecode.com/files/PE101-v1PL.png PNG] [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101pl.svg SVG]
 
 https://corkami.googlecode.com/svn/wiki/pics/pe101-preview.jpg
 
@@ -22,7 +22,6 @@ https://corkami.googlecode.com/svn/wiki/pics/simple_executable.png
  * requires the [http://damieng.com/blog/2008/05/26/envy-code-r-preview-7-coding-font-released Envy Code R] font
 
 =Acknowledgments=
- * Adam Błaszczyk
  * Daniel Plohmann
  * David Curran
  * Fabian Sauter
