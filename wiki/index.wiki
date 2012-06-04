@@ -25,12 +25,12 @@
 =articles=
  * [PE the PE format]
    <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_virtEP.swf up_FlashHeight=268 up_FlashWidth=358 up_ContainerCol="#d1dae3" height=268 width=358 title="" border=0/>
- * [http://code.google.com/p/corkami/wiki/PDFTricks?wl=en a summary of PDF tricks] - encodings, structures, !JavaScript... with hand-made !PoCs ([http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語])
+ * [http://code.google.com/p/corkami/wiki/PDFTricks?wl=en a summary of PDF tricks] - encodings, structures, !JavaScript... ([http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr Français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語])
  https://corkami.googlecode.com/svn/wiki/pics/pdf_js.png
 
  * [StandardTest Corkami Standard Test] is a PE/x86/x64 test program for your tools/emulators/skills.
   * it checks standard opcodes,
-  * but also many [http://code.google.com/p/corkami/wiki/x86oddities x86 oddities],
+  * but also many [http://code.google.com/p/corkami/wiki/x86oddities?wl=en x86 oddities],
   * and how to [http://code.google.com/p/corkami/wiki/GetIP get the current IP]
   * and it's also a tricky PE, using many tricks, so many tools don't even identify it as a PE.
   http://corkami.googlecode.com/svn/wiki/pics/x86_96b.gif 
@@ -56,7 +56,7 @@
 =misc=
  * a [InitialValues page] gathering values of system registers and values on TLS/!EntryPoint/... of most Windows versions.
  * a [http://corkami.googlecode.com/svn/trunk/misc/MakePE/examples/packer/aplib.py one-file] aPLib compression/decompression in python
- * [IntroductionToVirus Explaining what’s a computer virus to grandma]
+ * [IntroductionToVirus?wl=en Explaining what’s a computer virus to grandma]
  * [CallingConventions Calling conventions, seen from ASM]
  * [InitialValues (initial) values of cpu registers on Windows OSes]
  * [http://code.google.com/p/corkami/downloads/list?can=1&q=kernel31 Kernel31], a trampoline DLL to enable >!XpSp3 binaries work on previous OS.

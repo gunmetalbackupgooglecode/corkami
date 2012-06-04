@@ -1,5 +1,6 @@
 ﻿#summary PDFのトリックに関するレジュメ　-　エンコーディング,構成,JavaScriptなど
 
+====[http://code.google.com/p/corkami/ << back to index]====
 
 このページは,エンコード,!JavaScript,PDFの構造を基本にしたPDFフォーマットのトリックについてのレジュメです.
 

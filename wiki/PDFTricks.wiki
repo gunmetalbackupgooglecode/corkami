@@ -5,7 +5,7 @@
 [http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr Français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語]
 
 =PDF Tricks=
-This page ([http://code.google.com/p/corkami/wiki/PDFTricks?show=content printable version] [http://corkami.googlecode.com/svn/wiki/PDFTricks.wiki wiki source])is a summary of PDF tricks, either based on data encodings, !JavaScript, or PDF structure, with hand-written proof-of-concepts.
+This page ([http://code.google.com/p/corkami/wiki/PDFTricks?show=content printable version] [http://corkami.googlecode.com/svn/wiki/PDFTricks.wiki wiki source]) is a summary of PDF tricks, either based on data encodings, !JavaScript, or PDF structure, with hand-written proof-of-concepts.
 
 <wiki:toc max_depth="3" />
 

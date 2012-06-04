@@ -1,6 +1,9 @@
 ﻿#summary un résumé des astuces PDF - encodages, structures, JavaScript...
 
+====[http://code.google.com/p/corkami/ << back to index]====
+
 =Astuces PDF=
+
 Ceci est un résumé des astuces du format PDF, qu'elles soient basées sur l'encodage, le !JavaScript, ou la structure PDF.
 
 <wiki:toc max_depth="3" />

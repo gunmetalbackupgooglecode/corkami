@@ -2,6 +2,7 @@
 #labels Featured
 
 ====[http://code.google.com/p/corkami/ << back to index]====
+[http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr Français]
 
 =x86 oddities=
 This page ([http://code.google.com/p/corkami/wiki/x86oddities?show=content printable version] [http://corkami.googlecode.com/svn/wiki/x86oddities.wiki wiki source]) enumerates various oddities of the x86/x64.
