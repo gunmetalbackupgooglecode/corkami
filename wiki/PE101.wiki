@@ -11,6 +11,7 @@ This graphic is a walkthrough of a *[http://corkami.googlecode.com/files/PE101.z
 || Español || un recorrido por los ejecutables de windows || Gorka Ramírez || [http://corkami.googlecode.com/files/PE101-v1ES.pdf PDF] [http://corkami.googlecode.com/files/PE101-v1ES.png PNG] [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101es.svg SVG] ||
 || Français || visite guidée d'un exécutable Windows || || [http://corkami.googlecode.com/files/pe101-v1FR.pdf PDF] [http://corkami.googlecode.com/files/pe101-v1FR.png PNG] [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101fr.svg SVG] ||
 || Polski || Plik PE krok po kroku || [http://hexacorn.com/blog Adam Błaszczyk] [http://gynvael.coldwind.pl/ Gynvael Coldwind] || [http://corkami.googlecode.com/files/PE101-v11PL.pdf PDF] [http://corkami.googlecode.com/files/PE101-v11PL.png PNG] [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101pl.svg SVG] ||
+|| Русский || пошаговое руководство к исполняемым файлам (EXE) Windows || [https://twitter.com/#!/Lyr1k Lyr1k] ||  [http://corkami.googlecode.com/files/PE101-v1RU.PDF PDF] [http://corkami.googlecode.com/files/PE101-v1RU.png PNG] [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101ru.svg SVG] ||
 
 https://corkami.googlecode.com/svn/wiki/pics/pe101-preview.jpg
 
