@@ -65,6 +65,7 @@
 || CVE-2011-3402 || TTF || Duqu MS11-087 || [http://exploitshop.wordpress.com/2012/01/18/ms11-087-aka-duqu-vulnerability-in-windows-kernel-mode-drivers-could-allow-remote-code-execution/ lifeasageek] ||
 || CVE-2011-3544 || Java || Rhino || [http://schierlm.users.sourceforge.net/CVE-2011-3544.html shierlm] ||
 || CVE-2012-0003 || Midi || midiOutPlayNextPolyEvent MS12-004|| [http://www.exploit-db.com/exploits/18426/ metasploit] ||
+|| CVE-2012-1723 || Java || Getfield || [http://schierlm.users.sourceforge.net/CVE-2012-1723.html mihi42] ||
 
 =information=
  * *news* [https://twitter.com/#!/Ivanlef0u @Ivanlef0u] [http://www.reddit.com/r/ReverseEngineering/ reddit]
