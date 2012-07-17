@@ -1,6 +1,9 @@
 #summary Portable Executable 101 - a windows executable walkthrough
 #labels Featured
 
+=free print raffle=
+to celebrate the download milestone of my PE101 poster, I'll give away a few signed prints. To participate, share my Google+ [https://plus.google.com/103057130724152774529/posts/ELeBmz5iQee post], retweet [https://twitter.com/corkami/status/224107006431207424 this] or send me an e-mail with some feedback, and the subject "pe101 raffle".
+
 ====[http://code.google.com/p/corkami/ << back to index]====
 =Portable Executable 101 - a windows executable walkthrough=
 
