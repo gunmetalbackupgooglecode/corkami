@@ -27,6 +27,9 @@ SVGs:
  * Creative Commons licence
  * requires the [http://damieng.com/blog/2008/05/26/envy-code-r-preview-7-coding-font-released Envy Code R] font
 
+Previews album:
+<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/imgur_pe101.xml" width=600 height=550 border=0/>
+
 =Acknowledgments=
  * Daniel Plohmann
  * David Curran
