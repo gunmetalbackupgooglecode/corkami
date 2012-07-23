@@ -1,6 +1,6 @@
 #summary Opcodes' tables
 #labels Featured
-<wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/imgur_opcodes.xml" width=700 height=550 border=0/>
+<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/imgur_opcodes.xml" width=700 height=550 border=0/>
 
 ====[http://code.google.com/p/corkami/ << back to index]====
 
