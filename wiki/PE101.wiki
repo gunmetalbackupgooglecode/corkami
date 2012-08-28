@@ -1,9 +1,6 @@
 #summary Portable Executable 101 - a windows executable walkthrough
 #labels Featured
 
-=free print raffle=
-To celebrate the unexpected success of this poster (far beyond my expectations), I'm giving away a few signed prints: if you're interested, just share any of the [http://www.facebook.com/corkamiRCE/posts/208381849288183 Facebook], [https://plus.google.com/103057130724152774529/posts/ELeBmz5iQee Google+] or [https://twitter.com/corkami/status/224107006431207424 Twitter] posts to enter the raffle.
-
 ====[http://code.google.com/p/corkami/ << back to index]====
 =Portable Executable 101 - a windows executable walkthrough=
 
