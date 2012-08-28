@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module>
+  <ModulePrefs title="screencasts"/> 
+  <Content type="html">
+  <![CDATA[
+<center>
+
+Slide 44: SMSW</br>
+<OBJECT  CLASSID="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" WIDTH="800"  HEIGHT="602"  CODEBASE="http://active.macromedia.com/flash5/cabs/swflash.cab#version=7,0,0,0">
+ <PARAM NAME=movie VALUE="https://sites.google.com/site/corkami/download/smsw.swf">
+ <PARAM NAME=play VALUE=true>
+ <PARAM NAME=loop VALUE=false>
+ <PARAM NAME=wmode VALUE=transparent>
+ <PARAM NAME=quality VALUE=low>
+ <EMBED  SRC="https://sites.google.com/site/corkami/download/smsw.swf"  WIDTH=800 HEIGHT=602 quality=low loop=false wmode=transparent  TYPE="application/x-shockwave-flash"  PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash">
+ </EMBED>
+ </OBJECT>
+
+Slide 46: GS</br>
+<OBJECT  CLASSID="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" WIDTH="800"  HEIGHT="602"  CODEBASE="http://active.macromedia.com/flash5/cabs/swflash.cab#version=7,0,0,0">
+ <PARAM NAME=movie VALUE="https://sites.google.com/site/corkami/download/gs.swf">
+ <PARAM NAME=play VALUE=true>
+ <PARAM NAME=loop VALUE=false>
+ <PARAM NAME=wmode VALUE=transparent>
+ <PARAM NAME=quality VALUE=low>
+ <EMBED  SRC="https://sites.google.com/site/corkami/download/gs.swf"  WIDTH=800 HEIGHT=602 quality=low loop=false wmode=transparent  TYPE="application/x-shockwave-flash"  PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash">
+ </EMBED>
+ </OBJECT>
+
+Slide 51: 32b part</br>
+<OBJECT CLASSID="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" WIDTH="800" HEIGHT="602" CODEBASE="http://active.macromedia.com/flash5/cabs/swflash.cab#version=7,0,0,0">
+<PARAM NAME=movie VALUE="https://sites.google.com/site/corkami/download/demo32.swf">
+<PARAM NAME=play VALUE=true>
+<PARAM NAME=loop VALUE=false>
+<PARAM NAME=wmode VALUE=transparent>
+<PARAM NAME=quality VALUE=low>
+<EMBED SRC="https://sites.google.com/site/corkami/download/demo32.swf" WIDTH=800 HEIGHT=602 quality=low loop=false wmode=transparent TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash">
+</EMBED>
+</OBJECT>
+
+Slide 51: 64b part</br>
+<OBJECT  CLASSID="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" WIDTH="800"  HEIGHT="602"  CODEBASE="http://active.macromedia.com/flash5/cabs/swflash.cab#version=7,0,0,0">
+ <PARAM NAME=movie VALUE="https://sites.google.com/site/corkami/download/demo64.swf">
+ <PARAM NAME=play VALUE=true>
+ <PARAM NAME=loop VALUE=false>
+ <PARAM NAME=wmode VALUE=transparent>
+ <PARAM NAME=quality VALUE=low>
+ <EMBED  SRC="https://sites.google.com/site/corkami/download/demo64.swf"  WIDTH=800 HEIGHT=602 quality=low loop=false wmode=transparent  TYPE="application/x-shockwave-flash"  PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash">
+ </EMBED>
+ </OBJECT>
+
+Slide 53: push/ret</br>
+ <OBJECT  CLASSID="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"   WIDTH="800"  HEIGHT="602"  CODEBASE="http://active.macromedia.com/flash5/cabs/swflash.cab#version=7,0,0,0">
+  <PARAM NAME=movie VALUE="https://sites.google.com/site/corkami/download/pushret.swf">
+  <PARAM NAME=play VALUE=true>
+  <PARAM NAME=loop VALUE=false>
+  <PARAM NAME=wmode VALUE=transparent>
+  <PARAM NAME=quality VALUE=low>
+  <EMBED  SRC="https://sites.google.com/site/corkami/download/pushret.swf"  WIDTH=800  HEIGHT=602 quality=low loop=false  wmode=transparent  TYPE="application/x-shockwave-flash"  PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash">
+  </EMBED>
+  </OBJECT>
+
+Slide 60: 32+64 bits</br>
+ <OBJECT  CLASSID="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"   WIDTH="800"  HEIGHT="602"  CODEBASE="http://active.macromedia.com/flash5/cabs/swflash.cab#version=7,0,0,0">
+  <PARAM NAME=movie VALUE="https://sites.google.com/site/corkami/download/96bits.swf">
+  <PARAM NAME=play VALUE=true>
+  <PARAM NAME=loop VALUE=false>
+  <PARAM NAME=wmode VALUE=transparent>
+  <PARAM NAME=quality VALUE=low>
+  <EMBED  SRC="https://sites.google.com/site/corkami/download/96bits.swf"  WIDTH=800  HEIGHT=602 quality=low loop=false  wmode=transparent  TYPE="application/x-shockwave-flash"  PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash">
+  </EMBED>
+  </OBJECT>
+</center>
+  ]]>
+  </Content>
+</Module>
