@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+  <ModulePrefs title="#hip2012_subs" />
+  <Content type="html">
+    <![CDATA[
+<script type="text/javascript" src="https://s3.amazonaws.com/s3.www.universalsubtitles.org/embed.js">
+(
+  {"video_url": "http://www.youtube.com/watch?v=6HRfuN-fPwM"}
+)
+</script> 
+    ]]>
+  </Content>
+</Module>
