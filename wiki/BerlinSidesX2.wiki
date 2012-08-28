@@ -25,9 +25,9 @@ Slide notes are available in the 2nd half of the [http://xchg.info/corkami/slide
 
  * [http://xchg.info/corkami/slides.pdf PDF]
  * Standard embed:
- <wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/berlinsides_slideshare.xml" width=595 height=497 border=0/>
+ <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/berlinsides_slideshare.xml" width=595 height=497 border=0/>
 
 ==Demos==
-<wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/bs_screencasts.xml" width=830 height=650 border=0/>
+<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/bs_screencasts.xml" width=830 height=650 border=0/>
 
 </wiki:comment>

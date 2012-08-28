@@ -1,7 +1,7 @@
 #summary index page the wiki
 
 ====[About about Corkami]====
-<wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/twitter_corkami.xml" width=700 border=0/>
+<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/twitter_corkami.xml" width=700 border=0/>
 
 =graphics=
  * Graphics and cheat sheets, useful for daily reference, or training:
@@ -18,10 +18,10 @@
 
 =presentations=
  * x86 & PE: first presented and recorded at Hashdays, then improved at Berlinsides
-  # [http://code.google.com/p/corkami/wiki/hashdays2011 Hashdays 2011]: Such a weird processor - messing with opcodes (...and a little bit of PE) (28th October 2011)  <wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/115513439802362041877/hashdays2011_subs.xml" width=620 height=405 border=0/>
-
+  # [http://code.google.com/p/corkami/wiki/hashdays2011 Hashdays 2011]: Such a weird processor - messing with opcodes (...and a little bit of PE) (28th October 2011)  <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hashdays2011_subs.xml" width=620 height=405 border=0/>
   # [http://code.google.com/p/corkami/wiki/BerlinSidesX2 BerlinSides x2]: x86 & PE (28th December 2011) - with demo as [http://code-opensocial.googleusercontent.com/gadgets/ifr?url=https%3A%2F%2Fcorkami.googlecode.com%2Fsvn%2Ftrunk%2Fpics%2Fbsx2%2Fbsx2.xml&parent=%2F%2Fcode.google.com%2Fhosting&container=code#slide42 screencasts]
-
+ * [http://www.slideshare.net/ange4771/a-bit-more-of-pe-hack-in-paris-2012 a bit more of PE], presented at Hack in Paris, on the 22nd June 2012
+  <wiki:video url="http://www.youtube.com/watch?v=6HRfuN-fPwM"/>
 =articles=
  * [PE the PE format]
    <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_virtEP.swf up_FlashHeight=268 up_FlashWidth=358 up_ContainerCol="#d1dae3" height=268 width=358 title="" border=0/>
@@ -68,7 +68,7 @@
   * [http://rejava.sourceforge.net/hello.html reJava] create a .class from scratch
 
 =known related works=
- * a very nice and simple [http://net.cs.uni-bonn.de/fileadmin/user_upload/plohmann/x86_opcode_structure_and_instruction_overview.pdf opcode table], by Daniel Plohmann
+ * a very nice and simple [http://net.cs.uni-bonn.de/fileadmin/user_upload/plohmann/x86_opcode_structure_and_instruction_overview.pdf opcode table], by [http://pnx.tf Daniel Plohmann]
 
 ===more...===
 ...for more information, check the (old) [http://corkami.blogspot.com/p/map.html blog map], and the [http://code.google.com/p/corkami/downloads/list downloads tab].
