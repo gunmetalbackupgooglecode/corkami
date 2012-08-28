@@ -2,7 +2,7 @@
 
 ====[http://code.google.com/p/corkami/ << back to index]====
 
-=Such a weird processor - messing with x86 opcodes (and PE files too...)=
+=Such a weird processor - messing with x86 opcodes (and a little bit of PE...)=
 
 ====presented the 28th October 2011 during Hashdays 2011 at Luzern, Switzerland ====
  I studied [http://code.google.com/p/corkami/wiki/x86oddities x86] and [http://code.google.com/p/corkami/wiki/PE PE] from scratch, and failed all the tools I tried in the process:
