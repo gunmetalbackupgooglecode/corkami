@@ -1,0 +1,18 @@
+#summary A bit more of PE - Hack in Paris 2012
+
+====[http://code.google.com/p/corkami/ << back to index]====
+
+=A bit more of PE=
+
+====presented the 22th June 2012 during Hack In Paris 2012 at Disneyland Paris, France ====
+<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hip2012_subs.xml" width=620 height=405 border=0/>
+
+<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hip2012_slideshare.xml" width=595 height=497 border=0/>
+
+=links=
+ * [PE101 PE 101] - a windows executable walkthrough
+   https://corkami.googlecode.com/svn/wiki/pics/pe101_thumb.jpg
+ * [PE the PE format]
+   <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_virtEP.swf up_FlashHeight=268 up_FlashWidth=358 up_ContainerCol="#d1dae3" height=268 width=358 title="" border=0/>
+
+====[http://code.google.com/p/corkami/ << back to index]====
