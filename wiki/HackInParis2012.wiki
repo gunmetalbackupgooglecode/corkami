@@ -1,10 +1,11 @@
-#summary A bit more of PE - Hack in Paris 2012
+#summary A bit more of PE
+#labels Featured
 
 ====[http://code.google.com/p/corkami/ << back to index]====
 
 =A bit more of PE=
 
-====presented the 22th June 2012 during Hack In Paris 2012 at Disneyland Paris, France ====
+====presented the 22th June 2012 during Hack In Paris 2012 at Disneyland Paris, France====
 <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hip2012_subs.xml" width=620 height=405 border=0/>
 
 <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hip2012_slideshare.xml" width=595 height=497 border=0/>
