@@ -364,7 +364,7 @@ An _!AcroForm Widget_ can contain some data and value, which can be retrieved vi
 ==form event==
 A form can contain a template, with an event on its field, that contains a script.
 
- Example of a !JavaScript stored in the field event of a form ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/formevent_js.pdf download]):
+ Example of a !JavaScript stored in the field event of a form ([http://corkami.googlecode.com/svn-history/trunk/misc/pdf/formevent_js.pdf download]):
 {{{
 [...]
 1 0 obj <<>>
