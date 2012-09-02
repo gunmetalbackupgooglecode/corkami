@@ -346,7 +346,7 @@ Similarly, a PDF page can contain an annotation, which content can be retrieved 
 }}}
 
 ==getfield==
-An _AcroForm Widget_ can contain some data and value, which can be retrieved via the _getField_ function.
+An _!AcroForm Widget_ can contain some data and value, which can be retrieved via the _getField_ function.
 
  Example of a string stored in an !AcroForm Widget ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/js-getfield.pdf download]):
 {{{
