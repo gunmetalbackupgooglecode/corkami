@@ -361,6 +361,33 @@ An _AcroForm Widget_ can contain some data and value, which can be retrieved via
 [...]
 }}}
 
+==form event==
+A form can contain a template, with an event on its field, that contains a script.
+
+ Example of a !JavaScript stored in the field event of a form ([http://corkami.googlecode.com/svn-history/r480/trunk/misc/pdf/formevent_js.pdf download]):
+{{{
+[...]
+1 0 obj <<>>
+[...]
+<xdp:xdp xmlns:xdp="http://ns.adobe.com/xdp/">
+[...]
+<template>
+    <subform name="_">
+        <pageSet/>
+        <field id="Hello World!">
+            <event activity="initialize">
+                <script contentType='application/x-javascript'>
+                    app.alert(this.id);
+[...]
+
+trailer <<
+    /Root <<
+        /AcroForm <<
+[...]
+            /XFA 1 0 R
+[...]
+}}}
+
 ==anti-emulators==
 On top of standard !JavaScript, it's possible, via Acrobat specificities, to determine if we're in the real program or in an emulator.
 ===initial values===
