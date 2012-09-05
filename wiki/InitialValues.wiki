@@ -4,6 +4,8 @@ this page gathers the initial values of x86 registers, under Windows:
  * general registers, at specific execution points
  * special registers
 
+Note: some values may change slightly, depending on your exact configuration and settings.
+
 The values on this page have been dumped with [http://code.google.com/p/corkami/downloads/list?can=2&q=registers+dumper regdump].
 
 <wiki:toc max_depth="3" />
@@ -455,6 +457,10 @@ GDT:9BD640007F IDT:9BD6C00FFF STR:00000040
 
 =Common=
 (under construction)
+
+from [http://code.google.com/p/corkami/wiki/BerlinSidesX2?show=content BerlinSide's presentation]
+https://corkami.googlecode.com/svn/trunk/pics/bsx2/img40.png
+
 ==Flags==
 always 246 (except NT4 EP), on !EntryPoint or TLS.
 
