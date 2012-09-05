@@ -458,9 +458,10 @@ GDT:9BD640007F IDT:9BD6C00FFF STR:00000040
 =Common=
 (under construction)
 
-from [http://code.google.com/p/corkami/wiki/BerlinSidesX2?show=content BerlinSide's presentation]
+Slide from [http://code.google.com/p/corkami/wiki/BerlinSidesX2?show=content BerlinSide's presentation]
 https://corkami.googlecode.com/svn/trunk/pics/bsx2/img40.png
 
+PoC `initvals.exe` downloadable [http://xchg.info/corkami/latest/asm.rar here]
 ==Flags==
 always 246 (except NT4 EP), on !EntryPoint or TLS.
 
