@@ -6,6 +6,7 @@
 
 This graphic is a walkthrough of a *[http://corkami.googlecode.com/files/PE101.zip simple windows executable]*, that shows its dissected structure and explains how it's loaded by the operating system.
 
+|| العربية || تجول خلال ملف ويندوز تنفيذي || [https://twitter.com/#!/waleedassar وليد عصر] || [http://corkami.googlecode.com/files/PE101-v1AR.pdf PDF] [http://corkami.googlecode.com/files/PE101-v1AR.png PNG] [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101ar.svg SVG] ||
 || Deutsch || Ein Überblick über Windows Executables || [http://pnx.tf Daniel Plohmann] || [http://corkami.googlecode.com/files/PE101-v1DE.pdf PDF] [http://corkami.googlecode.com/files/PE101-v1DE.png PNG] [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101de.svg SVG] ||
 || *English* || *a windows executable walkthrough* || || *[http://corkami.googlecode.com/files/PE101-v1.pdf PDF] [http://corkami.googlecode.com/files/PE101-v1.jpg JPG]* [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101.svg SVG] ||
 || Español || un recorrido por los ejecutables de windows || Gorka Ramírez || [http://corkami.googlecode.com/files/PE101-v1ES.pdf PDF] [http://corkami.googlecode.com/files/PE101-v1ES.png PNG] [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101es.svg SVG] ||
