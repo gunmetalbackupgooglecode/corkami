@@ -16,7 +16,7 @@
  * [http://code.google.com/p/corkami/downloads/detail?name=cm.pdf anti-debugs]
 
 =presentations=
- * x86 & PE: first presented and recorded at Hashdays, then improved at BerlinSides
+ * x86 & PE: first presented and recorded at Hashdays, then improved at !BerlinSides
   # [http://code.google.com/p/corkami/wiki/hashdays2011 Hashdays 2011]: Such a weird processor - messing with opcodes (...and a little bit of PE) (28th October 2011)  <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hashdays2011_subs.xml" width=620 height=405 border=0/>
   # [http://code.google.com/p/corkami/wiki/BerlinSidesX2 BerlinSides x2]: x86 & PE (28th December 2011) - with demo as [http://code-opensocial.googleusercontent.com/gadgets/ifr?url=https%3A%2F%2Fcorkami.googlecode.com%2Fsvn%2Ftrunk%2Fpics%2Fbsx2%2Fbsx2.xml&parent=%2F%2Fcode.google.com%2Fhosting&container=code#slide42 screencasts]
  * [HackInParis2012 a bit more of PE], presented at Hack in Paris, on the 22nd June 2012
@@ -71,3 +71,6 @@
 
 ===more...===
 ...for more information, check the (old) [http://corkami.blogspot.com/p/map.html blog map], and the [http://code.google.com/p/corkami/downloads/list downloads tab].
+
+=support Corkami=
+to show your support, you can buy special or customized editions or my work, or just donate, via [About#Support_Corkami the support page]
