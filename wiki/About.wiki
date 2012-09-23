@@ -48,7 +48,7 @@ This unplanned extra step makes this year 2011 even better. It was great altoget
 so Corkami can step up and move on to the next level, following the same methods but tackling more advanced topics such as malware/packer analysis.
 
 =Support Corkami=
-To show your support (I get none from my employer, this is just a hobby in my spare time) you can:
+To show your support (this _free_ project is just a hobby done in my spare time) you can:
  * buy the special 'supporter' version of [http://pe101.corkami.com PE 101] for 15EUR, which will be sent as a file attachment, via e-mail.
 
  [https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NSLAQ9VUUN5XG https://www.paypalobjects.com/en_US/FR/i/btn/btn_buynowCC_LG.gif]

@@ -1,7 +1,7 @@
 #summary x86 oddities
 #labels Featured
 
-====[http://code.google.com/p/corkami/ << back to index]====
+====[http://code.google.com/p/corkami/ << index] (this _free_ project is done in my spare time. [http://code.google.com/p/corkami/wiki/About#Support_Corkami Support] it!)====
 [http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr Français]
 
 =x86 oddities=
@@ -566,4 +566,4 @@ https://corkami.googlecode.com/svn/wiki/pics/x86_96b.gif
  * [http://feldmann.home.xs4all.nl/86bugs.htm Hamarsoft 86BUGS list]
  * [http://www.rcollins.org/ddj/ddj.html Dr. Dobb's Undocumented Corner]
 
-====[http://code.google.com/p/corkami/ << back to index]====
+====[http://code.google.com/p/corkami/ << index] (this _free_ project is done in my spare time. [http://code.google.com/p/corkami/wiki/About#Support_Corkami Support] it!)====

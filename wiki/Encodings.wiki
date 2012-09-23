@@ -1,6 +1,6 @@
 #summary curious Encodings
 
-====[http://code.google.com/p/corkami/ << back to index]====
+====[http://code.google.com/p/corkami/ << index] (this _free_ project is done in my spare time. [http://code.google.com/p/corkami/wiki/About#Support_Corkami Support] it!)====
 
 =Encodings=
  * This page ([http://code.google.com/p/corkami/wiki/Encodings?show=content printable version] [http://corkami.googlecode.com/svn/wiki/Encodings.wiki wiki source]) explains curious encodings or encoded files.
@@ -62,4 +62,4 @@ Peter Ferrie rewrote the EICAR file, smaller this time, as the test string itsel
  * Peter Ferrie
  * [http://utf-8.jp/ Yosuke Hasegawa]
 
-====[http://code.google.com/p/corkami/ << back to index]====
+====[http://code.google.com/p/corkami/ << index] (this _free_ project is done in my spare time. [http://code.google.com/p/corkami/wiki/About#Support_Corkami Support] it!)====

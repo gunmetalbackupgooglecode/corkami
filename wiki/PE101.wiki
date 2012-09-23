@@ -1,7 +1,7 @@
 #summary Portable Executable 101 - a windows executable walkthrough
 #labels Featured
 
-====[http://code.google.com/p/corkami/ << back to index]====
+====[http://code.google.com/p/corkami/ << index] (this _free_ project is done in my spare time. [http://code.google.com/p/corkami/wiki/About#Support_Corkami Support] it!)====
 =Portable Executable 101 - a windows executable walkthrough=
 
 This graphic is a walkthrough of a *[http://corkami.googlecode.com/files/PE101.zip simple windows executable]*, that shows its dissected structure and explains how it's loaded by the operating system.
@@ -32,6 +32,16 @@ SVGs:
 Previews album:
 <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/imgur_pe101.xml" width=600 height=550 border=0/>
 
+To show your support (this _free_ project is just a hobby done in my spare time) you can:
+ * buy the special 'supporter' version for 15EUR, which will be sent as a file attachment, via e-mail.
+
+ [https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NSLAQ9VUUN5XG https://www.paypalobjects.com/en_US/FR/i/btn/btn_buynowCC_LG.gif]
+
+ * buy a customized version for 50EUR, which will be sent as a file attachment, via e-mail.
+
+ [https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SXVK25Z8MKHXA https://www.paypalobjects.com/en_US/FR/i/btn/btn_buynowCC_LG.gif]
+
+
 =Acknowledgments=
  * Daniel Plohmann
  * David Curran
@@ -41,3 +51,5 @@ Previews album:
  * Moritz Kroll
  * Nicolas Ruff
  * Patrick Fitzgerald
+
+ ====[http://code.google.com/p/corkami/ << index] (this _free_ project is done in my spare time. [http://code.google.com/p/corkami/wiki/About#Support_Corkami Support] it!)====

@@ -2,7 +2,7 @@
 #labels Featured
 <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/imgur_opcodes.xml" width=700 height=550 border=0/>
 
-====[http://code.google.com/p/corkami/ << back to index]====
+====[http://code.google.com/p/corkami/ << index] (this _free_ project is done in my spare time. [http://code.google.com/p/corkami/wiki/About#Support_Corkami Support] it!)====
 
 ==Opcodes' Tables==
 also called _Instruction set maps_
@@ -32,4 +32,4 @@ also called _Instruction set maps_
  * Francisco Falcon
  * Sébastien Kirche
 
-====[http://code.google.com/p/corkami/ << back to index]====
+====[http://code.google.com/p/corkami/ << index] (this _free_ project is done in my spare time. [http://code.google.com/p/corkami/wiki/About#Support_Corkami Support] it!)====

@@ -1,7 +1,7 @@
 #summary a summary of PDF tricks - encodings, structures, JavaScript...
 #labels Featured
 
-====[http://code.google.com/p/corkami/ << back to index]====
+====[http://code.google.com/p/corkami/ << index] (this _free_ project is done in my spare time. [http://code.google.com/p/corkami/wiki/About#Support_Corkami Support] it!)====
 [http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr Français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語]
 
 =PDF Tricks=
@@ -474,4 +474,4 @@ WARNING: it will not work if the PDF is encrypted - it should be decrypted first
  * [http://www.symantec.com/connect/blogs/portable-document-format-malware Kazumasa Itabashi]
  * [http://blog.zynamics.com/2010/07/13/recon-slides-how-to-really-obfuscate-your-pdf-malware/ Sebastian Porst]
 
-====[http://code.google.com/p/corkami/ << back to index]====
+====[http://code.google.com/p/corkami/ << index] (this _free_ project is done in my spare time. [http://code.google.com/p/corkami/wiki/About#Support_Corkami Support] it!)====
