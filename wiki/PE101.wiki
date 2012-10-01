@@ -17,7 +17,7 @@ This graphic is a walkthrough of a *[http://corkami.googlecode.com/files/PE101.z
 || Polski || Plik PE krok po kroku || [http://hexacorn.com/blog Adam Błaszczyk] [http://gynvael.coldwind.pl/ Gynvael Coldwind] || [http://corkami.googlecode.com/files/PE101-v11PL.pdf PDF] [http://corkami.googlecode.com/files/PE101-v11PL.png PNG] [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101pl.svg SVG] ||
 || Русский || пошаговое руководство к исполняемым файлам (EXE) Windows || [https://twitter.com/#!/Lyr1k Lyr1k] ||  [http://corkami.googlecode.com/files/PE101-v1RU.PDF PDF] [http://corkami.googlecode.com/files/PE101-v1RU.png PNG] [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101ru.svg SVG] ||
 
-you can print it yourself freely (or even download and modify it), or *[http://www.cafepress.com/sk/angealbertini order]* a print.
+you can print it yourself freely (or even download and modify it), or *[http://www.cafepress.com/sk/angealbertini/202539 order]* a print.
 
 https://corkami.googlecode.com/svn/wiki/pics/pe101-preview.jpg
 
