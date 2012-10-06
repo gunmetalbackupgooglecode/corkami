@@ -1,10 +1,12 @@
 #summary the Portable Executable Format on Windows
 #labels Featured
 
-====[http://code.google.com/p/corkami/ << index] (this _free_ project is done in my spare time. [http://code.google.com/p/corkami/wiki/About#Support_Corkami Support] it!)====
+[http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities] (this project is done in my spare time. *[http://code.google.com/p/corkami/wiki/About#Support_Corkami Support ]* it!)
 
 =PE=
 This page deals with the PE format, or more specifically, x86/x64 Windows (from XP to W7) binaries (ie, not other OSes or systems, not OBJ format, etc...)
+
+if you're not familiar with this format, check [http://pe101.corkami.com PE 101 - a Windows executable walkthrough].
 
 It deals with the *reality* of the loader, not the theory of the format itself, as specified in _Microsoft PE and COFF Specification_. Many malwares or packers actually run without a problem, while they theoretically shouldn't.
 
@@ -1548,4 +1550,4 @@ A standard use for code-less PEs is to store resources. In this case, more field
  * [http://www.reversinglabs.com/advisory/pecoff.php Undocumented PE/COFF] _Reversing Labs_
  * [http://ntcore.com/files/richsign.htm Microsoft's Rich Signature (undocumented)] _Daniel Pistelli_
 
-====[http://code.google.com/p/corkami/ << index] (this _free_ project is done in my spare time. [http://code.google.com/p/corkami/wiki/About#Support_Corkami Support] it!)====
+[http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities] (this project is done in my spare time. *[http://code.google.com/p/corkami/wiki/About#Support_Corkami Support ]* it!)

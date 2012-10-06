@@ -1,21 +1,25 @@
 #summary x86 oddities
 #labels Featured
 
-====[http://code.google.com/p/corkami/ << index] (this _free_ project is done in my spare time. [http://code.google.com/p/corkami/wiki/About#Support_Corkami Support] it!)====
-[http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr Français]
+[http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities] (this project is done in my spare time. *[http://code.google.com/p/corkami/wiki/About#Support_Corkami Support ]* it!)
+
+Available in: [http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr Français]
 
 =x86 oddities=
 This page ([http://code.google.com/p/corkami/wiki/x86oddities?show=content printable version] [http://corkami.googlecode.com/svn/wiki/x86oddities.wiki wiki source]) enumerates various oddities of the x86/x64.
 
 They are all implemented and tested in [StandardTest CoST].
+
+this topic was presented in 2011 at [http://code.google.com/p/corkami/wiki/hashdays2011?show=content Hashdays] (video available) and [http://code.google.com/p/corkami/wiki/BerlinSidesX2?show=content BerlinSides] (screencasts available)
+
 <wiki:toc max_depth="3" />
 
 =general=
 ==register order==
- * In 32b, each register has some unique role (unlike in 64b, where all registers of the r`9`-r`15` group are equivalent, from an mnemonic perspective): STOSD, reads from `[`ESI`]` to EAX, LOOP relies on ECX, XLAT uses EBX as a base, IN reads from port DX...
+ * In 32b, each register has some unique role (unlike in 64b, where all registers of the r`9`-r`15` group are equivalent, from an mnemonic perspective): `stosd` reads from `esi` to `eax`, `loop` relies on `ecx`, `xlat` uses `ebx` as a base, `in` reads from port `dx`...
  * Registers are using A, B, C, D letters, but it stands for Accumulator, Base, Counter, Data, not the letters themselves.
  Their logical order is not the alphabetic one: In the CPU, they're encoded in the A, C, D, B order:
-  for example, INC EAX is encoded 40, INC ECX is encoded 41, and so on.
+  for example, `inc eax` is encoded `40`, `inc ecx` is encoded `41`, and so on...
 
  https://corkami.googlecode.com/svn/wiki/pics/x86_regorder.png
 
@@ -72,7 +76,7 @@ VirtualPC has been known to be incorrectly ignoring the 15 bytes limit.
 ==MMX and FPU==
 MMX and FPU registers are overlapping, but in opposite directions: 0, 1,2,3... mapped to 7,6,5...
 
-Thus, a single FPU operation on ST0 will modify FST, ST0, but also MM7 (and CR0, under XP).
+Thus, a single FPU operation on `st0` will modify `fst`, `st0`, but also `mm7` (and `cr0`, under XP).
 {{{
 d9eb: fldpi
 
@@ -183,6 +187,8 @@ https://corkami.googlecode.com/svn/wiki/pics/x86_bswap.gif
 
 => ax = 0
 }}}
+
+to effectively swap `ax` contents, one can use `86e0: xchg al, ah`
 
 ==cmpxchg`*`==
  * `lock cmpxchg8b` doesn't crash CPUs anymore,
@@ -318,7 +324,7 @@ https://corkami.googlecode.com/svn/wiki/pics/x86_salc.gif
  * `salc` is sometimes written `setalc`
  * it stands for `Set AL on Carry`
  * it's undocumented by Intel - but not by AMD, and it's unexpectedly supported by Intel's public tools.
- * it's a one byte equivalent of `1ac0: sb al, al`
+ * it's a one byte equivalent of `1ac0: sbb al, al`
   * al = cf ? -1 : 0
 
 {{{
@@ -345,7 +351,7 @@ https://corkami.googlecode.com/svn/wiki/pics/x86_lockxp.gif
 
 `lock:` is wrongly parsed by Windows XP:
  # Upon an exception, XP tries to determine whether it should be an INVALID LOCK SEQUENCE or just an ILLEGAL INSTRUCTION
- # but it checks too briefly for a F0 byte: in the case of `FEF0`, which is just undefined, an INVALID LOCK SEQUENCE is still triggered by XP even if, in this case, it has nothing to do with a `lock` prefix (For reference, `FEC0` decodes as `inc al`)
+ # but it checks too briefly for a F0 byte: in the case of `fef0`, which is just undefined, an INVALID LOCK SEQUENCE is still triggered by XP even if, in this case, it has nothing to do with a `lock` prefix (For reference, `fec0` decodes as `inc al`)
 
 Windows 7 just avoids the problem altogether by triggering an ILLEGAL INSTRUCTION on all invalid opcodes, no matter what, including invalid use of LOCK: prefix. No parsing, no mistake !
 
@@ -356,12 +362,16 @@ fef0: ??
    ILLEGAL INSTRUCTION (W7)
 }}}
 
+===Windows 7 bug===
+On the other hand, `lock:prefetch` is wrongly handled by Windows 7. It's an illegal instruction, and while it triggers correctly an INVALID LOCK SEQUENCE exception on XP, it doesn't trigger any exception under Windows 7. It's invalid, so can't be executed, yet triggers no exception, so it just hangs, like an infinite loop, but without crashing.
+
+even more exceptional, the OS patches the opcode: executing `f0:0f 0d 00` turns it into `f0:0f 1f 00`.
 ==smsw==
 https://corkami.googlecode.com/svn/wiki/pics/x86_smsw.gif
 
  * returns CR0 value (WORD or DWORD)
  * unprivileged, unlike `mov eax, cr0`: it's an old 286 instructions, while `mov cr0` is only present in 386 and later.
- * upper bits are officially undefined. but in reality, they're just CR0 contents.
+ * upper bits are officially undefined. but in reality, they're just `cr0` contents.
 {{{
 
 0f 01e0: smsw eax
@@ -566,4 +576,4 @@ https://corkami.googlecode.com/svn/wiki/pics/x86_96b.gif
  * [http://feldmann.home.xs4all.nl/86bugs.htm Hamarsoft 86BUGS list]
  * [http://www.rcollins.org/ddj/ddj.html Dr. Dobb's Undocumented Corner]
 
-====[http://code.google.com/p/corkami/ << index] (this _free_ project is done in my spare time. [http://code.google.com/p/corkami/wiki/About#Support_Corkami Support] it!)====
+====[http://code.google.com/p/corkami/ << index] ([http://opcodes.corkami.com opcodes tables]/[http://pdf.corkami.com pdf tricks]/[http://pe.corkami.com Portable Executable]/[http://x86.corkami.com x86 oddities]) (this project is done in my spare time. [http://code.google.com/p/corkami/wiki/About#Support_Corkami Support] it!)====
