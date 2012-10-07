@@ -25,7 +25,7 @@ It helped to find bugs in many disassemblers and PE tools (all that I tested):
  * allocation of the null page.
 
 =Download=
-see the [http://code.google.com/p/corkami/downloads/list?can=1&q=cost download list]
+see the [http://code.google.com/p/corkami/downloads/list?can=1&q=cost downloads] or the *[http://xchg.info/corkami/latest/cost.rar latest nightly build]*
 
 = Details =
 
