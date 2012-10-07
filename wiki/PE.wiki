@@ -54,6 +54,29 @@ a standard (high aligments, sections, imports) PE such as `normal` can be define
 }}}
 so everything else is not required.
 
+a more extreme PE can rely on even less elements:
+ * `mini` is a working PE with the minimum amount of defined elements.
+{{{
+    at IMAGE_NT_HEADERS.Signature, db 'PE', 0, 0
+...
+    at IMAGE_FILE_HEADER.Machine,         dw IMAGE_FILE_MACHINE_I386
+    at IMAGE_FILE_HEADER.Characteristics, dw IMAGE_FILE_EXECUTABLE_IMAGE | IMAGE_FILE_32BIT_MACHINE
+...
+    at IMAGE_OPTIONAL_HEADER32.Magic,                 dw IMAGE_NT_OPTIONAL_HDR32_MAGIC
+    at IMAGE_OPTIONAL_HEADER32.AddressOfEntryPoint,   dd EntryPoint - IMAGEBASE ; not strictly required
+    at IMAGE_OPTIONAL_HEADER32.ImageBase,             dd IMAGEBASE ; not required under XP
+    at IMAGE_OPTIONAL_HEADER32.SectionAlignment,      dd SECTIONALIGN
+    at IMAGE_OPTIONAL_HEADER32.FileAlignment,         dd FILEALIGN
+    at IMAGE_OPTIONAL_HEADER32.MajorSubsystemVersion, dw 4
+    at IMAGE_OPTIONAL_HEADER32.SizeOfImage,           dd SIZEOFIMAGE
+	at IMAGE_OPTIONAL_HEADER32.SizeOfHeaders,         dd SIZEOFIMAGE - 1 ; required for XP
+    at IMAGE_OPTIONAL_HEADER32.Subsystem,             dw IMAGE_SUBSYSTEM_WINDOWS_CUI
+}}}
+
+as most elements are actually unused, they can be used for other reasons.
+ * `hdrcode` contains a maximum of executed code in its header, and calculate fibonacci numbers via FPU.
+     https://corkami.googlecode.com/svn/wiki/pics/PE_hdrcode.png
+
 =structure by structure=
 
 ==DOS Header ('MZ Header')==
@@ -276,6 +299,10 @@ EntryPoint:
   * `tls_virtEP` has an 'invalid' !EntryPoint, but the TLS allocates the memory space and generates some codes, so the !EntryPoint works fine.
   <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_tlsvirtEP.swf up_FlashHeight=284 up_FlashWidth=532 up_ContainerCol="#d1dae3" height=284 width=532 title="" border=0/>
  * is not used when a staticly loaded DLL doesn't have IMAGE_FILE_DLL set as IMAGE_FILE_HEADER.Characteristics
+ * when a static DLL's !DllMain is executed, the context of the not-executed-yet PE is available via lpvReserved. Thus, a static DLL can freely modify the value of the future !EntryPoint to be executed
+  * `ctxt` and `ctxt-ld` are an example of such context modification via lpvReserved.
+   https://corkami.googlecode.com/svn/wiki/pics/PE_lpvreserved.png
+ 
 =====!BaseOfCode/!BaseOfData=====
 no particular importance whatsoever
 
@@ -364,6 +391,7 @@ From a technical perspective, drivers and gui/console PEs are identical, except 
   https://corkami.googlecode.com/svn/wiki/pics/PE_maxvals.png
  * can be 0
   * `no_dd` has no data directory (see `imports`)
+ * .Net loaders ignores this value, even if it requires relocations and a COM data directory, and will parse them. Thus, a .Net PE can work with a !NumberOfRvaAndSizes of 2.
 
 ==data directories==
 
@@ -654,6 +682,7 @@ align 4, db 0 ; <= imports terminator NULL
 
   https://corkami.googlecode.com/svn/wiki/pics/PE_no_dd.png
 
+ * .Net requires an import to `mscoree.dll._CoreExeMain`, a single `IMPORT_IMAGE_DESCRIPTOR`, and an import size to be at least 0x28. It doesn't accept to import to `mscoree` (without extension)
 ===resources===
  * directory-like structure.
  {{{
@@ -795,14 +824,16 @@ RESOURCE_SIZE equ $ - resource_data
    https://corkami.googlecode.com/svn/wiki/pics/PE_resource_string.png
 
 =====exception=====
- * not covered here
- * used by 64b binaries for SafeSEH
+ * used by 64b binaries for exception handling.
 
 =====security=====
  * defines the offset and size of the digital certificate blob (as it can be appended *after* appended data itself).
+ * the area covered by this data directory is not included in the signature checking. Thus, increasing the size of a certificate and appending some data that won't be checked is possible without breaking the signature. This leads to security problems if the file is an installer with a ZIP in appended data / last section, as ZIPs are parsed bottom-up.
+ * moreover, it was possible to move the certificate so that its starts overlaps `IMAGE_DOS_HEADER.e_lfanew`, which could lead to an alternate `IMAGE_NT_HEADERS` being used - thus, a different PE - while the signature is still valid.
 
 ===relocations===
  * relocations are used when the PE is loaded at a different !ImageBase. Hardcoded Addresses such as `push <addr>` and `call [<addr>]` have to be adjusted.
+ * at least 1 relocation is required and used for .Net files, on the !EntryPoint jump `FF25 xxxxxxxx: jmp [_CorExeMain]`
  * relocations are not used (even with corrupted ones) if the PE can be loaded at the expected address.
   * `fakerelocs.exe` contains fake unused relocations:
   <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_fakerelocs.swf up_FlashHeight=289 up_FlashWidth=331 up_ContainerCol="#d1dae3" height=289 width=331 title="" border=0/>
@@ -859,6 +890,8 @@ DIRECTORY_ENTRY_BASERELOC_SIZE  equ $ - Directory_Entry_Basereloc
  * IMAGE_REL_BASED_HIGHLOW is the 'standard' relocation, for which `<real base> - ImageBase` will be added to the pointed address
  * IMAGE_REL_BASED_HIGH does the same but only the highest WORD of the delta is added. (in short, same operation one WORD earlier)
  * IMAGE_REL_BASED_LOW does the same but only the lowest WORD of the delta is added, which makes no change, as both bases are 10000h-aligned.
+ * IMAGE_REL_BASED_HIGH3ADJ (type 11) were only supported until Windows 2000.
+ * IMAGE_REL_BASED_HIGHADJ (type 4) is the only one to require a parameter. However, it's buggy, so the parameter is ignored.
  * Other sort of relocations such as Mips and 64 bits are still supported by Windows 7, even if the PE specifies an x86 CPU.
   * `reloccrypt.exe` uses MIPS relocations (thus, involving masking and shifting):
   https://corkami.googlecode.com/svn/wiki/pics/PE_reloccrypt.png
@@ -1054,6 +1087,8 @@ AddressOfIndex equ $ + 1
     jmp long $
 }}}
 
+ * like !DllMain, after TLS execution, only `ESI` needs to be correct.
+  * `fakeregs` corrupts all registers except ESI, on !DllMain and TLS execution.
 =====Load config=====
  * not covered here
  * store various OS related flags, including the !SafeSEH structure
