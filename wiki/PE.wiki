@@ -76,6 +76,8 @@ a more extreme PE can rely on even less elements:
 as most elements are actually unused, they can be used for other reasons.
  * `hdrcode` contains a maximum of executed code in its header, and calculate fibonacci numbers via FPU.
      https://corkami.googlecode.com/svn/wiki/pics/PE_hdrcode.png
+ * TBC's 1kb Traceless demo also contains an [https://corkami.googlecode.com/svn/trunk/asm/misc/traceless.bat executable header]
+    <wiki:video url="http://www.youtube.com/watch?v=EDc0qmDrjtM"/>
 
 =structure by structure=
 
@@ -302,7 +304,7 @@ EntryPoint:
  * when a static DLL's !DllMain is executed, the context of the not-executed-yet PE is available via lpvReserved. Thus, a static DLL can freely modify the value of the future !EntryPoint to be executed
   * `ctxt` and `ctxt-ld` are an example of such context modification via lpvReserved.
    https://corkami.googlecode.com/svn/wiki/pics/PE_lpvreserved.png
- 
+
 =====!BaseOfCode/!BaseOfData=====
 no particular importance whatsoever
 
@@ -389,9 +391,11 @@ From a technical perspective, drivers and gui/console PEs are identical, except 
  * rounded down to 16 if bigger
   * `maxvals` has a maximum of PE structures set to FF, including its !NumberOfRvaAndSizes which is set to FFFF
   https://corkami.googlecode.com/svn/wiki/pics/PE_maxvals.png
+
  * can be 0
   * `no_dd` has no data directory (see `imports`)
  * .Net loaders ignores this value, even if it requires relocations and a COM data directory, and will parse them. Thus, a .Net PE can work with a !NumberOfRvaAndSizes of 2.
+  https://corkami.googlecode.com/svn/wiki/pics/PE_tinynet_2dd.png
 
 ==data directories==
 
@@ -677,12 +681,14 @@ dd 'msvcrt',0
 align 4, db 0 ; <= imports terminator NULL
 }}}
 
- * imports' Data Directory is not required to load imports: by locating kernel32 manually then parsing its exports manually, it's possible to resolve !LoadLibraryA, then it's possible to manually load any DLL and resolve any of its exports (manually or via !GetProcAddress).
+ * imports' Data Directory is not required to load imports: by locating kernel32 manually then parsing its exports manually, it's possible to resolve LoadLibraryA, then it's possible to manually load any DLL and resolve any of its exports (manually or via !GetProcAddress).
   * `no_dd` has no data directory, and loads its imports manually.
 
   https://corkami.googlecode.com/svn/wiki/pics/PE_no_dd.png
 
- * .Net requires an import to `mscoree.dll._CoreExeMain`, a single `IMPORT_IMAGE_DESCRIPTOR`, and an import size to be at least 0x28. It doesn't accept to import to `mscoree` (without extension)
+ * .Net requires an import to `mscoree.dll._CoreExeMain`, and an import size to be at least 0x28. 
+   It doesn't accept to import to `mscoree` (without extension).
+ 
 ===resources===
  * directory-like structure.
  {{{
@@ -823,8 +829,34 @@ RESOURCE_SIZE equ $ - resource_data
   * `resource_string` stores and access its message via resource string
    https://corkami.googlecode.com/svn/wiki/pics/PE_resource_string.png
 
-=====exception=====
- * used by 64b binaries for exception handling.
+====Manifest====
+ * Manifest are XML resource that store informations about the executable.
+ * Manifest presence can be checked by `kernel32.CreateActCtxA`
+ * the minimal Manifest is `<assembly xmlns='urn:schemas-microsoft-com:asm.v1' manifestVersion='1.0'/>`
+  * XP SP2 used to BSOD with a simple manifest PE
+ * a PE with an incorrect manifest resource won't run
+  * a manifest with an invalid type will be ignored, thus the file will run.
+   * `manifest_broken` has an invalid manifest with an invalid type, so it's ignored altogether
+{{{
+...
+MYMAN equ 3 ; incorrect - this file wouldn't run if it's set to 1 or 2
+...
+    at IMAGE_RESOURCE_DIRECTORY_ENTRY.NameID, dd MYMAN
+...
+resource_data:
+db "<assembly xmlns='urn:schemas-microsoft-com:asm.v1' manifestVersion='1.0'>" ; broken end
+RESOURCE_SIZE equ $ - resource_data
+...
+}}}
+
+===exception===
+ * used by 64b binaries for structured exception handling.
+  * `exceptions` is a minimalist 64b PE that use exceptions.
+   https://corkami.googlecode.com/svn/wiki/pics/PE_exceptions.png
+
+ * the OS relies on the !DataDirectory itself in memory.
+  * `seh_change64` alterates the handler in memory, which is taken into account by the OS.
+   https://corkami.googlecode.com/svn/wiki/pics/PE_seh_change64.png
 
 =====security=====
  * defines the offset and size of the digital certificate blob (as it can be appended *after* appended data itself).
@@ -994,16 +1026,14 @@ BASE_RELOC_SIZE_OF_BLOCK1 equ $ - block_start1
 
 ===debug===
  * used for storing debug symbols
- * under XP, the value of the Debug directory *SIZE* can't be random - even if the RVA is null !
-  * thus, it's one of the rare data directory size that makes a difference.
-
+ * its !DataDirectory size tells the loader how many blocks are available. Thus, it is taken into account.
+  * under XP, the value of the Debug directory *SIZE* can't be random - even if the RVA is null !
 
 ===copyright===
  * Watcom compilers makes it point to a string. Useless whatsoever.
 
 =====!GlobalPtr=====
- * not covered here
- * used in IA64 to store global pointers to variables
+ * used in Itanium to store global pointers to variables. Useless whatsoever.
 
 ===TLS===
  * most values of TLS structures are not required:
@@ -1087,11 +1117,11 @@ AddressOfIndex equ $ + 1
     jmp long $
 }}}
 
- * like !DllMain, after TLS execution, only `ESI` needs to be correct.
+ * like !DllMain, after TLS execution, only `ESI` needs to be correct. the rest doesn't matter, including ESP, which could easily crash an emulator.
   * `fakeregs` corrupts all registers except ESI, on !DllMain and TLS execution.
+
 =====Load config=====
- * not covered here
- * store various OS related flags, including the !SafeSEH structure
+ * store various OS related flags, including the SafeSEH structure, which is handled by extra code added in the PE by VisualStudio.
 
 ===Bound imports===
  * are a shortcut structure to hardcode some imports values in advance, to make import values faster
@@ -1508,7 +1538,7 @@ AddressOfIndex:
 https://corkami.googlecode.com/svn/wiki/pics/PE_tlsaoidet_w7.png https://corkami.googlecode.com/svn/wiki/pics/PE_tlsaoidet_xp.png
 
 ===manyimportsW7===
- * this W7-only binary use the TLS !AoI trick to clean its imports. On disk, the import table is full of bogus descriptors, which will be ignored on loading
+ * this W7-only binary use the TLS AoI trick to clean its imports. On disk, the import table is full of bogus descriptors, which will be ignored on loading
  {{{
 Image_Tls_Directory32:
 ...
@@ -1562,7 +1592,7 @@ A standard use for code-less PEs is to store resources. In this case, more field
  * a PE executing code can have either no sections, no entrypoint, no data directories - but not at least one of the 3 is required - which breaks the typical model.
  * many fields are not relevant, and can have completely bogus values (even important-looking ones such as !BaseOfCode, !SizeOfCode...)
  * many fields are taken into account only once the PE is mapped in memory, which requires a different way of thinking (allocated areas, mapped sections...)
-  * most fields are not checked for boundaries, even important ones such as !EntryPoint, TLS !Callbacks, imports, exports...
+  * most fields are not checked for boundaries, even important ones such as !EntryPoint, TLS Callbacks, imports, exports...
  * several fields enable loader-based decryption (relocations, exports)
  * TLS is arguably the most f`*`cked up part of the PE format.
 
@@ -1584,5 +1614,6 @@ A standard use for code-less PEs is to store resources. In this case, more field
 =external resources=
  * [http://www.reversinglabs.com/advisory/pecoff.php Undocumented PE/COFF] _Reversing Labs_
  * [http://ntcore.com/files/richsign.htm Microsoft's Rich Signature (undocumented)] _Daniel Pistelli_
+ * [http://pferrie.host22.com/misc/pehdr.htm Maximum possible code execution in the PE header] _Peter Ferrie_
 
 [http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities] (this project is done in my spare time. *[http://code.google.com/p/corkami/wiki/About#Support_Corkami Support ]* it!)
