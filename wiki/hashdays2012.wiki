@@ -1,0 +1,24 @@
+#summary Binary art - Byte-ing the PE that fails you
+
+[http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities] (this project is done in my spare time. *[http://code.google.com/p/corkami/wiki/About#Support_Corkami Support ]* it!)
+
+=Binary art - Byte-ing the PE that fails you=
+
+====presented the 3rd November 2012 during Hashdays, at Luzern, Switzerland ====
+
+=abstract=
+Being the standard executable format under Windows, the Portable Executable is omnipresent. Sadly, there is a huge gap between the official specs, suggestive at best, and the reality of the loader. While it's critical for analysts and software to reliably understand such binaries, it's actually almost impossible in extreme cases. After showing various examples that prove that Microsoft itself doesn't have an internal and perfect documentation, I'll explain why and how I decided to start my own way to cover the topic, introducing the various documents that I made in the process. then I'll present some of the most awkward features of the PE file format, with some of my numerous proof of concepts.
+
+=slides=
+ [http://www.slideshare.net/ange4771/ange-albertini-hashdays2012extended Slideshare page]
+ <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hashdays2012_slideshare.xml" width=595 height=497 border=0/>
+
+=downloads=
+Two slide decks are available: one shorter, presented at Hashdays, and one extended, with more text explanations and more examples (the presentation one is a subset of the extended one).
+
+ [http://corkami.googlecode.com/files/ange_albertini_hashdays_2012.zip both slides decks]
+
+=video=
+not available yet
+
+[http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities] (this project is done in my spare time. *[http://code.google.com/p/corkami/wiki/About#Support_Corkami Support ]* it!)
