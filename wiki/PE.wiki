@@ -1073,9 +1073,10 @@ tls:
  * under XP, TLS are only executed with staticly loaded DLL, not dynamicly loaded ones.
  * on XP, TLS are executed twice, on process start and process termination. Thus, code *is* executed even after a call to !ExitProcess.
  This is true even under Windows 7, however libraries such as user32.dll might be already unloaded, preventing code using it to work normally.
- * TLS callbacks are not executed if no DLL importing kernel32 is imported. Thus, no execution if kernel32 is the only import.
-  * `tls_k32` has only imports to kernel32, and a TLS that is ignored.
+ * TLS callbacks are not executed on thread start if no DLL importing kernel32 is imported. Thus, only execution on thread stop if kernel32 is the only import.
+  * `tls_k32` only has imports to kernel32, and a TLS that is ignored on thread start and used on thread stop, while the !EntryPoint code is meaningless.
    https://corkami.googlecode.com/svn/wiki/pics/PE_tls_k32.png
+  * this behavior might be altered if the OS or debugger is loading an extra DLL.
  * TLS callbacks' list is updated at each callback execution. If a TLS or the !EntryPoint code add or remove an entry, it will be taken into consideration
   * `tls_onthefly`'s first TLS adds a second one on the list that will be executed directly after the first one is over
   https://corkami.googlecode.com/svn/wiki/pics/PE_tls_onthefly.png
