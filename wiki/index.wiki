@@ -4,6 +4,8 @@
 
 <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/twitter_corkami.xml" width=700 border=0/>
 
+<wiki:toc max_depth="1" />
+
 =Portable Executable=
  * *presentation* first at Hack In Paris, then reworked and extended at !HashDays
   # [HackInParis2012 a bit more of PE], presented at Hack in Paris, on the 22nd June 2012 <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hip2012_subs.xml" width=620 height=405 border=0/>
@@ -26,14 +28,11 @@
  * *presentation* x86 & PE: first presented and recorded at Hashdays, then improved at !BerlinSides
   # [http://code.google.com/p/corkami/wiki/hashdays2011 Hashdays 2011]: Such a weird processor - messing with opcodes (...and a little bit of PE) (28th October 2011) <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hashdays2011_subs.xml" width=620 height=405 border=0/>
   # [http://code.google.com/p/corkami/wiki/BerlinSidesX2 BerlinSides x2]: x86 & PE (28th December 2011) - with demo as [http://code-opensocial.googleusercontent.com/gadgets/ifr?url=https%3A%2F%2Fcorkami.googlecode.com%2Fsvn%2Ftrunk%2Fpics%2Fbsx2%2Fbsx2.xml&parent=%2F%2Fcode.google.com%2Fhosting&container=code#slide42 screencasts]
- * *article with !PoCs* [StandardTest Corkami Standard Test] is a PE/x86/x64 test program for your tools/emulators/skills.
-  * it checks standard opcodes,
-  * but also many [http://code.google.com/p/corkami/wiki/x86oddities?wl=en x86 oddities],
-  * and how to [http://code.google.com/p/corkami/wiki/GetIP get the current IP]
-  * and it's also a tricky PE, using many tricks, so many tools don't even identify it as a PE.
-  http://corkami.googlecode.com/svn/wiki/pics/x86_96b.gif
- * *page* [InitialValues values of general and system registers]  on TLS/!EntryPoint/... of most Windows versions, Wine, etc..
- * [CallingConventions Calling conventions, seen from ASM]
+ * *article* [http://code.google.com/p/corkami/wiki/x86oddities?wl=en x86 oddities]
+  * *PoC* [StandardTest Corkami Standard Test], a PE/x86/x64 test program for your tools/emulators/skills. http://corkami.googlecode.com/svn/wiki/pics/x86_96b.gif
+ * *article* how to [http://code.google.com/p/corkami/wiki/GetIP get the current IP]
+ * *article* [InitialValues values of general and system registers]  on TLS/!EntryPoint/... of most Windows versions, Wine, etc..
+ * *article* [CallingConventions Calling conventions, seen from ASM]
  * *doc* [http://code.google.com/p/corkami/downloads/detail?name=opcodes.pdf Opcodes] (x86 & x64 simplified tables, one-liners)
   http://corkami.googlecode.com/svn/wiki/pics/opcodes_thumb.jpg
  * *related doc*: a very nice and simple [http://net.cs.uni-bonn.de/fileadmin/user_upload/plohmann/x86_opcode_structure_and_instruction_overview.pdf opcode table], by [http://pnx.tf Daniel Plohmann]
@@ -59,14 +58,14 @@
   http://corkami.googlecode.com/svn/wiki/pics/tables_thumb.jpg
  * *article with !PoCs* [Encodings curious encodings]
   https://corkami.googlecode.com/svn/wiki/pics/misc_aa86.png
- * [IntroductionToVirus?wl=en Explaining what’s a computer virus to grandma]
+ * [IntroductionToVirus Explaining what’s a computer virus to grandma]
  * *PoC* [http://code.google.com/p/corkami/downloads/list?can=1&q=kernel31 Kernel31], a trampoline DLL to enable >!XpSp3 binaries work on previous OS.
  * old crackmes solutions: PredatorPirupiru LilcwXor
  * *screencast* [https://sites.google.com/site/corkami/ollydbg-tracing OllyDbg Tracing] (easy level) setting !OllyDbg as a JIT debugger, tracing, optimizing tracing, finding bug, patching, saving as a new executable
  * *screencast* [http://rejava.sourceforge.net/hello.html reJava] create a .class from scratch
 
-===more...===
+===more===
 ...for more information, check the (old) [http://corkami.blogspot.com/p/map.html blog map], and the [http://code.google.com/p/corkami/downloads/list downloads tab].
 
-=support Corkami=
+==support Corkami==
 to show your support, you can buy special or customized editions of my work, or just donate, via [About#Support_Corkami the support page]
