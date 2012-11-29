@@ -16,7 +16,7 @@ All proof of concepts are included with source:
  * links
   * this page: [http://code.google.com/p/corkami/wiki/PE?show=content printable version] [http://corkami.googlecode.com/svn/wiki/PE.wiki wiki source]
   * sources: [http://corkami.googlecode.com/svn/trunk/asm/PE/ repository directory]
-  * binaries with sources: [http://code.google.com/p/corkami/downloads/list?q=CPC official builds] [https://www.dropbox.com/sh/kojbmbb6hm64mcg/suVxNVV0XY nightly builds] *[http://xchg.info/corkami/latest/pe.rar latest]*
+  * binaries with sources: [http://code.google.com/p/corkami/downloads/list?q=CPC official builds] *[https://www.dropbox.com/sh/kojbmbb6hm64mcg/suVxNVV0XY nightly (latest) builds]*
 <wiki:toc max_depth="3" />
 
 =required elements=
