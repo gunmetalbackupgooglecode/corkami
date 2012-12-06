@@ -4,12 +4,18 @@
 [http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities] (this project is done in my spare time. *[http://code.google.com/p/corkami/wiki/About#Support_Corkami Support ]* it!)
 =Portable Executable 101 - a windows executable walkthrough=
 
-This graphic is a walkthrough of a *[http://corkami.googlecode.com/files/PE101.zip simple windows executable]*, that shows its dissected structure and explains how it's loaded by the operating system.
+This graphic is a walkthrough of a simple Windows _Portable Executable_ (download sources and binary [http://corkami.googlecode.com/files/PE101.zip here]), that shows its dissected structure and explains how it's loaded by the operating system.
+
+<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/imgur_pe101.xml" width=600 height=550 border=0/>
+
+this analyzed PE file was *entirely written by hand* to be concise (standard PEs contain more informations that are not essential for such a first introduction).
+
+You can download the poster, print it, distribute it, or even modify it (with attribution).
 
 || العربية || تجول خلال ملف ويندوز تنفيذي || [https://twitter.com/#!/waleedassar وليد عصر] || [http://corkami.googlecode.com/files/PE101-v1AR.pdf PDF] [http://corkami.googlecode.com/files/PE101-v1AR.png PNG] [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101ar.svg SVG] ||
 || Deutsch || Ein Überblick über Windows Executables || [http://pnx.tf Daniel Plohmann] || [http://corkami.googlecode.com/files/PE101-v1DE.pdf PDF] [http://corkami.googlecode.com/files/PE101-v1DE.png PNG] [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101de.svg SVG] ||
-|| English || a windows executable walkthrough *light* || || [http://corkami.googlecode.com/files/PE101-v20L.pdf PDF] [http://corkami.googlecode.com/files/PE101-v20L.png PNG] [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101l.svg SVG] ||
-|| *English* || a windows executable walkthrough || || [http://corkami.googlecode.com/files/PE101-v1.pdf PDF] [http://corkami.googlecode.com/files/PE101-v1.jpg JPG] [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101.svg SVG] ||
+|| English || a windows executable walkthrough *light* (xkcd-style) || || *[http://corkami.googlecode.com/files/PE101-v20L.pdf PDF] [http://corkami.googlecode.com/files/PE101-v20L.png PNG]* [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101l.svg SVG] ||
+|| *English* || a windows executable walkthrough || || *[http://corkami.googlecode.com/files/PE101-v1.pdf PDF] [http://corkami.googlecode.com/files/PE101-v1.jpg JPG]* [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101.svg SVG] ||
 || English || a windows executable walkthrough *64 bits* || || [http://corkami.googlecode.com/files/pe101-64b.zip ALL] ||
 || Español || un recorrido por los ejecutables de windows || Gorka Ramírez || [http://corkami.googlecode.com/files/PE101-v1ES.pdf PDF] [http://corkami.googlecode.com/files/PE101-v1ES.png PNG] [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101es.svg SVG] ||
 || Français || visite guidée d'un exécutable Windows || || [http://corkami.googlecode.com/files/pe101-v1FR.pdf PDF] [http://corkami.googlecode.com/files/pe101-v1FR.png PNG] [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101fr.svg SVG] ||
@@ -18,21 +24,11 @@ This graphic is a walkthrough of a *[http://corkami.googlecode.com/files/PE101.z
 || Polski || Plik PE krok po kroku || [http://hexacorn.com/blog Adam Błaszczyk] [http://gynvael.coldwind.pl/ Gynvael Coldwind] || [http://corkami.googlecode.com/files/PE101-v11PL.pdf PDF] [http://corkami.googlecode.com/files/PE101-v11PL.png PNG] [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101pl.svg SVG] ||
 || Русский || пошаговое руководство к исполняемым файлам (EXE) Windows || [https://twitter.com/#!/Lyr1k Lyr1k] ||  [http://corkami.googlecode.com/files/PE101-v1RU.PDF PDF] [http://corkami.googlecode.com/files/PE101-v1RU.png PNG] [https://corkami.googlecode.com/svn/trunk/graph/pe101/pe101ru.svg SVG] ||
 
-you can print it yourself freely (or even download and modify it).
-
-https://corkami.googlecode.com/svn/wiki/pics/pe101-preview.jpg
-
-this file was *entirely written by hand* to be concise (standard PEs contain more informations that are not essential for such a first introduction).
-
-https://corkami.googlecode.com/svn/wiki/pics/simple_executable.png
-
 SVGs:
- * made entirely under Inkscape
+ * made entirely under [http://www.inkscape.org Inkscape]
  * Creative Commons licence
  * requires the [http://damieng.com/blog/2008/05/26/envy-code-r-preview-7-coding-font-released Envy Code R] font
-
-Previews album:
-<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/imgur_pe101.xml" width=600 height=550 border=0/>
+  * the light version also requires the [http://www.antipixel.com.ar/tipografias_aracne.html Aracne] and [http://www.kimberlygeswein.com/ Just the way you are] fonts.
 
 =Acknowledgments=
  * Daniel Plohmann
