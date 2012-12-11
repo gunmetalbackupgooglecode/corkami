@@ -4,42 +4,31 @@
 
 <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/twitter_corkami.xml" width=700 border=0/>
 
-<wiki:toc max_depth="1" />
-
 =Portable Executable=
- * *presentation* first at Hack In Paris, then reworked and extended at !HashDays
-  # [HackInParis2012 a bit more of PE], presented at Hack in Paris, on the 22nd June 2012 <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hip2012_subs.xml" width=620 height=405 border=0/>
-  # [hashdays2012 Binary Art - byte-ing the PE that fails you], presented at Hashdays, Luzern, on the 3rd November 2012
-  <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hashdays2012_slideshare.xml" width=595 height=497 border=0/>
- * *poster* [PE101 PE 101] - a windows executable walkthrough
-  https://corkami.googlecode.com/svn/wiki/pics/pe101_thumb.jpg
+ * *poster* [PE101 PE 101] - a Windows executable walkthrough
+  <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/imgur_pe101.xml" width=600 height=550 border=0/>
+ * *presentation* first at _Hack In Paris_, then reworked and extended at _hashdays_, Luzern (Switzerland)
+  # [HackInParis2012 a bit more of PE], on the 22nd June 2012   
+  # [hashdays2012 Binary Art - byte-ing the PE that fails you], on the 3rd November 2012
  * *article with !PoCs* [PE the PE format]
-   <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_virtEP.swf up_FlashHeight=268 up_FlashWidth=358 up_ContainerCol="#d1dae3" height=268 width=358 title="" border=0/>
- * *!PoCs* [http://code.google.com/p/corkami/downloads/list?can=1&q=Binary+corpus Binary corpus] is a group of non malicious binaries, exhibiting various file formats, and more specifically, aspects of PE files.
-  * Formats: NE, PE, Elf, LX, LE, COM, EXE
-  * Compilers: Digital Mars C, Lcc, Masm, Tasm, !FreeBasic, !FreePascal, !OpenWatcom, Fasm, !GoAsm...
-  * PE:
-   * sections: none, 16 (legitimate), 199 (maximum), duplicate, PE-mapping, wrong order...
-   * Misc: Tiny PE, !EntryPoint (on 2nd section, external), no !ImageBase...
-   * Directories: none, !DelayImports, Bound Imports, !LoadConfig Directory, Copyright directory, COM directory, TLS (Empty/normal/Fake/External), Resource (recursive)....
- * [http://code.google.com/p/corkami/downloads/detail?name=pe-20110117.pdf PE file format] (file & memory layout, headers, data directories)
+ * *!PoCs* [http://code.google.com/p/corkami/downloads/list?can=1&q=Binary+corpus Binary corpus] is a group of non malicious binaries, exhibiting various file formats, and more specifically, aspects of PE files (Formats: NE, PE, Elf, LX, LE, COM, EXE / Compilers: Digital Mars C, Lcc, Masm, Tasm, !FreeBasic, !FreePascal, !OpenWatcom, Fasm, !GoAsm...)
+ * *graphics* [http://code.google.com/p/corkami/downloads/detail?name=pe-20110117.pdf PE file format] (file & memory layout, headers, data directories)
+ * *source* [https://corkami.googlecode.com/svn/trunk/asm/misc/traceless.bat a rewrite of Traceless 1k demo's PE header]
 
-=x86/x64 assembly=
- * *presentation* x86 & PE: first presented and recorded at Hashdays, then improved at !BerlinSides
-  # [http://code.google.com/p/corkami/wiki/hashdays2011 Hashdays 2011]: Such a weird processor - messing with opcodes (...and a little bit of PE) (28th October 2011) <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hashdays2011_subs.xml" width=620 height=405 border=0/>
-  # [http://code.google.com/p/corkami/wiki/BerlinSidesX2 BerlinSides x2]: x86 & PE (28th December 2011) - with demo as [http://code-opensocial.googleusercontent.com/gadgets/ifr?url=https%3A%2F%2Fcorkami.googlecode.com%2Fsvn%2Ftrunk%2Fpics%2Fbsx2%2Fbsx2.xml&parent=%2F%2Fcode.google.com%2Fhosting&container=code#slide42 screencasts]
+=x86/x64 asm=
+ * *presentation* first presented and recorded at _hashdays_, then improved at _!BerlinSides_
+  # [http://code.google.com/p/corkami/wiki/hashdays2011 Such a weird processor - messing with opcodes (...and a little bit of PE)] 28th October 2011
+  # [http://code.google.com/p/corkami/wiki/BerlinSidesX2 x86 & PE], 28th December 2011 - with demo as [http://code-opensocial.googleusercontent.com/gadgets/ifr?url=https%3A%2F%2Fcorkami.googlecode.com%2Fsvn%2Ftrunk%2Fpics%2Fbsx2%2Fbsx2.xml&parent=%2F%2Fcode.google.com%2Fhosting&container=code#slide42 screencasts]
  * *article* [http://code.google.com/p/corkami/wiki/x86oddities?wl=en x86 oddities]
-  * *PoC* [StandardTest Corkami Standard Test], a PE/x86/x64 test program for your tools/emulators/skills. http://corkami.googlecode.com/svn/wiki/pics/x86_96b.gif
+  * *PoC* [StandardTest Corkami Standard Test], a PE/x86/x64 test program for your tools/emulators/skills.
  * *article* how to [http://code.google.com/p/corkami/wiki/GetIP get the current IP]
  * *article* [InitialValues values of general and system registers]  on TLS/!EntryPoint/... of most Windows versions, Wine, etc..
  * *article* [CallingConventions Calling conventions, seen from ASM]
  * *doc* [http://code.google.com/p/corkami/downloads/detail?name=opcodes.pdf Opcodes] (x86 & x64 simplified tables, one-liners)
-  http://corkami.googlecode.com/svn/wiki/pics/opcodes_thumb.jpg
  * *related doc*: a very nice and simple [http://net.cs.uni-bonn.de/fileadmin/user_upload/plohmann/x86_opcode_structure_and_instruction_overview.pdf opcode table], by [http://pnx.tf Daniel Plohmann]
 
 =PDF=
  * *article with !PoCs* [http://code.google.com/p/corkami/wiki/PDFTricks?wl=en a summary of PDF tricks] - encodings, structures, !JavaScript... ([http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr Français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語])
- https://corkami.googlecode.com/svn/wiki/pics/pdf_js.png
 
 =packers=
  * *!PoCs* [http://code.google.com/p/corkami/downloads/list?can=1&q=mini_packers categories]: patcher, protecter, crypter, compresser, mutater, virtualizer
@@ -51,13 +40,10 @@
  * *toolkit* [http://code.google.com/p/corkami/downloads/list?can=1&q=user-mode+drivers a toolkit] to run drivers in user-mode, and unpack them directly from !OllyDbg
  * *doc* [http://code.google.com/p/corkami/downloads/detail?name=cm.pdf anti-debugs]
  * *doc* [http://code.google.com/p/corkami/downloads/detail?name=packers.pdf packers] (models, categories & features, landscape, detailed features, entrypoints, algorithms)
-  http://corkami.googlecode.com/svn/wiki/pics/packers_thumb.jpg
 
 =misc=
  * *doc* [OpcodesTables Opcodes' tables] of Java, .Net, Android, x86 - as either compact single-page cheat sheets, or full descriptive posters.
-  http://corkami.googlecode.com/svn/wiki/pics/tables_thumb.jpg
  * *article with !PoCs* [Encodings curious encodings]
-  https://corkami.googlecode.com/svn/wiki/pics/misc_aa86.png
  * [IntroductionToVirus Explaining what’s a computer virus to grandma]
  * *PoC* [http://code.google.com/p/corkami/downloads/list?can=1&q=kernel31 Kernel31], a trampoline DLL to enable >!XpSp3 binaries work on previous OS.
  * old crackmes solutions: PredatorPirupiru LilcwXor
@@ -66,6 +52,3 @@
 
 ===more===
 ...for more information, check the (old) [http://corkami.blogspot.com/p/map.html blog map], and the [http://code.google.com/p/corkami/downloads/list downloads tab].
-
-==support Corkami==
-to show your support, you can buy special or customized editions of my work, or just donate, via [About#Support_Corkami the support page]
