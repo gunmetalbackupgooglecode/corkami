@@ -4,21 +4,25 @@
 
 <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/twitter_corkami.xml" width=700 border=0/>
 
+=Executable and Linkable Format=
+ * *PoC* [http://code.google.com/p/corkami/downloads/detail?name=CorkaMInuX.zip CorkaMInuX], an ELF/PDF/HTML/Java file
+ https://corkami.googlecode.com/svn/wiki/pics/ELF_corkaminux.png
 =Portable Executable=
- * *poster* [PE101 PE 101] - a Windows executable walkthrough
+ * *poster* [PE101 PE 101] - a Windows executable walkthrough (an easy introduction)
   <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/imgur_pe101.xml" width=600 height=550 border=0/>
  * *presentation* first at _Hack In Paris_, then reworked and extended at _hashdays_, Luzern (Switzerland)
-  # [HackInParis2012 a bit more of PE], on the 22nd June 2012   
-  # [hashdays2012 Binary Art - byte-ing the PE that fails you], on the 3rd November 2012
+  # [HackInParis2012 a bit more of PE] (+video)
+  # [hashdays2012 Binary Art - byte-ing the PE that fails you]
  * *article with !PoCs* [PE the PE format]
+ * *source* a [https://corkami.googlecode.com/svn/trunk/asm/misc/traceless.bat rewrite] of the PE header of [http://www.pouet.scene.org/prod.php?which=59600 Traceless] demo
+ * *PoC* [http://code.google.com/p/corkami/downloads/detail?name=CorkaMIX.zip CorkaMIX], an all-in-one PE/PDF/Html[+!JavaScript]/(Jar[Class+Zip] ^ PY) file written by hand
  * *!PoCs* [http://code.google.com/p/corkami/downloads/list?can=1&q=Binary+corpus Binary corpus] is a group of non malicious binaries, exhibiting various file formats, and more specifically, aspects of PE files (Formats: NE, PE, Elf, LX, LE, COM, EXE / Compilers: Digital Mars C, Lcc, Masm, Tasm, !FreeBasic, !FreePascal, !OpenWatcom, Fasm, !GoAsm...)
  * *graphics* [http://code.google.com/p/corkami/downloads/detail?name=pe-20110117.pdf PE file format] (file & memory layout, headers, data directories)
- * *source* [https://corkami.googlecode.com/svn/trunk/asm/misc/traceless.bat a rewrite of Traceless 1k demo's PE header]
 
 =x86/x64 asm=
  * *presentation* first presented and recorded at _hashdays_, then improved at _!BerlinSides_
-  # [http://code.google.com/p/corkami/wiki/hashdays2011 Such a weird processor - messing with opcodes (...and a little bit of PE)] 28th October 2011
-  # [http://code.google.com/p/corkami/wiki/BerlinSidesX2 x86 & PE], 28th December 2011 - with demo as [http://code-opensocial.googleusercontent.com/gadgets/ifr?url=https%3A%2F%2Fcorkami.googlecode.com%2Fsvn%2Ftrunk%2Fpics%2Fbsx2%2Fbsx2.xml&parent=%2F%2Fcode.google.com%2Fhosting&container=code#slide42 screencasts]
+  # [http://code.google.com/p/corkami/wiki/hashdays2011 Such a weird processor - messing with opcodes (...and a little bit of PE)] (+video)
+  # [http://code.google.com/p/corkami/wiki/BerlinSidesX2 x86 & PE] (+[http://code-opensocial.googleusercontent.com/gadgets/ifr?url=https%3A%2F%2Fcorkami.googlecode.com%2Fsvn%2Ftrunk%2Fpics%2Fbsx2%2Fbsx2.xml&parent=%2F%2Fcode.google.com%2Fhosting&container=code#slide42 screencasts])
  * *article* [http://code.google.com/p/corkami/wiki/x86oddities?wl=en x86 oddities]
   * *PoC* [StandardTest Corkami Standard Test], a PE/x86/x64 test program for your tools/emulators/skills.
  * *article* how to [http://code.google.com/p/corkami/wiki/GetIP get the current IP]
