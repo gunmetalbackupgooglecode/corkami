@@ -2,14 +2,15 @@
 <Module>
   <ModulePrefs title="#slideshare"/>
   <UserPref name="embedcode" display_name="SlideShare embed code" required="true" default_value="155?????" />
- 
+
   <Content type="html">
   <![CDATA[
 <script type="text/javascript">
     var prefs = new _IG_Prefs();
     var embedcode = prefs.getString("embedcode");
     document.getElementById('content_div').innerHTML = '<div style="width:595px"><iframe src="http://www.slideshare.net/slideshow/embed_code/' + embedcode + '" width="595" height="497" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>';
-</script>  
+</script>
+    <div id="content_div"></div>
   ]]>
   </Content>
 </Module>
