@@ -473,12 +473,13 @@ WARNING: it will not work if the PDF is encrypted - it should be decrypted first
 you can download the whole PDF set [https://www.dropbox.com/s/5747bd6ku21tcq4/pdf-set.zip here]. `0-generic` should be compatible with every reader.
 
 || software || 0-generic.pdf || 1-mupdf || 2-sumatra || 3-reader ||  4-readerX ||
+||  ||  ||  ||  ||  ||  ||
 || Adobe Reader 7 ||  Warning then Ok || fail || fail || Ok || Warning then Ok ||
 || Adobe Reader 8 ||  Ok || fail || fail || Ok || Ok ||
 || Adobe Reader 9 ||  Ok || fail || fail || fail || Ok ||
 || Adobe Reader X ||  Ok || fail || fail || fail || Ok ||
 || Evince || Ok || Ok || fail || fail || fail ||
-|| muPDF  || Ok || no text || Ok || fail || fail
+|| muPDF  || Ok || no text || Ok || fail || fail ||
 || Sumatra || Ok || Ok || Ok || fail || fail ||
 || Ubuntu preview || Ok || Ok || fail || fail || fail ||
 
