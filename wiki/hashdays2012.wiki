@@ -9,15 +9,17 @@
 =abstract=
 Being the standard executable format under Windows, the Portable Executable is omnipresent. Sadly, there is a huge gap between the official specs, suggestive at best, and the reality of the loader. While it's critical for analysts and software to reliably understand such binaries, it's actually almost impossible in extreme cases. After showing various examples that prove that Microsoft itself doesn't have an internal and perfect documentation, I'll explain why and how I decided to start my own way to cover the topic, introducing the various documents that I made in the process. then I'll present some of the most awkward features of the PE file format, with some of my numerous proof of concepts.
 
-=slides=
-[http://www.slideshare.net/ange4771/ange-albertini-hashdays2012extended Slideshare page]
+*Please note* that two slide decks are available: one [http://www.slideshare.net/ange4771/binary-art-byteing-the-pe-that-fails-you shorter], presented at Hashdays, and one [http://www.slideshare.net/ange4771/ange-albertini-hashdays2012extended extended], with more text explanations and more examples (the presentation one is a subset of the extended one).
+
+Download [http://corkami.googlecode.com/files/ange_albertini_hashdays_2012.zip both slides decks].
+
+=live version=
+
+<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hashdays2012_slideshare_live.xml" width=595 height=497 border=0/>
+
+=extended (offline) version=
 
 <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hashdays2012_slideshare.xml" width=595 height=497 border=0/>
-
-=downloads=
-Two slide decks are available: one shorter, presented at Hashdays, and one extended, with more text explanations and more examples (the presentation one is a subset of the extended one).
-
-[http://corkami.googlecode.com/files/ange_albertini_hashdays_2012.zip both slides decks]
 
 =links=
  * [PE101 PE 101] - a windows executable walkthrough
