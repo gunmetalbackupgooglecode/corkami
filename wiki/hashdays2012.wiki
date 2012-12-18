@@ -1,4 +1,5 @@
 #summary Binary art - Byte-ing the PE that fails you
+#labels Featured
 
 [http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities] (this project is done in my spare time. *[http://code.google.com/p/corkami/wiki/About#Support_Corkami Support ]* it!)
 
@@ -14,6 +15,7 @@ Being the standard executable format under Windows, the Portable Executable is o
 Download [http://corkami.googlecode.com/files/ange_albertini_hashdays_2012.zip both slides decks].
 
 =live version=
+<wiki:video url="http://www.youtube.com/watch?v=kibEcaG0zCk"/>
 
 <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hashdays2012_slideshare_live.xml" width=595 height=497 border=0/>
 
