@@ -32,6 +32,23 @@ Ange
 Comments, critics, suggestions, etc... are welcome.
 
 =landmarks=
+== step ? (2013) ==
+ * starting early, presenting on puzzles at Hackpra in January.
+ * 'back to France' - will apply to present at HES, SSTIC, HiP - pour essayer de se reconnecter au pays ;)
+ * more graphs, more topics, more !PoCs. same old. my usual style ;)
+
+== step 1.6 (2012/12/31) ==
+ * 2012 is soon over, it was a great year:
+  * Reworked the [http://code.google.com/p/corkami/wiki/BerlinSidesX2 BerlinSides] page to integrate the notes and screencasts. Nice all-in-one layout, but I now prefer the double deck (see below)
+  * improved the [PE PE] page with many examples, animations and screencasts.
+  * [OpcodesTables Opcodes' tables] for Android/JVM/.NET/x86.
+  * the [PE101 PE 101] poster, first in 32b then in 64b, in 9 languages, including Arabic and Japanese, and then later in a lighter 'xkcd' version.
+  * [http://code.google.com/p/corkami/downloads/detail?name=CorkaMIX.zip CorkaMIX], my all-in-one PDF/Java/HTML/... file in a PE, followed by its Linux counterpart, [http://code.google.com/p/corkami/downloads/detail?name=CorkaMInuX.zip CorkaMInuX].
+  * the [http://code.google.com/p/corkami/wiki/PDFTricks?wl=en PDF] page also got some improvments.
+  * the [InitialValues initial values] got also a huge update.
+ * Presentations on PE at [HackInParis2012 Hack in Paris] then [hashdays2012 Hashdays], which introduced a dual slide-deck release, which should be my standard from now on.
+ * met a lot of nice people - thanks a lot everybody for 2012!
+
 == step 1.5 (2011/12/30) ==
  * Thanks to Candid Wüest and FX for pushing me (I initially didn't plan that at all, in both cases), I presented at [http://code.google.com/p/corkami/wiki/hashdays2011 Hashdays] and [http://code.google.com/p/corkami/wiki/BerlinSidesX2 BerlinSides].
   * Both were great experiences, and as things went not too wrong, I had a good time, while being able to express myself freely, and experimenting on making presentations.
