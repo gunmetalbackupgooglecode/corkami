@@ -470,18 +470,35 @@ An easy way to get the original corrupted stream to decompress like Reader would
 WARNING: it will not work if the PDF is encrypted - it should be decrypted first.
 
 = readers compatibility =
-you can download the whole PDF set [https://www.dropbox.com/s/5747bd6ku21tcq4/pdf-set.zip here]. `0-generic` should be compatible with every reader.
+using several degrees of PDF malformations on one-page 'Hello world' documents, you can test your PDF tools 'robustness':
+ # [https://corkami.googlecode.com/svn/trunk/misc/pdf/helloworld-naive.pdf naive] is a naive PDF, extremely standard.
+ # [https://corkami.googlecode.com/svn/trunk/misc/pdf/helloworld-generic.pdf generic] doesn't contain stream lengths, xref, and EOF, which are the most standard malformations.
+ # slightly linux specific
+  # [https://corkami.googlecode.com/svn/trunk/misc/pdf/helloworld-mupdf.pdf MuPDF] contains *NO* PDF signature, incomplete Tf parameters, and fewer elements, yet is fully supported by many readers (Evince, ubuntu preview)
+  # [https://corkami.googlecode.com/svn/trunk/misc/pdf/helloworld-sumatra.pdf sumatra] is similar to MuPDF, except it contains no endobj, and fewer objects.
+ # adobe reader specific
+  # [https://corkami.googlecode.com/svn/trunk/misc/pdf/helloworld-X.pdf reader-X] contains a *truncated* signature, specific to Adobe. Also, *no* font definition is required.
+  # [https://corkami.googlecode.com/svn/trunk/misc/pdf/helloworld.pdf reader] is the same, but it also miss an endobj on the stream object.
 
-|| software || 0-generic.pdf || 1-mupdf || 2-sumatra || 3-reader ||  4-readerX ||
-||  ||  ||  ||  ||  ||  ||
-|| Adobe Reader 7 ||  Warning then Ok || fail || fail || Ok || Warning then Ok ||
-|| Adobe Reader 8 ||  Ok || fail || fail || Ok || Ok ||
-|| Adobe Reader 9 ||  Ok || fail || fail || fail || Ok ||
-|| Adobe Reader X ||  Ok || fail || fail || fail || Ok ||
-|| Evince || Ok || Ok || fail || fail || fail ||
-|| muPDF  || Ok || no text || Ok || fail || fail ||
-|| Sumatra || Ok || Ok || Ok || fail || fail ||
-|| Ubuntu preview || Ok || Ok || fail || fail || fail ||
+|| software || naive  || generic || mupdf || sumatra || reader || readerX ||
+|| ||  ||  ||  ||  ||  ||  ||
+|| [http://mozilla.github.com/pdf.js/web/viewer.html PDF.JS] || Ok || fail || fail || fail || fail || fail ||
+|| ||  ||  ||  ||  ||  ||  ||
+|| Chrome || Ok || Ok || fail || fail || fail || fail ||
+|| Mountain Lion || Ok || Ok || fail || fail || fail || fail ||
+|| Safari || Ok || Ok || fail || fail || fail || fail ||
+|| Goodreader || warning then Ok || warning then Ok || fail || fail || fail || fail ||
+|| ||  ||  ||  ||  ||  ||  ||
+|| Adobe Reader 7 || Ok || Warning then Ok || fail || fail || Ok || Warning then Ok ||
+|| Adobe Reader 8 || Ok || Ok || fail || fail || Ok || Ok ||
+|| Adobe Reader 9 || Ok || Ok || fail || fail || fail || Ok ||
+|| Adobe Reader X || Ok || Ok || fail || fail || fail || Ok ||
+|| ||  ||  ||  ||  ||  ||  ||
+|| Evince || Ok || Ok || Ok || fail || fail || fail ||
+|| muPDF  || Ok || Ok || no text || Ok || fail || fail ||
+|| Sumatra || Ok || Ok || Ok || Ok || fail || fail ||
+|| Ubuntu preview || Ok || Ok || Ok || fail || fail || fail ||
+|| ||  ||  ||  ||  ||  ||  ||
 
 =References=
  * [http://blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/ Didier Stevens]
