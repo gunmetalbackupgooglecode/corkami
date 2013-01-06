@@ -365,7 +365,7 @@ ID equ 3 ; [0;3]
   * `maxsec_lowaligW7.exe` has a !SizeOfHeaders of 27570879.
 
 ===!CheckSum===
- * simple algorithm
+ * [http://code.google.com/p/pefile/source/browse/trunk/pefile.py#4659 simple algorithm]
  * required for drivers only
 
 ===Subsystem===
@@ -686,9 +686,9 @@ align 4, db 0 ; <= imports terminator NULL
 
   https://corkami.googlecode.com/svn/wiki/pics/PE_no_dd.png
 
- * .Net requires an import to `mscoree.dll._CoreExeMain`, and an import size to be at least 0x28. 
+ * .Net requires an import to `mscoree.dll._CoreExeMain`, and an import size to be at least 0x28.
    It doesn't accept to import to `mscoree` (without extension).
- 
+
 ===resources===
  * directory-like structure.
  {{{
@@ -828,6 +828,83 @@ RESOURCE_SIZE equ $ - resource_data
  * resource strings have their own awkward format, in which 16 strings are stored in each block, and a null string is equivalent to no string, as all strings of the same block are stored consecutively as `<length16><string>`.
   * `resource_string` stores and access its message via resource string
    https://corkami.googlecode.com/svn/wiki/pics/PE_resource_string.png
+
+====Version information====
+ * version information is a resource of type `RT_VERSION` 0x10 (16)
+  * thus, parsing version informations requires Data directories and resource parsing, which is not-trivial in extreme cases (folded headers, resource loops...). It might be preferable to just check the `FILE_HEADER`'s !TimeDateStamp (which is straightforward, see `hard_imports`) if you just require some minor version check.
+ * under XP, the resource !DataDirectory has to start at the beginning of its own section, or the properties dialog fails to parse the resources.
+ * the `VS_FIXEDFILEINFO` structure is required as well as it's signature, even if not used.
+  `version_cust` contains minimal version informations, which generates the version tab but doesn't show any information
+{{{
+...
+    at IMAGE_RESOURCE_DIRECTORY_ENTRY.NameID, dd RT_VERSION    ; .. resource type
+...
+resource_data:
+VS_VERSION_INFO:
+    .wLength dw VERSIONLENGTH
+    .wValueLength dw VALUELENGTH
+    .wType dw 0 ; 0 = bin, 1 = text
+    WIDE 'VS_VERSION_INFO'
+        align 4, db 0
+    Value:
+        istruc VS_FIXEDFILEINFO
+            at VS_FIXEDFILEINFO.dwSignature, dd 0FEEF04BDh
+        iend
+    VALUELENGTH equ $ - Value
+        align 4, db 0
+    ; no children
+VERSIONLENGTH equ $ - VS_VERSION_INFO
+
+RESOURCE_SIZE equ $ - resource_data
+}}}
+ * `version_mini` implements a children !StringFileInfo structure, which actually displays some minimal version information (and crashes Windows XP explorer).
+{{{
+; children
+StringFileInfo:
+    dw STRINGFILEINFOLEN
+    dw 0 ; no value
+    dw 0 ; type
+    WIDE 'StringFileInfo'
+        align 4, db 0
+    ; children
+    StringTable:
+        dw STRINGTABLELEN
+        dw 0 ; no value
+        dw 0
+        WIDE '040904b0' ; required correct
+            align 4, db 0
+        ;children
+            ; required or won't be displayed by explorer
+            __string 'FileVersion', ''
+    STRINGTABLELEN equ $ - StringTable
+STRINGFILEINFOLEN equ $ - StringFileInfo
+}}}
+ * the !FixedFileInfo structure can contain any value besides its signature. `version_std` contains only FFs in it.
+{{{
+istruc VS_FIXEDFILEINFO
+    at VS_FIXEDFILEINFO.dwSignature, dd 0FEEF04BDh
+    times 6 dd 0ffffffffh
+iend
+}}}
+ * the !StringFileInfo structure accepts standard values, but also unknown strings, empty strings and duplicates.
+{{{
+__string 'FileVersion', 'compulsory for version tab'
+__string 'LegalCopyright', 'corkami.com'
+__string 'StringFileInfo', ''
+__string 'Comments', ''
+__string 'CompanyName', ''
+__string 'InternalName', ''
+__string 'LegalTrademarks', ''
+__string 'OriginalFilename', ''
+__string 'PrivateBuild', ''
+__string 'ProductName', ''
+__string 'ProductVersion', ''
+__string 'SpecialBuild', ''
+__string '', ''
+__string ' ', ''
+__string ' ** EAT AT JOE"S **', 'best hamburger in town'
+__string 'FileVersion', 'duplicates are authorized'
+}}}
 
 ====Manifest====
  * Manifest are XML resource that store informations about the executable.
