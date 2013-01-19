@@ -4,7 +4,7 @@
 An introduction to brainteasers (puzzles),
 recorded at Ruhr-Universität Bochum's [http://www.nds.rub.de/teaching/hackpra/ HackerPraktikum], Bochum, Germany, on the 16th January 2013.
 
-<wiki:video url="http://youtu.be/Rxdz5JIwPcE"/>
+<wiki:video url="http://www.youtube.com/watch?v=wdQKg_xFGbQ"/>
 
 <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hackpra_slideshare.xml" width=620 height=497 border=0/>
 
