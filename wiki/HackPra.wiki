@@ -1,11 +1,11 @@
 #summary A challenge in your pocket: an introduction to brainteasers
 
 ====[http://code.google.com/p/corkami/ << back to index]====
-
-recorded at Ruhr-Universität Bochum's [http://www.nds.rub.de/teaching/hackpra/ HackerPraktikum], Bochum, Germany, on the 16th January 2013.
+An introduction to brainteasers (puzzles),
+recorded at Ruhr-UniversitÃ¤t Bochum's [http://www.nds.rub.de/teaching/hackpra/ HackerPraktikum], Bochum, Germany, on the 16th January 2013.
 
 <wiki:video url="http://youtu.be/Rxdz5JIwPcE"/>
 
-<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hackpra_slideshare.xml" width=620 height=405 border=0/>
+<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hackpra_slideshare.xml" width=620 height=497 border=0/>
 
 ====[http://code.google.com/p/corkami/ << back to index]====
