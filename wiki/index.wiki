@@ -4,21 +4,27 @@
 
 <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/twitter_corkami.xml" width=700 border=0/>
 
+=brainteasers=
+ * *presentation* [HackPra an introduction]
+  <wiki:video url="http://youtu.be/Rxdz5JIwPcE"/>
 =Portable Executable=
+ * *PoC* a fully working PE in a tweet (encoded in a python string): `"MZR\xc3"+"\0"*56+"@\0\0\0PE\0\0L\1"+"\0"*16+"\2\0\x0b\1"+"\0"*28+"@\0\1\0\0\0\1\0"+"\0"*10+"\4"+"\0"*7+"H\1\0\0G\1"+"\0"*6+"\3"+"\0"*171`
  * *poster* [PE101 PE 101] - a Windows executable walkthrough (an easy introduction)
  * *presentation* first at _Hack In Paris_, then reworked and extended at _hashdays_, Luzern (Switzerland)
   # [HackInParis2012 a bit more of PE] (+video)
   # [hashdays2012 Binary Art - byte-ing the PE that fails you]
-    <wiki:video url="http://www.youtube.com/watch?v=kibEcaG0zCk"/>
  * *article with !PoCs* [PE the PE format]
  * *source* a [https://corkami.googlecode.com/svn/trunk/asm/misc/traceless.bat rewrite] of the PE header of [http://www.pouet.scene.org/prod.php?which=59600 Traceless] demo
- * *PoC* [http://code.google.com/p/corkami/downloads/detail?name=CorkaMIX.zip CorkaMIX], an all-in-one PE/PDF/Html[+!JavaScript]/(Jar[Class+Zip] ^ PY) file written by hand
+ * *PoC* [mix CorkaMIX], an all-in-one PE/PDF/Html[+!JavaScript]/(Jar[Class+Zip] ^ PY) file written by hand
  * *!PoCs* [http://code.google.com/p/corkami/downloads/list?can=1&q=Binary+corpus Binary corpus] is a group of non malicious binaries, exhibiting various file formats, and more specifically, aspects of PE files (Formats: NE, PE, Elf, LX, LE, COM, EXE / Compilers: Digital Mars C, Lcc, Masm, Tasm, !FreeBasic, !FreePascal, !OpenWatcom, Fasm, !GoAsm...)
  * *graphics* [http://code.google.com/p/corkami/downloads/detail?name=pe-20110117.pdf PE file format] (file & memory layout, headers, data directories)
 
+=Mach Object=
+ * *PoC* [mix CorkaM-OsX], a Mach-O/PDF/HTML/Java file
+ https://corkami.googlecode.com/svn/wiki/pics/MACHO_corkamosx.png
+
 =Executable and Linkable Format=
- * *PoC* [http://code.google.com/p/corkami/downloads/detail?name=CorkaMInuX.zip CorkaMInuX], an ELF/PDF/HTML/Java file
- https://corkami.googlecode.com/svn/wiki/pics/ELF_corkaminux.png
+ * *PoC* [mix CorkaMInuX], an ELF/PDF/HTML/Java file
 
 =x86/x64 asm=
  * *presentation* first presented and recorded at _hashdays_, then improved at _!BerlinSides_
