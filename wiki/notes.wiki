@@ -57,15 +57,19 @@
 || CVE-2010-2883 || PDF || Cooltype || [http://bugix-security.blogspot.com/2010/09/cve-2010-2883-made-in-korea.html bugix] ||
 || CVE-2010-3333 || RTF || (in Word) ||  [http://blogs.technet.com/b/mmpc/archive/2010/12/29/targeted-attacks-against-recently-addressed-microsoft-office-vulnerability-cve-2010-3333-ms10-087.aspx Microsoft] ||
 || CVE-2010-3654 || Flash || !RadioButtonGroup || [http://www.abysssec.com/blog/2011/04/exploiting-adobe-flash-player-on-windows-7/ Abyssec] ||
-|| CVE-2011-0609 || Flash || || [http://blog.fortinet.com/advanced-exploitation-of-the-recent-flash-zero-day-vulnerability-cve-2011-0609/ Li @ fortinet] [http://www.vupen.com/blog/20110326.Technical_Analysis_and_Win7_Exploitation_Adobe_Flash_0Day_CVE-2011-0609.php Joly @ vupen] ||
+|| CVE-2011-0609 || Flash || || [http://blog.fortinet.com/advanced-exploitation-of-the-recent-flash-zero-day-vulnerability-cve-2011-0609/ Li @ fortinet] [http://www.vupen.com/blog/20110326.Technical_Analysis_and_Win7_Exploitation_Adobe_Flash_0Day_CVE-2011-0609.php Nicolas Joly @ Vupen] ||
 || CVE-2011-0611 || Flash || || [http://secunia.com/blog/210/ secunia] [http://blogs.technet.com/b/mmpc/archive/2011/04/12/analysis-of-the-cve-2011-0611-adobe-flash-player-vulnerability-exploitation.aspx microsoft] ||
 || CVE-2011-0041 || GDI+ || || [http://www.abysssec.com/blog/2011/07/analysis-of-cve-2011-0041-vulnerability-in-gdi/ Abyssec] ||
 || CVE-2011-0226 || Jailbreakme 3  || || [http://esec-lab.sogeti.com/post/Analysis-of-the-jailbreakme-v3-font-exploit Sogeti] ||
+|| CVE-2011-2110 || Flash || array indexing|| [http://yomuds.blogspot.fr/2012/11/flash-exploit-cve-2011-2110-and-cool.html yomuds] [http://www.accessroot.com/arteam/site/download.php?view.331 NCR/CRC! ARTeam] ||
 || CVE-2011-2462 || U3D PDF || || ||
-|| CVE-2011-3402 || TTF || Duqu MS11-087 || [http://exploitshop.wordpress.com/2012/01/18/ms11-087-aka-duqu-vulnerability-in-windows-kernel-mode-drivers-could-allow-remote-code-execution/ lifeasageek] ||
+|| CVE-2011-3402 || TTF || Duqu MS11-087 || [http://exploitshop.wordpress.com/2012/01/18/ms11-087-aka-duqu-vulnerability-in-windows-kernel-mode-drivers-could-allow-remote-code-execution/ lifeasageek] [http://yomuds.blogspot.fr/2012/11/cve-2011-3402-and-cool-exploit-kit_28.html yomuds] ||
 || CVE-2011-3544 || Java || Rhino || [http://schierlm.users.sourceforge.net/CVE-2011-3544.html shierlm] ||
 || CVE-2012-0003 || Midi || midiOutPlayNextPolyEvent MS12-004|| [http://www.exploit-db.com/exploits/18426/ metasploit] ||
 || CVE-2012-1723 || Java || Getfield || [http://schierlm.users.sourceforge.net/CVE-2012-1723.html mihi42] ||
+|| CVE-2012-5076 || Java || !AnonymousClassLoader || [http://malware.dontneedcoffee.com/2012/11/cool-ek-hello-my-friend-cve-2012-5067.html Kafeine] [http://blogs.technet.com/b/mmpc/archive/2012/11/15/a-technical-analysis-on-new-java-vulnerability-cve-2012-5076.aspx Jeong Wook Oh] ||
+|| CVE-2013-0155/0156 || Ruby on Rails || || [http://ronin-ruby.github.com/blog/2013/01/09/rails-pocs.html Ronin] ||
+|| CVE-2013-0422 || Java || || ||
 
 =information=
  * *news* [https://twitter.com/#!/Ivanlef0u @Ivanlef0u] [http://www.reddit.com/r/ReverseEngineering/ reddit]
