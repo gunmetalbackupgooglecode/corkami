@@ -10,7 +10,7 @@ The values on this page have been dumped with [http://code.google.com/p/corkami/
 
 <wiki:toc max_depth="3" />
 
-=OS Data=
+=Windows=
 ==NT 4==
  * OS Version
 || Version || Platform || !ServicePack || Suite || Product ||
@@ -613,6 +613,48 @@ Detect Wine:
 ||||||||||||||||||||||||||
 || TLS || || 0246 || || 00000000 || 00110678 || 0033FDE8 || 0033FCD8 || 7BCA87EC || 03EC0000 || 03EC11FC || 00000001 ||
 || !EntryPoint || || 0212 || || 03EC1000 || 7FFDF000 || 0033FE88 || 0033FE70 || 7B89CA50 || 0033FEF0 || 0033FEF0 || 00000000 ||
+
+=DOS=
+==XP ntvdm==
+ * general registers
+|| Flags || || DI || SI || BP || SP || BX || DX || CX || AX ||
+|| 3202 || fffe || 0100 || 091e || fffe || 0000 || 06bc || 00ff || 0000 ||
+
+ * selectors
+|| CS || DS || ES || FS || SS || GS ||
+|| 06bc || 06bc || 06bc || 0000 || 06bc || 0000 ||
+
+===+Debug===
+ * general registers
+|| Flags || || DI || SI || BP || SP || BX || DX || CX || AX ||
+|| 7202 || 0000 || 0000 || 0000 || fffe || 0000 || 0000 || 01d6 || 0000 ||
+
+ * selectors
+|| CS || DS || ES || FS || SS || GS ||
+|| 0cb5 || 0cb5 || 0cb5 || 0000 || 0cb5 || 0000 ||
+ 
+==DOSBox 0.74==
+ * general registers
+|| Flags || || DI || SI || BP || SP || BX || DX || CX || AX ||
+|| 7202 || fffe || 0100|| 091c|| fffe || 0000||0192  || 00ff || 0000 ||
+
+ * selectors
+|| CS || DS || ES || FS || SS || GS ||
+|| 0192 || 0192 || 0192 || 0000 || 0192 || 0000 ||  
+
+=Linux=
+==Ubuntu + VmWare==
+ * general registers
+|| Flags || EDI || ESI || EBP || ESP || EBX || EDX || ECX || EAX ||
+|| 0212 || 00000000 || 00000000 || 00000000 || bff19160 || 00000000 || 00000000 || 00000000 || 00000000 ||
+
+ * selectors
+|| CS || DS || ES || FS || SS || GS ||
+|| 0073 || 007b || 007b || 0000 || 007b || 0000 ||
+
+ * system registers
+|| CR0 || LDT || GDT || IDT || Task Register ||
+|| 8005003b || 00004060 || ffc07000412f || ffc1800007ff || 00004000 ||
 
 =Acknowledgements=
  * *Fabian Sauter*
