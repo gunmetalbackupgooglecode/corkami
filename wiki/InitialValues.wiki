@@ -617,7 +617,7 @@ Detect Wine:
 =DOS=
 ==XP==
  * general registers
-|| Flags || || DI || SI || BP || SP || BX || DX || CX || AX ||
+|| Flags || DI || SI || BP || SP || BX || DX || CX || AX ||
 || 3202 || fffe || 0100 || 091e || fffe || 0000 || 06bc || 00ff || 0000 ||
 
  * selectors
@@ -626,7 +626,7 @@ Detect Wine:
 
 ===+ Debug===
  * general registers
-|| Flags || || DI || SI || BP || SP || BX || DX || CX || AX ||
+|| Flags || DI || SI || BP || SP || BX || DX || CX || AX ||
 || 7202 || 0000 || 0000 || 0000 || fffe || 0000 || 0000 || 01d6 || 0000 ||
 
  * selectors
@@ -635,7 +635,7 @@ Detect Wine:
  
 ==DOSBox 0.74==
  * general registers
-|| Flags || || DI || SI || BP || SP || BX || DX || CX || AX ||
+|| Flags || DI || SI || BP || SP || BX || DX || CX || AX ||
 || 7202 || fffe || 0100|| 091c|| fffe || 0000||0192  || 00ff || 0000 ||
 
  * selectors
