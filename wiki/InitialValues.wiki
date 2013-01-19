@@ -1,6 +1,6 @@
 #summary Initial values of x86 registers
 =Initial values=
-this page gathers the initial values of x86 registers, under Windows:
+this page gathers the initial values of x86 registers:
  * general registers, at specific execution points
  * special registers
 
@@ -8,7 +8,7 @@ Note: some values may change slightly, depending on your exact configuration and
 
 The values on this page have been dumped with [http://code.google.com/p/corkami/downloads/list?can=2&q=registers+dumper regdump].
 
-<wiki:toc max_depth="3" />
+<wiki:toc max_depth="2" />
 
 =Windows=
 ==NT 4==
@@ -615,7 +615,7 @@ Detect Wine:
 || !EntryPoint || || 0212 || || 03EC1000 || 7FFDF000 || 0033FE88 || 0033FE70 || 7B89CA50 || 0033FEF0 || 0033FEF0 || 00000000 ||
 
 =DOS=
-==XP ntvdm==
+==XP==
  * general registers
 || Flags || || DI || SI || BP || SP || BX || DX || CX || AX ||
 || 3202 || fffe || 0100 || 091e || fffe || 0000 || 06bc || 00ff || 0000 ||
@@ -624,7 +624,7 @@ Detect Wine:
 || CS || DS || ES || FS || SS || GS ||
 || 06bc || 06bc || 06bc || 0000 || 06bc || 0000 ||
 
-===+Debug===
+===+ Debug===
  * general registers
 || Flags || || DI || SI || BP || SP || BX || DX || CX || AX ||
 || 7202 || 0000 || 0000 || 0000 || fffe || 0000 || 0000 || 01d6 || 0000 ||
@@ -643,7 +643,7 @@ Detect Wine:
 || 0192 || 0192 || 0192 || 0000 || 0192 || 0000 ||  
 
 =Linux=
-==Ubuntu + VmWare==
+==Ubuntu + !VmWare==
  * general registers
 || Flags || EDI || ESI || EBP || ESP || EBX || EDX || ECX || EAX ||
 || 0212 || 00000000 || 00000000 || 00000000 || bff19160 || 00000000 || 00000000 || 00000000 || 00000000 ||
