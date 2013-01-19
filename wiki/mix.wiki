@@ -5,6 +5,7 @@ _[http://code.google.com/p/corkami/downloads/detail?name=CorkaMIX.zip CorkaMIX]_
 _[http://code.google.com/p/corkami/downloads/detail?name=CorkaMInuX.zip CorkaMInuX]_ and
 _[http://code.google.com/p/corkami/downloads/detail?name=CorkaM-OsX.zip CorkaM-OsX]_ are respectively valid _Windows_, _Linux_ and _OS X_ binaries, and also a working PDF document, Jar (Zip + Class + manifest), and HTML + !JavaScript files.
 
+https://corkami.googlecode.com/svn/wiki/pics/PE_corkamix.png
 https://corkami.googlecode.com/svn/wiki/pics/ELF_corkaminux.png
 https://corkami.googlecode.com/svn/wiki/pics/MACHO_corkamosx.png
 
