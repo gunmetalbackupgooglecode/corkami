@@ -4,34 +4,37 @@
 
 <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/twitter_corkami.xml" width=700 border=0/>
 
-=brainteasers=
- * *presentation* [HackPra an introduction]
-  <wiki:video url="http://youtu.be/Rxdz5JIwPcE"/>
-=Portable Executable=
- * *PoC* a fully working PE in a tweet (encoded in a python string): `"MZR\xc3"+"\0"*56+"@\0\0\0PE\0\0L\1"+"\0"*16+"\2\0\x0b\1"+"\0"*28+"@\0\1\0\0\0\1\0"+"\0"*10+"\4"+"\0"*7+"H\1\0\0G\1"+"\0"*6+"\3"+"\0"*171`
- * *poster* [PE101 PE 101] - a Windows executable walkthrough (an easy introduction)
- * *presentation* first at _Hack In Paris_, then reworked and extended at _hashdays_, Luzern (Switzerland)
-  # [HackInParis2012 a bit more of PE] (+video)
-  # [hashdays2012 Binary Art - byte-ing the PE that fails you]
- * *article with !PoCs* [PE the PE format]
- * *source* a [https://corkami.googlecode.com/svn/trunk/asm/misc/traceless.bat rewrite] of the PE header of [http://www.pouet.scene.org/prod.php?which=59600 Traceless] demo
- * *PoC* [mix CorkaMIX], an all-in-one PE/PDF/Html[+!JavaScript]/(Jar[Class+Zip] ^ PY) file written by hand
- * *!PoCs* [http://code.google.com/p/corkami/downloads/list?can=1&q=Binary+corpus Binary corpus] is a group of non malicious binaries, exhibiting various file formats, and more specifically, aspects of PE files (Formats: NE, PE, Elf, LX, LE, COM, EXE / Compilers: Digital Mars C, Lcc, Masm, Tasm, !FreeBasic, !FreePascal, !OpenWatcom, Fasm, !GoAsm...)
- * *graphics* [http://code.google.com/p/corkami/downloads/detail?name=pe-20110117.pdf PE file format] (file & memory layout, headers, data directories)
-
 =Mach Object=
- * *PoC* [mix CorkaM-OsX], a Mach-O/PDF/HTML/Java file
+ * *PoC* (2013/01/02) [mix CorkaM-OsX], a Mach-O/PDF/HTML/Java file
  https://corkami.googlecode.com/svn/wiki/pics/MACHO_corkamosx.png
 
+=brainteasers=
+ * *presentation* (2013/01/16) [HackPra A challenge in your pocket: an introduction to brainteasers]
+  <wiki:video url="http://www.youtube.com/watch?v=hg7A7YIEWbU"/>
+  <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hackpra_slideshare.xml" width=620 height=497 border=0/>
+
+=Portable Executable=
+ * *PoC* a fully working PE in a tweet (encoded in a python string): `"MZR\xc3"+"\0"*56+"@\0\0\0PE\0\0L\1"+"\0"*16+"\2\0\x0b\1"+"\0"*28+"@\0\1\0\0\0\1\0"+"\0"*10+"\4"+"\0"*7+"H\1\0\0G\1"+"\0"*6+"\3"+"\0"*171`
+ * *poster* (2012/05/03) [PE101 PE 101] - a Windows executable walkthrough (an easy introduction)
+ * *presentation* first at _Hack In Paris_, then reworked and extended at _hashdays_, Luzern (Switzerland)
+  # (2012/06/22) [HackInParis2012 a bit more of PE] (+video)
+  # (2012/11/03) [hashdays2012 Binary Art - byte-ing the PE that fails you]
+ * *article with !PoCs* [PE the PE format]
+ * *source* a [https://corkami.googlecode.com/svn/trunk/asm/misc/traceless.bat rewrite] of the PE header of [http://www.pouet.scene.org/prod.php?which=59600 Traceless] demo
+ * *PoC* (2012/08/01) [mix CorkaMIX], an all-in-one PE/PDF/Html[+!JavaScript]/(Jar[Class+Zip] ^ PY) file written by hand
+ * *!PoCs* (2011/02) [http://code.google.com/p/corkami/downloads/list?can=1&q=Binary+corpus Binary corpus] is a group of non malicious binaries, exhibiting various file formats, and more specifically, aspects of PE files (Formats: NE, PE, Elf, LX, LE, COM, EXE / Compilers: Digital Mars C, Lcc, Masm, Tasm, !FreeBasic, !FreePascal, !OpenWatcom, Fasm, !GoAsm...)
+ * *graphics* (2010/10) [http://code.google.com/p/corkami/downloads/detail?name=pe-20110117.pdf PE file format] (file & memory layout, headers, data directories)
+
 =Executable and Linkable Format=
- * *PoC* [mix CorkaMInuX], an ELF/PDF/HTML/Java file
+ * *PoC* (2012/12/13) [mix CorkaMInuX], an ELF/PDF/HTML/Java file
 
 =x86/x64 asm=
  * *presentation* first presented and recorded at _hashdays_, then improved at _!BerlinSides_
-  # [http://code.google.com/p/corkami/wiki/hashdays2011 Such a weird processor - messing with opcodes (...and a little bit of PE)] (+video)
-  # [http://code.google.com/p/corkami/wiki/BerlinSidesX2 x86 & PE] (+[http://code-opensocial.googleusercontent.com/gadgets/ifr?url=https%3A%2F%2Fcorkami.googlecode.com%2Fsvn%2Ftrunk%2Fpics%2Fbsx2%2Fbsx2.xml&parent=%2F%2Fcode.google.com%2Fhosting&container=code#slide42 screencasts])
- * *article* [http://code.google.com/p/corkami/wiki/x86oddities?wl=en x86 oddities]
-  * *PoC* [StandardTest Corkami Standard Test], a PE/x86/x64 test program for your tools/emulators/skills.
+  # (2011/10/28) [http://code.google.com/p/corkami/wiki/hashdays2011 Such a weird processor - messing with opcodes (...and a little bit of PE)] (+video)
+   <wiki:video url="http://www.youtube.com/watch?v=MJvsshovITE"/>
+  # (2011/12/28) [http://code.google.com/p/corkami/wiki/BerlinSidesX2 x86 & PE] (+[http://code-opensocial.googleusercontent.com/gadgets/ifr?url=https%3A%2F%2Fcorkami.googlecode.com%2Fsvn%2Ftrunk%2Fpics%2Fbsx2%2Fbsx2.xml&parent=%2F%2Fcode.google.com%2Fhosting&container=code#slide42 screencasts])
+ * *article* (2011/09) [http://code.google.com/p/corkami/wiki/x86oddities?wl=en x86 oddities]
+  * *PoC* (2011/08/12) [StandardTest Corkami Standard Test], a PE/x86/x64 test program for your tools/emulators/skills.
  * *article* how to [http://code.google.com/p/corkami/wiki/GetIP get the current IP]
  * *article* [InitialValues values of general and system registers]  on TLS/!EntryPoint/... of most Windows versions, Wine, etc..
  * *article* [CallingConventions Calling conventions, seen from ASM]
@@ -39,11 +42,11 @@
  * *related doc*: a very nice and simple [http://net.cs.uni-bonn.de/fileadmin/user_upload/plohmann/x86_opcode_structure_and_instruction_overview.pdf opcode table], by [http://pnx.tf Daniel Plohmann]
 
 =PDF=
- * *article with !PoCs* [http://code.google.com/p/corkami/wiki/PDFTricks?wl=en a summary of PDF tricks] - encodings, structures, !JavaScript... ([http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr Français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語])
+ * *article with !PoCs* (2011/07/12) [http://code.google.com/p/corkami/wiki/PDFTricks?wl=en a summary of PDF tricks] - encodings, structures, !JavaScript... ([http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr Français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語])
 
 =packers=
  * *!PoCs* [http://code.google.com/p/corkami/downloads/list?can=1&q=mini_packers categories]: patcher, protecter, crypter, compresser, mutater, virtualizer
- * *!PoCs* [http://code.google.com/p/corkami/downloads/list?can=1&q=crypters_algos crypters algos]: xor, prng, rc4
+ * *!PoCs* [http://code.google.com/p/corkami/downloads/list?can=1&q=crypters crypters algos]: xor, prng, rc4
  * *!PoCs* [http://code.google.com/p/corkami/downloads/list?can=1&q=fibo architectures of virtualization]: standard, stack, [http://en.wikipedia.org/wiki/One_instruction_set_computer#Subtract_and_branch_if_less_than_or_equal_to_zero SubLeq], [http://en.wikipedia.org/wiki/One_instruction_set_computer#Transport_triggered_architecture TTA]
  * *source* a [http://corkami.googlecode.com/svn/trunk/misc/MakePE/examples/packer/aplib.py one-file] aPLib compression/decompression in python
  * *!PoCs* imports [http://code.google.com/p/corkami/downloads/list?can=1&q=imports_loading loading] [http://code.google.com/p/corkami/downloads/list?can=1&q=imports_obfuscation obfuscation]
@@ -60,6 +63,7 @@
  * old crackmes solutions: PredatorPirupiru LilcwXor
  * *screencast* [https://sites.google.com/site/corkami/ollydbg-tracing OllyDbg Tracing] (easy level) setting !OllyDbg as a JIT debugger, tracing, optimizing tracing, finding bug, patching, saving as a new executable
  * *screencast* [http://rejava.sourceforge.net/hello.html reJava] create a .class from scratch
+ * *PoC* (2013/01/30) a one-solution random labyrinth generator, in [http://corkami.googlecode.com/svn/trunk/misc/laby/laby.py python], [http://corkami.googlecode.com/svn/trunk/misc/laby/laby.asm 16b x86 .COM] (in 168 bytes so far), [http://corkami.googlecode.com/svn/trunk/misc/laby/LABY.BAS GW-BASIC] and [https://corkami.googlecode.com/svn/trunk/misc/laby/laby.pas Turbo Pascal 3.0]
 
 ===more===
 ...for more information, check the (old) [http://corkami.blogspot.com/p/map.html blog map], and the [http://code.google.com/p/corkami/downloads/list downloads tab].

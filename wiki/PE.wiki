@@ -1,7 +1,7 @@
 #summary the Portable Executable Format on Windows
 #labels Featured
 
-[http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities] (this project is done in my spare time. *[http://code.google.com/p/corkami/wiki/About#Support_Corkami Support ]* it!)
+[http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities]
 
 =PE=
 This page deals with the PE format, or more specifically, x86/x64 Windows (from XP to W7) binaries (ie, not other OSes or systems, not OBJ format, etc...)
@@ -444,6 +444,26 @@ Exports_Directory:
   Name                  dd VDELTA + aDllName - IMAGEBASE
 ...
 aDllName db 'completely unrelated dll name', 1, 2, 3, 4, 0
+}}}
+ * !AddressOfNames is lexicographically-ordered (like a dictionary): the pointer to a name starting with A shouldn't be after a name starting with B, and so on...
+  * `export_order` has some exports wrongly ordered, which makes them unusable with the official loader.
+{{{
+...
+    push a_export
+...
+    call [__imp__GetProcAddress]
+    jmp eax
+...
+
+    push a_export2
+...
+    call [__imp__GetProcAddress] ; we assume EAX==0 because it should fail
+    add eax, end_ - 07fh         ; expected error code: 7fh
+...
+address_of_names:
+    dd a_export - IMAGEBASE
+    dd a_zz - IMAGEBASE
+    dd a_export2 - IMAGEBASE
 }}}
  * export names can have any value (even null or more than 65536 characters long, with unprintable characters), just null terminated.
   * `dllemptyexp-ld.exe` loads `dllemptyexp.dll` with a null export
@@ -1695,4 +1715,4 @@ A standard use for code-less PEs is to store resources. In this case, more field
  * [http://ntcore.com/files/richsign.htm Microsoft's Rich Signature (undocumented)] _Daniel Pistelli_
  * [http://pferrie.host22.com/misc/pehdr.htm Maximum possible code execution in the PE header] _Peter Ferrie_
 
-[http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities] (this project is done in my spare time. *[http://code.google.com/p/corkami/wiki/About#Support_Corkami Support ]* it!)
+[http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities]
