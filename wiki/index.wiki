@@ -9,6 +9,7 @@
  https://corkami.googlecode.com/svn/wiki/pics/MACHO_corkamosx.png
 
 =brainteasers=
+ * *page* (2013/02/04) [puzzles notes and hints]
  * *presentation* (2013/01/16) [HackPra A challenge in your pocket: an introduction to brainteasers]
   <wiki:video url="http://www.youtube.com/watch?v=hg7A7YIEWbU"/>
   <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hackpra_slideshare.xml" width=620 height=497 border=0/>
@@ -19,7 +20,7 @@
  * *presentation* first at _Hack In Paris_, then reworked and extended at _hashdays_, Luzern (Switzerland)
   # (2012/06/22) [HackInParis2012 a bit more of PE] (+video)
   # (2012/11/03) [hashdays2012 Binary Art - byte-ing the PE that fails you]
- * *article with !PoCs* [PE the PE format]
+ * *article with !PoCs* (2011/09/26 - 2013/02/01) [PE the PE format]
  * *source* a [https://corkami.googlecode.com/svn/trunk/asm/misc/traceless.bat rewrite] of the PE header of [http://www.pouet.scene.org/prod.php?which=59600 Traceless] demo
  * *PoC* (2012/08/01) [mix CorkaMIX], an all-in-one PE/PDF/Html[+!JavaScript]/(Jar[Class+Zip] ^ PY) file written by hand
  * *!PoCs* (2011/02) [http://code.google.com/p/corkami/downloads/list?can=1&q=Binary+corpus Binary corpus] is a group of non malicious binaries, exhibiting various file formats, and more specifically, aspects of PE files (Formats: NE, PE, Elf, LX, LE, COM, EXE / Compilers: Digital Mars C, Lcc, Masm, Tasm, !FreeBasic, !FreePascal, !OpenWatcom, Fasm, !GoAsm...)
@@ -37,7 +38,7 @@
   * *PoC* (2011/08/12) [StandardTest Corkami Standard Test], a PE/x86/x64 test program for your tools/emulators/skills.
  * *article* how to [http://code.google.com/p/corkami/wiki/GetIP get the current IP]
  * *article* [InitialValues values of general and system registers]  on TLS/!EntryPoint/... of most Windows versions, Wine, etc..
- * *article* [CallingConventions Calling conventions, seen from ASM]
+ * *article* (2011/03/22) [CallingConventions Calling conventions, seen from ASM]
  * *doc* [http://code.google.com/p/corkami/downloads/detail?name=opcodes.pdf Opcodes] (x86 & x64 simplified tables, one-liners)
  * *related doc*: a very nice and simple [http://net.cs.uni-bonn.de/fileadmin/user_upload/plohmann/x86_opcode_structure_and_instruction_overview.pdf opcode table], by [http://pnx.tf Daniel Plohmann]
 
@@ -56,14 +57,15 @@
  * *doc* [http://code.google.com/p/corkami/downloads/detail?name=packers.pdf packers] (models, categories & features, landscape, detailed features, entrypoints, algorithms)
 
 =misc=
- * *doc* [OpcodesTables Opcodes' tables] of Java, .Net, Android, x86 - as either compact single-page cheat sheets, or full descriptive posters.
- * *article with !PoCs* [Encodings curious encodings]
+ * *doc* (2012/02/22) [OpcodesTables Opcodes' tables] of Java, .Net, Android, x86 - as either compact single-page cheat sheets, or full descriptive posters.
+ * *article with !PoCs* (2012/03/18) [Encodings curious encodings]
  * [IntroductionToVirus Explaining what’s a computer virus to grandma]
  * *PoC* [http://code.google.com/p/corkami/downloads/list?can=1&q=kernel31 Kernel31], a trampoline DLL to enable >!XpSp3 binaries work on previous OS.
  * old crackmes solutions: PredatorPirupiru LilcwXor
  * *screencast* [https://sites.google.com/site/corkami/ollydbg-tracing OllyDbg Tracing] (easy level) setting !OllyDbg as a JIT debugger, tracing, optimizing tracing, finding bug, patching, saving as a new executable
  * *screencast* [http://rejava.sourceforge.net/hello.html reJava] create a .class from scratch
- * *PoC* (2013/01/30) a one-solution random labyrinth generator, in [http://corkami.googlecode.com/svn/trunk/misc/laby/laby.py python], [http://corkami.googlecode.com/svn/trunk/misc/laby/laby.asm 16b x86 .COM] (in 168 bytes so far), [http://corkami.googlecode.com/svn/trunk/misc/laby/LABY.BAS GW-BASIC] and [https://corkami.googlecode.com/svn/trunk/misc/laby/laby.pas Turbo Pascal 3.0]
+ * *PoC* (2013/01/30) a one-solution random labyrinth generator, in [http://corkami.googlecode.com/svn/trunk/misc/laby/laby.py python], [http://corkami.googlecode.com/svn/trunk/misc/laby/laby.asm 16b x86 .COM] in 150 bytes, [http://corkami.googlecode.com/svn/trunk/misc/laby/LABY.BAS GW-BASIC], [https://corkami.googlecode.com/svn/trunk/misc/laby/laby.pas Turbo Pascal 3.0] and [http://corkami.googlecode.com/svn/trunk/misc/laby/laby32.asm x86 PE -> TGA]
+ https://corkami.googlecode.com/svn/wiki/pics/LABY_basic.png
 
 ===more===
 ...for more information, check the (old) [http://corkami.blogspot.com/p/map.html blog map], and the [http://code.google.com/p/corkami/downloads/list downloads tab].
