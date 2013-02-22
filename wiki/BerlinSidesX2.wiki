@@ -4,7 +4,7 @@
 [http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities] (this project is done in my spare time. *[http://code.google.com/p/corkami/wiki/About#Support_Corkami Support ]* it!)
 
 =x86 & PE=
-<wiki:gadget url="https://corkami.googlecode.com/svn/trunk/pics/bsx2/bsx2.xml" width=1200 height=650 border=1/>
+<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/pics/bsx2/bsx2.xml" width=1200 height=650 border=1/>
 
  * Slides: [http://corkami.googlecode.com/files/bsx2.odp original OpenOffice document], [http://corkami.googlecode.com/files/bsx2_with_notes.pdf PDF conversion] (with notes in 2nd half)
  * [http://corkami.googlecode.com/files/bsx2_pocs.rar PoCs]

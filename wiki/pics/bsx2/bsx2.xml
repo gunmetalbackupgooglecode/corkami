@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" ?> 
+    <?xml version="1.0" encoding="UTF-8" ?> 
 <Module>
   <ModulePrefs title="screencasts"/> 
   <Content type="html">
   <![CDATA[
 <a name=slide0></a>Slide 0: &lt;&lt; Previous <a href=#slide0h>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img0.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img0.png border=1 >
 </td><td valign=top>
 <p>Welcome!</p>
 <p></p>
@@ -14,7 +14,7 @@
 
 <a name=slide0h></a>Slide 0h: <a href=#slide0>&lt;&lt; Previous</a> <a href=#slide1>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img0h.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img0h.png border=1 >
 </td><td valign=top>
 <p>this extra slide to let you decide if you really want to 
  read further ;)</p>
@@ -27,7 +27,7 @@
 
 <a name=slide1></a>Slide 1: <a href=#slide0>&lt;&lt; Previous</a> <a href=#slide2>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img1.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img1.png border=1 >
 </td><td valign=top>
 <p>This is an improved version of my presentation at Hashdays.</p>
 <p>I reworked it, but most of the content is still the same.</p>
@@ -36,7 +36,7 @@
 
 <a name=slide2></a>Slide 2: <a href=#slide1>&lt;&lt; Previous</a> <a href=#slide3>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img2.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img2.png border=1 >
 </td><td valign=top>
 <p>I created Corkami, a website about reverse engineering.</p>
 <p></p>
@@ -53,7 +53,7 @@
 
 <a name=slide3></a>Slide 3: <a href=#slide2>&lt;&lt; Previous</a> <a href=#slide4>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img3.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img3.png border=1 >
 </td><td valign=top>
 <p>so, whether it's: </p>
 <ul>
@@ -68,7 +68,7 @@
 
 <a name=slide4></a>Slide 4: <a href=#slide3>&lt;&lt; Previous</a> <a href=#slide5>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img4.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img4.png border=1 >
 </td><td valign=top>
 <p>and here is the story behind this presentation</p>
 </td></tr></table>
@@ -76,7 +76,7 @@
 
 <a name=slide5></a>Slide 5: <a href=#slide4>&lt;&lt; Previous</a> <a href=#slide6>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img5.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img5.png border=1 >
 </td><td valign=top>
 <p>first, a small flashback</p>
 </td></tr></table>
@@ -84,7 +84,7 @@
 
 <a name=slide6></a>Slide 6: <a href=#slide5>&lt;&lt; Previous</a> <a href=#slide7>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img6.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img6.png border=1 >
 </td><td valign=top>
 <p>years ago, I was young and innocent, believing that CPU would be perfect, because they're made of transistor, not software.</p>
 <p></p>
@@ -94,7 +94,7 @@
 
 <a name=slide7></a>Slide 7: <a href=#slide6>&lt;&lt; Previous</a> <a href=#slide8>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img7.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img7.png border=1 >
 </td><td valign=top>
 <p>then I encountered my first undocumented opcodes. and shortly after, my first sectionless PE.</p>
 <p></p>
@@ -104,7 +104,7 @@
 
 <a name=slide8></a>Slide 8: <a href=#slide7>&lt;&lt; Previous</a> <a href=#slide9>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img8.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img8.png border=1 >
 </td><td valign=top>
 <p>So I decided to go back to the basics, studying x86 and PE from scratch.</p>
 </td></tr></table>
@@ -112,7 +112,7 @@
 
 <a name=slide9></a>Slide 9: <a href=#slide8>&lt;&lt; Previous</a> <a href=#slide10>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img9.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img9.png border=1 >
 </td><td valign=top>
 <p>and writing my findings on the way, on Corkami.</p>
 </td></tr></table>
@@ -120,7 +120,7 @@
 
 <a name=slide10></a>Slide 10: <a href=#slide9>&lt;&lt; Previous</a> <a href=#slide11>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img10.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img10.png border=1 >
 </td><td valign=top>
 <p>This talk is only a subset of what's available on the site, even on these topics.</p>
 </td></tr></table>
@@ -128,7 +128,7 @@
 
 <a name=slide11></a>Slide 11: <a href=#slide10>&lt;&lt; Previous</a> <a href=#slide12>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img11.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img11.png border=1 >
 </td><td valign=top>
 <p>but, if I was just a guy learning ASM and PE, I probably wouldn't be presenting here.</p>
 <p></p>
@@ -140,7 +140,7 @@
 
 <a name=slide12></a>Slide 12: <a href=#slide11>&lt;&lt; Previous</a> <a href=#slide13>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img12.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img12.png border=1 >
 </td><td valign=top>
 <p>so, first, I'll start slowly, trying to introduce assembly to beginners, and make them understand the problem of undocumented opcodes.</p>
 <p></p>
@@ -155,7 +155,7 @@
 
 <a name=slide13></a>Slide 13: <a href=#slide12>&lt;&lt; Previous</a> <a href=#slide14>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img13.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img13.png border=1 >
 </td><td valign=top>
 <p>So, let's start and try to make everybody understand the problem of undocumented opcodes.</p>
 <p></p>
@@ -165,7 +165,7 @@
 
 <a name=slide14></a>Slide 14: <a href=#slide13>&lt;&lt; Previous</a> <a href=#slide15>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img14.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img14.png border=1 >
 </td><td valign=top>
 <p>so, we create a simple program in a language, such as C.</p>
 <p></p>
@@ -179,7 +179,7 @@
 
 <a name=slide15></a>Slide 15: <a href=#slide14>&lt;&lt; Previous</a> <a href=#slide16>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img15.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img15.png border=1 >
 </td><td valign=top>
 <p>what the Visual Studio compiler did from our C code is actually generate sequences of assembly code instruction that will generate the wanted actions.</p>
 <p></p>
@@ -188,7 +188,7 @@
 
 <a name=slide16></a>Slide 16: <a href=#slide15>&lt;&lt; Previous</a> <a href=#slide17>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img16.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img16.png border=1 >
 </td><td valign=top>
 <p>so, the C code is turned into assembly. which is itself encoded in the binary as opcodes.</p>
 </td></tr></table>
@@ -196,7 +196,7 @@
 
 <a name=slide17></a>Slide 17: <a href=#slide16>&lt;&lt; Previous</a> <a href=#slide18>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img17.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img17.png border=1 >
 </td><td valign=top>
 <p>Here, you can see calls to MessageBox, then ExitProcess (the names are self-explaining), with the parameters above.</p>
 <p></p>
@@ -206,7 +206,7 @@
 
 <a name=slide18></a>Slide 18: <a href=#slide17>&lt;&lt; Previous</a> <a href=#slide19>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img18.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img18.png border=1 >
 </td><td valign=top>
 <p>now you know that this is what is in the file itself.</p>
 <p>this is how it's read by 'us' (reverse engineers, malware analysts, exploit developers...).</p>
@@ -227,7 +227,7 @@
 
 <a name=slide19></a>Slide 19: <a href=#slide18>&lt;&lt; Previous</a> <a href=#slide20>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img19.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img19.png border=1 >
 </td><td valign=top>
 <p>This is what is actually in the file on the hard disk (the opcodes).</p>
 <p></p>
@@ -241,7 +241,7 @@
 
 <a name=slide20></a>Slide 20: <a href=#slide19>&lt;&lt; Previous</a> <a href=#slide21>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img20.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img20.png border=1 >
 </td><td valign=top>
 <p>What's important is that in the end, anything running on your machine is about the CPU executing opcode, no matter what.</p>
 <p></p>
@@ -251,7 +251,7 @@
 
 <a name=slide21></a>Slide 21: <a href=#slide20>&lt;&lt; Previous</a> <a href=#slide22>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img21.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img21.png border=1 >
 </td><td valign=top>
 <p>so, the compiler translates our C to a series of assembly operations, which is itself encoded in opcodes.</p>
 <p>the resulting executable only contains the opcodes, which are directly understood and executed by the CPU. If no error happens, what is here directly affects the behavior of the program, there is no 'man in the middle' from the OS.</p>
@@ -265,7 +265,7 @@
 
 <a name=slide22></a>Slide 22: <a href=#slide21>&lt;&lt; Previous</a> <a href=#slide23>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img22.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img22.png border=1 >
 </td><td valign=top>
 <p>so now, let's interfere with the compiling process</p>
 </td></tr></table>
@@ -273,7 +273,7 @@
 
 <a name=slide23></a>Slide 23: <a href=#slide22>&lt;&lt; Previous</a> <a href=#slide24>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img23.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img23.png border=1 >
 </td><td valign=top>
 <p>let's add a command that will force a specific byte in the opcodes.</p>
 <p></p>
@@ -283,7 +283,7 @@
 
 <a name=slide24></a>Slide 24: <a href=#slide23>&lt;&lt; Previous</a> <a href=#slide25>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img24.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img24.png border=1 >
 </td><td valign=top>
 <p>indeed, if we check Intel official documentation, there is nothing to see here...</p>
 </td></tr></table>
@@ -291,7 +291,7 @@
 
 <a name=slide25></a>Slide 25: <a href=#slide24>&lt;&lt; Previous</a> <a href=#slide26>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img25.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img25.png border=1 >
 </td><td valign=top>
 <p>so, we forced something that is not recognized by the most expensive Microsoft compiler to execute, which is not even in Intel's books.</p>
 <p></p>
@@ -301,7 +301,7 @@
 
 <a name=slide26></a>Slide 26: <a href=#slide25>&lt;&lt; Previous</a> <a href=#slide27>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img26.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img26.png border=1 >
 </td><td valign=top>
 <p>but the CPU doesn't care about what YOU (or VS) know, and it just executes that mysterious D6 just fine (apparently)</p>
 <p></p>
@@ -315,7 +315,7 @@
 
 <a name=slide27></a>Slide 27: <a href=#slide26>&lt;&lt; Previous</a> <a href=#slide28>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img27.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img27.png border=1 >
 </td><td valign=top>
 <p>so what did we do in reality ?</p>
 <p></p>
@@ -332,7 +332,7 @@
 
 <a name=slide28></a>Slide 28: <a href=#slide27>&lt;&lt; Previous</a> <a href=#slide29>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img28.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img28.png border=1 >
 </td><td valign=top>
 <p>the funny thing is, even though Intel docs are full of holes, Intel free tools are fully aware of what to expect...</p>
 <p></p>
@@ -342,7 +342,7 @@
 
 <a name=slide29></a>Slide 29: <a href=#slide28>&lt;&lt; Previous</a> <a href=#slide30>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img29.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img29.png border=1 >
 </td><td valign=top>
 <p>So, you now know that the CPU knows things that the Intel documentations omits.</p>
 <p></p>
@@ -352,7 +352,7 @@
 
 <a name=slide30></a>Slide 30: <a href=#slide29>&lt;&lt; Previous</a> <a href=#slide31>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img30.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img30.png border=1 >
 </td><td valign=top>
 <p>the extra problem is that each of this oddities are usually scattered in various files, deep under obfuscations or in malicious behavior. no 'ready to use' toolbox.</p>
 <p></p>
@@ -362,7 +362,7 @@
 
 <a name=slide31></a>Slide 31: <a href=#slide30>&lt;&lt; Previous</a> <a href=#slide32>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img31.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img31.png border=1 >
 </td><td valign=top>
 <p>Now, let's start the real stuff</p>
 </td></tr></table>
@@ -370,7 +370,7 @@
 
 <a name=slide32></a>Slide 32: <a href=#slide31>&lt;&lt; Previous</a> <a href=#slide33>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img32.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img32.png border=1 >
 </td><td valign=top>
 <p>before focusing on particular opcodes,</p>
 <p>my first questions were: </p>
@@ -384,7 +384,7 @@
 
 <a name=slide33></a>Slide 33: <a href=#slide32>&lt;&lt; Previous</a> <a href=#slide34>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img33.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img33.png border=1 >
 </td><td valign=top>
 <p>that's the problem. </p>
 <p>like English language, assembly uses mainly always the same 'standard' opcodes.</p>
@@ -399,7 +399,7 @@
 
 <a name=slide34></a>Slide 34: <a href=#slide33>&lt;&lt; Previous</a> <a href=#slide35>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img34.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img34.png border=1 >
 </td><td valign=top>
 <p>but Intel CPU are from the 70's and still backward compatible...</p>
 <p></p>
@@ -412,7 +412,7 @@
 
 <a name=slide35></a>Slide 35: <a href=#slide34>&lt;&lt; Previous</a> <a href=#slide36>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img35.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img35.png border=1 >
 </td><td valign=top>
 <p>so here is a small executable where I only use uncommon opcodes. some are not really doing anything, some are actually doing something meaningful.</p>
 <p></p>
@@ -422,7 +422,7 @@
 
 <a name=slide36></a>Slide 36: <a href=#slide35>&lt;&lt; Previous</a> <a href=#slide37>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img36.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img36.png border=1 >
 </td><td valign=top>
 <p>Another funny fact is that some specific opcodes (interrupt) used to be for various functionality, which made IDA and Hiew over-interpret them.</p>
 <p></p>
@@ -432,7 +432,7 @@
 
 <a name=slide37></a>Slide 37: <a href=#slide36>&lt;&lt; Previous</a> <a href=#slide38>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img37.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img37.png border=1 >
 </td><td valign=top>
 <p>new generation : English and opcodes.</p>
 <p></p>
@@ -448,7 +448,7 @@
 
 <a name=slide38></a>Slide 38: <a href=#slide37>&lt;&lt; Previous</a> <a href=#slide39>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img38.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img38.png border=1 >
 </td><td valign=top>
 <p>I made a 'non working' PoC with all opcodes encoded, and various tricky situation.</p>
 <p></p>
@@ -458,7 +458,7 @@
 
 <a name=slide39></a>Slide 39: <a href=#slide38>&lt;&lt; Previous</a> <a href=#slide40>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img39.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img39.png border=1 >
 </td><td valign=top>
 <p>the basics of assembly are the registers...</p>
 <p></p>
@@ -478,7 +478,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide40></a>Slide 40: <a href=#slide39>&lt;&lt; Previous</a> <a href=#slide41>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img40.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img40.png border=1 >
 </td><td valign=top>
 <p>I created a PoC that just gets all registers from EP and TLS, and checks the validity of result.</p>
 <p></p>
@@ -488,7 +488,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide41></a>Slide 41: <a href=#slide40>&lt;&lt; Previous</a> <a href=#slide42>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img41.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img41.png border=1 >
 </td><td valign=top>
 <p>smsw is an old 286-era mnemonic (before protected mode was 'complete'): it allows usermode access to cr0.</p>
 <p>the higher word of a reg32 target is 'undefined', yet always modified (and same as cr0)</p>
@@ -512,7 +512,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide43></a>Slide 43: <a href=#slide42>&lt;&lt; Previous</a> <a href=#slide44>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img43.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img43.png border=1 >
 </td><td valign=top>
 <p>the GS trick is similar.</p>
 <p>on 32b of windows, GS is reset on thread switch.</p>
@@ -536,7 +536,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide45></a>Slide 45: <a href=#slide44>&lt;&lt; Previous</a> <a href=#slide46>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img45.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img45.png border=1 >
 </td><td valign=top>
 <p>xchg eax, eax is 90, which originally did nothing.</p>
 <p>(xchg eax, ecx is 91)</p>
@@ -552,7 +552,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide46></a>Slide 46: <a href=#slide45>&lt;&lt; Previous</a> <a href=#slide47>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img46.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img46.png border=1 >
 </td><td valign=top>
 <p>Mov is documented, but has a few quirks.</p>
 <p>* to/from control and debug registers, memory operands are not allowed. but not rejected !</p>
@@ -563,7 +563,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide47></a>Slide 47: <a href=#slide46>&lt;&lt; Previous</a> <a href=#slide48>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img47.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img47.png border=1 >
 </td><td valign=top>
 <p>smsw (undocumented) gives full cr0 access.</p>
 <p>then cr0 access with 'ignored' Mod/RM</p>
@@ -575,7 +575,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide48></a>Slide 48: <a href=#slide47>&lt;&lt; Previous</a> <a href=#slide49>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img48.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img48.png border=1 >
 </td><td valign=top>
 <p>Bswap... is like an administration... rules prevent it to work correctly most of the time...</p>
 <p></p>
@@ -610,7 +610,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide50></a>Slide 50: <a href=#slide49>&lt;&lt; Previous</a> <a href=#slide51>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img50.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img50.png border=1 >
 </td><td valign=top>
 <p>anyone knows what will happen here ?</p>
 <p></p>
@@ -639,7 +639,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide52></a>Slide 52: <a href=#slide51>&lt;&lt; Previous</a> <a href=#slide53>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img52.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img52.png border=1 >
 </td><td valign=top>
 <p>I won't enumerate them all.</p>
 <p>they're already on Corkami, with some other x86 stuff that might be useful to print.</p>
@@ -650,7 +650,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide53></a>Slide 53: <a href=#slide52>&lt;&lt; Previous</a> <a href=#slide54>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img53.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img53.png border=1 >
 </td><td valign=top>
 <p>so I created CoST.</p>
 </td></tr></table>
@@ -658,7 +658,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide54></a>Slide 54: <a href=#slide53>&lt;&lt; Previous</a> <a href=#slide55>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img54.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img54.png border=1 >
 </td><td valign=top>
 <p>an opcode tester, in a tricky PE.</p>
 <p>available in easy mode compile (less tricky), as CoST is quite difficult to debug :)</p>
@@ -669,7 +669,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide55></a>Slide 55: <a href=#slide54>&lt;&lt; Previous</a> <a href=#slide56>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img55.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img55.png border=1 >
 </td><td valign=top>
 <p>so, it contains a lot of various tests... (150 is the lower margin, depend how you count)</p>
 <p></p>
@@ -679,7 +679,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide56></a>Slide 56: <a href=#slide55>&lt;&lt; Previous</a> <a href=#slide57>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img56.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img56.png border=1 >
 </td><td valign=top>
 <p>Cost just gives some output when ran from the command line.</p>
 <p></p>
@@ -691,7 +691,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide57></a>Slide 57: <a href=#slide56>&lt;&lt; Previous</a> <a href=#slide58>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img57.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img57.png border=1 >
 </td><td valign=top>
 <p>here is my favorite part of CoST:</p>
 <p></p>
@@ -718,7 +718,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide59></a>Slide 59: <a href=#slide58>&lt;&lt; Previous</a> <a href=#slide60>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img59.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img59.png border=1 >
 </td><td valign=top>
 <p>as you'd expect, WinDbg, following Intel docs too closely, will give you '??'</p>
 <p></p>
@@ -730,7 +730,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide60></a>Slide 60: <a href=#slide59>&lt;&lt; Previous</a> <a href=#slide61>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img60.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img60.png border=1 >
 </td><td valign=top>
 <p>CoST was originally only an opcode tester.</p>
 <p></p>
@@ -742,7 +742,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide61></a>Slide 61: <a href=#slide60>&lt;&lt; Previous</a> <a href=#slide62>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img61.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img61.png border=1 >
 </td><td valign=top>
 <p>As you can see, IDA didn't really like it at first (fixed, now)</p>
 <p></p>
@@ -753,7 +753,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide62></a>Slide 62: <a href=#slide61>&lt;&lt; Previous</a> <a href=#slide63>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img62.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img62.png border=1 >
 </td><td valign=top>
 <p>but one single file, even full of tricks, is not enough to express all the possibilities of the PE file.</p>
 <p></p>
@@ -763,7 +763,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide63></a>Slide 63: <a href=#slide62>&lt;&lt; Previous</a> <a href=#slide64>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img63.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img63.png border=1 >
 </td><td valign=top>
 <p>I already made some useful graphs for PE files.</p>
 <p></p>
@@ -775,7 +775,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide64></a>Slide 64: <a href=#slide63>&lt;&lt; Previous</a> <a href=#slide65>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img64.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img64.png border=1 >
 </td><td valign=top>
 <p>in low alignments, the section table is checked but not used at all.</p>
 <p>so, if it's full of zeroes, it will still work – under XP.</p>
@@ -789,7 +789,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide65></a>Slide 65: <a href=#slide64>&lt;&lt; Previous</a> <a href=#slide66>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img65.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img65.png border=1 >
 </td><td valign=top>
 <p>what do you think ?</p>
 <p></p>
@@ -804,7 +804,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide66></a>Slide 66: <a href=#slide65>&lt;&lt; Previous</a> <a href=#slide67>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img66.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img66.png border=1 >
 </td><td valign=top>
 <p>export names can be anything until 0, or even null.</p>
 <p></p>
@@ -816,7 +816,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide67></a>Slide 67: <a href=#slide66>&lt;&lt; Previous</a> <a href=#slide68>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img67.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img67.png border=1 >
 </td><td valign=top>
 <p>this is a 64k section PE against the latest Olly.</p>
 <p></p>
@@ -826,7 +826,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide68></a>Slide 68: <a href=#slide67>&lt;&lt; Previous</a> <a href=#slide69>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img68.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img68.png border=1 >
 </td><td valign=top>
 <p>this one is not very visual, yet quite unique.</p>
 <p></p>
@@ -841,7 +841,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide69></a>Slide 69: <a href=#slide68>&lt;&lt; Previous</a> <a href=#slide70>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img69.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img69.png border=1 >
 </td><td valign=top>
 <p>unlike what I used to believe, cpus and windows binaries are far from perfectly logical nor documented</p>
 <p></p>
@@ -851,7 +851,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide70></a>Slide 70: <a href=#slide69>&lt;&lt; Previous</a> <a href=#slide71>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img70.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img70.png border=1 >
 </td><td valign=top>
 <p>so give Corkami PoCs a try – and send me a postcard if you found some bugs</p>
 <p></p>
@@ -861,7 +861,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide71></a>Slide 71: <a href=#slide70>&lt;&lt; Previous</a> <a href=#slide72>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img71.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img71.png border=1 >
 </td><td valign=top>
 <p>Eternal thanks to Peter Ferrie, my permanent reviewer.</p>
 <p>Ivanlef0u is also very helpful.</p>
@@ -873,7 +873,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide72></a>Slide 72: <a href=#slide71>&lt;&lt; Previous</a> <a href=#slide73>&gt;&gt; Next</a>
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img72.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img72.png border=1 >
 </td><td valign=top>
 <p>Thanks for your attention. I hope you liked it.</p>
 </td></tr></table>
@@ -881,7 +881,7 @@ While GS can tell you if the machine is 64b or not, even in a 32b process.
 
 <a name=slide73></a>Slide 73: <a href=#slide72>&lt;&lt; Previous</a> &gt;&gt; Next
 <table><tr><td>
-<img src=https://corkami.googlecode.com/svn/trunk/pics/bsx2/img73.png border=1 >
+<img src=https://corkami.googlecode.com/svn/wiki/pics/bsx2/img73.png border=1 >
 </td><td valign=top>
 <ul>
 <li/>Mips relocs are still working, even with x86 CPU and PE. and relocs can be applied on further relocations... so does my PoC
