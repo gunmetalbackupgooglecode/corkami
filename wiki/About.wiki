@@ -3,11 +3,11 @@
 Corkami is:
  * *technical*
   * based on findings on real hardware
-  * confirmed with !PoCs
+  * confirmed with many !PoCs
  * *free*
   * to browse (no annoying layout, no ads, ...)
   * to download (no login required)
-  * to test (pre-compiled proof of concepts included)
+  * to test (pre-compiled !PoCs included)
   * to modify (BSD Licence, complete sources included, even for pictures and documents, using open-source tools)
  * *useful*
   * constantly updated (wiki format)
@@ -25,11 +25,7 @@ the way I work:
 
 Hope you like it,
 
-Ange
-
-[http://twitter.com/#!/ange4771 @ange4771] ([http://twitter.com/#!/corkami @corkami], for news only)
-
-Comments, critics, suggestions, etc... are welcome.
+[http://twitter.com/#!/angealbertini Ange]
 
 =landmarks=
 == step ? (2013) ==
@@ -66,15 +62,7 @@ so Corkami can step up and move on to the next level, following the same methods
 
 =Support Corkami=
 To show your support (this project is just a hobby, done in my spare time) you can:
- * buy the special 'supporter' version of [http://pe101.corkami.com PE 101] for 15EUR, which will be sent as a file attachment, via e-mail.
-
- [https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NSLAQ9VUUN5XG https://www.paypalobjects.com/en_US/FR/i/btn/btn_buynowCC_LG.gif]
-
- * buy a customized version of [http://pe101.corkami.com PE 101] for 50EUR, which will be sent as a file attachment, via e-mail.
-
- [https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SXVK25Z8MKHXA https://www.paypalobjects.com/en_US/FR/i/btn/btn_buynowCC_LG.gif]
-
- * buying something in my [http://www.amazon.de/registry/wishlist/11FVTHTOLVZ0C Amazon wishlist] (et [http://www.amazon.fr/registry/wishlist/13MJPFNU8QPAC celle-ci] pour les français).
+ * buy something in my [http://www.amazon.de/registry/wishlist/11FVTHTOLVZ0C Amazon wishlist] (et [http://www.amazon.fr/registry/wishlist/13MJPFNU8QPAC celle-ci] pour les français).
  * donate via Paypal
 
  [https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DJM7S3QAURFCC https://www.paypalobjects.com/en_US/FR/i/btn/btn_donateCC_LG.gif]
