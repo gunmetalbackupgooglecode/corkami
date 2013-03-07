@@ -471,14 +471,19 @@ WARNING: it will not work if the PDF is encrypted - it should be decrypted first
 
 = readers compatibility =
 using several degrees of PDF malformations on one-page 'Hello world' documents, you can test your PDF tools 'robustness':
- # [https://corkami.googlecode.com/svn/trunk/misc/pdf/helloworld-naive.pdf naive] is a naive PDF, extremely standard.
- # [https://corkami.googlecode.com/svn/trunk/misc/pdf/helloworld-generic.pdf generic] doesn't contain stream lengths, xref, and EOF, which are the most standard malformations.
+ # [https://corkami.googlecode.com/svn/trunk/src/pdf/helloworld-naive.pdf naive] is a naive PDF, extremely standard.
+ # [https://corkami.googlecode.com/svn/trunk/src/pdf/helloworld-generic.pdf generic] doesn't contain stream lengths, xref, and EOF, which are the most standard malformations.
  # slightly linux specific
-  # [https://corkami.googlecode.com/svn/trunk/misc/pdf/helloworld-mupdf.pdf MuPDF] contains *NO* PDF signature, incomplete Tf parameters, and fewer elements, yet is fully supported by many readers (Evince, ubuntu preview)
-  # [https://corkami.googlecode.com/svn/trunk/misc/pdf/helloworld-sumatra.pdf sumatra] is similar to MuPDF, except it contains no endobj, and fewer objects.
+  # [https://corkami.googlecode.com/svn/trunk/src/pdf/helloworld-mupdf.pdf MuPDF] contains *NO* PDF signature, incomplete Tf parameters, and fewer elements, yet is fully supported by many readers (Evince, ubuntu preview)
+  # [https://corkami.googlecode.com/svn/trunk/src/pdf/helloworld-sumatra.pdf sumatra] is similar to MuPDF, except it contains no endobj, and fewer objects.
  # adobe reader specific
-  # [https://corkami.googlecode.com/svn/trunk/misc/pdf/helloworld-X.pdf reader-X] contains a *truncated* signature, specific to Adobe. Also, *no* font definition is required.
-  # [https://corkami.googlecode.com/svn/trunk/misc/pdf/helloworld.pdf reader] is the same, but it also miss an endobj on the stream object.
+  # [https://corkami.googlecode.com/svn/trunk/src/pdf/helloworld-X.pdf reader-X] contains a *truncated* signature, specific to Adobe. Also, *no* font definition is required.
+  # [https://corkami.googlecode.com/svn/trunk/src/pdf/helloworld.pdf reader] is the same, but it also miss an endobj on the stream object.
+ # [https://corkami.googlecode.com/svn/trunk/src/pdf/helloworld-chrome.pdf chrome specific]
+  # truncated `%PDF` signature
+  # (disabled) recursive object
+  # bogus trailer
+  # trailer in a bogus object, in a comment
 
 || software || naive  || generic || mupdf || sumatra || reader || readerX ||
 || ||  ||  ||  ||  ||  ||  ||
@@ -504,5 +509,6 @@ using several degrees of PDF malformations on one-page 'Hello world' documents, 
  * [http://blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/ Didier Stevens]
  * [http://www.symantec.com/connect/blogs/portable-document-format-malware Kazumasa Itabashi]
  * [http://blog.zynamics.com/2010/07/13/recon-slides-how-to-really-obfuscate-your-pdf-malware/ Sebastian Porst]
+ * Jonas Magazinius
 
 [http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities] (this project is done in my spare time. *[http://code.google.com/p/corkami/wiki/About#Support_Corkami Support ]* it!)
