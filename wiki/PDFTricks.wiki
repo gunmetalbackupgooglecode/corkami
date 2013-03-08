@@ -505,6 +505,8 @@ using several degrees of PDF malformations on one-page 'Hello world' documents, 
 || Ubuntu preview || Ok || Ok || Ok || fail || fail || fail ||
 || ||  ||  ||  ||  ||  ||  ||
 
+https://corkami.googlecode.com/svn/wiki/pics/pdf_standards.png
+
 =References=
  * [http://blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/ Didier Stevens]
  * [http://www.symantec.com/connect/blogs/portable-document-format-malware Kazumasa Itabashi]
