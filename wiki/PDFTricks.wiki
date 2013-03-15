@@ -507,10 +507,16 @@ using several degrees of PDF malformations on one-page 'Hello world' documents, 
 
 https://corkami.googlecode.com/svn/wiki/pics/pdf_standards.png
 
+== a schizophrenic PDF ==
+a working [https://corkami.googlecode.com/svn/trunk/src/pdf/standard.pdf PDF], giving different results in Sumatra, Chrome reader and Adobe Reader, with oddities specific to each viewer.
+
+https://corkami.googlecode.com/svn/wiki/pics/pdf_standardmerged.png
+
 =References=
  * [http://blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/ Didier Stevens]
  * [http://www.symantec.com/connect/blogs/portable-document-format-malware Kazumasa Itabashi]
  * [http://blog.zynamics.com/2010/07/13/recon-slides-how-to-really-obfuscate-your-pdf-malware/ Sebastian Porst]
  * Jonas Magazinius
+ * [http://events.ccc.de/congress/2010/Fahrplan/events/4221.en.html Julia Wolf]
 
 [http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities] (this project is done in my spare time. *[http://code.google.com/p/corkami/wiki/About#Support_Corkami Support ]* it!)
