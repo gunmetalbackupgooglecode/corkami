@@ -1,7 +1,7 @@
 #summary a summary of PDF tricks - encodings, structures, JavaScript...
 #labels Featured
 
-[http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities] (this project is done in my spare time. *[http://code.google.com/p/corkami/wiki/About#Support_Corkami Support ]* it!)
+[http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities]
 Available in: [http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr Français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語]
 
 =PDF Tricks=
@@ -514,9 +514,10 @@ https://corkami.googlecode.com/svn/wiki/pics/pdf_standardmerged.png
 
 =References=
  * [http://blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/ Didier Stevens]
+ * [http://www.chalmers.se/cse/SV/personal/magazinius-jonas Jonas Magazinius}
+ * [http://events.ccc.de/congress/2010/Fahrplan/events/4221.en.html Julia Wolf]
  * [http://www.symantec.com/connect/blogs/portable-document-format-malware Kazumasa Itabashi]
  * [http://blog.zynamics.com/2010/07/13/recon-slides-how-to-really-obfuscate-your-pdf-malware/ Sebastian Porst]
- * Jonas Magazinius
  * [http://events.ccc.de/congress/2010/Fahrplan/events/4221.en.html Julia Wolf]
 
-[http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities] (this project is done in my spare time. *[http://code.google.com/p/corkami/wiki/About#Support_Corkami Support ]* it!)
+[http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities]
