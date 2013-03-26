@@ -24,6 +24,9 @@ You can download the poster, print it, distribute it, or even modify it (with at
 || Polski || Plik PE krok po kroku || [http://hexacorn.com/blog Adam Błaszczyk] [http://gynvael.coldwind.pl/ Gynvael Coldwind] || [http://corkami.googlecode.com/files/PE101-v11PL.pdf PDF] [http://corkami.googlecode.com/files/PE101-v11PL.png PNG] [https://corkami.googlecode.com/svn/trunk/doc/pe101/pe101pl.svg SVG] ||
 || Русский || пошаговое руководство к исполняемым файлам (EXE) Windows || [https://twitter.com/#!/Lyr1k Lyr1k] ||  [http://corkami.googlecode.com/files/PE101-v1RU.PDF PDF] [http://corkami.googlecode.com/files/PE101-v1RU.png PNG] [https://corkami.googlecode.com/svn/trunk/doc/pe101/pe101ru.svg SVG] ||
 
+and if you're curious about the DOS stub of a PE:
+|| [http://corkami.googlecode.com/files/com101.zip COM 101 - a DOS executable walkthrough ||
+
 SVGs:
  * made entirely under [http://www.inkscape.org Inkscape]
  * Creative Commons licence
@@ -40,4 +43,4 @@ SVGs:
  * Nicolas Ruff
  * Patrick Fitzgerald
 
- [http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities] (this project is done in my spare time. *[http://code.google.com/p/corkami/wiki/About#Support_Corkami Support ]* it!)
+ [http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities]
