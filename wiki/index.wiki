@@ -4,13 +4,26 @@
 
 <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/twitter_corkami.xml" width=700 border=0/>
 
+=misc=
+ * *poster* (2013/03/26) [https://corkami.googlecode.com/files/com101.zip COM 101] - a DOS executable walkthrough
+  http://i.imgur.com/cuyliWz.png
+ * *doc* (2012/02/22) [OpcodesTables Opcodes' tables] of Java, .Net, Android, x86 - as either compact single-page cheat sheets, or full descriptive posters.
+ * *article with !PoCs* (2012/03/18) [Encodings curious encodings]
+ * [IntroductionToVirus Explaining what’s a computer virus to grandma]
+ * *PoC* [http://code.google.com/p/corkami/downloads/list?can=1&q=kernel31 Kernel31], a trampoline DLL to enable >!XpSp3 binaries work on previous OS.
+ * old crackmes solutions: PredatorPirupiru LilcwXor
+ * *screencast* [https://sites.google.com/site/corkami/ollydbg-tracing OllyDbg Tracing] (easy level) setting !OllyDbg as a JIT debugger, tracing, optimizing tracing, finding bug, patching, saving as a new executable
+ * *screencast* [http://rejava.sourceforge.net/hello.html reJava] create a .class from scratch
+ * *PoC* (2013/01/30-2013/02/16) a one-solution random labyrinth 'dumb' generator, in [http://corkami.googlecode.com/svn/trunk/misc/laby/laby.py python] (also with optimized algorithm), [http://corkami.googlecode.com/svn/trunk/misc/laby/laby.asm 16b x86 .COM] in 126/122 bytes (on [http://www.pouet.scene.org/prod.php?which=61163 Pouet]), [http://corkami.googlecode.com/svn/trunk/misc/laby/LABY.BAS GW-BASIC], [https://corkami.googlecode.com/svn/trunk/misc/laby/laby.pas Turbo Pascal 3.0] and [http://corkami.googlecode.com/svn/trunk/misc/laby/laby32.asm x86 PE]
+
 =PDF=
- * *article with !PoCs* (2011/07/12-2013/03/07) [http://code.google.com/p/corkami/wiki/PDFTricks?wl=en a summary of PDF tricks] - encodings, structures, !JavaScript... ([http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr Français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語])
+ * *article with !PoCs* (2011/07/12-2013/03/15) [http://code.google.com/p/corkami/wiki/PDFTricks?wl=en a summary of PDF tricks] - encodings, structures, !JavaScript... ([http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr Français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語])
+ https://corkami.googlecode.com/svn/wiki/pics/pdf_standardmerged.png
 
 =Portable Executable=
- * *PoC* a fully working PE in a tweet (encoded in a python string): `"MZR\xc3"+"\0"*56+"@\0\0\0PE\0\0L\1"+"\0"*16+"\2\0\x0b\1"+"\0"*28+"@\0\1\0\0\0\1\0"+"\0"*10+"\4"+"\0"*7+"H\1\0\0G\1"+"\0"*6+"\3"+"\0"*171`
  * *poster* (2012/05/03-2012/12/05) [PE101 PE 101] - a Windows executable walkthrough (an easy introduction)
 <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/imgur_pe101.xml" width=600 height=550 border=0/>
+ * *PoC* a fully working PE in a tweet (encoded in a python string): `"MZR\xc3"+"\0"*56+"@\0\0\0PE\0\0L\1"+"\0"*16+"\2\0\x0b\1"+"\0"*28+"@\0\1\0\0\0\1\0"+"\0"*10+"\4"+"\0"*7+"H\1\0\0G\1"+"\0"*6+"\3"+"\0"*171`
  * *presentation* first at _Hack In Paris_, then reworked and extended at _hashdays_, Luzern (Switzerland)
   # (2012/06/22) [HackInParis2012 a bit more of PE] (+video)
   # (2012/11/03) [hashdays2012 Binary Art - byte-ing the PE that fails you]
@@ -53,15 +66,5 @@
  * *doc* [http://code.google.com/p/corkami/downloads/detail?name=cm.pdf anti-debugs]
  * *doc* [http://code.google.com/p/corkami/downloads/detail?name=packers.pdf packers] (models, categories & features, landscape, detailed features, entrypoints, algorithms)
 
-=misc=
- * *doc* (2012/02/22) [OpcodesTables Opcodes' tables] of Java, .Net, Android, x86 - as either compact single-page cheat sheets, or full descriptive posters.
- * *article with !PoCs* (2012/03/18) [Encodings curious encodings]
- * [IntroductionToVirus Explaining what’s a computer virus to grandma]
- * *PoC* [http://code.google.com/p/corkami/downloads/list?can=1&q=kernel31 Kernel31], a trampoline DLL to enable >!XpSp3 binaries work on previous OS.
- * old crackmes solutions: PredatorPirupiru LilcwXor
- * *screencast* [https://sites.google.com/site/corkami/ollydbg-tracing OllyDbg Tracing] (easy level) setting !OllyDbg as a JIT debugger, tracing, optimizing tracing, finding bug, patching, saving as a new executable
- * *screencast* [http://rejava.sourceforge.net/hello.html reJava] create a .class from scratch
- * *PoC* (2013/01/30-2013/02/16) a one-solution random labyrinth 'dumb' generator, in [http://corkami.googlecode.com/svn/trunk/misc/laby/laby.py python] (also with optimized algorithm), [http://corkami.googlecode.com/svn/trunk/misc/laby/laby.asm 16b x86 .COM] in 126/122 bytes, [http://corkami.googlecode.com/svn/trunk/misc/laby/LABY.BAS GW-BASIC], [https://corkami.googlecode.com/svn/trunk/misc/laby/laby.pas Turbo Pascal 3.0] and [http://corkami.googlecode.com/svn/trunk/misc/laby/laby32.asm x86 PE]
- https://corkami.googlecode.com/svn/wiki/pics/LABY_basic.png
 ===more===
 ...for more information, check the (old) [http://corkami.blogspot.com/p/map.html blog map], and the [http://code.google.com/p/corkami/downloads/list downloads tab].
