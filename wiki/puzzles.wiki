@@ -1,9 +1,10 @@
 #summary hints and notes about puzzles (brainteasers)
 
-I usually sort puzzles in 3 categories:
+I usually sort puzzles in 4 categories:
  * easy (one or 2 moves)
  * medium
  * hard: even if you solved them several times, it might still be a challenge a few days or weeks later.
+ * impossible: the ones I've never been able to solve by myself.
 
 standard rules:
  # take apart
