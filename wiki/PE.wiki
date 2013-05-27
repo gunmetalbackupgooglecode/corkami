@@ -1341,6 +1341,9 @@ VirtualStart equ (extravirtualspace - 1) * SECTIONALIGN + IMAGEBASE
 ...
     jmp VirtualStart
 }}}
+ * a section can have a null !VirtualSize: in this case, only the !SizeOfRawData is taken into consideration.
+  * `nullvirt` has a section with a null !VirtualSize and a non-null !SizeOfRawData.
+
 ===!VirtualAddress===
  * sections have to be in increasing order, virtually.
  * A section can start before the previous one ends. Which means that offset-wise, the address is not constantly increasing.
