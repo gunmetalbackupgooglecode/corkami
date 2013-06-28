@@ -23,6 +23,7 @@ You can download the poster, print it, distribute it, or even modify it (with at
 || 日本語 || Windows実行可能形式 || 板橋一正 || [http://corkami.googlecode.com/files/PE101-v1JA.pdf PDF] [http://corkami.googlecode.com/files/PE101-v1JA.png PNG] [https://corkami.googlecode.com/svn/trunk/doc/pe101/pe101ja.svg SVG] ||
 || Polski || Plik PE krok po kroku || [http://hexacorn.com/blog Adam Błaszczyk] [http://gynvael.coldwind.pl/ Gynvael Coldwind] || [http://corkami.googlecode.com/files/PE101-v11PL.pdf PDF] [http://corkami.googlecode.com/files/PE101-v11PL.png PNG] [https://corkami.googlecode.com/svn/trunk/doc/pe101/pe101pl.svg SVG] ||
 || Русский || пошаговое руководство к исполняемым файлам (EXE) Windows || [https://twitter.com/#!/Lyr1k Lyr1k] ||  [http://corkami.googlecode.com/files/PE101-v1RU.PDF PDF] [http://corkami.googlecode.com/files/PE101-v1RU.png PNG] [https://corkami.googlecode.com/svn/trunk/doc/pe101/pe101ru.svg SVG] ||
+|| 中文 || Windows可执行文件详解 || 童进 RXW ||[http://corkami.googlecode.com/files/PE101-v1ZH.PDF PDF] [http://corkami.googlecode.com/files/PE101-v1ZH.png PNG] [https://corkami.googlecode.com/svn/trunk/doc/pe101/pe101zh.svg SVG] ||
 
 and if you're curious about the DOS stub of a PE: [http://corkami.googlecode.com/files/com101.zip COM 101 - a DOS executable walkthrough] (PNG+PDF+SRC+COM)
 
