@@ -1121,9 +1121,10 @@ BASE_RELOC_SIZE_OF_BLOCK1 equ $ - block_start1
 }}}
 
   * applying a relocation on `e_lfanew` alters the remaining part of the loading process: under Vista and later, the remaining DataDirectories such as imports are parsed after relocations are processed. If e_lfanew is relocated, then a different PE Header (almost empty) can be used, thus an entirely different set of Data Directories can be used.
-  https://corkami.googlecode.com/svn/wiki/pics/lfanew_reloc.png
+
+  https://corkami.googlecode.com/svn/wiki/pics/lfanew_relocSCHEMA.png
    * `lfanew_relocW7.exe` implements such a trick:
-    https://corkami.googlecode.com/svn/wiki/pics/lfanew_relocSCHEMA.png
+  https://corkami.googlecode.com/svn/wiki/pics/lfanew_reloc.png
 
 ===debug===
  * used for storing debug symbols
