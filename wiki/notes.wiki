@@ -15,7 +15,7 @@
 
  * *Office* !OffVis
  * *PiNG* [http://entropymine.com/jason/tweakpng/ tweakpng] [http://advancemame.sourceforge.net/comp-readme.html advpng]
- * *SWiF* [https://github.com/sporst/SWFREtools/ SWFRETools] ([https://github.com/grugq/Buggery +Buggery]) [http://blitzableiter.recurity.com/ blitzableiter] [http://jpauclair.net/2010/02/10/mmcfg-treasure/ mm.cfg] [http://kb2.adobe.com/cps/142/tn_14266.html Archives] [http://www.m2osw.com/swf_alexref.html Alexis' SWF ref]
+ * *SWiF* [https://github.com/sporst/SWFREtools/ SWFRETools] ([https://github.com/grugq/Buggery +Buggery]) [http://blitzableiter.recurity.com/ blitzableiter] [http://jpauclair.net/2010/02/10/mmcfg-treasure/ mm.cfg] [http://kb2.adobe.com/cps/142/tn_14266.html Archives] [http://www.m2osw.com/swf_alexref.html Alexis' SWF ref] [http://www.free-decompiler.com/flash/ JPEXS Free Flash Decompiler (FFDec)]
  * *pdf* [http://sandsprite.com/blogs/index.php?uid=7&pid=57 PDF Stream dumper] [http://malzilla.sourceforge.net/ malzilla] [http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/ pdftk] [http://blog.didierstevens.com/programs/pdf-tools/ pdf-parser] [http://itextpdf.com/ iText] [http://esec-lab.sogeti.com/pages/Origami Origami]
 
  * *DBI*
