@@ -1,0 +1,14 @@
+#summary Portable Executable 102 - a Windows executable format overview
+<wiki:comment>
+
+[http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities]
+=Portable Executable 102 - a Windows executable format overview=
+<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/imgur_pe102.xml" width=600 height=550 border=0/>
+
+|| [PDF] || [PNG] || [SVG] ||
+
+It's made entirely under [http://www.inkscape.org Inkscape], under the Creative Commons licence (you can download the poster, print it, distribute it, or even modify it, with attribution). It uses the [http://damieng.com/blog/2008/05/26/envy-code-r-preview-7-coding-font-released Envy Code R] code font.
+
+If it's too complex, check [http://pe101.corkami.com PE101 - a Windows executable walkthrough].
+
+[http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities]
