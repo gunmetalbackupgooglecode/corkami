@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+  <ModulePrefs title="imgur_pe102" />
+  <Content type="html">
+    <![CDATA[
+<iframe class="imgur-album" width="100%" height="550" frameborder="0" src="http://imgur.com/a/u6NPy/embed"></iframe>
+    ]]>
+  </Content>
+</Module>
