@@ -69,7 +69,7 @@ a more extreme PE can rely on even less elements:
     at IMAGE_OPTIONAL_HEADER32.FileAlignment,         dd FILEALIGN
     at IMAGE_OPTIONAL_HEADER32.MajorSubsystemVersion, dw 4
     at IMAGE_OPTIONAL_HEADER32.SizeOfImage,           dd SIZEOFIMAGE
-	at IMAGE_OPTIONAL_HEADER32.SizeOfHeaders,         dd SIZEOFIMAGE - 1 ; required for XP
+    at IMAGE_OPTIONAL_HEADER32.SizeOfHeaders,         dd SIZEOFIMAGE - 1 ; required for XP
     at IMAGE_OPTIONAL_HEADER32.Subsystem,             dw IMAGE_SUBSYSTEM_WINDOWS_CUI
 }}}
 
@@ -78,6 +78,51 @@ as most elements are actually unused, they can be used for other reasons.
      https://corkami.googlecode.com/svn/wiki/pics/PE_hdrcode.png
  * TBC's 1kb Traceless demo also contains an [https://corkami.googlecode.com/svn/trunk/asm/misc/traceless.bat executable header]
     <wiki:video url="http://www.youtube.com/watch?v=EDc0qmDrjtM"/>
+
+==32b and 64b differences==
+ * Magic constants:
+|| || Intel *32* bits || AMD *64* bits ||
+|| IMAGE_FILE_HEADER.Machine  || IMAGE_FILE_MACHINE_I386 (0014ch) || IMAGE_FILE_MACHINE_AMD64 (8664h) ||
+|| IMAGE_OPTIONAL_HEADER32/64.Magic|| IMAGE_NT_OPTIONAL_HDR32_MAGIC (0010bh) || IMAGE_NT_OPTIONAL_HDR64_MAGIC (0020bh)||
+
+ * from Double word to Quad word:
+  * IMAGE_OPTIONAL_HEADER32/64
+||||
+|| !ImageBase          ||
+||||
+|| !SizeOfStackReserve ||
+|| !SizeOfStackCommit  ||
+|| !SizeOfHeapReserve  ||
+|| !SizeOfHeapCommit   ||
+||||
+
+  * IMAGE_TLS_DIRECTORY32/64
+|| !StartAddressOfRawData ||
+|| !EndAddressOfRawData   ||
+|| !AddressOfIndex        ||
+|| !AddressOfCallBacks    ||
+||||
+
+  * IMAGE_LOAD_CONFIG_DIRECTORY32/64
+||||
+|| !DeCommitFreeBlockThreshold  ||
+|| !DeCommitTotalFreeThreshold  ||
+|| !LockPrefixTable             ||
+|| !MaximumAllocationSize       ||
+|| !VirtualMemoryThreshold      ||
+|| !ProcessAffinityMask         ||
+||||
+|| !EditList        ||
+|| !SecurityCookie  ||
+|| SEHandlerTable   ||
+|| SEHandlerCount   ||
+
+  * IMAGE_THUNK_DATA32/64
+|| !ForwarderString/Function/Ordinal/!AddressOfData    ||
+
+ * structure alterations:
+  * IMAGE_OPTIONAL_HEADER32/64.*!BaseOfData*, Dword in 32 bits, is absent in 64 bits
+  * IMAGE_LOAD_CONFIG_DIRECTORY32/64 : *!ProcessHeapFlags* and *!ProcessAffinityMask* are swapped
 
 =structure by structure=
 
