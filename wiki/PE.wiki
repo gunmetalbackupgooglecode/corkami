@@ -349,6 +349,7 @@ EntryPoint:
  * when a static DLL's !DllMain is executed, the context of the not-executed-yet PE is available via lpvReserved. Thus, a static DLL can freely modify the value of the future !EntryPoint to be executed
   * `ctxt` and `ctxt-ld` are an example of such context modification via lpvReserved.
    https://corkami.googlecode.com/svn/wiki/pics/PE_lpvreserved.png
+ * Under Windows 8, !AddressOfEntryPoint is not allowed to be smaller than !SizeOfHeaders.
 
 =====!BaseOfCode/!BaseOfData=====
 no particular importance whatsoever
