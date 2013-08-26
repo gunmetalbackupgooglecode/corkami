@@ -427,6 +427,15 @@ From a technical perspective, drivers and gui/console PEs are identical, except 
 =====!DllCharacteristics=====
  * not necessary
   * `dll.dll` is a working DLL with this value set to 0
+ * 0080h `IMAGE_DLLCHARACTERISTICS_FORCE_INTEGRITY` enforces that the executable is signed before execution
+ * 0100h `IMAGE_DLLCHARACTERISTICS_NX_COMPAT` prevents code execution on the stack
+  * `no_dep` executes code on the stack, with no NX_COMPAT flag set
+  * `dep` executes code on the stack, which is forbidden as NX_COMPAT flag is set, and catches the exception
+ * 0400h `IMAGE_DLLCHARACTERISTICS_NO_SEH` (0400h) prevents the executable to uses Structured Exception Handler. Vectored Exception Handler still work.
+  * `no_seh` has `NO_SEH` set, triggers an exception, handled via its VEH.
+ * 1000h `IMAGE_DLLCHARACTERISTICS_APPCONTAINER` is only to be used by Metro Apps in Windows 8. A standard PE can't run under Windows 8 if this flag is set.
+ * 4000h is related to the Control Flow guard, introduced in Windows 8.1
+ 
 
 =====!SizeOfStackReserve/!SizeOfStackCommit/!SizeOfHeapReserve/!SizeOfHeapCommit=====
  * can be zero, but not any value
