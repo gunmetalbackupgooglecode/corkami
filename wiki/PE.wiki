@@ -434,8 +434,8 @@ From a technical perspective, drivers and gui/console PEs are identical, except 
  * 0400h `IMAGE_DLLCHARACTERISTICS_NO_SEH` (0400h) prevents the executable to uses Structured Exception Handler. Vectored Exception Handler still work.
   * `no_seh` has `NO_SEH` set, triggers an exception, handled via its VEH.
  * 1000h `IMAGE_DLLCHARACTERISTICS_APPCONTAINER` is only to be used by Metro Apps in Windows 8. A standard PE can't run under Windows 8 if this flag is set.
- * 4000h is related to the Control Flow guard, introduced in Windows 8.1
- 
+ * 4000h `IMAGE_DLLCHARACTERISTICS_GUARD_CF` indicates that the file supports the Control Flow guard (data is in the !LoadConfig entry), introduced in Windows 8.1.
+
 
 =====!SizeOfStackReserve/!SizeOfStackCommit/!SizeOfHeapReserve/!SizeOfHeapCommit=====
  * can be zero, but not any value
@@ -1288,6 +1288,7 @@ AddressOfIndex equ $ + 1
 LoadConfig:
 istruc IMAGE_LOAD_CONFIG_DIRECTORY32
     at IMAGE_LOAD_CONFIG_DIRECTORY32.Size,           dd IMAGE_LOAD_CONFIG_DIRECTORY32_size
+...
     at IMAGE_LOAD_CONFIG_DIRECTORY32.SecurityCookie, dd cookie
     at IMAGE_LOAD_CONFIG_DIRECTORY32.SEHandlerTable, dd HandlerTable
     at IMAGE_LOAD_CONFIG_DIRECTORY32.SEHandlerCount, dd HANDLERCOUNT
@@ -1298,12 +1299,20 @@ HandlerTable:
     HANDLERCOUNT equ ($ - HandlerTable) / 4
 }}}
 
-  * the handler table is not protected, it's just aiming at preventing a blind exception handler change
-   * `safeseh_fly.exe` sets a SEH on the fly and uses it:
+   * the handler table is not protected, it's just aiming at preventing a blind exception handler change
+    * `safeseh_fly.exe` sets a SEH on the fly and uses it:
 {{{
 ...
     mov dword [HandlerTable], Handler - IMAGEBASE
     int3
+...
+}}}
+  * `ldrsnaps` sets its `FLG_SHOW_LDR_SNAPS` !GlobalFlags and checks it (also works in 64 bits with `ldrsnaps64`
+{{{
+...
+    call [__imp__RtlGetNtGlobalFlags]
+...
+    at IMAGE_LOAD_CONFIG_DIRECTORY32.GlobalFlagsSet, dd FLG_SHOW_LDR_SNAPS
 ...
 }}}
 
@@ -1567,11 +1576,12 @@ kernel32.dll_hintnames:
 
 ==minimal sizes==
 the minimal size for a PE is:
- * 97 bytes, under XP: `tinyXP`
+ * 97 bytes, under XP: `tinyXP`. In this case, the !OptionalHeader is truncated.
  https://corkami.googlecode.com/svn/wiki/pics/PE_tinyXP.png
   * the same rule applies to drivers
    https://corkami.googlecode.com/svn/wiki/pics/PE_tinydrvxp.png
- * 252 bytes, under Vista/Windows 7 (the same as under XP, with null padding): `tinyW7`
+  * and DLLs: `tinydllXP`
+ * 252 bytes, under Vista/Windows 7 (the same as under XP, with null padding): `tinyW7` - as the OS now enforces a minimum of physical space after the start of the !OptionalHeader.
  * 268 bytes, under Vista/Windows 7 (same again, just null bytes to get the required size, but the same elements as `tinyXP`)
   * in 32b, `tinyW7_3264`
   * in 64b, `tinyW7x64`
