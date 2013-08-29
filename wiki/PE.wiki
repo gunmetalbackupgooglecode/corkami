@@ -301,6 +301,8 @@ if !LinkerVersion < 2.5, Microsoft !AppLocker might wrongly report `is not a val
 no particular importance whatsoever
 
 ===!AddressOfEntryPoint===
+ * Under Windows 8, !AddressOfEntryPoint is not allowed to be smaller than !SizeOfHeaders, except if it's null.
+ * can be null in DLLs: in this case, !DllMain is just not called.
  * can be null
   * `nullEP.exe` has a null !EntryPoint: Execution starts at !ImageBase, executing 'MZ' as 'dec ebp/pop edx'
   <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_nullep.swf up_FlashHeight=247 up_FlashWidth=557 up_ContainerCol="#d1dae3" height=247 width=557 title="" border=0/>
@@ -349,7 +351,6 @@ EntryPoint:
  * when a static DLL's !DllMain is executed, the context of the not-executed-yet PE is available via lpvReserved. Thus, a static DLL can freely modify the value of the future !EntryPoint to be executed
   * `ctxt` and `ctxt-ld` are an example of such context modification via lpvReserved.
    https://corkami.googlecode.com/svn/wiki/pics/PE_lpvreserved.png
- * Under Windows 8, !AddressOfEntryPoint is not allowed to be smaller than !SizeOfHeaders.
 
 =====!BaseOfCode/!BaseOfData=====
 no particular importance whatsoever
@@ -384,6 +385,29 @@ no particular importance whatsoever
  * !MajorSubsystemVersion.!MinorSubsystemVersion has to be at least 3.10
   * `dll-ld.exe` has a version of 3.10
  * this effects heap flags
+ * in DLLs, !MajorSubsystemVersion is ignored until Windows 8. It can have any value. Under Windows 8, it needs a standard value (3.10 < 6.30)
+ * if !SubsystemVersion is 6.30, the loader enforces the presence of the !LoadConfig entry, with a valid cookie, unless !GuardFlags are set to IMAGE_GUARD_SECURITY_COOKIE_UNUSED.
+  * `ss63.exe` has a Subsystem version of 6.30, and the minimum amount of information to get it running.
+{{{
+...
+    at IMAGE_OPTIONAL_HEADER32.MajorSubsystemVersion, dw 6      ; <=
+    at IMAGE_OPTIONAL_HEADER32.MinorSubsystemVersion, dw 3      ; <=
+...
+    at IMAGE_DATA_DIRECTORY_16.Load,      dd LoadConfig - IMAGEBASE, LOADCONFIGSIZE
+...
+    at IMAGE_LOAD_CONFIG_DIRECTORY32.Size,           dd IMAGE_LOAD_CONFIG_DIRECTORY32_size
+    at IMAGE_LOAD_CONFIG_DIRECTORY32.SecurityCookie, dd cookie
+...
+}}}
+  * `ss63nocookie.exe` has a Subsystem version of 6.30, and no cookie
+{{{
+...
+istruc IMAGE_LOAD_CONFIG_DIRECTORY32
+    at IMAGE_LOAD_CONFIG_DIRECTORY32.Size,       dd IMAGE_LOAD_CONFIG_DIRECTORY32_size
+    at IMAGE_LOAD_CONFIG_DIRECTORY32.GuardFlags, dd IMAGE_GUARD_SECURITY_COOKIE_UNUSED
+iend
+...
+}}}
 
 ===Reserved1 (!Win32VersionValue)===
  * officially defined as ''reserved'' and should be null
@@ -423,6 +447,8 @@ From a technical perspective, drivers and gui/console PEs are identical, except 
    <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/flash.xml up_File=https://corkami.googlecode.com/svn/wiki/pics/wink/PE_multiss.swf up_FlashHeight=245 up_FlashWidth=397 up_ContainerCol="#d1dae3" height=245 width=397 title="" border=0/>
    # determines the level of execution by checking CS
    # resolve NTOSKRNL/KERNEL32 imports manually (by checksum, as it can't have any static import)
+ * in Dlls, Subsystem is ignored - it can have any value.
+  * `dllfakess.dll` has a Subsystem value of -1.
 
 =====!DllCharacteristics=====
  * not necessary
@@ -658,6 +684,14 @@ dll.dll db 'dll.dll', 0
 kernel32.dll db 'kernel32', 0
 msvcrt.dll db 'msvcrt', 0
 }}}
+ * under XP, W8, but not W7, a file can be imported even if the imports name has trailing dots
+  * `importsdotXP` uses standard APIs via names with trailing dots
+{{{
+kernel32.dll db 'kernel32.dll...', 0
+msvcrt.dll db 'msvcrt.dll.', 0
+}}}
+ * importing your own exports with a trailing dot might generate a crash in debuggers
+  * `ownexportsdot.exe` imports himself, but as `ownexportsdot.exe..`
  * a DLL can be dynamically loaded via ANSI (LoadLibraryA) or UNICODE (LoadLibraryW).
  * like in any filename, case of the DLL can be mixed
   * `imports_mixed.exe` imports DLLs with mixed case names.
@@ -680,7 +714,9 @@ kernel32.dll_DESCRIPTOR:
   * because it can be null, it can be put in virtual space, like the next 2 dwords (timestamp, forwarderchain)
    * `imports_virtdesc` has an import descriptor starting in virtual space over its 3 first dwords
     https://corkami.googlecode.com/svn/wiki/pics/PE_imports_virtdesc.png
- * if the IAT is empty, then the DLL is not loaded, and the file is loaded even with an invalid dll name.
+ * if the Import Lookup Table is present, then it also determins the length of the Import Address Table, as they are parsed in parallel. In this case, the Import Address Table doesn't have to be null-terminated.
+  * `dllmaxvals` has a non null-terminated IAT but a null-terminated ILT
+ * if the IAT is linked in the descriptor but empty, then the DLL is not loaded, and the file is loaded even with an invalid dll name - the descriptor is skipped.
   * `imports_nothunk` has a bogus descriptor with an empty IAT, and a bogus DLL name, between real descriptors.
  * the imports directory is not compulsory (XP or later). either don't call any API (ex, resource placeholders), or locate Kernel32 and its exports by hand (see below, `no_dd`)
  * the imports descriptor terminator just need to have null values. So, it can be placed in virtual space.
