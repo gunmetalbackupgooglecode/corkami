@@ -684,14 +684,14 @@ dll.dll db 'dll.dll', 0
 kernel32.dll db 'kernel32', 0
 msvcrt.dll db 'msvcrt', 0
 }}}
- * under XP, W8, but not W7, a file can be imported even if the imports name has trailing dots
-  * `importsdotXP` uses standard APIs via names with trailing dots
+ * under XP, W8, but not W7, a file can be imported even if the imports name has trailing spaces/dots
+  * `importsdotXP` uses standard APIs via names with trailing characters
 {{{
 kernel32.dll db 'kernel32.dll...', 0
 msvcrt.dll db 'msvcrt.dll.', 0
 }}}
- * importing your own exports with a trailing dot might generate a crash in debuggers
-  * `ownexportsdot.exe` imports himself, but as `ownexportsdot.exe..`
+ * importing your own exports with trailing characters might generate a crash in debuggers, and fail at loading.
+  * `ownexportsdot.exe` imports himself, but as `ownexportsdot.exe. ...`
  * a DLL can be dynamically loaded via ANSI (LoadLibraryA) or UNICODE (LoadLibraryW).
  * like in any filename, case of the DLL can be mixed
   * `imports_mixed.exe` imports DLLs with mixed case names.
