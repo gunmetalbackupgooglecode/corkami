@@ -511,7 +511,7 @@ which is functionally equivalent to 8086 instructions (from 1978):
 {{{
 89d8 mov eax, ebx
 f7d0 not eax
-21c8 and eax, ebx
+21c8 and eax, ecx
 }}}
 
  * `mulx`, `rorx`, `sarx`, `shlx`, `shrx` will do the same as their cousins from the late 70's, but without affecting the flags.
