@@ -1841,10 +1841,15 @@ A standard use for code-less PEs is to store resources. In this case, more field
  * Walied Assar
 
 =extra resources=
- * [http://code.google.com/p/corkami/downloads/list?q=pe*.pdf+Type%3DInfographics PE infographics]
-  <wiki:gadget url=https://corkami.googlecode.com/svn/wiki/gadgets/slideshare_PE.xml width=477 height=510 border=1>
- * [hashdays2012 Binary Art - byte-ing the PE that fails you], presented at Hashdays, Luzern, on the 3rd November 2012
-  <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hashdays2012_slideshare.xml" width=595 height=497 border=0/>
+<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/imgur_com101.xml" width=600 height=550 border=0/>
+
+<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/imgur_pe101.xml" width=600 height=550 border=0/>
+
+<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/imgur_pe102.xml" width=600 height=550 border=0/> 
+
+[hashdays2012 Binary Art - byte-ing the PE that fails you], presented at Hashdays, Luzern, on the 3rd November 2012
+<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hashdays2012_slideshare.xml" width=595 height=497 border=0/>
+
 =external resources=
  * [http://www.reversinglabs.com/advisory/pecoff.php Undocumented PE/COFF] _Reversing Labs_
  * [http://ntcore.com/files/richsign.htm Microsoft's Rich Signature (undocumented)] _Daniel Pistelli_
