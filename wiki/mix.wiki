@@ -28,6 +28,7 @@ to compile, just run: `yasm -o CorkaMInuX elf.asm` / `yasm -o corkamix.exe corka
 Note that _yasm_ is fully _nasm_-compatible.
 
 == Formats ==
+
 === binary ===
 The PE/ELF/Mach-O file formats all hopefully *HAVE* to start at offset 0, which determines the file's start.
 
@@ -66,6 +67,14 @@ if the file is a valid ZIP with no appended data, running it with python will ha
 Therefore, appending a single byte will make it work as a valid PY.
 However, this will prevent Java to handle the file as a JAR correctly.
 
+== Follow-up ==
+
+I presented on the topic of binary formats:
+<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/44con2013_slideshare.xml" width=595 height=497 border=0/>
+
+I brought the concept further with my [https://corkami.googlecode.com/files/44CON2013-Messing%20with%20binary%20formats.zip inception slides], where the PDF slides file is also the PDF viewer that I used to show them - ie, the file opens itself, and the presentation is also the demo. I also bundled in the file a Zip of the other PoCs, an HTML page, and a bogus PDF to be displayed only under Chrome:
+
+https://pbs.twimg.com/media/BUg9neOCIAAAF0l.png
 
 = Acknowledgments =
  * [http://seriot.ch/hello_macho.php Nicolas Seriot]
