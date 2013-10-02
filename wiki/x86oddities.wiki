@@ -573,6 +573,8 @@ https://corkami.googlecode.com/svn/wiki/pics/x86_96b.gif
  * Yoann Guillot
 
 =Other resources=
+<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/berlinsides_slideshare.xml" width=595 height=497 border=0/> 
+
  * [http://feldmann.home.xs4all.nl/86bugs.htm Hamarsoft 86BUGS list]
  * [http://www.rcollins.org/ddj/ddj.html Dr. Dobb's Undocumented Corner]
 
