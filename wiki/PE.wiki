@@ -1110,8 +1110,9 @@ DIRECTORY_ENTRY_BASERELOC_SIZE  equ $ - Directory_Entry_Basereloc
  * IMAGE_REL_BASED_HIGHLOW is the 'standard' relocation, for which `<real base> - ImageBase` will be added to the pointed address
  * IMAGE_REL_BASED_HIGH does the same but only the highest WORD of the delta is added. (in short, same operation one WORD earlier)
  * IMAGE_REL_BASED_LOW does the same but only the lowest WORD of the delta is added, which makes no change, as both bases are 10000h-aligned.
- * IMAGE_REL_BASED_HIGH3ADJ (type 11) were only supported until Windows 2000.
- * IMAGE_REL_BASED_HIGHADJ (type 4) is the only one to require a parameter. However, it's buggy, so the parameter is ignored.
+ * IMAGE_REL_BASED_HIGHADJ (type 4) is the only one to require a parameter. However, it's buggy, so the parameter is ignored. This behavior was fixed under Windows 8.
+ * IMAGE_REL_MIPS_JMPADDR16 (type 9) affects 4 bytes under Windows XP, affects 16 bytes under Windows 7, and is not supported by Windows 8.
+ * IMAGE_REL_BASED_HIGH3ADJ (type 11) was only supported until Windows 2000.
  * Other sort of relocations such as Mips and 64 bits are still supported by Windows 7, even if the PE specifies an x86 CPU.
   * `reloccrypt.exe` uses MIPS relocations (thus, involving masking and shifting):
   https://corkami.googlecode.com/svn/wiki/pics/PE_reloccrypt.png
@@ -1216,6 +1217,15 @@ BASE_RELOC_SIZE_OF_BLOCK1 equ $ - block_start1
   https://corkami.googlecode.com/svn/wiki/pics/lfanew_relocSCHEMA.png
    * `lfanew_relocW7.exe` implements such a trick:
   https://corkami.googlecode.com/svn/wiki/pics/lfanew_reloc.png
+
+  * combining a relocation type 4 on top of a relocation type 9 (to turn it into a type 10 under Windows 8) gives a different loader behavior under Windows XP, 7 and 8. `relocOSdet.exe` implements such a mechanism:
+{{{
+...
+    dw (IMAGE_REL_BASED_HIGHADJ  << 12) | (reloc4 + 1 - relocbase), -1 ; +1 to modify the Type
+...
+reloc4:
+    dw (IMAGE_REL_BASED_MIPS_JMPADDR16 << 12) | 0d00h ; => type,offset: 9,f00 under XP/W7 and a,000 under W8
+}}}
 
 ===debug===
  * used for storing debug symbols
@@ -1845,7 +1855,7 @@ A standard use for code-less PEs is to store resources. In this case, more field
 
 <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/imgur_pe101.xml" width=600 height=550 border=0/>
 
-<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/imgur_pe102.xml" width=600 height=550 border=0/> 
+<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/imgur_pe102.xml" width=600 height=550 border=0/>
 
 [hashdays2012 Binary Art - byte-ing the PE that fails you], presented at Hashdays, Luzern, on the 3rd November 2012
 <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/hashdays2012_slideshare.xml" width=595 height=497 border=0/>
@@ -1854,5 +1864,6 @@ A standard use for code-less PEs is to store resources. In this case, more field
  * [http://www.reversinglabs.com/advisory/pecoff.php Undocumented PE/COFF] _Reversing Labs_
  * [http://ntcore.com/files/richsign.htm Microsoft's Rich Signature (undocumented)] _Daniel Pistelli_
  * [http://pferrie.host22.com/misc/pehdr.htm Maximum possible code execution in the PE header] _Peter Ferrie_
+ * [http://spth.virii.lu/v3/vessel/display/articles/roy%20g%20biv/vcode2.txt Virtual Code] _Roy G Biv_
 
 [http://code.google.com/p/corkami/ << index] [http://opcodes.corkami.com Android/Java/x86/... opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://x86.corkami.com x86 oddities]
