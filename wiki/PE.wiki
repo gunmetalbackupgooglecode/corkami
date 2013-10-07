@@ -1111,7 +1111,7 @@ DIRECTORY_ENTRY_BASERELOC_SIZE  equ $ - Directory_Entry_Basereloc
  * IMAGE_REL_BASED_HIGH does the same but only the highest WORD of the delta is added. (in short, same operation one WORD earlier)
  * IMAGE_REL_BASED_LOW does the same but only the lowest WORD of the delta is added, which makes no change, as both bases are 10000h-aligned.
  * IMAGE_REL_BASED_HIGHADJ (type 4) is the only one to require a parameter. However, it's buggy, so the parameter is ignored. This behavior was fixed under Windows 8.
- * IMAGE_REL_MIPS_JMPADDR16 (type 9) affects 4 bytes under Windows XP, affects 16 bytes under Windows 7, and is not supported by Windows 8.
+ * IMAGE_REL_BASED_MIPS_JMPADDR16 (type 9) affects 4 bytes under Windows XP, affects 16 bytes under Windows 7, and is not supported by Windows 8.
  * IMAGE_REL_BASED_HIGH3ADJ (type 11) was only supported until Windows 2000.
  * Other sort of relocations such as Mips and 64 bits are still supported by Windows 7, even if the PE specifies an x86 CPU.
   * `reloccrypt.exe` uses MIPS relocations (thus, involving masking and shifting):
