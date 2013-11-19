@@ -10,7 +10,11 @@ download poster [http://corkami.googlecode.com/files/ PNG] [http://corkami.googl
 
 download example (binary+source) [http://corkami.googlecode.com/files/ simple.elf]
 
-=Acknowledgments=
+===Frequently Given Answers===
+ * relocations, dynamically linked executable, and segment/section (program/section headers) are planned for another poster.
+ * the original inkscape SVG uses Aracne Regular, Just the way you are, Envy Code R and Ubuntu Monospace fonts.
+
+===Acknowledgments===
  * David Curran
  * Gynvael Coldwind
  * the Grugq
