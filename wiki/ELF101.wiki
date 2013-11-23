@@ -1,14 +1,16 @@
 #summary Executable & Linkable Format 101 - a Linux executable walkthrough
 #labels Featured
-[http://code.google.com/p/corkami/ << more exciting stuff!] [http://opcodes.corkami.com opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://pe101.corkami.com PE101] [http://pe101.corkami.com PE102] [http://x86.corkami.com x86 oddities]
+other popular pages: [http://opcodes.corkami.com opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://pe101.corkami.com PE101] [http://pe101.corkami.com PE102] [http://x86.corkami.com x86 oddities]
 
-http://i.imgur.com/q5nyHp7.png
+http://i.imgur.com/xMyblyM.png
 
-download poster [https://corkami.googlecode.com/files/elf101-v1.png PNG] [https://corkami.googlecode.com/files/elf101.pdf PDF] [https://corkami.googlecode.com/svn/trunk/doc/elf101/elf101.svg SVG]
+http://i.imgur.com/m6kL4Lv.png
 
-[http://www.redbubble.com/people/ange4771 order a print]
+(right-click or drag'n'drop to download)
 
-download example (binary+source) [https://corkami.googlecode.com/files/elf101.zip simple.elf]
+===[http://www.redbubble.com/people/ange4771 order a print]===
+
+download [https://corkami.googlecode.com/files/elf101.zip simple.elf] (binary+source)
 
 ===Frequently Given Answers===
  * relocations, dynamically linked executable, and segment/section (program/section headers) are planned for another poster.
