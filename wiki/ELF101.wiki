@@ -6,7 +6,7 @@ http://i.imgur.com/xMyblyM.png
 
 http://i.imgur.com/m6kL4Lv.png
 
-(right-click or drag'n'drop to download)
+(right-click or drag'n'drop to download) [https://speakerdeck.com/ange/booklet-elf101-a-linux-executable-walkthrough booklet]
 
 ===[http://www.redbubble.com/people/ange4771 order a print]===
 
@@ -14,8 +14,9 @@ download [https://corkami.googlecode.com/files/elf101.zip simple.elf] (binary+so
 
 ===Frequently Given Answers===
  * relocations, dynamically linked executable, and segment/section (program/section headers) are planned for another poster.
- * the original inkscape SVG uses Aracne Regular, Just the way you are, Envy Code R and Ubuntu Monospace fonts.
- * future planned releases: x64, ARM, professional style, A4 booklet
+ * these posters are hand-made with Inkscape.
+ * they use _Envy Code R_ (code, hex) and _Ubuntu Monospace_ (elf execution) fonts. The fun one also uses _Aracne Regular_ (text) and _Just the way you are_ (title), and the professional one _Arial Unicode MS_ (which covers a lot of language).
+ * future planned releases: x64, ARM
 
 ===Acknowledgments===
  * David Curran
