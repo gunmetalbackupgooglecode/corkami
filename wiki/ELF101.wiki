@@ -25,3 +25,4 @@ download [https://corkami.googlecode.com/files/elf101.zip simple.elf] (binary+so
  * Sergey Bratus, Julian Bangert, Rebecca Shapiro
  * Tavis Ormandy
  * Fabian Sauter, Geoffrey Royer
+ * Georg Wicherski, Marcus Matten, Jurriaan Bremer
