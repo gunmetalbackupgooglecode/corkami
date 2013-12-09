@@ -2,11 +2,9 @@
 #labels Featured
 other popular pages: [http://opcodes.corkami.com opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://pe101.corkami.com PE101] [http://pe101.corkami.com PE102] [http://x86.corkami.com x86 oddities]
 
-http://i.imgur.com/i6wlE5h.png
+https://corkami.googlecode.com/svn/wiki/pics/elf101.png
 
-http://i.imgur.com/m6kL4Lv.png
-
-(right-click or drag'n'drop to download) [http://imgur.com/a/JEObT other versions (ARM, x86, pro, x64, AT&T syntax)] [https://speakerdeck.com/ange/booklet-elf101-a-linux-executable-walkthrough booklet]
+[http://imgur.com/a/JEObT full-res pictures (including ARM, x86, x64 - pro, AT&T syntax)] [https://speakerdeck.com/ange/booklet-elf101-a-linux-executable-walkthrough booklet]
 
 ===[http://www.redbubble.com/people/ange4771 order a print]===
 
