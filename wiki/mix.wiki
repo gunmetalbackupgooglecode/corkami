@@ -1,5 +1,4 @@
 #summary binary polyglots
-#labels Featured
 
 _[http://code.google.com/p/corkami/downloads/detail?name=CorkaMIX.zip CorkaMIX]_,
 _[http://code.google.com/p/corkami/downloads/detail?name=CorkaMInuX.zip CorkaMInuX]_ and

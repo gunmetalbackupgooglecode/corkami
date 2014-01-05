@@ -1,5 +1,5 @@
 #summary Executable & Linkable Format 101 - a Linux executable walkthrough
-#labels Featured
+
 other popular pages: [http://opcodes.corkami.com opcodes tables] [http://pdf.corkami.com PDF tricks] [http://pe.corkami.com Portable Executable] [http://pe101.corkami.com PE101] [http://pe101.corkami.com PE102] [http://x86.corkami.com x86 oddities]
 
 https://corkami.googlecode.com/svn/wiki/pics/elf101.png
