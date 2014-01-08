@@ -1,5 +1,7 @@
 #summary About the Corkami project
 #labels Featured
+Corkami is my notepad, and doesn't follow a clear roadmap: I try to organize some of my knowledge in a useful way (so that I can re-use it myself), and I share it.
+
 Corkami is:
  * *technical*
   * based on findings on real hardware
@@ -28,16 +30,13 @@ Hope you like it,
 [http://twitter.com/#!/angealbertini Ange]
 
 =landmarks=
-<wiki:comment>
 == from 2013 to 2014 ==
  * 2013 was quite intensive:
-  * 5 distinct materials and 8 presentations.
-  * 1 new poster and 6 different versions.
-  * 3 articles
-  * more polyglots, more schizophrenics, more formats.
+  * 5 distinct materials, 8 presentations in 5 countries.
+  * 6 new posters, and 7 alternate versions.
+  * 4 articles
  * getting some recognition: first poster request, first custom binary requests...
- * plan for 2014: less traveling (strict minimum?), more work at home.
-</wiki:comment>
+ * plan for 2014: much less traveling (strict minimum?), more focus on work.
 == step ? (2013) ==
  * starting early, presenting on puzzles at Hackpra in January.
  * 'back to France' - will apply to present at HES, SSTIC, HiP - pour essayer de se reconnecter au pays ;)
