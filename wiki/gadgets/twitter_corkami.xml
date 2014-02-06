@@ -3,34 +3,8 @@
   <ModulePrefs title="corkami twitter output"/> 
   <Content type="html">
   <![CDATA[
-<script src="http://widgets.twimg.com/j/2/widget.js"></script>
-<script>
-new TWTR.Widget({
-  version: 2,
-  type: 'profile',
-  rpp: 4,
-  interval: 30000,
-  width: 'auto',
-  height: 300,
-  theme: {
-    shell: {
-      background: '#00ffff',
-      color: '#000000'
-    },
-    tweets: {
-      background: '#ffffff',
-      color: '#000000',
-      links: '#0000ff'
-    }
-  },
-  features: {
-    scrollbar: false,
-    loop: false,
-    live: false,
-    behavior: 'all'
-  }
-}).render().setUser('corkami').start();
-</script>
+<a class="twitter-timeline" data-dnt="true" href="https://twitter.com/corkami"  data-widget-id="350218746062843904">Tweets by @corkami</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
   ]]>
   </Content>
 </Module>
