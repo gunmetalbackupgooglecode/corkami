@@ -1,12 +1,66 @@
 #summary index page the wiki
 
-====[About about Corkami]====
+==[About About Corkami] - [http://src.corkami.com sources & PoCs] - [http://pics.corkami.com posters] - [http://prints.corkami.com order prints]==
+<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/twitter_corkami.xml" height=400 width=460 border=0/>
+<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/whenaes_slideshare.xml" width=595 height=497 border=0/>
 
-<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/twitter_corkami.xml" width=700 border=0/>
+=Posters ([http://prints.corkami.com prints])=
+==101 walkthroughs==
+ * [http://i.imgur.com/hCVydQt.png WAV101] (2014/01/08)
+ * [http://i.imgur.com/sTlWJW6.png Happy new year!]
+ * (2013/12/24-2014/01/02) [http://i.imgur.com/XDyfM33.png *Mach-O*] (32b+old format, 64b+new format)
+
+ * (2013/12/24) *ZIP*, Java *Class*, *PDF*
+ * (2013/11/20-2013/12/06) *[ELF101 ELF]* (32b, 64b, AT&T, Pro, ARM)
+ * (2013/03/26) [https://corkami.googlecode.com/files/com101.zip COM] (also explains PEs' DOS stub)
+ * (2012/05/03-2013/06/28) *[PE101 PE]* 32b, 64b, Russian, French, German, Polish, Japanese, Arabic, Chinese, Korean, Spanish
+==others==
+ * (2013/07/30) [http://pe102.corkami.com PE102 - a Windows executable format overview]
+
+=Binary files=
+ * 2014/04/02 [http://www.slideshare.net/ange4771/a-binary-inception When your slides read themselves: a binary inception] (follow-up to 44Con 2013 slides)
+ * 2014/03/30 [http://corkami.googlecode.com/svn/trunk/src/mix2/ a JPG/ZIP/PDF binary chimera] (the file is a JPG image, a ZIP containing the same image, a PDF showing the same image, but the image data is present only once) - 1 data body, 3 heads of different types.
+ * (2014/03/17) [https://corkami.googlecode.com/svn/trunk/doc/pocorgtfo PoC||GTFO 0x03] is a PDF/ZIP/JPG/Audio (raw AFSK)/PNG (encrypted with AES)
+ * (2013/12/28) [https://corkami.googlecode.com/files/pocorgtfo02.pdf a MBR/PDF/ZIP] *polyglot* + article
+
+ * (2013/10/06) [https://corkami.googlecode.com/files/pocorgtfo01.pdf a schizophrenic PE] + article
+ * (2013/09/13) [https://corkami.googlecode.com/files/44CON2013-Messing%20with%20binary%20formats.zip 'inception' slides] a PE+PDF+HTML+ZIP *polyglot* and PDF schizophrenic file - the PE file is a PDF viewer, viewing itself.
+ * (2013/01/02) [mix CorkaM-OsX], a Mach-O+PDF+HTML+Java *polyglot* file
+ * (2012/12/13) [mix CorkaMInuX], an ELF+PDF+HTML+Java *polyglot* file
+ * (2012/08/01) [mix CorkaMIX], a PE+PDF+HTML(+!JavaScript)+(Jar[Class+Zip] ^ PY) *polyglot* file
+
+=Crypto=
+ * 2014/03/16 [https://corkami.googlecode.com/svn/trunk/src/angecryption AngeCryption] getting valid files after (AES) encryption
+  * 2014/04/03 [http://www.slideshare.net/ange4771/when-aes-a-cryptobinary-magic-trick when AES(☢) = ☠ - a crypto-binary magic trick]
+  http://i.imgur.com/eiw0WXb.png
+ * 2014/02/12 [http://i.imgur.com/VQ6h2IJ.png New SHAllenge - aber das ist Skein MD5 Kollision!]
+ * 2014/01/21 [http://i.imgur.com/z2liV6H.png on Adobe password security]
+ * 2014/01/21 [http://i.imgur.com/z44bhed.png When cryptographic functions go bad] - with [https://131002.net/ Jean-Philippe Aumasson]
+
+
+=Presentations=
+ * 2014/03/21 [http://www.slideshare.net/ange4771/binary-art-funky-pocs-visual-docs Binary Arts - funky PoCs and visual docs], presented at Insomni'hack, Geneva, Switzerland
+ * 2014/01/13 [https://speakerdeck.com/ange/on-hacking-and-security on hacking & security] a security 101, targeted at (defensive) beginners (released as is, never presented publicly)
+ * on *binary polyglots*, first in french at _SSTIC_, then improved at _44CON_
+  * (2013/06/05) SSTIC, Rennes, France: Polyglottes binaires et implications [https://corkami.googlecode.com/files/SSTIC2013_Albertini_polyglots.zip Slides & PoCs] [http://www.slideshare.net/ange4771/polyglottes-binaires-et-implications SlideShare]
+  * (2013/09/13) 44CON, London, England: Messing with binary formats [https://corkami.googlecode.com/files/44CON2013-Messing%20with%20binary%20formats.zip 'inception' slides] [http://www.slideshare.net/ange4771/messing-with-binary-formats SlideShare]
+ * on the *PE file format*, first at _Hack In Paris_, then reworked and extended at _hashdays_, Luzern (Switzerland)
+  # (2012/06/22) [HackInParis2012 a bit more of PE] (+video)
+  # (2012/11/03) [hashdays2012 Binary Art - byte-ing the PE that fails you]
+ * on *x86 oddities* first presented and recorded at _hashdays_, then improved at _!BerlinSides_
+  # (2011/10/28) [http://code.google.com/p/corkami/wiki/hashdays2011 Such a weird processor - messing with opcodes (...and a little bit of PE)] (+video)
+  # (2011/12/28) [http://code.google.com/p/corkami/wiki/BerlinSidesX2 x86 & PE] (+[http://code-opensocial.googleusercontent.com/gadgets/ifr?url=https%3A%2F%2Fcorkami.googlecode.com%2Fsvn%2Ftrunk%2Fpics%2Fbsx2%2Fbsx2.xml&parent=%2F%2Fcode.google.com%2Fhosting&container=code#slide42 screencasts])
+
+=Portable Executable=
+ * *article with !PoCs* (2011/09/26 - 2013/10/07) [PE the PE format]
+ * *PoC* a fully working PE in a tweet (encoded in a python string): `"MZR\xc3"+"\0"*56+"@\0\0\0PE\0\0L\1"+"\0"*16+"\2\0\x0b\1"+"\0"*28+"@\0\1\0\0\0\1\0"+"\0"*10+"\4"+"\0"*7+"H\1\0\0G\1"+"\0"*6+"\3"+"\0"*171`
+ * *source* a [https://corkami.googlecode.com/svn/trunk/misc/traceless.bat rewrite] of the PE header of [http://www.pouet.scene.org/prod.php?which=59600 Traceless] demo
+ * *!PoCs* (2011/02) [http://code.google.com/p/corkami/downloads/list?can=1&q=Binary+corpus Binary corpus] is a group of non malicious binaries, exhibiting various file formats, and more specifically, aspects of PE files (Formats: NE, PE, Elf, LX, LE, COM, EXE / Compilers: Digital Mars C, Lcc, Masm, Tasm, !FreeBasic, !FreePascal, !OpenWatcom, Fasm, !GoAsm...)
+ * *graphics* (2010/10) [http://code.google.com/p/corkami/downloads/detail?name=pe-20110117.pdf PE file format] (file & memory layout, headers, data directories)
 
 =misc=
- * *poster* (2013/03/26) [https://corkami.googlecode.com/files/com101.zip COM 101] - a DOS executable walkthrough
-  http://i.imgur.com/cuyliWz.png
+ * 2014/03/12 [http://corkami.googlecode.com/svn/trunk/src/HexII/ HexII] an attempt at getting a better generic binary representation
+ * *!PoCs* (2013/06/10) valid hand-made GIF/BMP, useable as !JavaScript ([https://corkami.googlecode.com/files/jspics.zip commented source + binaries])
  * *doc* (2012/02/22) [OpcodesTables Opcodes' tables] of Java, .Net, Android, x86 - as either compact single-page cheat sheets, or full descriptive posters.
  * *article with !PoCs* (2012/03/18) [Encodings curious encodings]
  * [IntroductionToVirus Explaining what’s a computer virus to grandma]
@@ -18,35 +72,13 @@
 
 =PDF=
  * *article with !PoCs* (2011/07/12-2013/03/15) [http://code.google.com/p/corkami/wiki/PDFTricks?wl=en a summary of PDF tricks] - encodings, structures, !JavaScript... ([http://code.google.com/p/corkami/wiki/PDFTricks?wl=fr Français] [http://code.google.com/p/corkami/wiki/PDFTricks?wl=ja 日本語])
- https://corkami.googlecode.com/svn/wiki/pics/pdf_standardmerged.png
 
-=Portable Executable=
- * *poster* (2012/05/03-2012/12/05) [PE101 PE 101] - a Windows executable walkthrough (an easy introduction)
-<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/imgur_pe101.xml" width=600 height=550 border=0/>
- * *PoC* a fully working PE in a tweet (encoded in a python string): `"MZR\xc3"+"\0"*56+"@\0\0\0PE\0\0L\1"+"\0"*16+"\2\0\x0b\1"+"\0"*28+"@\0\1\0\0\0\1\0"+"\0"*10+"\4"+"\0"*7+"H\1\0\0G\1"+"\0"*6+"\3"+"\0"*171`
- * *presentation* first at _Hack In Paris_, then reworked and extended at _hashdays_, Luzern (Switzerland)
-  # (2012/06/22) [HackInParis2012 a bit more of PE] (+video)
-  # (2012/11/03) [hashdays2012 Binary Art - byte-ing the PE that fails you]
- * *article with !PoCs* (2011/09/26 - 2013/02/01) [PE the PE format]
- * *source* a [https://corkami.googlecode.com/svn/trunk/misc/traceless.bat rewrite] of the PE header of [http://www.pouet.scene.org/prod.php?which=59600 Traceless] demo
- * *PoC* (2012/08/01) [mix CorkaMIX], an all-in-one PE/PDF/Html[+!JavaScript]/(Jar[Class+Zip] ^ PY) file written by hand
- * *!PoCs* (2011/02) [http://code.google.com/p/corkami/downloads/list?can=1&q=Binary+corpus Binary corpus] is a group of non malicious binaries, exhibiting various file formats, and more specifically, aspects of PE files (Formats: NE, PE, Elf, LX, LE, COM, EXE / Compilers: Digital Mars C, Lcc, Masm, Tasm, !FreeBasic, !FreePascal, !OpenWatcom, Fasm, !GoAsm...)
- * *graphics* (2010/10) [http://code.google.com/p/corkami/downloads/detail?name=pe-20110117.pdf PE file format] (file & memory layout, headers, data directories)
-
-=Mach Object=
- * *PoC* (2013/01/02) [mix CorkaM-OsX], a Mach-O/PDF/HTML/Java file
 
 =brainteasers=
  * *page* (2013/02/04) [puzzles notes and hints]
  * *presentation* (2013/01/16) [HackPra A challenge in your pocket: an introduction to brainteasers]
 
-=Executable and Linkable Format=
- * *PoC* (2012/12/13) [mix CorkaMInuX], an ELF/PDF/HTML/Java file
-
 =x86/x64 asm=
- * *presentation* first presented and recorded at _hashdays_, then improved at _!BerlinSides_
-  # (2011/10/28) [http://code.google.com/p/corkami/wiki/hashdays2011 Such a weird processor - messing with opcodes (...and a little bit of PE)] (+video)
-  # (2011/12/28) [http://code.google.com/p/corkami/wiki/BerlinSidesX2 x86 & PE] (+[http://code-opensocial.googleusercontent.com/gadgets/ifr?url=https%3A%2F%2Fcorkami.googlecode.com%2Fsvn%2Ftrunk%2Fpics%2Fbsx2%2Fbsx2.xml&parent=%2F%2Fcode.google.com%2Fhosting&container=code#slide42 screencasts])
  * *article* (2011/09) [http://code.google.com/p/corkami/wiki/x86oddities?wl=en x86 oddities]
   * *PoC* (2011/08/12) [StandardTest Corkami Standard Test], a PE/x86/x64 test program for your tools/emulators/skills.
  * *article* how to [http://code.google.com/p/corkami/wiki/GetIP get the current IP]
@@ -68,3 +100,9 @@
 
 ===more===
 ...for more information, check the (old) [http://corkami.blogspot.com/p/map.html blog map], and the [http://code.google.com/p/corkami/downloads/list downloads tab].
+
+<wiki:comment>
+=In memory of Cédric 'Sid' Blancher:=
+=friendly, dynamic, inspiring :(=
+https://www.digdeo.fr/dd-data/files/hackito-ergo-sum-2012-8520.jpg
+</wiki:comment>
