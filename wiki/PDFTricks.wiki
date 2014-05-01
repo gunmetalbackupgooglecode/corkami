@@ -17,6 +17,9 @@ for many more !JavaScript tricks, check the [http://bonsaiden.github.com/JavaScr
 
 for direct downloads, see [http://corkami.googlecode.com/svn/!svn/bc/480/trunk/misc/pdf/ the SVN directory].
 
+=poster ([http://prints.corkami.com order a print])=
+http://i.imgur.com/PxAmVr2.png
+
 =encodings=
 any data (or string) can be encoded in various ways.
 
