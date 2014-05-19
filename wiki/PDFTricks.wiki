@@ -515,6 +515,15 @@ a working [https://corkami.googlecode.com/svn/trunk/src/pdf/standard.pdf PDF], g
 
 https://corkami.googlecode.com/svn/wiki/pics/pdf_standardmerged.png
 
+=PDF Secrets=
+A study on how to reveal or hide secrets in PDF documents.
+
+Presented at RaumZeitLabor on the 2014/05/17 ([https://corkami.googlecode.com/svn/trunk/src/pdf/PDFSecrets !PoCs]
+
+<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/pdfsecrets_slideshare.xml" width=595 height=497 border=0/>
+
+<wiki:video url="http://www.youtube.com/watch?v=JQrBgVRgqtc"/>
+
 =References=
  * [http://blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/ Didier Stevens]
  * [http://www.chalmers.se/cse/SV/personal/magazinius-jonas Jonas Magazinius}
