@@ -518,7 +518,7 @@ https://corkami.googlecode.com/svn/wiki/pics/pdf_standardmerged.png
 =PDF Secrets=
 A study on how to reveal or hide secrets in PDF documents.
 
-Presented at RaumZeitLabor on the 2014/05/17 ([https://corkami.googlecode.com/svn/trunk/src/pdf/PDFSecrets !PoCs]
+Presented at !RaumZeitLabor on the 2014/05/17 ([https://corkami.googlecode.com/svn/trunk/src/pdf/PDFSecrets PoCs])
 
 <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/pdfsecrets_slideshare.xml" width=595 height=497 border=0/>
 
@@ -526,7 +526,7 @@ Presented at RaumZeitLabor on the 2014/05/17 ([https://corkami.googlecode.com/sv
 
 =References=
  * [http://blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/ Didier Stevens]
- * [http://www.chalmers.se/cse/SV/personal/magazinius-jonas Jonas Magazinius}
+ * [http://www.chalmers.se/cse/SV/personal/magazinius-jonas Jonas Magazinius]
  * [http://events.ccc.de/congress/2010/Fahrplan/events/4221.en.html Julia Wolf]
  * [http://www.symantec.com/connect/blogs/portable-document-format-malware Kazumasa Itabashi]
  * [http://blog.zynamics.com/2010/07/13/recon-slides-how-to-really-obfuscate-your-pdf-malware/ Sebastian Porst]
