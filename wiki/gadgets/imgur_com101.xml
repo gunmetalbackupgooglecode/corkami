@@ -3,7 +3,7 @@
   <ModulePrefs title="imgur_com101" />
   <Content type="html">
     <![CDATA[
-<iframe class="imgur-album" width="100%" height="550" frameborder="0" src="http://imgur.com/a/PbN8H/embed"></iframe>
+<iframe class="imgur-album" width="100%" height="550" frameborder="0" src="https://imgur.com/a/PbN8H/embed"></iframe>
     ]]>
   </Content>
 </Module>
