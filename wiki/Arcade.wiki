@@ -29,8 +29,9 @@ An extended version (more details) is also available
 
 =extra=
 you can find [http://pics.corkami.com here] some hi-res version of some of the slides (facepalm, timeline)
+http://i.imgur.com/PJbYtpB.png
 
-The Q&A screensaver uses AdvanceMenu and the video set from its [http://advancemame.sourceforge.net/menu-download.html website] (6 Gb)
+The Q&A screensaver uses !AdvanceMenu and the video set from its [http://advancemame.sourceforge.net/menu-download.html website] (6 Gb)
 
 =ack= 
 Thanks to everyone who could make this presentation possible, and to anyone who made preservation possible, and in particular CPS2.
