@@ -1,14 +1,28 @@
 #summary Preserving arcade games
 
-*Preserving arcade games* was presented in various locations (Recon, T2, Area41, !NuitDuHack, !RaumZeitLabor, CCC)
+*Preserving arcade games* was presented at Recon, T2, Area41, !NuitDuHack, !RaumZeitLabor, CCC and other locations.
 
-The slide deck initially started as pure b&w text then evolved to pictures-only, and lastly fully animated with custom recorded lossless videos (presented via tweaks of [http://advancemame.sourceforge.net/menu-readme.html AdvanceMenu]). It now weights around 1Gb.
+=Abstract=
+_Old-school arcade games were so protected that hacking is the only way to preserve them before all boards are dead, and the games are lost._
 
-The best version was presented at the CCC
+ * an overview of famous old-school arcade games
+ * their incredible hardware
+ * the permanent piracy
+ * the awesome protections (designed to commit suicide !)
+ * what was required to preserve some of them from being lost for ever.
 
-         <wiki:video url="https://www.youtube.com/watch?v=2q_qXGIj-jg"/>
+This talk is a homage to Michael Steil's Ultimate Commodore 64 presentation at 25c3: you should watch it, it's inspiring in content and quality !
 
-A static version of the slides is [https://speakerdeck.com/ange/preserving-arcade-games-31c3 available] if you don't have time to watch it.
+=Contents= 
+The slide deck initially started as pure b&w text, then evolved to pictures only, and lastly fully animated with custom recorded (some are tools-assisted) lossless videos, presented via a tweaked version of [http://advancemame.sourceforge.net/menu-readme.html AdvanceMenu] (an arcade frontend).
+
+The best version was presented at the CCC ([http://media.ccc.de/browse/congress/2014/31c3_-_5997_-_en_-_saal_6_-_201412282030_-_preserving_arcade_games_-_ange_albertini.html hi-res download]) ([http://events.ccc.de/congress/2014/Fahrplan/events/5997.html event page, with rating])
+
+ <wiki:video url="https://www.youtube.com/watch?v=2q_qXGIj-jg"/>
+
+A static version of the slides is [https://speakerdeck.com/ange/preserving-arcade-games-31c3 available as PDF], viewable online and directly downloadable.
 
 An extended version (more details) is also available
-         <wiki:video url="https://www.youtube.com/watch?v=LiRIc0LDlu4"/>
+ <wiki:video url="https://www.youtube.com/watch?v=LiRIc0LDlu4"/>
+
+Thanks to everyone who could make this presentation possible, and to anyone who made preservation possible, and in particular CPS2.
