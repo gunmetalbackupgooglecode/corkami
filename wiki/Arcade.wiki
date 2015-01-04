@@ -1,0 +1,14 @@
+#summary Preserving arcade games
+
+*Preserving arcade games* was presented in various locations (Recon, T2, Area41, !NuitDuHack, !RaumZeitLabor, CCC)
+
+The slide deck initially started as pure b&w text then evolved to pictures-only, and lastly fully animated with custom recorded lossless videos (presented via tweaks of [http://advancemame.sourceforge.net/menu-readme.html AdvanceMenu]). It now weights around 1Gb.
+
+The best version was presented at the CCC
+
+         <wiki:video url="https://www.youtube.com/watch?v=2q_qXGIj-jg"/>
+
+A static version of the slides is [https://speakerdeck.com/ange/preserving-arcade-games-31c3 available] if you don't have time to watch it.
+
+An extended version (more details) is also available
+         <wiki:video url="https://www.youtube.com/watch?v=LiRIc0LDlu4"/>
