@@ -33,5 +33,35 @@ http://i.imgur.com/PJbYtpB.png
 
 The Q&A screensaver uses !AdvanceMenu and the video set from its [http://advancemame.sourceforge.net/menu-download.html website] (6 Gb)
 
+=tricks=
+ * images
+  * original slides from the first PDF version were converted to PNG via [http://www.imagemagick.org/script/command-line-options.php#density ImageMagick + "-density parameter"]
+ * video
+  # create your own video / download video via [http://rg3.github.io/youtube-dl/ youtube-dl]
+  # extract all/specific frames as PNG via [http://www.mplayerhq.hu/design7/news.html MPlayer]
+  # manipulate frames via imagemagick (crop, colors, perspective...)
+  # reencode via [http://advancemame.sourceforge.net/doc-advmng.html advmng]
+ * mame recording
+  # save game just before recording position
+  # restart Mame and record audio & video via Mame's _mngwrite_ & _wavwrite_ option, load savegame
+  # trim start on both MNG & WAV via [http://corkami.googlecode.com/svn/trunk/misc/python/trimmer.py this script] (only works before any advmng-specific compression)
+  # audio levelling via replaygain
+ * or use !AdvanceMame direct MNG + WAV recording
+
+ * Tools assisted videos: [https://code.google.com/p/mame-rr/downloads/list Mame-RR] with [https://code.google.com/p/macrolua/wiki/MacroLuaDocumentation MacroLua] and my [https://code.google.com/p/corkami/source/browse/trunk/misc/tas/?r=1750 inputs scripts]
+
+ * some videos were 'cleaned' at emulation level to prevent the display of some specific tiles (if you have a better solution, let me know!)
+  * used !WinKawaks Shot Factory to identify the tiles more easily (blinking state)
+  * patched tiles functions in Mame & recompile.
+ 
+ * compression
+  * pngout, advpng, advmng
+
+ * !AdvanceMenu works better under Wine for correct playback.
+  * the configuration was tweaked so that it's as big as possible on screen (it's still windowed)
+  * taskbar color is set to black, W8 settings "Prevent windows from being automatically arranged when moved to the edge of the screen" mus be disabled.
+  * a patch to prevent !AdvanceMenu to restart at the first frame was implemented by Philippe Teuwen. Because the official build couldn't compile under Windows at the time, I did a crossplatform diff patch on the official Windows binary
+  
+
 =ack= 
-Thanks to everyone who could make this presentation possible, and to anyone who made preservation possible, and in particular CPS2.
+Thanks to everyone who could make this presentation possible (Raz, Andreas, Charles, Dave, Phil), and to anyone who made preservation possible, and in particular CPS2.
