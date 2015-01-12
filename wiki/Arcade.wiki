@@ -18,11 +18,15 @@ The slide deck initially started as pure b&w text, then evolved to pictures only
 
 Why? This talk was rejected a lot - often without even an answer despite requests - so I just kept improving it anyway :)
 
-The best version was presented at the CCC ([http://media.ccc.de/browse/congress/2014/31c3_-_5997_-_en_-_saal_6_-_201412282030_-_preserving_arcade_games_-_ange_albertini.html hi-res download]) ([http://events.ccc.de/congress/2014/Fahrplan/events/5997.html event page, with feedback link])
+Please give me feedback [http://events.ccc.de/congress/2014/Fahrplan/events/5997.html here].
+
+The best version was presented at the CCC ([http://media.ccc.de/browse/congress/2014/31c3_-_5997_-_en_-_saal_6_-_201412282030_-_preserving_arcade_games_-_ange_albertini.html hi-res video + download])
 
  <wiki:video url="https://www.youtube.com/watch?v=2q_qXGIj-jg"/>
 
 A static version of the slides is [https://speakerdeck.com/ange/preserving-arcade-games-31c3 available as PDF], viewable online and directly downloadable.
+
+You can download the full animated presentation (~1Gb) with extras on [https://archive.org/details/arcade31c3 archive.org].
 
 An extended version (more details) is also available
  <wiki:video url="https://www.youtube.com/watch?v=LiRIc0LDlu4"/>
