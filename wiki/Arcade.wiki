@@ -28,8 +28,12 @@ A static version of the slides is [https://speakerdeck.com/ange/preserving-arcad
 
 You can download the full animated presentation (~1Gb) with extras on [https://archive.org/details/arcade31c3 archive.org].
 
+==special versions==
 An extended version (more details) is also available
  <wiki:video url="https://www.youtube.com/watch?v=LiRIc0LDlu4"/>
+
+*french* J'ai aussi donné cette présentation en Français
+ <wiki:video url="https://www.youtube.com/watch?v=d2X0YyxHg5Q"/>
 
 =extra=
 you can find [http://pics.corkami.com here] some hi-res version of some of the slides (facepalm, timeline)
