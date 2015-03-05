@@ -71,6 +71,17 @@ VirtualPC has been known to be incorrectly ignoring the 15 bytes limit.
  * `maskmovdqu`, `vbroadcast`, `vzeroupper`, `vfnmadd132pd`, `vbroadcastf128` are long names...
   * but `aeskeygenassist` beats them all.
 
+==mnemonic collision==
+`movsd` refers to two different instructions:
+ * "Move Data from String to String"
+{{{
+A5  movsd
+}}}
+ * "Move Scalar Double"
+{{{
+F2:0F 10 C1  movsd xmm0, xmm1
+}}}
+
 =registers=
 
 ==MMX and FPU==
@@ -264,6 +275,9 @@ https://corkami.googlecode.com/svn/wiki/pics/x86_movbe.gif
 }}}
  * unlike `bswap`, it's able to work with a WORD without resetting it.
  * It's found only on Atom CPUs. Thus, netbooks support it, but not powerful CPUs such as i7.
+
+==bsf/r==
+`bsf/r` are undefined when its source is 0. In practice, the target register is not modified.
 
 ==lzcnt==
 `lzcnt` (Leading Zero CouNT) is an opcode created in 2007, only supported by AMD in their Barcelona architecture and later (it's planned in Intel Haswell for 2013, along with its counterpart `tzcnt`).
@@ -571,9 +585,11 @@ https://corkami.googlecode.com/svn/wiki/pics/x86_96b.gif
  * Oleh Yuschuk
  * Sebastian Biallas
  * Yoann Guillot
+ * Fiora Aeterna
+ * Fabian 'rygorous' Giesen
 
 =Other resources=
-<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/berlinsides_slideshare.xml" width=595 height=497 border=0/> 
+<wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/berlinsides_slideshare.xml" width=595 height=497 border=0/>
 
  * [http://feldmann.home.xs4all.nl/86bugs.htm Hamarsoft 86BUGS list]
  * [http://www.rcollins.org/ddj/ddj.html Dr. Dobb's Undocumented Corner]
