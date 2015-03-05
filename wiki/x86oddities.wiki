@@ -16,7 +16,7 @@ this topic was presented in 2011 at [http://code.google.com/p/corkami/wiki/hashd
 
 =general=
 ==register order==
- * In 32b, each register has some unique role (unlike in 64b, where all registers of the r`9`-r`15` group are equivalent, from an mnemonic perspective): `stosd` reads from `esi` to `eax`, `loop` relies on `ecx`, `xlat` uses `ebx` as a base, `in` reads from port `dx`...
+ * In 32b, each register has some unique role (unlike in 64b, where all registers of the r`9`-r`15` group are equivalent, from an mnemonic perspective): `stosd` stores `eax` at `es:edi`, `loop` relies on `ecx`, `xlat` uses `ebx` as a base, `in` reads from port `dx`...
  * Registers are using A, B, C, D letters, but it stands for Accumulator, Base, Counter, Data, not the letters themselves.
  Their logical order is not the alphabetic one: In the CPU, they're encoded in the A, C, D, B order:
   for example, `inc eax` is encoded `40`, `inc ecx` is encoded `41`, and so on...
@@ -575,6 +575,9 @@ https://corkami.googlecode.com/svn/wiki/pics/x86_96b.gif
  * BeatriX
  * Czerno
  * Eugeny Suslikov
+ * Fabian 'rygorous' Giesen
+ * Fiora Aeterna
+ * Fotis
  * Gil Dabah
  * Guillaume Delugré
  * Igor Skochinsky
@@ -585,8 +588,6 @@ https://corkami.googlecode.com/svn/wiki/pics/x86_96b.gif
  * Oleh Yuschuk
  * Sebastian Biallas
  * Yoann Guillot
- * Fiora Aeterna
- * Fabian 'rygorous' Giesen
 
 =Other resources=
 <wiki:gadget url="https://corkami.googlecode.com/svn/wiki/gadgets/berlinsides_slideshare.xml" width=595 height=497 border=0/>
