@@ -16,7 +16,7 @@ this topic was presented in 2011 at [http://code.google.com/p/corkami/wiki/hashd
 
 =general=
 ==register order==
- * In 32b, each register has some unique role (unlike in 64b, where all registers of the r`9`-r`15` group are equivalent, from an mnemonic perspective): `stosd` stores `eax` at `es:edi`, `loop` relies on `ecx`, `xlat` uses `ebx` as a base, `in` reads from port `dx`...
+ * In 32b, each register has some unique role (unlike in 64b, where all registers of the r`9`-r`15` group are equivalent, from an mnemonic perspective, excepted that `r11` holds the value of RFLAGS on `syscall`/`sysret`): `stosd` stores `eax` at `es:edi`, `loop` relies on `ecx`, `xlat` uses `ebx` as a base, `in` reads from port `dx`...
  * Registers are using A, B, C, D letters, but it stands for Accumulator, Base, Counter, Data, not the letters themselves.
  Their logical order is not the alphabetic one: In the CPU, they're encoded in the A, C, D, B order:
   for example, `inc eax` is encoded `40`, `inc ecx` is encoded `41`, and so on...
@@ -66,6 +66,26 @@ https://corkami.googlecode.com/svn/wiki/pics/x86_15bop_16b.png
 
 VirtualPC has been known to be incorrectly ignoring the 15 bytes limit.
 
+==REX prefix==
+ * in 64b, `ah`, `bh`, `ch`, `dh` are not addressable when a REX prefix is used, while `sil`, `dil`, `bpl`, `spl` are only addressable when a REX prefix is used (they overlap).
+{{{
+   88EC:  mov    ah,  ch
+40 88EC:  mov   spl, bpl
+}}}
+ * in theory, only one REX prefix should be used. In practice, only the last one is taken into account.
+{{{
+                                       89D8:  mov  eax, ebx
+                                    4F 89D8:  mov   r8, r11
+40 41 42 43 44 45 46 47 48 49 4A 4B 4F 89D8:  mov   r8, r11
+}}}
+
+ * legacy prefix are expected before REX prefix: a REX prefix before a legacy prefix is silently ignored:
+{{{
+   2E 00F7: add   bh,  dh
+40 2E 00F7: add   bh,  dh    ; 40 is silently ignored
+2E 40 00F7: add  dil, sil
+}}}
+
 ==mnemonic length==
  * `or`, `in`, `jz/jp/js/jo`, `bt` are the smallest mnemonics
  * `maskmovdqu`, `vbroadcast`, `vzeroupper`, `vfnmadd132pd`, `vbroadcastf128` are long names...
@@ -77,7 +97,7 @@ VirtualPC has been known to be incorrectly ignoring the 15 bytes limit.
 {{{
 A5  movsd
 }}}
- * "Move Scalar Double"
+ * "Move Scalar Double-precision floating-point"
 {{{
 F2:0F 10 C1  movsd xmm0, xmm1
 }}}
