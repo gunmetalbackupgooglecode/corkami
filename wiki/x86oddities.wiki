@@ -605,6 +605,7 @@ https://corkami.googlecode.com/svn/wiki/pics/x86_96b.gif
  * Jim Leonard
  * Jon Larimer
  * Moritz Kroll
+ * Nguyen Anh Quynh
  * Oleh Yuschuk
  * Sebastian Biallas
  * Yoann Guillot
